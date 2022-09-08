@@ -4324,7 +4324,7 @@ body.is-preload #banner > .inner {
     font-size: 0.8em;
     font-weight: 600;
     letter-spacing: 0.25em;
-    line-height: 1em;
+    line-height: 3em;
     text-decoration: none;
     text-transform: uppercase;
 }
