@@ -1837,7 +1837,7 @@ body.is-ie header.major > h1:after {
         display: none;
     }
     
-}*/
+}/**/
 
 
 /* Section/Article */
@@ -2365,10 +2365,11 @@ ul.actions {
     list-style: none;
     margin-left: -1em;
     padding-left: 0;
+    width: 100%;
 }
 
 ul.actions li {
-    padding: 0 0 0 1em;
+    padding: 0 0 1em 1em;
     vertical-align: middle;
 }
 
@@ -3948,7 +3949,7 @@ opacity: 1;
 #banner.major {
     height: 75vh;
     min-height: 15em;
-    max-height: 25em;*/
+    max-height: 25em;
 }
 
 #banner.major.alt {
@@ -4057,7 +4058,7 @@ body.is-preload #banner > .inner {
         padding: 8em 0 4em 0 ;
     }
     
-} */
+}
 
 /* Main */
 
