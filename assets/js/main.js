@@ -231,6 +231,57 @@
 
 		});
 
+	// Accordion
+
+	var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+			this.classList.toggle("active");
+
+			/* Toggle between hiding and showing the active panel */
+			var panel = this.nextElementSibling;
+			if (panel.style.display === "block") {
+				panel.style.display = "none";
+			} else {
+				panel.style.display = "block";
+			}
+		});
+	}
+
+
+	function accordionBind()
+	{
+		$('.accordion').click(function(e) {
+			e.preventDefault();
+
+			var $this = $(this);
+
+			if ($this.next().hasClass('visible')) {
+				$this.next().removeClass('visible');
+				$this.next().slideUp(350);
+				$this.removeClass('active');
+				$this.find('.accordion-icon').removeClass('rotate');
+			} else {
+				$this.parent().parent().find('li .accordion-inner').removeClass('visible');
+				$this.parent().parent().find('li .accordion-inner').slideUp(350);
+				$this.next().toggleClass('visible');
+				$this.next().slideToggle(350);
+				$this.toggleClass('active');
+				$this.find('.accordion-icon').toggleClass('rotate');
+
+				var pageTitle = document.getElementsByClassName("pp-title")[0].getElementsByTagName("span")[0].outerText;
+				var accordionTitle = $this.children("span").text();
+				var eventStr = "A-" + pageTitle + ": " + accordionTitle;
+
+				ga('send', 'event', eventStr, "active");
+			}
+		});
+	}
+
 	// Menu.
 		var $menu = $('#menu'),
 			$menuInner;

@@ -1,0 +1,482 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Connor Wall Portfolio</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="assets/css/tomorrow-night.min.css">
+        <link rel="stylesheet" href="assets/css/sunburst.css">
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header" class="alt">
+                <a href="home.html" class="logo"><strong>Connor Wall</strong> <span>Portfolio</span></a>
+                <nav>
+                    <a href="#menu">Menu</a>
+                </nav>
+            </header>
+
+            <!-- Menu -->
+            <nav id="menu">
+                <ul class="actions stacked">
+                    <li><a href="home.html" class="button fit">Home</a></li>
+                </ul>
+                <ul class="links">
+                    <li><a href="coding.html">Coding</a></li>
+                    <li><a href="gamedesign.html">Game Design</a></li>
+                    <li><a href="visualart.html">Digital Illustration</a></li>
+                    <li><a href="writtenwork.html">Written Work</a></li>
+                </ul>
+                <ul class="actions stacked">
+                    <!--<li><a href="CV.html" class="button icon solid primary fas fa-clipboard-list">CV</a></li>-->
+                    <li><a href="CV.html" class="button primary fit fas fa-clipboard-list">CV</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main -->
+            <section id="banner" class="major">
+                <div class="inner">
+                    <span class="image">
+                        <img src="images/digitalillustration2.jpeg" alt=""/></span>
+                    <header class="major">
+                        <h2>
+										<span style="font-size: 300%;">
+											Robolleon
+										</span>
+                        </h2>
+                        <p>Scroll to see more</p>
+                    </header>
+                </div>
+            </section>
+            <div id="main" class="alt">
+
+                <!-- One -->
+                <section id="one">
+                    <div class="inner">
+
+                        <header class="major">
+                            <h1>Robolleon</h1>
+                        </header>
+                        <p>Programmed <b>rigid body movement</b>, <b>procedural content</b>, <b>UI</b>, and <b>localization</b> systems for a 3rd-person order delivery game in Unity's HDRP.</p>
+                        <iframe : auto 0px; width="560" height="315" src="https://www.youtube.com/embed/L9dLvSPTLko" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <br>
+                        <br>
+                        <ul class="actions">
+                            <li><a href="" class="button icon solid fa-gamepad">Download (TBA)</a></li>
+                            <li><a href="https://github.com/connortwall/Robolleon-Game" class="button icon solid brands fa-github">Github</a></li>
+                            <li><a href="uploads/ConnorWall_Portfolio/Game_Design/" class="button icon solid primary fa-clipboard-list">Technical Presentation (TBA)</a></li>
+
+                        </ul>
+                    </div>
+                </section>
+
+            </div>
+
+            <!--Project Description-->
+            <div class="pp-contents">
+                <div class="accordion">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Procedural Obstacle Generation</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p>I developed a procedural object spawner using Poisson Disk Sampling.</p>
+                    <div class="accordion">
+                        <i class="fa fa-code" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Procedural Object Spawning</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates a header for a logic state within the state
+                            machine:</p>
+                        <pre class="prettyprint lang-csharp">/**
+ * Character logic state for walking
+ */
+UCLASS()
+class BOLTSTORM_API UBsStateWalk : public UBsCharacterStateBase
+{
+	GENERATED_BODY()
+
+public: // ctor / dtor
+
+	UBsStateWalk();
+	~UBsStateWalk();
+
+protected: // implementation
+
+	virtual void OnInitialize() override;
+
+	virtual void OnActivate() override;
+
+	virtual void OnDeactivate() override;
+
+	virtual void Tick(float DeltaTime) override;
+
+	virtual void HandleInputAxis(float aLS_X, float aLS_Y, float aRS_X, float aRS_Y) override;
+};</pre>
+                        <p>The following code is part of the header of the state machine itself:</p>
+
+                        <pre class="prettyprint linenums">UCLASS(Blueprintable)
+class BOLTSTORM_API UBsStateMachine : public UObject
+{
+	friend class ABsCharacterPlayerBase;
+
+	GENERATED_BODY()
+
+public: // ctor / dtor
+
+	UBsStateMachine();
+	~UBsStateMachine();
+
+public: // functions
+
+
+	UFUNCTION(BlueprintPure, Category = "BS: State Manager")
+		int32 GetNumActiveStates();
+
+	UFUNCTION(BlueprintPure, Category = "BS: State Manager")
+		bool IsStateActive(EStateId aStateId);
+
+
+	/* Returns the active secondary state in this state machine */
+	UFUNCTION(BlueprintPure, Category = "BS: State Manager")
+		UBsStateBase* GetSecondaryState();
+
+...</pre>
+
+
+                    </div>
+                    <div class="accordion">
+                        <i class="fa fa-map-o" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">BLUEPRINTS SNIPPET - State Machine</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+
+                        <p><img src="http://hugo.fyi/assets/statemachine1.png" alt="statemachine1.png#asset:36"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
+                                src="http://hugo.fyi/assets/statemachine2.png" alt="statemachine2.png#asset:37"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
+                                src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>
+                        </p>
+
+
+                    </div>
+
+                </div>
+                <div class="accordion">
+                    <i class="fa fa-shield" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Combat System (melee, ranged, shielded)</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+
+                    <p>Bolt Storm features both ranged (gun, crossbow) and melee (sword, knife) combat. To allow
+                        for these different types of weapons, I set up a system which can map bones ('sockets')
+                        of characters to a specific slot, so that weapons can be used on different skeletons.
+                        The slot definitions, weapons themselves, and even the local binding have local offsets,
+                        to fine-tune the position in every case.</p>
+
+                    <div style="text-align: left; margin-bottom: 10px;">
+                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                            <source src="http://hugo.fyi/assets/projects/378/BoltStorm-Combat1.mp4"
+                                    type="video/mp4"/>
+                        </video>
+                    </div>
+                    <div style="text-align: left; margin-bottom: 10px;">
+                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                            <source src="http://hugo.fyi/assets/projects/379/bs-combat-3.mp4" type="video/mp4"/>
+                        </video>
+                    </div>
+                    <h2>Custom 'melee' collision checking</h2>
+
+                    <p>
+                    <p>Swords swing pretty fast, meaning the default collision checking wasn't optimal in our
+                        case. We also wanted collision checking 'LODs', in other words; being able to have less
+                        precise collision checking in cases where precision doesn't really matter.
+                    </p>
+                    <p>In the case of Bolt Storm, there can be armies of knights fighting, so collision hits can
+                        be guessed, instead of checked very precisely.
+                        For 1-on-1 combat, I implemented collision checking by having a set of boxes on the
+                        weapon which define what is collidable, then each frame the previous position of each
+                        box is traced against the current position of that box.</p>
+                    <p>Visually, that looks like this:</p>
+                    <p><img src="http://i.imgur.com/TY8eHYA.gif" alt="TY8eHYA.gif"
+                            style="vertical-align:middle;height:auto;"/></p></p>
+
+
+                    <div class="accordion">
+                        <i class="fa fa-code" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Melee collision checking</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+
+                 			    	    	    		    		<pre class="prettyprint linenums">TArray&lt;FHitResult&gt; FBsWpCollisionPreciseBox::UpdateCollision(AActor* aActor)
+{
+	UWorld* tWorld = aActor->GetWorld();
+
+	TArray&lt;FHitResult&gt; tOutResult;
+
+	for (int i = 0; i < mCachedComps.Num(); i++)
+	{
+		const UBoxComponent* tComp = mCachedComps[i];
+
+		FTransform& tPrevTransform = mCachedTransforms[i];
+		FTransform tCurTransform = tComp->GetComponentToWorld();
+
+		FVector BoxExt = tComp->GetScaledBoxExtent();
+
+		TArray&lt;FHitResult&gt; tThisOutResult;
+		FCollisionQueryParams tQueryParams = FCollisionQueryParams::DefaultQueryParam;
+		FCollisionResponseParams tResponseParams = FCollisionResponseParams::DefaultResponseParam;
+		FCollisionObjectQueryParams tObjectQueryParams = FCollisionObjectQueryParams::AllObjects;
+
+		/* Add the weapon */
+		tQueryParams.AddIgnoredActor(tComp->GetOwner());
+		/* Add the weapon's owner (character) */
+		tQueryParams.AddIgnoredActor(tComp->GetOwner()->GetOwner());
+
+		if (tWorld->SweepMultiByObjectType(tThisOutResult,
+			tPrevTransform.GetTranslation(), tCurTransform.GetTranslation(), tPrevTransform.GetRotation(),
+			tObjectQueryParams, FCollisionShape::MakeBox(BoxExt / 2.f), tQueryParams))
+		{
+			tOutResult.Append(tThisOutResult);
+		}
+
+		mCachedTransforms[i] = tCurTransform;
+	}
+
+	return tOutResult;
+}</pre>
+
+
+                    </div>
+
+                    <h2>State Machine &amp; Combat System in action</h2>
+
+                    <p>
+                    <p>The following demonstrates the character logic and the combat system in action, notice
+                        how the character rotation locks while he swings the sword, and waits until the attack
+                        is over before rotating back.</p></p>
+
+                    <div style="text-align: left; margin-bottom: 10px;">
+                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                            <source src="http://hugo.fyi/assets/projects/395/boltstorm_1_ffmpeg2.mp4"
+                                    type="video/mp4"/>
+                        </video>
+                    </div>
+
+
+                </div>
+                <div class="accordion">
+                    <i class="fa fa-cubes" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Ranged Combat &amp; Projectile Batching</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+
+                    <p>I implemented a system that allows us to have many (<em>many</em>) projectiles on the
+                        screen at the same time. It works like this</p>
+
+                    <p>
+                    <ul>
+                        <li>When a projectile is fired, submit the data to a global actor which manages them
+                        </li>
+                        <li>In the actor, check if an Instanced Static Mesh Component (ISM component) exists for
+                            the mesh of the projectile
+                            <ul>
+                                <li> If not, create two new components:
+                                    <ul>
+                                        <li>One will be used for while the projectile is moving, constantly
+                                            updating the mesh from the CPU
+                                        </li>
+                                        <li>The other will be used exclusively for static projectiles (laying
+                                            still on the ground)
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Create a physics body for the projectile (derived of Primitive Component, not an
+                            actor), but do not use it for now, just keep setting the velocity from the next
+                            step:
+                        </li>
+                        <li>Initialize custom physics code (used to calculate projectile arcs for AI)</li>
+                        <li>Submit an instance to the "moving" ISM component</li>
+                        <li>&lt; update the projectile &amp; custom physics &gt;</li>
+                        <li>When it touches an object, the physics body is put to use, from now on the
+                            projectile won't cause a "hit" if it touches a character
+                        </li>
+                        <li>The physics body causes the projectile to fall down / slide in a natural way</li>
+                        <li>When the projectile has come to a stop, its physics body is destroyed, and the
+                            instance is moved from the "moving" ISM component to the "static" ISM component
+                        </li>
+                        <li>After a while it's also removed from this component, completely destroying the
+                            projectile
+                        </li>
+                    </ul>
+                    <p>This approach has allowed us to have as many as 27,000 moving projectiles on the screen
+                        simulatenously, and over 230,000 static projectiles. With actors, this number was far
+                        below 1,000 (test situation: a pretty much empty scene in UE4 on a desktop with a
+                        GTX 770, i7 4770k)</p></p>
+
+                    <div style="text-align: left; margin-bottom: 10px;">
+                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                            <source src="http://hugo.fyi/assets/projects/388/boltstorm_2_ffmpeg2.mp4"
+                                    type="video/mp4"/>
+                        </video>
+                    </div>
+                    <p>Projectiles can be spawned in "bursts", each burst can have a root offset, and a local
+                        offset per projectile, allowing for shapes of projectiles:</p>
+
+                    <p>
+                    <p><img src="http://i.imgur.com/jpv0zxN.gif" alt="jpv0zxN.gif"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p><img src="http://i.imgur.com/2R6iG4t.gif" alt="2R6iG4t.gif"
+                            style="vertical-align:middle;height:auto;"/></p></p>
+
+
+                </div>
+                <div class="accordion">
+                    <i class="fa fa-desktop" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">User Interface implementation</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+
+                    <p>I designed and developed some UI elements for Bolt Storm, for example, a widget that
+                        slides open to reveal information about an item that you can buy (swords, crossbows,
+                        etc). It compares your currently-equipped item with the one you're able to buy.</p>
+
+                    <div style="text-align: left; margin-bottom: 10px;">
+                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                            <source src="http://hugo.fyi/assets/projects/404/BS-Shop-UI.mp4" type="video/mp4"/>
+                        </video>
+                    </div>
+                    <p>Furthermore I re-used this design to make a small "context popup" which informs the user
+                        about necessary information during gameplay, like a message that tells the player to
+                        defeat more enemies before being able to exit the level:</p>
+
+                    <div style="text-align: left; margin-bottom: 10px;">
+                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio//projects/406/ContextFeedback.mp4"
+                                    type="video/mp4"/>
+                        </video>
+                    </div>
+
+
+                </div>
+                <div class="accordion">
+                    <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Formation Selection Shader</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+
+                    <p>In Bolt Storm you can command your army to attack a certain group of enemies. I wrote
+                        a shader consisting of two passes (a pre-tonemap and post-tonemap pass) to visualize the
+                        selection. <em>Note: this is still a work in progress!</em></p>
+
+                    <p>
+                    <p><img src="http://hugo.fyi/assets/6uzRMGh.jpg" alt="6uzRMGh.jpg#asset:247"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <h3>How it works</h3>
+                    <p>Let's take this shot for example:</p>
+                    <p><img src="http://i.imgur.com/zHALbLK.jpg" alt="zHALbLK.jpg"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p>All character meshes, the weapon meshes and the icons are rendered to the custom depth
+                        and stencil buffers:</p>
+                    <p><img src="http://i.imgur.com/yn8WfHM.png" alt="yn8WfHM.png"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p>At the moment, the stencil values are a hardcoded "enum" value, but this will most likely
+                        change to a bit mask.</p>
+                    <p>Next the pre-tonemap shader is applied, coloring the areas defined by the stencil
+                        values:</p>
+                    <p><img src="http://i.imgur.com/F5jHWfU.jpg" alt="F5jHWfU.jpg"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p>Then the post-tonemap shader is applied to the screen, except for the stencil values:</p>
+                    <p><img src="http://i.imgur.com/mNk0PA0.png" alt="mNk0PA0.png"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p>(The screenshot above is without the pre-tonemap shader applied).</p>
+                    <p>The combined result:</p>
+                    <p><img src="http://i.imgur.com/E4WrEgg.png" alt="E4WrEgg.png"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p>At the moment the shaders identify the objects by a number of if-statements, this will
+                        soon be optimized by making the stencil values a bitmask.</p>
+                    <p>The pre-tonemap shader fills a color on an area marked with specific stencil values
+                        (first desaturates it to prevent lighting influence), and then applies a Fresnel on top
+                        of that (where every one of the colored squares is a section for one specific
+                        object):</p>
+                    <p><img src="http://i.imgur.com/4nFSDCn.png" alt="4nFSDCn.png"
+                            style="vertical-align:middle;height:auto;"/></p>
+                    <p>The post-tonemap shader first determines if the stencil value is targeted to an object,
+                        if not it desaturates the fragment - applies a blur and blends color based on the
+                        scene depth as well as different blend colors. It looks like this:</p>
+                    <p><img src="http://i.imgur.com/tfcrX6R.png" alt="tfcrX6R.png"
+                            style="vertical-align:middle;height:auto;"/></p></p>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- Footer -->
+            <footer id="footer">
+                <div class="inner">
+                    <header class="major">
+                        <h2>Get in Touch</h2>
+                        <ul class="actions">
+                            <li><a href="CV.html" class="button icon solid primary fas fa-clipboard-list">CV</a></li>
+                            <!--<li><a href="cwall6@jhu.edu" class="button primary">email</a></li>-->
+                            <li><a href="https://github.com/connortwall" class="button icon solid brands fa-github">Github<span class="label">GitHub</span></a></li>
+                            <li><a href="https://www.linkedin.com/in/connortwall/" class="button icon solid brands fa-linkedin-in">LinkedIn<span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://connorthewall.itch.io" class="button icon solid fa-gamepad">Itch.io<span class="label">Itch.io</span></a></li>
+                        </ul>
+                        <ul class="copyright">
+                            <li>&copy; Connor Wall</li>
+                        </ul>
+                    </header>
+                </div>
+            </footer>
+
+
+
+        </div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
