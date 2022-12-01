@@ -1836,6 +1836,10 @@ header.major > p {
     text-transform: uppercase;
 }
 
+header.major > h3 {
+    font-size: 0.3em;
+}
+
 body.is-ie header.major > :first-child:after {
     max-width: 9em;
 }
@@ -1850,7 +1854,16 @@ body.is-ie header.major > h1:after {
         display: none;
     }
 
+    header.major > h3 {
+        font-size: 0.3em;
+    }
 
+}
+
+@media screen and (max-width: 736px) {
+    header.major > h3 {
+        font-size: 0.3em;
+    }
 }
 
 
@@ -2908,7 +2921,7 @@ button:disabled,
 @media screen and (max-width: 1280px) {
 
     .tiles article {
-        padding: 4em 3em 2em 3em;
+        padding: 3em 3em 2em 3em;
         height: 30vh;
         max-height: 30em;
         min-height: 20em;
@@ -2928,7 +2941,7 @@ button:disabled,
 
     .tiles article {
         padding: 3em 1.5em 1em 1.5em;
-        height: 16em;
+        height: 23em;
         max-height: none;
         min-height: 0;
     }
@@ -2939,7 +2952,7 @@ button:disabled,
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
 
     .tiles {
         display: block;
@@ -3741,20 +3754,20 @@ body.is-preload #introbanner > .inner {
         top: -2.75em;
     }
 
-    #banner h1 {
+    #introbanner h1 {
         font-size: 2em;
     }
 
-    #banner > .inner .content {
+    #introbanner > .inner .content {
         display: block;
     }
 
-    #banner > .inner .content > * {
+    #introbanner > .inner .content > * {
         margin-right: 0;
         margin-bottom: 2em;
     }
 
-    #banner.major {
+    #introbanner.major {
         height: auto;
         min-height: 0;
         max-height: none;
@@ -3836,6 +3849,7 @@ body.is-preload #introbanner > .inner {
     -moz-transition: -moz-transform 0.5s ease, opacity 0.5s ease;
     -webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
     -ms-transition: -ms-transform 0.5s ease, opacity 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     transition: transform 0.5s ease, opacity 0.5s ease;
     display: inline-block;
     font-size: 1.75em;
@@ -4237,9 +4251,8 @@ body.is-preload #about > .inner {
 @media screen and (max-width: 736px) {
 
     #about {
-        padding: 2em 0 3em 0;
+        padding: 3em 0 2em 0;
         height: auto;
-        margin-bottom: -2.75em;
         max-height: none;
         min-height: 0;
         top: -2.75em;
@@ -4276,7 +4289,7 @@ body.is-preload #about > .inner {
 @media screen and (max-width: 480px) {
 
     #about {
-        padding: 6em 0 2em 0;
+        padding: 4em 0 2em 0;
     }
 
     #about > .inner .content p br {
