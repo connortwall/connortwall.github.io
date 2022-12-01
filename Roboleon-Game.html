@@ -61,17 +61,17 @@
                 <section id="one">
                     <div class="inner">
 
-                        <header class="major">
-                            <h1>Roboleon</h1>
-                        </header>
-                        <p>Programmed <b>rigid body movement</b>, <b>procedural content</b>, <b>UI</b>, and <b>localization</b> systems for a 3rd-person order delivery game in Unity's HDRP.</p>
-                        <iframe : auto 0px; width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <br>
+                        <!--<iframe : auto 0px; width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                        <img : width=100% height=100% src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/logo.png"></img>
                         <br>
+                        <br>
+                        <p>Programmed <b>save - load</b>, <b>procedural obstacle generation</b>, <b>UI</b>, and <b>localization</b> systems for an 3rd-person dark, comedic, narrative RPG game in Unity's HDRP.</p>
+
+
                         <ul class="actions">
-                            <li><a href="" class="button icon solid fa-gamepad">Download (TBA)</a></li>
-                            <li><a href="https://github.com/connortwall/Robolleon-Game" class="button icon solid brands fa-github">Github</a></li>
-                            <li><a href="uploads/ConnorWall_Portfolio/Game_Design/" class="button icon solid primary fa-clipboard-list">Technical Presentation (TBA)</a></li>
+                            <li><a href="" class="button icon solid fa-gamepad">Download (Releasing on Dec 4)</a></li>
+                            <li><a href="https://github.com/connortwall/Robolleon-Game" class="button icon solid brands fa-github">Github (Releasing on Dec 4)</a></li>
+                            <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf" class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
 
                         </ul>
                     </div>
@@ -80,7 +80,35 @@
             </div>
 
             <!--Project Description-->
+
             <div class="pp-contents">
+                <header class="major">
+                    <h1>Project Information</h1>
+                </header>
+                <div class="accordion">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Full Technical Design Document</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
+                               width="100%" height="500px;"></iframe></p></p>
+
+                </div>
+                <div class="accordion">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Executive Summary</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Executive%20Summary.pdf"
+                            width="100%" height="500px"></iframe></p></p>
+
+                </div>
                 <div class="accordion">
                     <i class="fa fa-info" aria-hidden="true"></i>
                     <span style="margin-left: 5px;">Procedural Obstacle Generation</span>
@@ -92,14 +120,13 @@
                     <p>I developed a procedural object spawner using Poisson Disk Sampling.</p>
                     <div class="accordion">
                         <i class="fa fa-code" aria-hidden="true"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Procedural Object Spawning</span>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Procedural Fire Spawning</span>
                         <div class="accordion-icon">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="accordion-inner">
-                        <p>The following code demonstrates a header for a logic state within the state
-                            machine:</p>
+                        <p>The following code demonstrates the algorithm used to spawn game objects in the game scene</p>
                         <pre class="prettyprint lang-csharp">/**
  * Character logic state for walking
  */
@@ -166,18 +193,19 @@ public: // functions
                     </div>
                     <div class="accordion-inner">
 
-                        <p><img src="http://hugo.fyi/assets/statemachine1.png" alt="statemachine1.png#asset:36"
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
                                 style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
-                                src="http://hugo.fyi/assets/statemachine2.png" alt="statemachine2.png#asset:37"
-                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
-                                src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
-                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>
+                                <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
                         </p>
 
 
                     </div>
 
                 </div>
+
+
+
                 <!--
                 <div class="accordion">
                     <i class="fa fa-shield" aria-hidden="true"></i>
