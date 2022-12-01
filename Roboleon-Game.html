@@ -59,6 +59,9 @@
 
                 <!-- One -->
                 <section id="one">
+                    <div class="inner">
+
+                    <h3>I programmed <b>save - load</b>, <b>procedural obstacle generation</b>, <b>UI</b>, and <b>localization</b> systems for an 3rd-person dark, comedic, narrative RPG game in Unity's HDRP.</h3>
 
                     <div class="inner">
                         <header class="major">
@@ -69,7 +72,6 @@
                                    width="100%" height="600px;"></img></p>
 
                         <br>
-                        <p>I programmed <b>save - load</b>, <b>procedural obstacle generation</b>, <b>UI</b>, and <b>localization</b> systems for an 3rd-person dark, comedic, narrative RPG game in Unity's HDRP.</p>
                         <header class="major">
                             <h1>Gameplay</h1>
                         </header>
@@ -98,6 +100,20 @@
                 <header class="major">
                     <h1>More Project Information</h1>
                 </header>
+
+                <div class="accordion">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Full Technical Design Document</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
+                               width="100%" height="600px;"></iframe></p></p>
+
+                </div>
+
                 <div class="accordion">
                     <i class="fa fa-info" aria-hidden="true"></i>
                     <span style="margin-left: 5px;">Save - Load</span>
@@ -115,123 +131,284 @@
                         </div>
                     </div>
                     <div class="accordion-inner">
-                        <p>The following code demonstrates the algorithm used to spawn game objects in the game scene</p>
+                        <p>The following code demonstrates the code used to save game data</p>
                         <pre class="prettyprint lang-csharp">
-                            public class FireSpawner : MonoBehaviour
+                            using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+// gives nicer syntax, helps with finding data persistance object
+
+// This class keeps track of current state of game data, organizes save and load logic
+public class SaveableManager : MonoBehaviour
 {
+    [Header("Debugging")]
+    [SerializeField] private bool disableDataPersistence = false;
+    private bool initializeDataIfNull = true;
+    public bool printDebugs = false;
 
-    [Header("Fire Prefabs to use")]
-    public List<GameObject> firePrefabs;
-    [Header("Tuning")]
-    public Vector2 zone = Vector2.one;
-    public float spaceBetweenFires = 1;
-    public float prefabScale = 1;
-    private int k = 2;
-    private List<Vector2> samples;
+    private string fileName = "SaveData.json";
+    private bool useEncryption = false;
 
-    public List<GameObject> StartFire()
+    [Header("Auto Saving Configuration")] [SerializeField]
+    private float autoSaveTimeSeconds = 60f;
+    public bool enableAutoSave = false;
+
+    [HideInInspector]
+    private Coroutine autoSaveCoroutine;
+
+    // need a data handler to save game
+    [HideInInspector]
+    private FileDataHandler dataHandler;
+    // list of saveable objects
+    [HideInInspector]
+    private List<ISaveable> dataPersistenceObjects;
+    [HideInInspector]
+    private GameData gameData;
+    [HideInInspector]
+    private string selectedProfileId = null;
+    private string defaultProfileName = "SavedGame";
+
+
+
+    // only want one SaveableManager in scene (Singleton), can get instance publically but only modify it here
+    public static SaveableManager instance { get; private set; }
+
+    public void StartSM()
     {
-        List<GameObject> fireObjects = new List<GameObject>();
-        samples = Poisson.GeneratePoint(spaceBetweenFires, zone, k);
-        if(samples != null)
+        // if there is an instance of this class error
+        if (instance != null)
         {
-            int index;
-            foreach(Vector2 sample in samples)
-            {
+            printMsg("Found more than one Data Persistence Manager in the scene. Destroying the newest one.");
+            Destroy(gameObject);
+            return;
+        }
 
-                //instantiate fire
-                index = Random.Range(0, firePrefabs.Count);
-                GameObject fire = Instantiate(firePrefabs[index], new Vector3(sample.x, 0, sample.y)+transform.position, Quaternion.identity)as GameObject;
-                Assert.IsNotNull(fire.GetComponent<FireObject>());
-                fire.transform.Rotate(0, Random.Range(0, 360), 0);
-                fire.transform.localScale = Vector3.one * prefabScale;
-                //add fire to fire list
-                fireObjects.Add(fire);
+        instance = this;
+        //DontDestroyOnLoad(gameObject);
+
+        if (disableDataPersistence) Debug.LogWarning("Data Persistence is currently disabled!");
+
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+
+        InitializeSelectedProfileId();
+    }
+
+    private void UpdateSM()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            printMsg("Saving Game ");
+            SaveGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            printMsg("Loading Game ");
+            LoadGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            printMsg("New Game ");
+            NewGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P)) printMsg(JsonUtility.ToJson(gameData));
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnApplicationQuit()
+    {
+        //SaveGame();
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
+        //LoadGame();
+
+        // start up the auto saving coroutine
+        if (!enableAutoSave) return;
+        if (autoSaveCoroutine != null) StopCoroutine(autoSaveCoroutine);
+        autoSaveCoroutine = StartCoroutine(AutoSave());
+    }
+
+    public void ChangeSelectedProfileId(string newProfileId)
+    {
+        // update the profile to use for saving and loading
+        selectedProfileId = newProfileId;
+        // load the game, which will use that profile, updating our game data accordingly
+        LoadGame();
+    }
+
+    public bool CanLoadGame(){
+        // return if data persistence is disabled
+        if (disableDataPersistence) return false;
+
+        // load any saved data from a file using the data handler
+        gameData = dataHandler.Load(selectedProfileId);
+
+        // check if game data actually exits
+        if (gameData != null) return true;
+        else return false;
+    }
+
+    public void DeleteProfileData(string profileId)
+    {
+        // delete the data for this profile id
+        dataHandler.Delete(profileId);
+        // initialize the selected profile id
+        InitializeSelectedProfileId();
+        // reload the game so that our data matches the newly selected profile id
+        LoadGame();
+    }
+
+    private void InitializeSelectedProfileId()
+    {
+        selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        if (string.IsNullOrWhiteSpace(selectedProfileId)){
+            selectedProfileId = defaultProfileName;
+        }
+    }
+
+    // create new GameData object
+    public void NewGame()
+    {
+        gameData = new GameData();
+    }
+
+    // loads game by passing each object in the ISaveable interface and calling its LoadData function in its script from GameData
+    public bool LoadGame()
+    {
+        // return if data persistence is disabled
+        if (disableDataPersistence) return false;
+
+        // load any saved data from a file using the data handler
+        gameData = dataHandler.Load(selectedProfileId);
+
+        // start a new game if the data is null and we're configured to initialize data for debugging purposes
+
+
+        // if no data can be loaded, stop
+        if (gameData == null){
+            if (initializeDataIfNull){
+                NewGame();
+                printMsg("GameData was null; New Game created");
+            }
+            else {
+                printMsg("Error loading:No data was found. A New Game needs to be started before data can be loaded.");
+                return false;
             }
         }
-        // if by chance no fires are added to the scene in each sample (i.e count = 0) spawn a fire in the middle of the hub
-        if (fireObjects.Count <= 0)
+
+        //update list of objects in the scene
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
+        if (dataPersistenceObjects == null){
+            printMsg("Error loading: there are no data persistence objects in scene");
+            return false;
+        }
+        // push the loaded data to all other scripts that need it
+        foreach (var dataPersistenceObj in dataPersistenceObjects)
         {
-            // instantiate fire in middle of fire spawner zone
-            GameObject fire = Instantiate(firePrefabs[0], new Vector3(zone.x/2, 0, zone.y/2)+transform.position, Quaternion.identity)as GameObject;
-            fireObjects.Add(fire);
+            dataPersistenceObj.LoadData(gameData);
         }
 
-        if (fireObjects.Count > 0) return fireObjects;
-        else return null;
+        printMsg("Loading game from disk completed.");
+        return true;
     }
 
-    private void OnDrawGizmos()
+
+    // saves game by passing each object in the ISaveable interface and calling its SaveData function in its script
+    // these scripts modify GameData object
+    public void SaveGame()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube((new Vector3(zone.x, 0, zone.y) / 2)+transform.position, new Vector3(zone.x, 0, zone.y));
+        // return right away if data persistence is disabled
+        if (disableDataPersistence) return;
 
+        // if we don't have any data to save, log a warning here
+        if (gameData == null)
+        {
+            if (initializeDataIfNull){
+                printMsg("No save data found, creating a new game");
+                NewGame();
+            }
+            else {
+                Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
+                return;
+            }
+        }
+
+
+        // load in new objects from scene to be saved
+        dataPersistenceObjects = FindAllDataPersistenceObjects();
+        gameData.savedGameManagerData.Clear();
+        gameData.savedScrewPanelData.Clear();
+
+        // pass the data to other scripts so they can update it
+        foreach (var dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.SaveData(gameData);
+        }
+
+        //printMsg("Game Saved");
+
+        // timestamp the data so we know when it was last saved
+        gameData.lastUpdated = DateTime.Now.ToBinary();
+
+        // save that data to a file using data handler
+        dataHandler.Save(gameData, selectedProfileId);
     }
 
+
+    private List<ISaveable> FindAllDataPersistenceObjects()
+    {
+        // FindObjectsofType takes in an optional boolean to include inactive gameobjects
+        // must extend from monobehavior to function to search completely for all objects in IEnumerable
+        var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true)
+            .OfType<ISaveable>();
+
+        return new List<ISaveable>(dataPersistenceObjects);
+    }
+
+    public bool HasGameData()
+    {
+        return gameData != null;
+    }
+
+    public Dictionary<string, GameData> GetAllProfilesGameData()
+    {
+        return dataHandler.LoadAllProfiles();
+    }
+
+    private IEnumerator AutoSave()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(autoSaveTimeSeconds);
+            SaveGame();
+            printMsg("Auto Saved Game");
+        }
+    }
+
+    public void printMsg(string msg){
+        if (!printDebugs) return;
+        Debug.Log(msg);
+    }
 }
                         </pre>
-                        <p>The following code is part of procedural algortihm itself:</p>
-
-                        <pre class="prettyprint lang-csharp">public static List<Vector2> GeneratePoint(float radius, Vector2 grid_size, int numSamplesBeforeRejection  = 30)
-    {
-        // find the size of a cell's square
-        float cell_size = radius / Mathf.Sqrt(2);
-
-        // number of times the cell size fits into sample region size, for each cell
-        // grid will tell us for each cell, what the index is of each point, (0 means no point, 1 has index 0)
-        // to get the number of columns divide the width / cell_size and rows
-        int[,] grid = new int[Mathf.CeilToInt(grid_size.x / cell_size), Mathf.CeilToInt(grid_size.y / cell_size)];
-
-        // create new vectors of sample candidate points
-        List<Vector2> samples = new List<Vector2>();
-        List<Vector2> spawn_samples = new List<Vector2>();
-
-        // create spawn point list
-        spawn_samples.Add(grid_size / 2);
-        // while spawn point list is not empty
-        while (spawn_samples.Count > 0)
-        {
-            int index = Random.Range(0, spawn_samples.Count);
-            Vector2 current_spawn_sample = spawn_samples[index];
-            bool rejected_sample = true;
-            for (int i = 0; i < numSamplesBeforeRejection; i++)
-            {
-                // angle of candidate point
-                float angle_offset = Random.value * Mathf.PI * 2;
-                //rotate a vector at a given angle
-                float x = Mathf.Sin(angle_offset);
-                float y = Mathf.Cos(angle_offset);
-
-                Vector2 offset_direction = new Vector2(x, y);
-
-                // new magnitude
-                // radius is min so that candidate is spawned outside spawn center
-                float new_magnitude = Random.Range(radius, 2 * radius);
-                offset_direction *= new_magnitude;
-
-                // assign info to sample
-                Vector2 sample = current_spawn_sample + offset_direction;
-                if (is_valid(samples, grid, sample, grid_size, radius, cell_size))
-                {
-                    // add sample to point list
-                    samples.Add(sample);
-                    // add sample as new spawn point
-                    spawn_samples.Add(sample);
-                    // record which cell the sample point ends up in
-                    grid[(int)(sample.x / cell_size), (int)(sample.y / cell_size)] = samples.Count;
-                    rejected_sample = false;
-                    break;
-                }
-            }
-
-            // if not accepted remove from spawn point list
-            if (rejected_sample)
-            {
-                spawn_samples.RemoveAt(index);
-            }
-        }
-        return samples;
-    }</pre>
+                        <p>The following code is part of save manager:</p>
 
 
                     </div>
@@ -400,18 +577,7 @@
 
                 </div>
 
-                <div class="accordion">
-                    <i class="fa fa-info" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Full Technical Design Document</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
-                               width="100%" height="600px;"></iframe></p></p>
 
-                </div>
 
                 <div class="accordion">
                     <i class="fa fa-info" aria-hidden="true"></i>
