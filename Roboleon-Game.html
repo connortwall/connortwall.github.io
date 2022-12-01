@@ -59,14 +59,26 @@
 
                 <!-- One -->
                 <section id="one">
+
                     <div class="inner">
+                        <header class="major">
+                            <h1>Project Information</h1>
+                        </header>
+                        <img : width=100% height=100% src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/logo.png">
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Onepager.Final3.png"
+                                   width="100%" height="600px;"></img></p>
 
-                        <!--<iframe : auto 0px; width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
-                        <img : width=100% height=100% src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/logo.png"></img>
                         <br>
-                        <br>
-                        <p>Programmed <b>save - load</b>, <b>procedural obstacle generation</b>, <b>UI</b>, and <b>localization</b> systems for an 3rd-person dark, comedic, narrative RPG game in Unity's HDRP.</p>
-
+                        <p>I programmed <b>save - load</b>, <b>procedural obstacle generation</b>, <b>UI</b>, and <b>localization</b> systems for an 3rd-person dark, comedic, narrative RPG game in Unity's HDRP.</p>
+                        <header class="major">
+                            <h1>Gameplay</h1>
+                        </header>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_jumpingInCargoBay.gif"
+                                width="100%" height="600px;"></img></p>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch.gif"
+                                width="100%" height="600px;"></img></p>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_ChangeLanguage.gif"
+                                width="100%" height="600px;"></img></p>
 
                         <ul class="actions">
                             <li><a href="" class="button icon solid fa-gamepad">Download (Releasing on Dec 4)</a></li>
@@ -75,6 +87,7 @@
 
                         </ul>
                     </div>
+
                 </section>
 
             </div>
@@ -83,32 +96,159 @@
 
             <div class="pp-contents">
                 <header class="major">
-                    <h1>Project Information</h1>
+                    <h1>More Project Information</h1>
                 </header>
                 <div class="accordion">
                     <i class="fa fa-info" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Full Technical Design Document</span>
+                    <span style="margin-left: 5px;">Save - Load</span>
                     <div class="accordion-icon">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="accordion-inner">
-                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
-                               width="100%" height="500px;"></iframe></p></p>
-
-                </div>
-                <div class="accordion">
-                    <i class="fa fa-info" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Executive Summary</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                    <p>I developed a Save - Load system.</p>
+                    <div class="accordion">
+                        <i class="fa fa-code" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Save Load</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="accordion-inner">
-                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Executive%20Summary.pdf"
-                            width="100%" height="500px"></iframe></p></p>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the algorithm used to spawn game objects in the game scene</p>
+                        <pre class="prettyprint lang-csharp">
+                            public class FireSpawner : MonoBehaviour
+{
+
+    [Header("Fire Prefabs to use")]
+    public List<GameObject> firePrefabs;
+    [Header("Tuning")]
+    public Vector2 zone = Vector2.one;
+    public float spaceBetweenFires = 1;
+    public float prefabScale = 1;
+    private int k = 2;
+    private List<Vector2> samples;
+
+    public List<GameObject> StartFire()
+    {
+        List<GameObject> fireObjects = new List<GameObject>();
+        samples = Poisson.GeneratePoint(spaceBetweenFires, zone, k);
+        if(samples != null)
+        {
+            int index;
+            foreach(Vector2 sample in samples)
+            {
+
+                //instantiate fire
+                index = Random.Range(0, firePrefabs.Count);
+                GameObject fire = Instantiate(firePrefabs[index], new Vector3(sample.x, 0, sample.y)+transform.position, Quaternion.identity)as GameObject;
+                Assert.IsNotNull(fire.GetComponent<FireObject>());
+                fire.transform.Rotate(0, Random.Range(0, 360), 0);
+                fire.transform.localScale = Vector3.one * prefabScale;
+                //add fire to fire list
+                fireObjects.Add(fire);
+            }
+        }
+        // if by chance no fires are added to the scene in each sample (i.e count = 0) spawn a fire in the middle of the hub
+        if (fireObjects.Count <= 0)
+        {
+            // instantiate fire in middle of fire spawner zone
+            GameObject fire = Instantiate(firePrefabs[0], new Vector3(zone.x/2, 0, zone.y/2)+transform.position, Quaternion.identity)as GameObject;
+            fireObjects.Add(fire);
+        }
+
+        if (fireObjects.Count > 0) return fireObjects;
+        else return null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube((new Vector3(zone.x, 0, zone.y) / 2)+transform.position, new Vector3(zone.x, 0, zone.y));
+
+    }
+
+}
+                        </pre>
+                        <p>The following code is part of procedural algortihm itself:</p>
+
+                        <pre class="prettyprint lang-csharp">public static List<Vector2> GeneratePoint(float radius, Vector2 grid_size, int numSamplesBeforeRejection  = 30)
+    {
+        // find the size of a cell's square
+        float cell_size = radius / Mathf.Sqrt(2);
+
+        // number of times the cell size fits into sample region size, for each cell
+        // grid will tell us for each cell, what the index is of each point, (0 means no point, 1 has index 0)
+        // to get the number of columns divide the width / cell_size and rows
+        int[,] grid = new int[Mathf.CeilToInt(grid_size.x / cell_size), Mathf.CeilToInt(grid_size.y / cell_size)];
+
+        // create new vectors of sample candidate points
+        List<Vector2> samples = new List<Vector2>();
+        List<Vector2> spawn_samples = new List<Vector2>();
+
+        // create spawn point list
+        spawn_samples.Add(grid_size / 2);
+        // while spawn point list is not empty
+        while (spawn_samples.Count > 0)
+        {
+            int index = Random.Range(0, spawn_samples.Count);
+            Vector2 current_spawn_sample = spawn_samples[index];
+            bool rejected_sample = true;
+            for (int i = 0; i < numSamplesBeforeRejection; i++)
+            {
+                // angle of candidate point
+                float angle_offset = Random.value * Mathf.PI * 2;
+                //rotate a vector at a given angle
+                float x = Mathf.Sin(angle_offset);
+                float y = Mathf.Cos(angle_offset);
+
+                Vector2 offset_direction = new Vector2(x, y);
+
+                // new magnitude
+                // radius is min so that candidate is spawned outside spawn center
+                float new_magnitude = Random.Range(radius, 2 * radius);
+                offset_direction *= new_magnitude;
+
+                // assign info to sample
+                Vector2 sample = current_spawn_sample + offset_direction;
+                if (is_valid(samples, grid, sample, grid_size, radius, cell_size))
+                {
+                    // add sample to point list
+                    samples.Add(sample);
+                    // add sample as new spawn point
+                    spawn_samples.Add(sample);
+                    // record which cell the sample point ends up in
+                    grid[(int)(sample.x / cell_size), (int)(sample.y / cell_size)] = samples.Count;
+                    rejected_sample = false;
+                    break;
+                }
+            }
+
+            // if not accepted remove from spawn point list
+            if (rejected_sample)
+            {
+                spawn_samples.RemoveAt(index);
+            }
+        }
+        return samples;
+    }</pre>
+
+
+                    </div>
+
+                    <div class="accordion-inner">
+
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
+                            <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
+                            style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
+                        </p>
+
+
+                    </div>
 
                 </div>
+
                 <div class="accordion">
                     <i class="fa fa-info" aria-hidden="true"></i>
                     <span style="margin-left: 5px;">Procedural Obstacle Generation</span>
@@ -127,82 +267,165 @@
                     </div>
                     <div class="accordion-inner">
                         <p>The following code demonstrates the algorithm used to spawn game objects in the game scene</p>
-                        <pre class="prettyprint lang-csharp">/**
- * Character logic state for walking
- */
-UCLASS()
-class BOLTSTORM_API UBsStateWalk : public UBsCharacterStateBase
+                        <pre class="prettyprint lang-csharp">
+                            public class FireSpawner : MonoBehaviour
 {
-	GENERATED_BODY()
 
-public: // ctor / dtor
+    [Header("Fire Prefabs to use")]
+    public List<GameObject> firePrefabs;
+    [Header("Tuning")]
+    public Vector2 zone = Vector2.one;
+    public float spaceBetweenFires = 1;
+    public float prefabScale = 1;
+    private int k = 2;
+    private List<Vector2> samples;
 
-	UBsStateWalk();
-	~UBsStateWalk();
+    public List<GameObject> StartFire()
+    {
+        List<GameObject> fireObjects = new List<GameObject>();
+        samples = Poisson.GeneratePoint(spaceBetweenFires, zone, k);
+        if(samples != null)
+        {
+            int index;
+            foreach(Vector2 sample in samples)
+            {
 
-protected: // implementation
+                //instantiate fire
+                index = Random.Range(0, firePrefabs.Count);
+                GameObject fire = Instantiate(firePrefabs[index], new Vector3(sample.x, 0, sample.y)+transform.position, Quaternion.identity)as GameObject;
+                Assert.IsNotNull(fire.GetComponent<FireObject>());
+                fire.transform.Rotate(0, Random.Range(0, 360), 0);
+                fire.transform.localScale = Vector3.one * prefabScale;
+                //add fire to fire list
+                fireObjects.Add(fire);
+            }
+        }
+        // if by chance no fires are added to the scene in each sample (i.e count = 0) spawn a fire in the middle of the hub
+        if (fireObjects.Count <= 0)
+        {
+            // instantiate fire in middle of fire spawner zone
+            GameObject fire = Instantiate(firePrefabs[0], new Vector3(zone.x/2, 0, zone.y/2)+transform.position, Quaternion.identity)as GameObject;
+            fireObjects.Add(fire);
+        }
 
-	virtual void OnInitialize() override;
+        if (fireObjects.Count > 0) return fireObjects;
+        else return null;
+    }
 
-	virtual void OnActivate() override;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube((new Vector3(zone.x, 0, zone.y) / 2)+transform.position, new Vector3(zone.x, 0, zone.y));
 
-	virtual void OnDeactivate() override;
+    }
 
-	virtual void Tick(float DeltaTime) override;
+}
+                        </pre>
+                        <p>The following code is part of procedural algortihm itself:</p>
 
-	virtual void HandleInputAxis(float aLS_X, float aLS_Y, float aRS_X, float aRS_Y) override;
-};</pre>
-                        <p>The following code is part of the header of the state machine itself:</p>
+                        <pre class="prettyprint lang-csharp">public static List<Vector2> GeneratePoint(float radius, Vector2 grid_size, int numSamplesBeforeRejection  = 30)
+    {
+        // find the size of a cell's square
+        float cell_size = radius / Mathf.Sqrt(2);
 
-                        <pre class="prettyprint linenums">UCLASS(Blueprintable)
-class BOLTSTORM_API UBsStateMachine : public UObject
-{
-	friend class ABsCharacterPlayerBase;
+        // number of times the cell size fits into sample region size, for each cell
+        // grid will tell us for each cell, what the index is of each point, (0 means no point, 1 has index 0)
+        // to get the number of columns divide the width / cell_size and rows
+        int[,] grid = new int[Mathf.CeilToInt(grid_size.x / cell_size), Mathf.CeilToInt(grid_size.y / cell_size)];
 
-	GENERATED_BODY()
+        // create new vectors of sample candidate points
+        List<Vector2> samples = new List<Vector2>();
+        List<Vector2> spawn_samples = new List<Vector2>();
 
-public: // ctor / dtor
+        // create spawn point list
+        spawn_samples.Add(grid_size / 2);
+        // while spawn point list is not empty
+        while (spawn_samples.Count > 0)
+        {
+            int index = Random.Range(0, spawn_samples.Count);
+            Vector2 current_spawn_sample = spawn_samples[index];
+            bool rejected_sample = true;
+            for (int i = 0; i < numSamplesBeforeRejection; i++)
+            {
+                // angle of candidate point
+                float angle_offset = Random.value * Mathf.PI * 2;
+                //rotate a vector at a given angle
+                float x = Mathf.Sin(angle_offset);
+                float y = Mathf.Cos(angle_offset);
 
-	UBsStateMachine();
-	~UBsStateMachine();
+                Vector2 offset_direction = new Vector2(x, y);
 
-public: // functions
+                // new magnitude
+                // radius is min so that candidate is spawned outside spawn center
+                float new_magnitude = Random.Range(radius, 2 * radius);
+                offset_direction *= new_magnitude;
 
+                // assign info to sample
+                Vector2 sample = current_spawn_sample + offset_direction;
+                if (is_valid(samples, grid, sample, grid_size, radius, cell_size))
+                {
+                    // add sample to point list
+                    samples.Add(sample);
+                    // add sample as new spawn point
+                    spawn_samples.Add(sample);
+                    // record which cell the sample point ends up in
+                    grid[(int)(sample.x / cell_size), (int)(sample.y / cell_size)] = samples.Count;
+                    rejected_sample = false;
+                    break;
+                }
+            }
 
-	UFUNCTION(BlueprintPure, Category = "BS: State Manager")
-		int32 GetNumActiveStates();
-
-	UFUNCTION(BlueprintPure, Category = "BS: State Manager")
-		bool IsStateActive(EStateId aStateId);
-
-
-	/* Returns the active secondary state in this state machine */
-	UFUNCTION(BlueprintPure, Category = "BS: State Manager")
-		UBsStateBase* GetSecondaryState();
-
-...</pre>
+            // if not accepted remove from spawn point list
+            if (rejected_sample)
+            {
+                spawn_samples.RemoveAt(index);
+            }
+        }
+        return samples;
+    }</pre>
 
 
                     </div>
-                    <div class="accordion">
-                        <i class="fa fa-map-o" aria-hidden="true"></i>
-                        <span style="margin-left: 5px;">BLUEPRINTS SNIPPET - State Machine</span>
-                        <div class="accordion-icon">
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </div>
-                    </div>
+
                     <div class="accordion-inner">
 
                         <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
                                 style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
-                                <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
-                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
+                            <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
+                            style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
                         </p>
 
 
                     </div>
 
                 </div>
+
+                <div class="accordion">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Full Technical Design Document</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
+                               width="100%" height="600px;"></iframe></p></p>
+
+                </div>
+
+                <div class="accordion">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span style="margin-left: 5px;">Executive Summary</span>
+                    <div class="accordion-icon">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Executive%20Summary.pdf"
+                            width="100%" height="600px"></iframe></p></p>
+
+                </div>
+
 
 
 
