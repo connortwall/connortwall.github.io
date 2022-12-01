@@ -3539,6 +3539,14 @@ body.is-preload #header.alt {
     right: 0;
 }
 
+#introbanner h3 {
+    font-size: 1.25em;
+}
+
+#introbanner p {
+    font-size: 0.7em;
+}
+
 body.is-preload #introbanner > .inner {
     -moz-filter: blur(0.125em);
     -webkit-filter: blur(0.125em);
@@ -3553,7 +3561,7 @@ body.is-preload #introbanner > .inner {
 
 @media screen and (max-width: 1280px) {
 
-    #banner {
+    #introbanner {
         background-attachment: scroll;
     }
 
@@ -3561,25 +3569,25 @@ body.is-preload #introbanner > .inner {
 
 @media screen and (max-width: 736px) {
 
-    #banner {
+    #introbanner {
         padding: 7em 3em 5em 3em;
         height: auto;
         min-height: 0;
     }
 
-    #banner h1 {
+    #introbanner h1 {
         font-size: 2em;
     }
 
-    #banner h2 {
+    #introbanner h2 {
         font-size: 1.25em;
     }
 
-    #banner br {
+    #introbanner br {
         display: none;
     }
 
-    #banner .more {
+    #introbanner .more {
         display: none;
     }
 
