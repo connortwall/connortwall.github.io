@@ -1,12 +1,12 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
-@screen-xs: 767px;
+/*@screen-xs: 767px;
 @screen-sm: 768px;
 @screen-md: 992px;
-@screen-lg: 1170px;
+@screen-lg: 1170px;*/
 
 html, body, div, span, applet, object,
-iframe, h1, h2, h3, h4, h5, h6, h7, p, blockquote,
+iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
 code, del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var, b,
@@ -42,7 +42,6 @@ blockquote, q {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
     content: none;
 }
 
@@ -4454,6 +4453,33 @@ body.is-preload #about > .inner {
     padding-left: 0;
 }
 
+
+@media screen and (max-width: 736px) {
+
+    #footer {
+        padding: 7em 3em 5em 3em;
+        height: auto;
+        min-height: 0;
+    }
+
+    #footer h1 {
+        font-size: 2em;
+    }
+
+    #footer h2 {
+        font-size: 1.25em;
+    }
+
+    #footer br {
+        display: none;
+    }
+
+    #footer .more {
+        display: none;
+    }
+
+}
+
 @media screen and (max-width: 480px) {
 
     #footer .copyright li {
@@ -4463,6 +4489,15 @@ body.is-preload #about > .inner {
         padding-left: 0;
         line-height: inherit;
     }
+
+    #footer .li {
+        display: block;
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+        line-height: inherit;
+    }
+
 
 }
 
@@ -4753,28 +4788,37 @@ body.is-menu-visible #menu .inner {
     z-index: 1;
 }
 
+.container {
+    position: relative;
+    padding-top: 56.26%;
+}
 
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
 /**************************************
 * Accordion
 **************************************/
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
-    background: rgba(97, 77, 77, 0.86);
-    background-color: #eee;
-    color: #444;
+    background-color: #342759;
+    color: #ffffff;
     cursor: pointer;
     padding: 18px;
     padding: .75em;
     width: 100%;
     text-align: left;
-    border: none;
+    border-width: 10px;
+    border-color: #8d82c4;
     outline: none;
     transition: 0.4s ease;
-
     margin-bottom: 10px;
-    border-radius: 3px;
-    border-radius: 0.15em;
+    border: solid;
     display: block;
 
 }
@@ -4783,7 +4827,7 @@ body.is-menu-visible #menu .inner {
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .accordion:hover {
     cursor: pointer;
-    background-color: #ccc;
+    background-color: #4c92d0;
 }
 
 
@@ -4800,11 +4844,13 @@ body.is-menu-visible #menu .inner {
     padding-bottom: 10px;
     overflow: hidden;
     display: none;
+    border-radius: 13px;
 }
 
 .accordion-inner.visible
  {
      display: block;
+
 
  }
 
