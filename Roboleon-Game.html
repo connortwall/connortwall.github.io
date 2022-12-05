@@ -35,51 +35,41 @@
                     <li><a href="writtenwork.html">Written Work</a></li>
                 </ul>
                 <ul class="actions stacked">
-                    <!--<li><a href="CV.html" class="button icon solid primary fas fa-clipboard-list">CV</a></li>-->
                     <li><a href="CV.html" class="button primary fit fas fa-clipboard-list">CV</a></li>
                 </ul>
             </nav>
 
             <!-- Main -->
             <section id="banner" class="major">
+                <!-- Title -->
                 <div class="inner">
                     <span class="image">
                         <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/logo.png" alt=""/></span>
                     <header class="major">
                         <h2>
-										<span style="font-size: 300%;">
+										<span style="font-size: 150%;">
 											Roboleon
 										</span>
                         </h2>
-                        <p>Scroll to see more</p>
                     </header>
+                        <p style="font-size: 150%";>I programmed gameplay, tools, and UI features for an 3rd-person dark, comedic, narrative puzzle game in Unity's HDRP.</p>
+                        <ul class="actions special" style="flex-direction: row; flex-wrap: wrap">
+                            <li><a href="https://dadiu.itch.io/roboleon" class="button icon solid fa-gamepad">Download</a></li>
+                            <li><a href="" class="button icon solid brands fa-github">Github (Releasing on Dec 6)</a></li>
+                            <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf" class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
+                        </ul>
+
                 </div>
             </section>
             <div id="main" class="alt">
-                <!-- One -->
-                <section id="one">
-                    <div class="inner">
-                    <h3>I programmed gameplay, tools, and UI features for an 3rd-person dark, comedic, narrative puzzle game in Unity's HDRP.</h3>
-                        <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
-                            <li><a href="https://dadiu.itch.io/roboleon" class="button icon solid fa-gamepad">Download (Releasing on Dec 4)</a></li>
-                            <li><a href="https://github.com/connortwall/Robolleon-Game" class="button icon solid brands fa-github">Github (Releasing on Dec 4)</a></li>
-                            <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf" class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
-                        </ul>
-                    </div>
-                </section>
-
                 <!-- Trailer -->
                 <section id="trailer">
                     <div class="inner">
                         <header class="major">
                             <h1>Trailer</h1>
                         </header>
-                        <div class="container">
-                            <div class="video">
-                        <iframe src="https://player.vimeo.com/video/777125803?h=33fa2df818" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        </div>
-                     </div>
+                        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/777125803?h=33fa2df818&autoplay=1&loop=1" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
                 </section>
 
                 <!-- Project Overview -->
@@ -92,42 +82,32 @@
                             width="100%;"></p>
                 </div>
             </section>
-            </div>
 
-            <!-- Project Description -->
-            <div class="pp-contents">
-                <header class="major">
-                    <h1>Project Information (Expand to see more)</h1>
-                </header>
+                <!-- Project Description -->
+                <section class="pp-contents">
+                    <header class="major">
+                        <h1>Project Details (Expand)</h1>
+                    </header>
 
-
-
-                <div class="accordion">
-                    <i class="fas fa-paste" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Save - Load System</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I developed a Save - Load system with a manager and saveable interface.</p>
                     <div class="accordion">
-                        <i class="fa fa-code" aria-hidden="true"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Save Load</span>
+                        <i class="fas fa-paste" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Save - Load System</span>
                         <div class="accordion-icon">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="accordion-inner">
-                        <p>The following code demonstrates the manager code used to save game data</p>
-                        <pre class="prettyprint lang-csharp">
-                            using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-// gives nicer syntax, helps with finding data persistance object
+                        <p>I developed a Save - Load system with a manager and saveable interface.</p>
+                        <div class="accordion">
+                            <i class="fa fa-code" aria-hidden="true"></i>
+                            <span style="margin-left: 5px;">CODE SNIPPET - Save Load</span>
+                            <div class="accordion-icon">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-inner">
+                            <p>The following code demonstrates the manager code used to save game data</p>
+                            <pre class="prettyprint lang-csharp">
 
 // This class keeps track of current state of game data, organizes save and load logic
 public class SaveableManager : MonoBehaviour
@@ -396,37 +376,37 @@ public class SaveableManager : MonoBehaviour
     }
 }
                         </pre>
+                        </div>
+                        <div class="accordion-inner">
+                            <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
+                                    style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img>
+                                <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
+                            </p>
+                        </div>
                     </div>
-                    <div class="accordion-inner">
-                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
-                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img>
-                            <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
-                            style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
-                        </p>
-                    </div>
-                </div>
 
-                <div class="accordion">
-                    <i class="fas fa-random" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Procedural Obstacle Generation</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I developed a procedural object spawner using Poisson Disk Sampling.</p>
                     <div class="accordion">
-                        <i class="fa fa-code" aria-hidden="true"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Procedural Fire Spawning</span>
+                        <i class="fas fa-random" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Procedural Obstacle Generation</span>
                         <div class="accordion-icon">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="accordion-inner">
-                        <p>The following code demonstrates the algorithm used to spawn game objects in the game scene</p>
-                        <pre class="prettyprint lang-csharp">
+                        <p>I developed a procedural object spawner using Poisson Disk Sampling.</p>
+                        <div class="accordion">
+                            <i class="fa fa-code" aria-hidden="true"></i>
+                            <span style="margin-left: 5px;">CODE SNIPPET - Procedural Fire Spawning</span>
+                            <div class="accordion-icon">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-inner">
+                            <p>The following code demonstrates the algorithm used to spawn game objects in the game scene</p>
+                            <pre class="prettyprint lang-csharp">
 
-                            public class FireSpawner : MonoBehaviour
+public class FireSpawner : MonoBehaviour
 {
 
     [Header("Fire Prefabs to use")]
@@ -479,9 +459,9 @@ public class SaveableManager : MonoBehaviour
 
 }
                         </pre>
-                        <p>The following code is part of procedural algortihm itself:</p>
+                            <p>The following code is part of procedural algortihm itself:</p>
 
-                        <pre class="prettyprint lang-csharp">public static List<Vector2> GeneratePoint(float radius, Vector2 grid_size, int numSamplesBeforeRejection  = 30)
+                            <pre class="prettyprint lang-csharp">public static List<Vector2> GeneratePoint(float radius, Vector2 grid_size, int numSamplesBeforeRejection  = 30)
     {
         // find the size of a cell's square
         float cell_size = radius / Mathf.Sqrt(2);
@@ -543,336 +523,339 @@ public class SaveableManager : MonoBehaviour
     }</pre>
 
 
+                        </div>
+
+                        <div class="accordion-inner">
+
+                            <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
+                                    style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
+                                <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
+                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
+                            </p>
+
+
+                        </div>
+
                     </div>
-
-                    <div class="accordion-inner">
-
-                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif"
-                                style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/><img
-                            <!--src="http://hugo.fyi/assets/statemachine3.png" alt="statemachine3.png#asset:38"
-                            style="font-style:normal;font-weight:normal;font-size:15px;font-family:Arial, 'Helvetica Neue', Helvetica, Tahoma, sans-serif;vertical-align:middle;height:auto;background-color:rgb(255,255,255);"/>-->
-                        </p>
-
-
-                    </div>
-
-                </div>
-
-                <div class="accordion">
-                    <i class="fa fa-info" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Full Technical Design Document</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
-                               width="100%" height="600px;"></iframe></p></p>
-
-                </div>
-
-                <div class="accordion">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Executive Summary</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Executive%20Summary.pdf"
-                               width="100%" height="600px"></iframe></p></p>
-
-                </div>
-
-                <!--
-                <div class="accordion">
-                    <i class="fa fa-shield" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Combat System (melee, ranged, shielded)</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-
-                    <p>Bolt Storm features both ranged (gun, crossbow) and melee (sword, knife) combat. To allow
-                        for these different types of weapons, I set up a system which can map bones ('sockets')
-                        of characters to a specific slot, so that weapons can be used on different skeletons.
-                        The slot definitions, weapons themselves, and even the local binding have local offsets,
-                        to fine-tune the position in every case.</p>
-
-                    <div style="text-align: left; margin-bottom: 10px;">
-                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
-                            <source src="http://hugo.fyi/assets/projects/378/BoltStorm-Combat1.mp4"
-                                    type="video/mp4"/>
-                        </video>
-                    </div>
-                    <div style="text-align: left; margin-bottom: 10px;">
-                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
-                            <source src="http://hugo.fyi/assets/projects/379/bs-combat-3.mp4" type="video/mp4"/>
-                        </video>
-                    </div>
-                    <h2>Custom 'melee' collision checking</h2>
-
-                    <p>
-                    <p>Swords swing pretty fast, meaning the default collision checking wasn't optimal in our
-                        case. We also wanted collision checking 'LODs', in other words; being able to have less
-                        precise collision checking in cases where precision doesn't really matter.
-                    </p>
-                    <p>In the case of Bolt Storm, there can be armies of knights fighting, so collision hits can
-                        be guessed, instead of checked very precisely.
-                        For 1-on-1 combat, I implemented collision checking by having a set of boxes on the
-                        weapon which define what is collidable, then each frame the previous position of each
-                        box is traced against the current position of that box.</p>
-                    <p>Visually, that looks like this:</p>
-                    <p><img src="http://i.imgur.com/TY8eHYA.gif" alt="TY8eHYA.gif"
-                            style="vertical-align:middle;height:auto;"/></p></p>
-
 
                     <div class="accordion">
-                        <i class="fa fa-code" aria-hidden="true"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Melee collision checking</span>
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Full Technical Design Document</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
+                                   width="100%" height="600px;"></iframe></p></p>
+
+                    </div>
+
+                    <div class="accordion">
+                        <i class="fa fa-book" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Executive Summary</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p><iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Executive%20Summary.pdf"
+                                   width="100%" height="600px"></iframe></p></p>
+
+                    </div>
+
+                    <!--
+                    <div class="accordion">
+                        <i class="fa fa-shield" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Combat System (melee, ranged, shielded)</span>
                         <div class="accordion-icon">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="accordion-inner">
 
-                 			    	    	    		    		<pre class="prettyprint linenums">TArray&lt;FHitResult&gt; FBsWpCollisionPreciseBox::UpdateCollision(AActor* aActor)
-{
-	UWorld* tWorld = aActor->GetWorld();
+                        <p>Bolt Storm features both ranged (gun, crossbow) and melee (sword, knife) combat. To allow
+                            for these different types of weapons, I set up a system which can map bones ('sockets')
+                            of characters to a specific slot, so that weapons can be used on different skeletons.
+                            The slot definitions, weapons themselves, and even the local binding have local offsets,
+                            to fine-tune the position in every case.</p>
 
-	TArray&lt;FHitResult&gt; tOutResult;
+                        <div style="text-align: left; margin-bottom: 10px;">
+                            <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                                <source src="http://hugo.fyi/assets/projects/378/BoltStorm-Combat1.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                        </div>
+                        <div style="text-align: left; margin-bottom: 10px;">
+                            <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                                <source src="http://hugo.fyi/assets/projects/379/bs-combat-3.mp4" type="video/mp4"/>
+                            </video>
+                        </div>
+                        <h2>Custom 'melee' collision checking</h2>
 
-	for (int i = 0; i < mCachedComps.Num(); i++)
-	{
-		const UBoxComponent* tComp = mCachedComps[i];
+                        <p>
+                        <p>Swords swing pretty fast, meaning the default collision checking wasn't optimal in our
+                            case. We also wanted collision checking 'LODs', in other words; being able to have less
+                            precise collision checking in cases where precision doesn't really matter.
+                        </p>
+                        <p>In the case of Bolt Storm, there can be armies of knights fighting, so collision hits can
+                            be guessed, instead of checked very precisely.
+                            For 1-on-1 combat, I implemented collision checking by having a set of boxes on the
+                            weapon which define what is collidable, then each frame the previous position of each
+                            box is traced against the current position of that box.</p>
+                        <p>Visually, that looks like this:</p>
+                        <p><img src="http://i.imgur.com/TY8eHYA.gif" alt="TY8eHYA.gif"
+                                style="vertical-align:middle;height:auto;"/></p></p>
 
-		FTransform& tPrevTransform = mCachedTransforms[i];
-		FTransform tCurTransform = tComp->GetComponentToWorld();
 
-		FVector BoxExt = tComp->GetScaledBoxExtent();
+                        <div class="accordion">
+                            <i class="fa fa-code" aria-hidden="true"></i>
+                            <span style="margin-left: 5px;">CODE SNIPPET - Melee collision checking</span>
+                            <div class="accordion-icon">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="accordion-inner">
 
-		TArray&lt;FHitResult&gt; tThisOutResult;
-		FCollisionQueryParams tQueryParams = FCollisionQueryParams::DefaultQueryParam;
-		FCollisionResponseParams tResponseParams = FCollisionResponseParams::DefaultResponseParam;
-		FCollisionObjectQueryParams tObjectQueryParams = FCollisionObjectQueryParams::AllObjects;
+                                                                         <pre class="prettyprint linenums">TArray&lt;FHitResult&gt; FBsWpCollisionPreciseBox::UpdateCollision(AActor* aActor)
+    {
+        UWorld* tWorld = aActor->GetWorld();
 
-		/* Add the weapon */
-		tQueryParams.AddIgnoredActor(tComp->GetOwner());
-		/* Add the weapon's owner (character) */
-		tQueryParams.AddIgnoredActor(tComp->GetOwner()->GetOwner());
+        TArray&lt;FHitResult&gt; tOutResult;
 
-		if (tWorld->SweepMultiByObjectType(tThisOutResult,
-			tPrevTransform.GetTranslation(), tCurTransform.GetTranslation(), tPrevTransform.GetRotation(),
-			tObjectQueryParams, FCollisionShape::MakeBox(BoxExt / 2.f), tQueryParams))
-		{
-			tOutResult.Append(tThisOutResult);
-		}
+        for (int i = 0; i < mCachedComps.Num(); i++)
+        {
+            const UBoxComponent* tComp = mCachedComps[i];
 
-		mCachedTransforms[i] = tCurTransform;
-	}
+            FTransform& tPrevTransform = mCachedTransforms[i];
+            FTransform tCurTransform = tComp->GetComponentToWorld();
 
-	return tOutResult;
-}</pre>
+            FVector BoxExt = tComp->GetScaledBoxExtent();
+
+            TArray&lt;FHitResult&gt; tThisOutResult;
+            FCollisionQueryParams tQueryParams = FCollisionQueryParams::DefaultQueryParam;
+            FCollisionResponseParams tResponseParams = FCollisionResponseParams::DefaultResponseParam;
+            FCollisionObjectQueryParams tObjectQueryParams = FCollisionObjectQueryParams::AllObjects;
+
+            /* Add the weapon */
+            tQueryParams.AddIgnoredActor(tComp->GetOwner());
+            /* Add the weapon's owner (character) */
+            tQueryParams.AddIgnoredActor(tComp->GetOwner()->GetOwner());
+
+            if (tWorld->SweepMultiByObjectType(tThisOutResult,
+                tPrevTransform.GetTranslation(), tCurTransform.GetTranslation(), tPrevTransform.GetRotation(),
+                tObjectQueryParams, FCollisionShape::MakeBox(BoxExt / 2.f), tQueryParams))
+            {
+                tOutResult.Append(tThisOutResult);
+            }
+
+            mCachedTransforms[i] = tCurTransform;
+        }
+
+        return tOutResult;
+    }</pre>
+
+
+                        </div>
+
+                        <h2>State Machine &amp; Combat System in action</h2>
+
+                        <p>
+                        <p>The following demonstrates the character logic and the combat system in action, notice
+                            how the character rotation locks while he swings the sword, and waits until the attack
+                            is over before rotating back.</p></p>
+
+                        <div style="text-align: left; margin-bottom: 10px;">
+                            <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                                <source src="http://hugo.fyi/assets/projects/395/boltstorm_1_ffmpeg2.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                        </div>
 
 
                     </div>
-
-                    <h2>State Machine &amp; Combat System in action</h2>
-
-                    <p>
-                    <p>The following demonstrates the character logic and the combat system in action, notice
-                        how the character rotation locks while he swings the sword, and waits until the attack
-                        is over before rotating back.</p></p>
-
-                    <div style="text-align: left; margin-bottom: 10px;">
-                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
-                            <source src="http://hugo.fyi/assets/projects/395/boltstorm_1_ffmpeg2.mp4"
-                                    type="video/mp4"/>
-                        </video>
+                    <div class="accordion">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Ranged Combat &amp; Projectile Batching</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
                     </div>
+                    <div class="accordion-inner">
+
+                        <p>I implemented a system that allows us to have many (<em>many</em>) projectiles on the
+                            screen at the same time. It works like this</p>
+
+                        <p>
+                        <ul>
+                            <li>When a projectile is fired, submit the data to a global actor which manages them
+                            </li>
+                            <li>In the actor, check if an Instanced Static Mesh Component (ISM component) exists for
+                                the mesh of the projectile
+                                <ul>
+                                    <li> If not, create two new components:
+                                        <ul>
+                                            <li>One will be used for while the projectile is moving, constantly
+                                                updating the mesh from the CPU
+                                            </li>
+                                            <li>The other will be used exclusively for static projectiles (laying
+                                                still on the ground)
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Create a physics body for the projectile (derived of Primitive Component, not an
+                                actor), but do not use it for now, just keep setting the velocity from the next
+                                step:
+                            </li>
+                            <li>Initialize custom physics code (used to calculate projectile arcs for AI)</li>
+                            <li>Submit an instance to the "moving" ISM component</li>
+                            <li>&lt; update the projectile &amp; custom physics &gt;</li>
+                            <li>When it touches an object, the physics body is put to use, from now on the
+                                projectile won't cause a "hit" if it touches a character
+                            </li>
+                            <li>The physics body causes the projectile to fall down / slide in a natural way</li>
+                            <li>When the projectile has come to a stop, its physics body is destroyed, and the
+                                instance is moved from the "moving" ISM component to the "static" ISM component
+                            </li>
+                            <li>After a while it's also removed from this component, completely destroying the
+                                projectile
+                            </li>
+                        </ul>
+                        <p>This approach has allowed us to have as many as 27,000 moving projectiles on the screen
+                            simulatenously, and over 230,000 static projectiles. With actors, this number was far
+                            below 1,000 (test situation: a pretty much empty scene in UE4 on a desktop with a
+                            GTX 770, i7 4770k)</p></p>
+
+                        <div style="text-align: left; margin-bottom: 10px;">
+                            <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                                <source src="http://hugo.fyi/assets/projects/388/boltstorm_2_ffmpeg2.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                        </div>
+                        <p>Projectiles can be spawned in "bursts", each burst can have a root offset, and a local
+                            offset per projectile, allowing for shapes of projectiles:</p>
+
+                        <p>
+                        <p><img src="http://i.imgur.com/jpv0zxN.gif" alt="jpv0zxN.gif"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p><img src="http://i.imgur.com/2R6iG4t.gif" alt="2R6iG4t.gif"
+                                style="vertical-align:middle;height:auto;"/></p></p>
 
 
-                </div>
-                <div class="accordion">
-                    <i class="fa fa-cubes" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Ranged Combat &amp; Projectile Batching</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
-                </div>
-                <div class="accordion-inner">
-
-                    <p>I implemented a system that allows us to have many (<em>many</em>) projectiles on the
-                        screen at the same time. It works like this</p>
-
-                    <p>
-                    <ul>
-                        <li>When a projectile is fired, submit the data to a global actor which manages them
-                        </li>
-                        <li>In the actor, check if an Instanced Static Mesh Component (ISM component) exists for
-                            the mesh of the projectile
-                            <ul>
-                                <li> If not, create two new components:
-                                    <ul>
-                                        <li>One will be used for while the projectile is moving, constantly
-                                            updating the mesh from the CPU
-                                        </li>
-                                        <li>The other will be used exclusively for static projectiles (laying
-                                            still on the ground)
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>Create a physics body for the projectile (derived of Primitive Component, not an
-                            actor), but do not use it for now, just keep setting the velocity from the next
-                            step:
-                        </li>
-                        <li>Initialize custom physics code (used to calculate projectile arcs for AI)</li>
-                        <li>Submit an instance to the "moving" ISM component</li>
-                        <li>&lt; update the projectile &amp; custom physics &gt;</li>
-                        <li>When it touches an object, the physics body is put to use, from now on the
-                            projectile won't cause a "hit" if it touches a character
-                        </li>
-                        <li>The physics body causes the projectile to fall down / slide in a natural way</li>
-                        <li>When the projectile has come to a stop, its physics body is destroyed, and the
-                            instance is moved from the "moving" ISM component to the "static" ISM component
-                        </li>
-                        <li>After a while it's also removed from this component, completely destroying the
-                            projectile
-                        </li>
-                    </ul>
-                    <p>This approach has allowed us to have as many as 27,000 moving projectiles on the screen
-                        simulatenously, and over 230,000 static projectiles. With actors, this number was far
-                        below 1,000 (test situation: a pretty much empty scene in UE4 on a desktop with a
-                        GTX 770, i7 4770k)</p></p>
-
-                    <div style="text-align: left; margin-bottom: 10px;">
-                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
-                            <source src="http://hugo.fyi/assets/projects/388/boltstorm_2_ffmpeg2.mp4"
-                                    type="video/mp4"/>
-                        </video>
+                    <div class="accordion">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">User Interface implementation</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
                     </div>
-                    <p>Projectiles can be spawned in "bursts", each burst can have a root offset, and a local
-                        offset per projectile, allowing for shapes of projectiles:</p>
+                    <div class="accordion-inner">
 
-                    <p>
-                    <p><img src="http://i.imgur.com/jpv0zxN.gif" alt="jpv0zxN.gif"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p><img src="http://i.imgur.com/2R6iG4t.gif" alt="2R6iG4t.gif"
-                            style="vertical-align:middle;height:auto;"/></p></p>
+                        <p>I designed and developed some UI elements for Bolt Storm, for example, a widget that
+                            slides open to reveal information about an item that you can buy (swords, crossbows,
+                            etc). It compares your currently-equipped item with the one you're able to buy.</p>
+
+                        <div style="text-align: left; margin-bottom: 10px;">
+                            <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                                <source src="http://hugo.fyi/assets/projects/404/BS-Shop-UI.mp4" type="video/mp4"/>
+                            </video>
+                        </div>
+                        <p>Furthermore I re-used this design to make a small "context popup" which informs the user
+                            about necessary information during gameplay, like a message that tells the player to
+                            defeat more enemies before being able to exit the level:</p>
+
+                        <div style="text-align: left; margin-bottom: 10px;">
+                            <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio//projects/406/ContextFeedback.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                        </div>
 
 
-                </div>
-                <div class="accordion">
-                    <i class="fa fa-desktop" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">User Interface implementation</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
-                </div>
-                <div class="accordion-inner">
-
-                    <p>I designed and developed some UI elements for Bolt Storm, for example, a widget that
-                        slides open to reveal information about an item that you can buy (swords, crossbows,
-                        etc). It compares your currently-equipped item with the one you're able to buy.</p>
-
-                    <div style="text-align: left; margin-bottom: 10px;">
-                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
-                            <source src="http://hugo.fyi/assets/projects/404/BS-Shop-UI.mp4" type="video/mp4"/>
-                        </video>
+                    <div class="accordion">
+                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Formation Selection Shader</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
                     </div>
-                    <p>Furthermore I re-used this design to make a small "context popup" which informs the user
-                        about necessary information during gameplay, like a message that tells the player to
-                        defeat more enemies before being able to exit the level:</p>
+                    <div class="accordion-inner">
 
-                    <div style="text-align: left; margin-bottom: 10px;">
-                        <video autoplay muted loop style="	max-width: 100%; max-height: 100%;">
-                            <source src="uploads/ConnorWall_Portfolio//projects/406/ContextFeedback.mp4"
-                                    type="video/mp4"/>
-                        </video>
+                        <p>In Bolt Storm you can command your army to attack a certain group of enemies. I wrote
+                            a shader consisting of two passes (a pre-tonemap and post-tonemap pass) to visualize the
+                            selection. <em>Note: this is still a work in progress!</em></p>
+
+                        <p>
+                        <p><img src="http://hugo.fyi/assets/6uzRMGh.jpg" alt="6uzRMGh.jpg#asset:247"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <h3>How it works</h3>
+                        <p>Let's take this shot for example:</p>
+                        <p><img src="http://i.imgur.com/zHALbLK.jpg" alt="zHALbLK.jpg"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p>All character meshes, the weapon meshes and the icons are rendered to the custom depth
+                            and stencil buffers:</p>
+                        <p><img src="http://i.imgur.com/yn8WfHM.png" alt="yn8WfHM.png"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p>At the moment, the stencil values are a hardcoded "enum" value, but this will most likely
+                            change to a bit mask.</p>
+                        <p>Next the pre-tonemap shader is applied, coloring the areas defined by the stencil
+                            values:</p>
+                        <p><img src="http://i.imgur.com/F5jHWfU.jpg" alt="F5jHWfU.jpg"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p>Then the post-tonemap shader is applied to the screen, except for the stencil values:</p>
+                        <p><img src="http://i.imgur.com/mNk0PA0.png" alt="mNk0PA0.png"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p>(The screenshot above is without the pre-tonemap shader applied).</p>
+                        <p>The combined result:</p>
+                        <p><img src="http://i.imgur.com/E4WrEgg.png" alt="E4WrEgg.png"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p>At the moment the shaders identify the objects by a number of if-statements, this will
+                            soon be optimized by making the stencil values a bitmask.</p>
+                        <p>The pre-tonemap shader fills a color on an area marked with specific stencil values
+                            (first desaturates it to prevent lighting influence), and then applies a Fresnel on top
+                            of that (where every one of the colored squares is a section for one specific
+                            object):</p>
+                        <p><img src="http://i.imgur.com/4nFSDCn.png" alt="4nFSDCn.png"
+                                style="vertical-align:middle;height:auto;"/></p>
+                        <p>The post-tonemap shader first determines if the stencil value is targeted to an object,
+                            if not it desaturates the fragment - applies a blur and blends color based on the
+                            scene depth as well as different blend colors. It looks like this:</p>
+                        <p><img src="http://i.imgur.com/tfcrX6R.png" alt="tfcrX6R.png"
+                                style="vertical-align:middle;height:auto;"/></p></p>
+
+
                     </div>
+                    -->
+                </section>
 
+                <!-- Gameplay -->
+                <section id="gameplay">
+                    <div class="inner">
+                        <header class="major">
+                            <h1>Gameplay</h1>
+                        </header>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_jumpingInCargoBay.gif"
+                                width="100%;"></img></p>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch.gif"
+                                width="100%;"></img></p>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_ChangeLanguage.gif"
+                                width="100%;"></img></p>
 
-                </div>
-                <div class="accordion">
-                    <i class="fa fa-paint-brush" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Formation Selection Shader</span>
-                    <div class="accordion-icon">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
+                            <li><a href="https://dadiu.itch.io/roboleon" class="button icon solid fa-gamepad">Download</a></li>
+                            <li><a href="" class="button icon solid brands fa-github">Github (Releasing on Dec 6)</a></li>
+                            <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf" class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
+
+                        </ul>
                     </div>
-                </div>
-                <div class="accordion-inner">
-
-                    <p>In Bolt Storm you can command your army to attack a certain group of enemies. I wrote
-                        a shader consisting of two passes (a pre-tonemap and post-tonemap pass) to visualize the
-                        selection. <em>Note: this is still a work in progress!</em></p>
-
-                    <p>
-                    <p><img src="http://hugo.fyi/assets/6uzRMGh.jpg" alt="6uzRMGh.jpg#asset:247"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <h3>How it works</h3>
-                    <p>Let's take this shot for example:</p>
-                    <p><img src="http://i.imgur.com/zHALbLK.jpg" alt="zHALbLK.jpg"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p>All character meshes, the weapon meshes and the icons are rendered to the custom depth
-                        and stencil buffers:</p>
-                    <p><img src="http://i.imgur.com/yn8WfHM.png" alt="yn8WfHM.png"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p>At the moment, the stencil values are a hardcoded "enum" value, but this will most likely
-                        change to a bit mask.</p>
-                    <p>Next the pre-tonemap shader is applied, coloring the areas defined by the stencil
-                        values:</p>
-                    <p><img src="http://i.imgur.com/F5jHWfU.jpg" alt="F5jHWfU.jpg"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p>Then the post-tonemap shader is applied to the screen, except for the stencil values:</p>
-                    <p><img src="http://i.imgur.com/mNk0PA0.png" alt="mNk0PA0.png"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p>(The screenshot above is without the pre-tonemap shader applied).</p>
-                    <p>The combined result:</p>
-                    <p><img src="http://i.imgur.com/E4WrEgg.png" alt="E4WrEgg.png"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p>At the moment the shaders identify the objects by a number of if-statements, this will
-                        soon be optimized by making the stencil values a bitmask.</p>
-                    <p>The pre-tonemap shader fills a color on an area marked with specific stencil values
-                        (first desaturates it to prevent lighting influence), and then applies a Fresnel on top
-                        of that (where every one of the colored squares is a section for one specific
-                        object):</p>
-                    <p><img src="http://i.imgur.com/4nFSDCn.png" alt="4nFSDCn.png"
-                            style="vertical-align:middle;height:auto;"/></p>
-                    <p>The post-tonemap shader first determines if the stencil value is targeted to an object,
-                        if not it desaturates the fragment - applies a blur and blends color based on the
-                        scene depth as well as different blend colors. It looks like this:</p>
-                    <p><img src="http://i.imgur.com/tfcrX6R.png" alt="tfcrX6R.png"
-                            style="vertical-align:middle;height:auto;"/></p></p>
-
-
-                </div>
-                -->
+                </section>
             </div>
 
-            <!-- Gameplay -->
-            <section id="gameplay">
-                <div class="inner">
-                    <header class="major">
-                        <h1>Gameplay</h1>
-                    </header>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_jumpingInCargoBay.gif"
-                            width="100%;"></img></p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch.gif"
-                            width="100%;"></img></p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_ChangeLanguage.gif"
-                            width="100%;"></img></p>
 
-                    <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
-                        <li><a href="" class="button icon solid fa-gamepad">Download (Releasing on Dec 4)</a></li>
-                        <li><a href="https://github.com/connortwall/Robolleon-Game" class="button icon solid brands fa-github">Github (Releasing on Dec 4)</a></li>
-                        <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf" class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
-
-                    </ul>
-                </div>
-            </section>
 
             <!-- Footer -->
             <footer id="footer">
