@@ -4283,7 +4283,7 @@ body.is-preload #projectbanner h2:before, body.is-preload #projectbanner h2:afte
 }
 
 #projectbanner.major {
-    height: 75vh;
+    height: 55vh;
     min-height: 15em;
     max-height: 25em;
     background-image: url("banner.jpg");
@@ -4309,6 +4309,13 @@ body.is-preload #projectbanner > .inner {
     opacity: 0;
 }
 
+@media screen and (max-width: 2080px) {
+
+    #projectbanner {
+        background-attachment: scroll;
+    }
+
+}
 @media screen and (max-width: 1280px) {
 
     #projectbanner {
@@ -4333,12 +4340,12 @@ body.is-preload #projectbanner > .inner {
     }
 
     #projectbanner {
-        padding: 3em 0 1em 0;
+        padding: 1em 0 1em 0;
         height: auto;
-        margin-bottom: -2.75em;
+        margin-bottom: -1.75em;
         max-height: none;
         min-height: 0;
-        top: -2.75em;
+        top: -1.75em;
     }
 
     #projectbanner h1 {
@@ -4365,7 +4372,7 @@ body.is-preload #projectbanner > .inner {
 @media screen and (max-width: 480px) {
 
     #projectbanner {
-        padding: 6em 0 2em 0;
+        padding: 2em 0 2em 0;
     }
 
     #projectbanner > .inner .content p br {
@@ -4373,7 +4380,7 @@ body.is-preload #projectbanner > .inner {
     }
 
     #projectbanner.major {
-        padding: 8em 0 4em 0;
+        padding: 2em 0 2em 0;
     }
 
 }
