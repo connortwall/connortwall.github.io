@@ -160,11 +160,11 @@ a {
 
 a:hover {
     border-bottom-color: transparent;
-    color: #9bf1ff !important;
+    color: #4c92d0 !important;
 }
 
 a:active {
-    color: #53e3fb !important;
+    color: #4c92d0 !important;
 }
 
 strong, b {
@@ -3465,6 +3465,7 @@ body.is-preload #header.alt {
     overflow: hidden;
     position: relative;
     text-align: center;
+
 
 }
 
