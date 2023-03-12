@@ -2595,7 +2595,8 @@ button:hover,
 button:active,
 .button:hover,
 .button:active {
-    box-shadow: inset 0 0 0 2px #9bf1ff;
+    box-shadow: inset 0 0 0 2px #39c94b;
+    background-color: rgba(155, 241, 255, 0.1);
     color: #9bf1ff;
 }
 
@@ -2605,7 +2606,7 @@ input[type="button"]:active,
 button:active,
 .button:active {
     background-color: rgba(155, 241, 255, 0.1);
-    box-shadow: inset 0 0 0 2px #53e3fb;
+    box-shadow: inset 0 0 0 2px #1d5b65;
     color: #53e3fb;
 }
 
@@ -2706,6 +2707,7 @@ button.next:active:after,
 .button.next:hover:after,
 .button.next:active:after {
     opacity: 1;
+
 }
 
 @media screen and (max-width: 1280px) {
@@ -2741,6 +2743,7 @@ button.primary:active,
 .button.primary:active {
     background-color: #9bf1ff;
     color: #242943 !important;
+
 }
 
 input[type="submit"].primary:active,
