@@ -114,11 +114,11 @@
             </div>
         </section>
 
-        <!-- Project Overview -->
-        <section id="project-overview">
+        <!-- Game Summary -->
+        <section id="game-summary">
             <div class="inner">
                 <header class="major">
-                    <h1>Project Overview</h1>
+                    <h1>Game Summary</h1>
                 </header>
                 <p>I worked on a team of 19 members (producer, composer, audio designer, visual artists, graphics artists,
                     art directors, and two other programmers)</p>
@@ -132,8 +132,7 @@
         <section class="pp-contents">
             <div class="inner">
                 <header class="major">
-                    <h1>Project Contributions</h1>
-                    <h2>(Click to Expand)</h2>
+                    <h1>Project Contributions (Click)</h1>
                 </header>
 
                 <!-- Narrative -->
@@ -184,6 +183,8 @@
                     </div>
                     <div class="accordion-inner">
                         <p>
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Screenshot%202022-12-05%20at%2001.47.53.png"
+                                 width="100%;">
                             <iframe src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Narrative/NarrativeArea.jpg"
                                     width="100%" height="600px"></iframe>
                         </p>
@@ -254,6 +255,8 @@
                     </div>
                     <div class="accordion-inner">
                         <p>I developed a Save - Load system with a manager and saveable interface.</p>
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation7.png"
+                             width="100%;">
                         <div class="accordion">
                             <i class="fa fa-code" aria-hidden="true"></i>
                             <span style="margin-left: 5px;">CODE SNIPPET - Save Load</span>
@@ -551,6 +554,8 @@ public class SaveableManager : MonoBehaviour
                     </div>
                     <div class="accordion-inner">
                         <p>I developed a procedural object spawner using Poisson Disk Sampling.</p>
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation8.png"
+                             width="100%;">
                         <div class="accordion">
                             <i class="fa fa-code" aria-hidden="true"></i>
                             <span style="margin-left: 5px;">CODE SNIPPET - Procedural Fire Spawning</span>
@@ -688,12 +693,69 @@ public class FireSpawner : MonoBehaviour
                             </p>
                         </div>
                     </div>
+
+                    <!-- Localization -->
+                    <div class="accordion">
+                        <i class="fas fa-language" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Localization</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation9.png"
+                             width="100%;">
+                    </div>
+
+                    <!-- UI -->
+                    <div class="accordion">
+                        <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">User Interface</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation10.png"
+                             width="100%;">
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation11.png"
+                             width="100%;">
+                    </div>
+
+                    <!-- Player Movement -->
+                    <div class="accordion">
+                        <i class="fas fa-walking" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Player Movement</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation5.png"
+                             width="100%;">
+                    </div>
+
+                    <!-- Cinematics -->
+                    <div class="accordion">
+                        <i class="fas fa-film" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Cinematics</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation12.png"
+                             width="100%;">
+                    </div>
+
+
                 </div>
 
+                <br>
                 <!--Technical Design-->
                 <div class="accordion">
                     <i class="fa fa-info" aria-hidden="true"></i>
-                    <span style="margin-left: 5px;">Full Technical Design Document</span>
+                    <span style="margin-left: 5px;">Full Team Technical Design Document</span>
                     <div class="accordion-icon">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </div>
@@ -995,14 +1057,16 @@ public class FireSpawner : MonoBehaviour
                     <h1>Gameplay</h1>
                 </header>
                 <p>Below is a central platforming puzzle that uses a tail attachment to move obstacles and the novel
-                    movement system to navigate the spaceship's cargo bay.</p>
+                    movement system to navigate the spaceship's cargo bay. I tested the tail attachment controls to iterate on ideal
+                    obstacle size and placement to adjust difficulty.</p>
                 <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_jumpingInCargoBay.gif"
                         width="100%;"></img></p>
-                <p>Below is a starting level of the game where the player finds an introductory audio log to the central
-                    narrative and can experiment with buttons to open the door to the next level.</p>
-                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch.gif"
+                <p>Below is the starting level of the game where the player finds an introductory audio log to the central
+                    narrative and can experiment with buttons to open the door to the next level. I iterated on the button puzzle location and
+                    spacing in the intro location to improve player accessibility and encourage exploration.</p>
+                <p><img src="uploads/ConnorWa.ll_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch.gif"
                         width="100%;"></img></p>
-                <p>Below is the UI for the pause menu with functionality to change language and sound.</p>
+                <p>Below is the UI for the pause menu with functionality to change language and sound. I coded the</p>
                 <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_ChangeLanguage.gif"
                         width="100%;"></img></p>
 

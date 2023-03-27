@@ -96,17 +96,34 @@
                     </div>
                 </section>
 
-            <!-- Gameplay -->
-            <section id="gameplay">
+            <!-- Game Summary -->
+            <section id="game-summary">
                     <div class="inner">
                         <header class="major">
-                            <h1>Gameplay</h1>
+                            <h1>Game Summary</h1>
                         </header>
-                        <iframe src="https://www.youtube.com/embed/L9dLvSPTLko? &autoplay=1" title="YouTube video player" width="100%" height="415" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <br>
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/2.svg"
+                                width="100%;">
+                       <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/3.png"
+                                width="100%;">
+                        <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/4.svg"
+                                width="100%;"></p>
                         <br>
                     </div>
                 </section>
+
+            <!-- Gameplay Video -->
+            <section id="gameplay-video">
+                <div class="inner">
+                    <header class="major">
+                        <h1>Gameplay Video</h1>
+                    </header>
+                    <iframe src="https://www.youtube.com/embed/L9dLvSPTLko? &autoplay=1" title="YouTube video player" width="100%" height="415" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <br>
+                    <br>
+                </div>
+            </section>
+
 
             <!-- Project Contributions -->
             <section class="pp-contents">
@@ -126,7 +143,8 @@
                     <div class="accordion-inner">
                         <li>I developed a procedural object spawner using Poisson Disk Sampling.</li>
                         <li>The following code demonstrates the algorithm used to spawn game objects in the game scene.</li>
-                        <li>A Poisson disk sampling algorithm populates a list of spawn points using editor parameters such as density and is created and used to </li>
+                        <li>A Poisson disk sampling algorithm populates a list of spawn points using editor parameters such as density and is created and used to add
+                            randomness into fast-paced gameplay</li>
                         <li>This is repeated for each new type of spawned item. </li>
                         <br>
 
@@ -140,6 +158,8 @@
                         </div>
                         <!-- Poisson Code Snippet Content -->
                         <div class="accordion-inner">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/5.png"
+                                    width="100%;">
                             <pre class="prettyprint lang-csharp">
 
 public static class PoissonProceduralObstacleGeneration
@@ -247,6 +267,9 @@ public static class PoissonProceduralObstacleGeneration
 }
                                 </pre>
                         </div>
+
+
+
                         <!-- Poisson gif-->
                         <div class="accordion-inner">
                             <p><img src="uploads/ConnorWall_Portfolio/Game_Design/"
@@ -267,6 +290,8 @@ public static class PoissonProceduralObstacleGeneration
                         </div>
                         <!-- Procedural Content Snippet Content -->
                         <div class="accordion-inner">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/6.svg"
+                                 width="100%;">
                                 <pre class="prettyprint lang-csharp">public class ProceduralObjectManager : MonoBehaviour
 {
     private List<Vector2> samples;
@@ -313,7 +338,45 @@ public static class PoissonProceduralObstacleGeneration
 
                         </div>
 
+                    <!-- Localization-->
+                    <!-- <div class="accordion">
+                        <i class="fas fa-language" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Language Localization System</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
 
+                    <div class="accordion-inner">
+                        <li>I developed a localization system to change between English and Danish languages in UI and GUI menus.</li>
+                        <br>
+
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation.png"
+                                width="100%;">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation2.png"
+                                 width="100%;"></p>
+
+                    </div>-->
+
+                    <!-- Player Movement-->
+                    <div class="accordion">
+                        <i class="fas fa-walking" aria-hidden="true"></i>
+                        <span style="margin-left: 5px;">Player Movement System</span>
+                        <div class="accordion-icon">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <!-- PLayer Movement Description -->
+                    <div class="accordion-inner">
+                        <li>I developed movement system to emulate a feeling of a tired robot performing tireless fetch work in a warehouse.</li>
+                        <br>
+
+                        <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation.png"
+                                width="100%;">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation2.png"
+                                 width="100%;"></p>
+
+                    </div>
 
                 </div>
             </section>
