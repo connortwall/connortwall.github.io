@@ -4503,7 +4503,8 @@ body.is-preload #about > .inner {
 
     #about {
         background-attachment: scroll;
-        min-height: 30em;
+        min-height: 38em;
+        padding: 10em 0 6em 0;
     }
 
 }
@@ -4512,7 +4513,9 @@ body.is-preload #about > .inner {
 
     #about {
         background-attachment: scroll;
-        padding: 2em 0 2em 0;
+        padding: 8em 0 2em 0;
+        min-height: 33em;
+
     }
 
 }
@@ -4520,10 +4523,10 @@ body.is-preload #about > .inner {
 @media screen and (max-width: 736px) {
 
     #about {
-        padding: 3em 0 2em 0;
+        padding: 4em 0 2em 0;
         height: auto;
         max-height: none;
-        min-height: 0;
+        min-height: 30em;
         top: -2.75em;
     }
 
@@ -4532,7 +4535,7 @@ body.is-preload #about > .inner {
     }
 
     #about p {
-        font-size: 0.8em;
+        font-size: 0.7em;
         font-weight: 3;
         text-transform: none;
         letter-spacing: 0.1em;
@@ -4596,9 +4599,10 @@ body.is-preload #about > .inner {
 @media screen and (max-width: 736px) {
 
     #main > * > .inner {
-        padding: 3em 0 1em 0;
+        padding: 4em 0 1em 0;
         width: calc(100% - 3em);
     }
+
 
 }
 
