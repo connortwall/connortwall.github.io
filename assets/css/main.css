@@ -3482,7 +3482,7 @@ body.is-preload #header.alt {
     -ms-transition-delay: 0.75s;
     transition-delay: 0.75s;
     pointer-events: none;
-    background-color: #242943;
+    background-color: #141728;
     content: '';
     display: block;
     height: 100%;
@@ -4288,8 +4288,8 @@ body.is-preload #projectbanner h2:before, body.is-preload #projectbanner h2:afte
 
 #projectbanner.major {
     height: 55vh;
-    min-height: 15em;
-    max-height: 25em;
+    min-height: 30em;
+    max-height: 35em;
     background-image: url("banner.jpg");
 }
 
@@ -4348,7 +4348,7 @@ body.is-preload #projectbanner > .inner {
         height: auto;
         margin-bottom: -1.75em;
         max-height: none;
-        min-height: 0;
+        min-height: 15em;
         top: -1.75em;
     }
 
@@ -4402,7 +4402,7 @@ body.is-preload #projectbanner > .inner {
     display: -ms-flex;
     display: flex;
     padding: 0em 0 0em 0;
-    background-color: #242943;
+    background-color: #141728;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -4503,7 +4503,7 @@ body.is-preload #about > .inner {
 
     #about {
         background-attachment: scroll;
-        min-height: 38em;
+        min-height: 43em;
         padding: 10em 0 6em 0;
     }
 
@@ -4514,7 +4514,7 @@ body.is-preload #about > .inner {
     #about {
         background-attachment: scroll;
         padding: 8em 0 2em 0;
-        min-height: 33em;
+        min-height: 45em;
 
     }
 
@@ -4526,7 +4526,7 @@ body.is-preload #about > .inner {
         padding: 4em 0 2em 0;
         height: auto;
         max-height: none;
-        min-height: 30em;
+        min-height: 34em;
         top: -2.75em;
     }
 
