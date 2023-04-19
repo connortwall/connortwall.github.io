@@ -111,6 +111,11 @@
                             allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <script src="https://player.vimeo.com/api/player.js"></script>
+                <br>
+                <p style="font-size: 150%">
+                    My primary technical contributions were design and implementation of UI, localization, save-load system,
+                    procedural obstacle generation, player movement, and cinematics.
+                </p>
             </div>
         </section>
 
@@ -121,8 +126,43 @@
                     <h1>Game Summary</h1>
                 </header>
 
-                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Onepager.Final3.png"
+                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Onepager.Final.png"
                         width="100%;"></p>
+            </div>
+        </section>
+
+        <!-- Gameplay -->
+        <section id="gameplay">
+            <div class="inner">
+                <header class="major">
+                    <h1>Gameplay</h1>
+                </header>
+
+                <p>Below is the UI for the pause menu with functionality to change language and sound. I coded the language change functionality
+                    by creating an array of languages that could be exchanged upon language selection confirmation. GUI elements include:
+                    current objective arrow direction pointer, task objectives (in text), current tail attachment (symbol), replayable audio log menu
+                    (collected + uncollected)</p>
+                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_ChangeLanguage.gif"
+                        width="100%;"></img></p>
+                <p>Below is the starting level of the game where the player finds an introductory audio log to the central
+                    narrative and can experiment with buttons to open the door to the next level. I iterated on the button puzzle location and
+                    spacing in the intro location to improve player accessibility and encourage exploration.</p>
+                <p><img src="uploads/ConnorWa.ll_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch2.gif"
+                        width="100%;"></img></p>
+                <p>Below is a central platforming puzzle that uses a tail attachment to move obstacles and the novel
+                    movement system to navigate the spaceship's cargo bay. I tested the tail attachment controls to iterate on ideal
+                    obstacle size and placement to adjust difficulty.</p>
+                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_jumpingInCargoBay.gif"
+                        width="100%;"></img></p>
+
+                <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
+                    <li><a href="https://dadiu.itch.io/roboleon" class="button icon solid fa-gamepad">Download</a></li>
+                    <li><a href="https://github.com/connortwall/Roboleon-Game"
+                           class="button icon solid brands fa-github">Github</a></li>
+                    <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
+                           class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
+
+                </ul>
             </div>
         </section>
 
@@ -1050,36 +1090,7 @@ public class FireSpawner : MonoBehaviour
             </div>
         </section>
 
-        <!-- Gameplay -->
-        <section id="gameplay">
-            <div class="inner">
-                <header class="major">
-                    <h1>Gameplay</h1>
-                </header>
-                <p>Below is a central platforming puzzle that uses a tail attachment to move obstacles and the novel
-                    movement system to navigate the spaceship's cargo bay. I tested the tail attachment controls to iterate on ideal
-                    obstacle size and placement to adjust difficulty.</p>
-                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_jumpingInCargoBay.gif"
-                        width="100%;"></img></p>
-                <p>Below is the starting level of the game where the player finds an introductory audio log to the central
-                    narrative and can experiment with buttons to open the door to the next level. I iterated on the button puzzle location and
-                    spacing in the intro location to improve player accessibility and encourage exploration.</p>
-                <p><img src="uploads/ConnorWa.ll_Portfolio/Game_Design/Roboleon/gifs/GG_attachmentSwitch.gif"
-                        width="100%;"></img></p>
-                <p>Below is the UI for the pause menu with functionality to change language and sound. I coded the</p>
-                <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_ChangeLanguage.gif"
-                        width="100%;"></img></p>
 
-                <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
-                    <li><a href="https://dadiu.itch.io/roboleon" class="button icon solid fa-gamepad">Download</a></li>
-                    <li><a href="https://github.com/connortwall/Roboleon-Game"
-                           class="button icon solid brands fa-github">Github</a></li>
-                    <li><a href="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/Technical%20Design%20Document.pdf"
-                           class="button icon solid primary fa-clipboard-list">Technical Presentation</a></li>
-
-                </ul>
-            </div>
-        </section>
     </div>
 
 
