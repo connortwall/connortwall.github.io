@@ -1277,9 +1277,12 @@ public class CharacterManager : MonoBehaviour
                 </div>
                 <div class="accordion-inner">
                     <p>I developed a breakable object system where the meshes of "BreakableActors" explode in the
-                        direction they
-                        are hit with an impact sound. I used Unreal Chaos Module for the randomized break behavior in
-                        the meshes.</p>
+                        direction they are hit with an impact sound.
+                        I used Unreal Chaos Module for the randomized break behavior in
+                        the meshes. Note the breakable object spawns a collectible treasure item on destruction.</p>
+
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.gif"
+                            width="100%;"></img></p>
 
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
@@ -1412,7 +1415,10 @@ private:
                 </div>
                 <div class="accordion-inner">
                     <p>I developed an modular character system that uses animation instance states, montages, and
-                        EnhancedInput</p>
+                        EnhancedInput. The player can get hit and respond with an animation from the corresponding direction.
+                        Enemies may equip a sword, shield, none, or both to hand sockets in their skeletons and adjust animations accordingly.</p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.gif"
+                            width="100%;"></img></p>
 
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
@@ -1465,15 +1471,14 @@ void ASlashCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	Tags.Add(FName("EngageableTarget"));
+	Tags.Add(FName("SlashCharacter"));
 
-	APlayerController* PlayerController = Cast<APlayerController>(GetController());
-	if(PlayerController)
+	if(APlayerController* PlayerController = Cast<APlayerController>(GetController()))
 	{
 		if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(SlashContext, 0);
 		}
-
 		if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
 		{
 			GameOverlay = GameHUD->GetGameOverlay();
@@ -1485,9 +1490,6 @@ void ASlashCharacter::BeginPlay()
 				GameOverlay->SetExp(0);
 			}
 		}
-
-		InitializePlayerEnhancedInput();
-		InitializeGameOverlay();
 	}
 
 }
@@ -1522,6 +1524,12 @@ void ASlashCharacter::Look(const FInputActionValue& Value)
 void ASlashCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (Attributes && GameOverlay)
+	{
+		Attributes->RegenStamina(DeltaTime);
+		GameOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
+	}
+
 }
 
 void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -1530,12 +1538,13 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 
 	if(UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-
+		// TODO: why use address
 		EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Look);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Jump);
 		EnhancedInputComponent->BindAction(EKeyAction, ETriggerEvent::Triggered, this, &ASlashCharacter::EKeyPressed);
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Attack);
+		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Dodge);
 
 	}
 }
@@ -1564,6 +1573,29 @@ void ASlashCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* 
 	if (Attributes && Attributes->GetHealthPercent() > 0.f)
 	{
 		ActionState = EActionState::EAS_HitReaction;
+	}
+}
+
+void ASlashCharacter::SetOverlappingItem(AItem* Item)
+{
+OverlappingItem = Item;
+}
+
+void ASlashCharacter::AddSouls(ASoul* Exp)
+{
+	if (Attributes && GameOverlay)
+	{
+		Attributes->AddExp(Exp->GetExp());
+		GameOverlay->SetExp(Attributes->GetExp());
+	}
+}
+
+void ASlashCharacter::AddGold(ATreasure* Treasure)
+{
+	if (Attributes && GameOverlay)
+	{
+		Attributes->AddGold(Treasure->GetGold());
+		GameOverlay->SetGold(Attributes->GetGold());
 	}
 }
 
@@ -1616,6 +1648,12 @@ void ASlashCharacter::EquipWeapon(AWeapon* Weapon)
 
 void ASlashCharacter::AttackEnd()
 {
+	ActionState = EActionState::EAS_Unoccupied;
+}
+
+void ASlashCharacter::DodgeEnd()
+{
+	Super::DodgeEnd();
 	ActionState = EActionState::EAS_Unoccupied;
 }
 
@@ -1682,18 +1720,18 @@ bool ASlashCharacter::IsUnoccupied()
 	return ActionState == EActionState::EAS_Unoccupied;
 
 }
-/*
+
 void ASlashCharacter::InitializePlayerEnhancedInput()
-{
+{/*
 	if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(SlashContext, 0);
-		}
+		}*/
 }
 
 void ASlashCharacter::InitializeGameOverlay()
 {
-	if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
+	/*if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
 	{
 		GameOverlay = GameHUD->GetGameOverlay();
 		if (GameOverlay && Attributes)
@@ -1703,8 +1741,8 @@ void ASlashCharacter::InitializeGameOverlay()
 			GameOverlay->SetGold(0);
 			GameOverlay->SetExp(0);
 		}
-	}
-}*/
+	}*/
+}
 
 void ASlashCharacter::SetHUDHealth()
 {
@@ -1714,8 +1752,26 @@ void ASlashCharacter::SetHUDHealth()
 	}
 }
 
+bool ASlashCharacter::IsOccupied()
+{
+	return ActionState != EActionState::EAS_Unoccupied;
+}
+
+bool ASlashCharacter::HasEnoughStamina()
+{
+	return Attributes && Attributes->GetStamina() > Attributes->GetDodgeCost();
+}
+
 void ASlashCharacter::Dodge()
 {
+	if (IsOccupied() || !HasEnoughStamina()) return;
+	PlayDodgeMontage();
+	ActionState = EActionState::EAS_Dodge;
+	if(Attributes && GameOverlay)
+	{
+		Attributes->DrainStamina(Attributes->GetDodgeCost());
+		GameOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
+	}
 }
 
 void ASlashCharacter::PlayEquipMontage(const FName& SectionName)
@@ -1732,10 +1788,11 @@ void ASlashCharacter::PlayEquipMontage(const FName& SectionName)
 void ASlashCharacter::Die()
 {
 	Super::Die();
-
 	ActionState = EActionState::EAS_Dead;
 	DisableMeshCollision();
+	Tags.Remove(FName("EngageableTarget"));
 }
+
                         </pre>
                     </div>
 
@@ -1991,7 +2048,9 @@ void ABaseCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type Collision
                 </div>
                 <div class="accordion-inner">
                     <p>I developed an heads-up display that shows player health, enemy health bars above their heads,
-                        and pick up prompts.</p>
+                        and pick up prompts. Note Niagara systems for weapon trail, blood splatter, items, and soul that spawns on character death.</p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.gif"
+                            width="100%;"></img></p>
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
                         <span style="margin-left: 5px;">CODE SNIPPET - GameOverlay.cpp</span>
@@ -2081,7 +2140,8 @@ void UHealthBarComponent::SetHealthPercent(float Percent)
                 </div>
                 <div class="accordion-inner">
                     <p>I improved the enemy AI combat system with several states to motion warp and have clearer attack
-                        radius checks. Enemies can also have attack frequency modified in editor (AttackTimer).</p>
+                        radius checks. Enemies can also have attack frequency modified in editor (AttackTimer).
+                        The gif shows two enemies, one with a larger pursuit radius that runs after player when close and walks when character is far</p>
                     <li>Patrolling State: enemies patrol along a list of specified targets in-level, unaware of
                         player.
                     </li>
@@ -2090,8 +2150,10 @@ void UHealthBarComponent::SetHealthPercent(float Percent)
                     </li>
                     <li>Attack State: enemy attacks player.</li>
                     <li>Dead State: enemy lost all health and soon disappears from level.</li>
+<br>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.gif"
+                            width="100%;"></img></p>
 
-                    <br>
 
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
@@ -2436,7 +2498,10 @@ void AEnemy::PawnSeen(APawn* SeenPawn)
                     </div>
                 </div>
                 <div class="accordion-inner">
-                    <p>I developed the item system so that collectible items float in air before being collected.</p>
+                    <p>I developed the item system so that collectible items float in air before being collected.
+                        Here a sword weapon is picked up and automatically equipped, then sheathed and unsheathed.</p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.gif"
+                            width="100%;"></img></p>
                     <br>
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
@@ -2485,10 +2550,10 @@ float AItem::TransformedCos()
 void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-	if(SlashCharacter)
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+	if(PlayerCharacter)
 	{
-		SlashCharacter->SetOverlappingItem(this);
+		PlayerCharacter->SetOverlappingItem(this);
 	}
 
 }
@@ -2496,10 +2561,10 @@ void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-	if(SlashCharacter)
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+	if(PlayerCharacter)
 	{
-		SlashCharacter->SetOverlappingItem(nullptr);
+		PlayerCharacter->SetOverlappingItem(nullptr);
 	}
 }
 
@@ -2672,8 +2737,8 @@ void AWeapon::AttachMeshToSocket(USceneComponent* InParent, const FName& InSocke
 void ATreasure::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
-	if(SlashCharacter)
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+	if(PlayerCharacter)
 	{
 		if(PickupSound)
 		{
@@ -2690,11 +2755,11 @@ void ATreasure::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAc
             </div>
 
             <br>
-            <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
+            <!--<ul class="actions" style="flex-direction: row; flex-wrap: wrap">
                 <li><a class="button icon solid brands fa-github"
                        href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Github
                     (Unity)</a></li>
-            </ul>
+            </ul>-->
 
     </div>
     </section>
