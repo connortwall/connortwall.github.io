@@ -127,6 +127,1511 @@
             </div>
         </section>
 
+        <!-- Game Programming (C++ & Blueprints) -->
+        <section class="pp-contents">
+            <div class="inner">
+                <header class="major">
+                    <h1>Game Programming (C++ & Blueprints)</h1>
+                    <h2>Click a section to expand</h2>
+                </header>
+
+                <!-- Environment -->
+                <div class="accordion">
+                    <i aria-hidden="true" class="fas fa-tree"></i>
+                    <span style="margin-left: 5px;">Environment</span>
+                    <div class="accordion-icon">
+                        <i aria-hidden="true" class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p>I developed a breakable object system where the meshes of "BreakableActors" explode in the
+                        direction they are hit with an impact sound.
+                        I used Unreal Chaos Module for the randomized break behavior in
+                        the meshes. Note the breakable object spawns a collectible treasure item on destruction.</p>
+
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.gif"
+                            width="100%;"></img></p>
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - BreakableActor.cpp</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates how a breakable actor is set up with necessary geometry
+                            components on specific collision layers, a random treasure object spawns from the break
+                            site, and the BreakableActor's mesh disappears after breaking. </p>
+                        <pre class="prettyprint lang-cpp">
+// Sets default values
+ABreakableActor::ABreakableActor()
+{
+ 	// Set this actor to call Tick() every frame.  Can turn this off to improve performance if necessary it.
+	PrimaryActorTick.bCanEverTick = false;
+
+	GeometryCollection = CreateDefaultSubobject<UGeometryCollectionComponent>(TEXT("Geometry Component"));
+	SetRootComponent(GeometryCollection);
+	GeometryCollection->SetGenerateOverlapEvents(true);
+	GeometryCollection->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECR_Ignore);
+	GeometryCollection->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Ignore);
+
+	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
+	Capsule->SetupAttachment(GetRootComponent());
+	Capsule->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECR_Ignore);
+	Capsule->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Block);
+
+}
+
+// Called when the game starts or when spawned
+void ABreakableActor::BeginPlay()
+{
+	Super::BeginPlay();
+
+	GeometryCollection->OnChaosBreakEvent.AddDynamic(this, &ABreakableActor::OnBreak);
+}
+
+// Called every frame
+void ABreakableActor::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
+void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
+{
+	if(bBroken) return;
+	bBroken = true;
+	UWorld* World = GetWorld();
+
+	if(World && TreasureClasses.Num() > 0)
+	{
+		FVector Location = GetActorLocation();
+		Location.Z += 75.f;
+		int32 Selection = FMath::RandRange(0, TreasureClasses.Num() - 1);
+		World->SpawnActor<ATreasure>(TreasureClasses[0], Location, GetActorRotation());
+	}
+
+
+}
+
+void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
+{
+	this->SetLifeSpan(5.f);
+	Capsule->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+}
+                        </pre>
+                    </div>
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - BreakableActor.h</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the code used in the header file for BreakableActor.cpp </p>
+                        <pre class="prettyprint lang-cpp">
+
+#include "CoreMinimal.h"
+#include "GameFramework/Actor.h"
+#include "Interfaces/HitInterface.h"
+#include "BreakableActor.generated.h"
+
+struct FChaosBreakEvent;
+class UGeometryCollectionComponent;
+
+UCLASS()
+class ABreakableActor : public AActor, public IHitInterface
+{
+	GENERATED_BODY()
+
+public:
+	ABreakableActor();
+	virtual void Tick(float DeltaTime) override;
+	virtual void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter) override;
+
+	UFUNCTION()
+	virtual void OnBreak(const FChaosBreakEvent& BreakEvent);
+
+protected:
+	virtual void BeginPlay() override;
+
+	UPROPERTY(VisibleAnywhere)
+	UGeometryCollectionComponent* GeometryCollection;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UCapsuleComponent* Capsule;
+
+private:
+	UPROPERTY(EditAnywhere, Category = "Breakable Properties")
+	TArray<TSubclassOf<class ATreasure>> TreasureClasses;
+
+	bool bBroken = false;
+};
+                        </pre>
+                    </div>
+                </div>
+
+                <!-- Characters -->
+                <div class="accordion">
+                    <i aria-hidden="true" class="fas fa-users"></i>
+                    <span style="margin-left: 5px;">Characters</span>
+                    <div class="accordion-icon">
+                        <i aria-hidden="true" class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p>I developed an modular character system that uses animation instance states, montages, and
+                        EnhancedInput. The player can get hit and respond with an animation from the corresponding direction.
+                        Enemies may equip a sword, shield, none, or both to hand sockets in their skeletons and adjust animations accordingly.</p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.gif"
+                            width="100%;"></img></p>
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - PlayerCharacter.cpp</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the setup of the player character actor with a camera,
+                            appropriate collision layers, and input with Unreal 5's new EnhancedInput module.</p>
+                        <li>A game hud is setup using the players attributes (health, stamina, gold, exp).</li>
+                        <li>Currently the player moves using keyboard directional movement, a mouse to look, space to
+                            jump, 'E' to interact, and clicking to attack.
+                        </li>
+                        <li>Interacting with a weapon causes it to be placed on the players back and can ten be
+                            unsheathed or sheathed for combat.
+                        </li>
+                        <li>Finally the player may die when health is 0.</li>
+                        <pre class="prettyprint lang-cpp">
+                            // Sets default values
+APlayerCharacter::APlayerCharacter()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
+
+	GetMesh()->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	GetMesh()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Overlap);
+	GetMesh()->SetGenerateOverlapEvents(true);
+
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	CameraBoom->SetupAttachment(GetRootComponent());
+	CameraBoom->TargetArmLength = 300.f;
+
+	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
+	ViewCamera->SetupAttachment(CameraBoom);
+
+}
+
+void ASlashCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Tags.Add(FName("EngageableTarget"));
+	Tags.Add(FName("SlashCharacter"));
+
+	if(APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+	{
+		if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(SlashContext, 0);
+		}
+		if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
+		{
+			GameOverlay = GameHUD->GetGameOverlay();
+			if (GameOverlay && Attributes)
+			{
+				GameOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
+				GameOverlay->SetStaminaBarPercent(1.f);
+				GameOverlay->SetGold(0);
+				GameOverlay->SetExp(0);
+			}
+		}
+	}
+
+}
+
+void ASlashCharacter::Move(const FInputActionValue& Value)
+{
+	if(ActionState != EActionState::EAS_Unoccupied) return;
+
+	const FVector2D MovementVector = Value.Get<FVector2D>();
+
+	const FRotator Rotation = Controller->GetControlRotation();
+	const FRotator YawRotation(0.f, Rotation.Yaw,0.f);
+
+	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+	AddMovementInput(ForwardDirection, MovementVector.Y);
+	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+	AddMovementInput(RightDirection, MovementVector.X);
+
+
+}
+
+void ASlashCharacter::Look(const FInputActionValue& Value)
+{
+	const FVector2D LookAxisVector = Value.Get<FVector2D>();
+	if(GetController())
+	{
+		AddControllerPitchInput(LookAxisVector.Y);
+		AddControllerYawInput(LookAxisVector.X);
+	}
+}
+
+void ASlashCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (Attributes && GameOverlay)
+	{
+		Attributes->RegenStamina(DeltaTime);
+		GameOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
+	}
+
+}
+
+void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	if(UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		// TODO: why use address
+		EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Move);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Look);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Jump);
+		EnhancedInputComponent->BindAction(EKeyAction, ETriggerEvent::Triggered, this, &ASlashCharacter::EKeyPressed);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Attack);
+		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Dodge);
+
+	}
+}
+
+void ASlashCharacter::Jump()
+{
+	if (IsUnoccupied())
+	{
+		Super::Jump();
+	}
+}
+
+float ASlashCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
+                                  AActor* DamageCauser)
+{
+	HandleDamage(DamageAmount);
+	SetHUDHealth();
+	return DamageAmount;}
+
+void ASlashCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
+{
+	Super::GetHit_Implementation(ImpactPoint, Hitter);
+
+	// disable weapon collision if getting hit
+	SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+	if (Attributes && Attributes->GetHealthPercent() > 0.f)
+	{
+		ActionState = EActionState::EAS_HitReaction;
+	}
+}
+
+void ASlashCharacter::SetOverlappingItem(AItem* Item)
+{
+OverlappingItem = Item;
+}
+
+void ASlashCharacter::AddSouls(ASoul* Exp)
+{
+	if (Attributes && GameOverlay)
+	{
+		Attributes->AddExp(Exp->GetExp());
+		GameOverlay->SetExp(Attributes->GetExp());
+	}
+}
+
+void ASlashCharacter::AddGold(ATreasure* Treasure)
+{
+	if (Attributes && GameOverlay)
+	{
+		Attributes->AddGold(Treasure->GetGold());
+		GameOverlay->SetGold(Attributes->GetGold());
+	}
+}
+
+void ASlashCharacter::MoveForward(float Value)
+{
+	if(ActionState != EActionState::EAS_Unoccupied) return;
+	if(Controller && (Value != 0.f))
+	{
+		FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward, Value);
+	}
+}
+
+void ASlashCharacter::EKeyPressed()
+{
+	AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
+	if(OverlappingWeapon)
+	{
+		EquipWeapon(OverlappingWeapon);
+	}
+	else
+	{
+		if(CanDisarm())
+		{
+			Disarm();
+		}
+		else if(CanArm())
+		{
+			Arm();
+		}
+	}
+}
+
+void ASlashCharacter::Attack()
+{
+	if(CanAttack())
+	{
+		PlayAttackMontage();
+		ActionState = EActionState::EAS_Attacking;
+	}
+}
+
+void ASlashCharacter::EquipWeapon(AWeapon* Weapon)
+{
+	Weapon->Equip(GetMesh(), FName("RightHandSocket"),this, this);
+	CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+	OverlappingItem = nullptr;
+	EquippedWeapon = Weapon;
+}
+
+void ASlashCharacter::AttackEnd()
+{
+	ActionState = EActionState::EAS_Unoccupied;
+}
+
+void ASlashCharacter::DodgeEnd()
+{
+	Super::DodgeEnd();
+	ActionState = EActionState::EAS_Unoccupied;
+}
+
+bool ASlashCharacter::CanAttack()
+{
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState != ECharacterState::ECS_Unequipped;
+}
+
+bool ASlashCharacter::CanDisarm()
+{
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState != ECharacterState::ECS_Unequipped;
+}
+
+bool ASlashCharacter::CanArm()
+{
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState == ECharacterState::ECS_Unequipped && EquippedWeapon;
+}
+
+void ASlashCharacter::Disarm()
+{
+	PlayEquipMontage(FName("Unequip"));
+	CharacterState = ECharacterState::ECS_Unequipped;
+	ActionState = EActionState::EAS_EquippingWeapon;
+}
+
+void ASlashCharacter::Arm()
+{
+	PlayEquipMontage(FName("Equip"));
+	CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
+	ActionState = EActionState::EAS_EquippingWeapon;
+}
+
+void ASlashCharacter::AttachWeaponToBack()
+{
+	if (EquippedWeapon)
+	{
+		EquippedWeapon->AttachMeshToSocket(GetMesh(), FName("SpineSocket"));
+	}
+}
+
+void ASlashCharacter::AttachWeaponToHand()
+{
+	if (EquippedWeapon)
+	{
+		EquippedWeapon->AttachMeshToSocket(GetMesh(), FName("RightHandSocket"));
+	}
+}
+
+void ASlashCharacter::FinishEquipping()
+{
+	ActionState = EActionState::EAS_Unoccupied;
+}
+
+void ASlashCharacter::HitReactEnd()
+{
+	ActionState = EActionState::EAS_Unoccupied;
+}
+
+bool ASlashCharacter::IsUnoccupied()
+{
+	return ActionState == EActionState::EAS_Unoccupied;
+
+}
+
+void ASlashCharacter::InitializePlayerEnhancedInput()
+{/*
+	if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(SlashContext, 0);
+		}*/
+}
+
+void ASlashCharacter::InitializeGameOverlay()
+{
+	/*if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
+	{
+		GameOverlay = GameHUD->GetGameOverlay();
+		if (GameOverlay && Attributes)
+		{
+			GameOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
+			GameOverlay->SetStaminaBarPercent(1.f);
+			GameOverlay->SetGold(0);
+			GameOverlay->SetExp(0);
+		}
+	}*/
+}
+
+void ASlashCharacter::SetHUDHealth()
+{
+	if (GameOverlay && Attributes)
+	{
+		GameOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
+	}
+}
+
+bool ASlashCharacter::IsOccupied()
+{
+	return ActionState != EActionState::EAS_Unoccupied;
+}
+
+bool ASlashCharacter::HasEnoughStamina()
+{
+	return Attributes && Attributes->GetStamina() > Attributes->GetDodgeCost();
+}
+
+void ASlashCharacter::Dodge()
+{
+	if (IsOccupied() || !HasEnoughStamina()) return;
+	PlayDodgeMontage();
+	ActionState = EActionState::EAS_Dodge;
+	if(Attributes && GameOverlay)
+	{
+		Attributes->DrainStamina(Attributes->GetDodgeCost());
+		GameOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
+	}
+}
+
+void ASlashCharacter::PlayEquipMontage(const FName& SectionName)
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if(AnimInstance && EquipMontage)
+	{
+		AnimInstance->Montage_Play(EquipMontage);
+		AnimInstance->Montage_JumpToSection(SectionName, EquipMontage);
+	}
+
+}
+
+void ASlashCharacter::Die()
+{
+	Super::Die();
+	ActionState = EActionState::EAS_Dead;
+	DisableMeshCollision();
+	Tags.Remove(FName("EngageableTarget"));
+}
+
+                        </pre>
+                    </div>
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - BaseCharacter.cpp</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the setup of a character actor with attributes (health,
+                            stamina, exp).</p>
+                        <li>When hit, the character reacts with a directional animation corresponding to the hit
+                            direction along with hit particles and a hit sound.
+                        </li>
+                        <li>Characters also have random death montages that link to dead poses and randomized attack
+                            montages that use translation-rotation-warp to targets.
+                        </li>
+                        <li>Characters have weapon hit boxes that may collide with other objects or characters.</li>
+                        <pre class="prettyprint lang-cpp">
+                          ABaseCharacter::ABaseCharacter()
+{
+	PrimaryActorTick.bCanEverTick = true;
+	Attributes = CreateDefaultSubobject<UAttributeComponent>(TEXT("Attibutes"));
+}
+
+void ABaseCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+}
+
+void ABaseCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
+{
+	if (IsAlive() && Hitter)
+	{
+		DirectionalHitReact(Hitter->GetActorLocation());
+	}
+	else Die();
+
+	PlayHitSound(ImpactPoint);
+	SpawnHitParticles(ImpactPoint);
+}
+
+void ABaseCharacter::Attack()
+{
+}
+
+int32 ABaseCharacter::PlayAttackMontage()
+{
+	return PlayRandomMontageSection(AttackMontage, AttackMontageSections);
+}
+
+int32 ABaseCharacter::PlayDeathMontage()
+{
+	const int32 Selection = PlayRandomMontageSection(DeathMontage, DeathMontageSections);
+	TEnumAsByte<EDeathPose> Pose(Selection);
+	if (Pose < EDeathPose::EDP_MAX)
+	{
+		DeathPose = Pose;
+	}
+
+	return Selection;
+}
+
+void ABaseCharacter::StopAttackMontage()
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance)
+	{
+		AnimInstance->Montage_Stop(0.25f, AttackMontage);
+	}
+}
+
+FVector ABaseCharacter::GetTranslationWarpTarget()
+{
+	if (CombatTarget == nullptr) return FVector();
+
+	const FVector CombatTargetLocation = CombatTarget->GetActorLocation();
+	const FVector Location = GetActorLocation();
+
+	FVector TargetToMe = (Location - CombatTargetLocation).GetSafeNormal();
+	TargetToMe *= WarpTargetDistance;
+
+	return CombatTargetLocation + TargetToMe;
+}
+
+FVector ABaseCharacter::GetRotationWarpTarget()
+{
+	if (CombatTarget)
+	{
+		return CombatTarget->GetActorLocation();
+	}
+	return FVector();
+}
+
+void ABaseCharacter::DisableCapsule()
+{
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+bool ABaseCharacter::CanAttack()
+{
+	return false;
+}
+
+bool ABaseCharacter::IsAlive()
+{
+	return Attributes && Attributes->IsAlive();
+}
+
+void ABaseCharacter::DisableMeshCollision()
+{
+	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+void ABaseCharacter::PlayHitReactMontage(const FName& SectionName)
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && HitReactMontage)
+	{
+		AnimInstance->Montage_Play(HitReactMontage);
+		AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
+	}
+}
+
+void ABaseCharacter::DirectionalHitReact(const FVector& ImpactPoint)
+{
+	const FVector Forward = GetActorForwardVector();
+	// Lower Impact Point to the Enemy's Actor Location Z
+	const FVector ImpactLowered(ImpactPoint.X, ImpactPoint.Y, GetActorLocation().Z);
+	const FVector ToHit = (ImpactLowered - GetActorLocation()).GetSafeNormal();
+
+	// Forward * ToHit = |Forward||ToHit| * cos(theta)
+	// |Forward| = 1, |ToHit| = 1, so Forward * ToHit = cos(theta)
+	const double CosTheta = FVector::DotProduct(Forward, ToHit);
+	// Take the inverse cosine (arc-cosine) of cos(theta) to get theta
+	double Theta = FMath::Acos(CosTheta);
+	// convert from radians to degrees
+	Theta = FMath::RadiansToDegrees(Theta);
+
+	// if CrossProduct points down, Theta should be negative
+	const FVector CrossProduct = FVector::CrossProduct(Forward, ToHit);
+	if (CrossProduct.Z < 0)
+	{
+		Theta *= -1.f;
+	}
+
+	FName Section("FromBack");
+
+	if (Theta >= -45.f && Theta < 45.f)
+	{
+		Section = FName("FromFront");
+	}
+	else if (Theta >= -135.f && Theta < -45.f)
+	{
+		Section = FName("FromLeft");
+	}
+	else if (Theta >= 45.f && Theta < 135.f)
+	{
+		Section = FName("FromRight");
+	}
+
+	PlayHitReactMontage(Section);
+
+}
+
+void ABaseCharacter::PlayHitSound(const FVector& ImpactPoint)
+{
+	if (HitSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(
+			this,
+			HitSound,
+			ImpactPoint
+		);
+	}
+}
+
+void ABaseCharacter::SpawnHitParticles(const FVector& ImpactPoint)
+{
+	if (HitParticles && GetWorld())
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(
+			GetWorld(),
+			HitParticles,
+			ImpactPoint
+		);
+	}
+}
+
+void ABaseCharacter::HandleDamage(float DamageAmount)
+{
+	if (Attributes)
+	{
+		Attributes->ReceiveDamage(DamageAmount);
+	}
+}
+
+void ABaseCharacter::PlayMontageSection(UAnimMontage* Montage, const FName& SectionName)
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if(AnimInstance && Montage)
+	{
+		AnimInstance->Montage_Play(Montage);
+		AnimInstance->Montage_JumpToSection(SectionName, Montage);
+	}
+}
+
+int32 ABaseCharacter::PlayRandomMontageSection(UAnimMontage* Montage, const TArray<FName>& SectionNames)
+{
+	if(SectionNames.Num() <= 0) return -1;
+	const int32 MaxSectionIndex = SectionNames.Num() - 1;
+	const int32 Selection = FMath::RandRange(0, MaxSectionIndex);
+	PlayMontageSection(Montage, SectionNames[Selection]);
+	return Selection;
+}
+
+void ABaseCharacter::AttackEnd()
+{
+}
+
+void ABaseCharacter::Die()
+{
+	PlayDeathMontage();
+}
+
+void ABaseCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
+void ABaseCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type CollisionEnabled)
+{
+	if(EquippedWeapon && EquippedWeapon->GetWeaponBox())
+	{
+		EquippedWeapon->GetWeaponBox()->SetCollisionEnabled(CollisionEnabled);
+		EquippedWeapon->IgnoreActors.Empty();
+	}
+}</pre>
+                    </div>
+                </div>
+
+                <!-- HUD -->
+                <div class="accordion">
+                    <i aria-hidden="true" class="fas fa-compass"></i>
+                    <span style="margin-left: 5px;">Heads-Up Display (HUD)</span>
+                    <div class="accordion-icon">
+                        <i aria-hidden="true" class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p>I developed an heads-up display that shows player health, enemy health bars above their heads,
+                        and pick up prompts. Note Niagara systems for weapon trail, blood splatter, items, and soul that spawns on character death.</p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.gif"
+                            width="100%;"></img></p>
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - GameOverlay.cpp</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates how the player character attributes are set (as regenerating,
+                            progress bars, and numbers).</p>
+                        <pre class="prettyprint lang-cpp">
+void UGameOverlay::SetHealthBarPercent(float Percent)
+{
+	if (HealthProgressBar)
+	{
+		HealthProgressBar->SetPercent(Percent);
+	}
+}
+
+void UGameOverlay::SetStaminaBarPercent(float Percent)
+{
+	if (StaminaProgressBar)
+	{
+		StaminaProgressBar->SetPercent(Percent);
+	}
+}
+
+void UGameOverlay::SetGold(int32 Gold)
+{
+	if (GoldCountText)
+	{
+		// format  int32 into string into text
+		const FString String = FString::Printf(TEXT("%d"), Gold);
+		const FText Text = FText::FromString(String);
+		GoldCountText->SetText(Text);
+	}
+}
+
+void UGameOverlay::SetExp(int32 Exp)
+{
+	if (ExpCountText)
+	{
+		const FString String = FString::Printf(TEXT("%d"), Exp);
+		const FText Text = FText::FromString(String);
+		ExpCountText->SetText(Text);
+	}
+}
+                        </pre>
+                    </div>
+
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - HealthBarComponent.cpp</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the code used </p>
+                        <pre class="prettyprint lang-cpp">
+void UHealthBarComponent::SetHealthPercent(float Percent)
+{
+	if(HealthBarWidget == nullptr)
+	{
+		HealthBarWidget = Cast<UHealthBar>(GetUserWidgetObject());
+	}
+
+	if(HealthBarWidget && HealthBarWidget->HealthBar)
+	{
+		HealthBarWidget->HealthBar->SetPercent(Percent);
+	}
+}
+                        </pre>
+                    </div>
+
+
+                </div>
+
+                <!-- Enemy-->
+                <div class="accordion">
+                    <i aria-hidden="true" class="fas fa-brain"></i>
+                    <span style="margin-left: 5px;">Enemy AI</span>
+                    <div class="accordion-icon">
+                        <i aria-hidden="true" class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p>I improved the enemy AI combat system with several states to motion warp and have clearer attack
+                        radius checks. Enemies can also have attack frequency modified in editor (AttackTimer).
+                        The gif shows two enemies, one with a larger pursuit radius that runs after player when close and walks when character is far</p>
+                    <li>Patrolling State: enemies patrol along a list of specified targets in-level, unaware of
+                        player.
+                    </li>
+                    <li>Chase State: enemies notice player based on line of sight and hearing, or player attack, then
+                        chase player.
+                    </li>
+                    <li>Attack State: enemy attacks player.</li>
+                    <li>Dead State: enemy lost all health and soon disappears from level.</li>
+                    <br>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.gif"
+                            width="100%;"></img></p>
+
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Enemy AI</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the primary enemy AI.</p>
+                        <pre class="prettyprint lang-csharp">
+AEnemy::AEnemy()
+{
+ 	PrimaryActorTick.bCanEverTick = true;
+
+	GetMesh()->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
+	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
+	GetMesh()->SetGenerateOverlapEvents(true);
+
+
+	HealthBarWidget = CreateDefaultSubobject<UHealthBarComponent>(TEXT("HealthBar"));
+	HealthBarWidget->SetupAttachment(GetRootComponent());
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	bUseControllerRotationPitch = false;
+	bUseControllerRotationYaw = false;
+	bUseControllerRotationRoll = false;
+
+	PawnSensing = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensing"));
+	PawnSensing->SightRadius = 4000.f;
+	PawnSensing->SetPeripheralVisionAngle(45.f);
+}
+
+void AEnemy::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (IsDead()) return;
+	if (EnemyState > EEnemyState::EES_Patrolling)
+	{
+		CheckCombatTarget();
+	}
+	else
+	{
+		CheckPatrolTarget();
+	}
+}
+
+float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	HandleDamage(DamageAmount);
+	CombatTarget = EventInstigator->GetPawn();
+
+	if(IsInsideAttackRadius())
+	{
+		EnemyState = EEnemyState::EES_Attacking;
+	}
+		else if(IsOutsideAttackRadius())
+		{
+			ChaseTarget();
+		}
+	return DamageAmount;
+}
+
+void AEnemy::Destroyed()
+{
+	if (EquippedWeapon)
+	{
+		EquippedWeapon->Destroy();
+	}
+}
+
+void AEnemy::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
+{
+	Super::GetHit_Implementation(ImpactPoint, Hitter);
+	if (!IsDead()) ShowHealthBar();
+	ClearPatrolTimer();
+	ClearAttackTimer();SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+
+	StopAttackMontage();
+
+}
+
+void AEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (PawnSensing) PawnSensing->OnSeePawn.AddDynamic(this, &AEnemy::PawnSeen);
+	InitializeEnemy();
+	Tags.Add(FName("Enemy"));
+}
+
+void AEnemy::Die()
+{
+	Super::Die();
+	EnemyState = EEnemyState::EES_Dead;
+
+	ClearAttackTimer();
+	HideHealthBar();
+	DisableCapsule();
+	SetLifeSpan(DeathLifeSpan);
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+	SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
+}
+
+void AEnemy::Attack()
+{
+	EnemyState = EEnemyState::EES_Engaged;
+	Super::Attack();
+	PlayAttackMontage();
+}
+
+bool AEnemy::CanAttack()
+{
+	bool bCanAttack =
+		IsInsideAttackRadius() &&
+		!IsAttacking() &&
+		!IsEngaged() &&
+		!IsDead();
+	return bCanAttack;
+}
+
+void AEnemy::AttackEnd()
+{
+	EnemyState = EEnemyState::EES_NoState;
+	CheckCombatTarget();
+}
+
+void AEnemy::HandleDamage(float DamageAmount)
+{
+	Super::HandleDamage(DamageAmount);
+
+	if (Attributes && HealthBarWidget)
+	{
+		HealthBarWidget->SetHealthPercent(Attributes->GetHealthPercent());
+	}
+}
+
+void AEnemy::InitializeEnemy()
+{
+	EnemyController = Cast<AAIController>(GetController());
+	MoveToTarget(PatrolTarget);
+	HideHealthBar();
+	SpawnDefaultWeapon();
+}
+
+void AEnemy::CheckPatrolTarget()
+{
+	if (InTargetRange(PatrolTarget, PatrolRadius))
+	{
+		PatrolTarget = ChoosePatrolTarget();
+		const float WaitTime = FMath::RandRange(PatrolWaitMin, PatrolWaitMax);
+		GetWorldTimerManager().SetTimer(PatrolTimer, this, &AEnemy::PatrolTimerFinished, WaitTime);
+	}
+}
+
+void AEnemy::CheckCombatTarget()
+{
+	if (IsOutsideCombatRadius())
+	{
+		ClearAttackTimer();
+		LoseInterest();
+		if (!IsEngaged()) StartPatrolling();
+	}
+	else if (IsOutsideAttackRadius() && !IsChasing())
+	{
+		ClearAttackTimer();
+		if (!IsEngaged()) ChaseTarget();
+	}
+	else if (CanAttack())
+	{
+		StartAttackTimer();
+	}
+}
+
+void AEnemy::PatrolTimerFinished()
+{
+	MoveToTarget(PatrolTarget);
+}
+
+void AEnemy::HideHealthBar()
+{
+	if (HealthBarWidget)
+	{
+		HealthBarWidget->SetVisibility(false);
+	}
+}
+
+void AEnemy::ShowHealthBar()
+{
+	if (HealthBarWidget)
+	{
+		HealthBarWidget->SetVisibility(true);
+	}
+}
+
+void AEnemy::LoseInterest()
+{
+	CombatTarget = nullptr;
+	HideHealthBar();
+}
+
+void AEnemy::StartPatrolling()
+{
+	EnemyState = EEnemyState::EES_Patrolling;
+	GetCharacterMovement()->MaxWalkSpeed = PatrollingSpeed;
+	MoveToTarget(PatrolTarget);
+}
+
+void AEnemy::ChaseTarget()
+{
+	EnemyState = EEnemyState::EES_Chasing;
+	GetCharacterMovement()->MaxWalkSpeed = ChasingSpeed;
+	MoveToTarget(CombatTarget);
+}
+
+bool AEnemy::IsOutsideCombatRadius()
+{
+	return !InTargetRange(CombatTarget, CombatRadius);
+}
+
+bool AEnemy::IsOutsideAttackRadius()
+{
+	return !InTargetRange(CombatTarget, AttackRadius);
+}
+
+bool AEnemy::IsInsideAttackRadius()
+{
+	return InTargetRange(CombatTarget, AttackRadius);
+}
+
+bool AEnemy::IsChasing()
+{
+	return EnemyState == EEnemyState::EES_Chasing;
+}
+
+bool AEnemy::IsAttacking()
+{
+	return EnemyState == EEnemyState::EES_Attacking;
+}
+
+bool AEnemy::IsDead()
+{
+	return EnemyState == EEnemyState::EES_Dead;
+}
+
+bool AEnemy::IsEngaged()
+{
+	return EnemyState == EEnemyState::EES_Engaged;
+}
+
+void AEnemy::ClearPatrolTimer()
+{
+	GetWorldTimerManager().ClearTimer(PatrolTimer);
+}
+
+void AEnemy::StartAttackTimer()
+{
+	EnemyState = EEnemyState::EES_Attacking;
+	const float AttackTime = FMath::RandRange(AttackMin, AttackMax);
+	GetWorldTimerManager().SetTimer(AttackTimer, this, &AEnemy::Attack, AttackTime);
+}
+
+void AEnemy::ClearAttackTimer()
+{
+	GetWorldTimerManager().ClearTimer(AttackTimer);
+}
+
+bool AEnemy::InTargetRange(AActor* Target, double Radius)
+{
+	if (Target == nullptr) return false;
+	const double DistanceToTarget = (Target->GetActorLocation() - GetActorLocation()).Size();
+	return DistanceToTarget <= Radius;
+}
+
+void AEnemy::MoveToTarget(AActor* Target)
+{
+	if (EnemyController == nullptr || Target == nullptr) return;
+	FAIMoveRequest MoveRequest;
+	MoveRequest.SetGoalActor(Target);
+	MoveRequest.SetAcceptanceRadius(50.f);
+	EnemyController->MoveTo(MoveRequest);
+}
+
+AActor* AEnemy::ChoosePatrolTarget()
+{
+	TArray<AActor*> ValidTargets;
+	for (AActor* Target : PatrolTargets)
+	{
+		if (Target != PatrolTarget)
+		{
+			ValidTargets.AddUnique(Target);
+		}
+	}
+
+	const int32 NumPatrolTargets = ValidTargets.Num();
+	if (NumPatrolTargets > 0)
+	{
+		const int32 TargetSelection = FMath::RandRange(0, NumPatrolTargets - 1);
+		return ValidTargets[TargetSelection];
+	}
+	return nullptr;
+}
+
+void AEnemy::SpawnDefaultWeapon()
+{
+	UWorld* World = GetWorld();
+	if (World && WeaponClass)
+	{
+		AWeapon* DefaultWeapon = World->SpawnActor<AWeapon>(WeaponClass);
+		DefaultWeapon->Equip(GetMesh(), FName("RightHandSocket"), this, this);
+		EquippedWeapon = DefaultWeapon;
+	}
+}
+
+void AEnemy::PawnSeen(APawn* SeenPawn)
+{
+	const bool bShouldChaseTarget =
+		EnemyState != EEnemyState::EES_Dead &&
+		EnemyState != EEnemyState::EES_Chasing &&
+		EnemyState < EEnemyState::EES_Attacking &&
+		SeenPawn->ActorHasTag(FName("EngageableTarget"));
+
+	if (bShouldChaseTarget)
+	{
+		CombatTarget = SeenPawn;
+		ClearPatrolTimer();
+		ChaseTarget();
+	}
+}
+
+                            </pre>
+                    </div>
+                </div>
+
+                <!-- Items -->
+                <div class="accordion">
+                    <i aria-hidden="true" class="fas fa-glass-martini"></i>
+                    <span style="margin-left: 5px;">Items</span>
+                    <div class="accordion-icon">
+                        <i aria-hidden="true" class="fa fa-times"></i>
+                    </div>
+                </div>
+                <div class="accordion-inner">
+                    <p>I developed the item system so that collectible items float in air before being collected.
+                        Here a sword weapon is picked up and automatically equipped, then sheathed and unsheathed.</p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.gif"
+                            width="100%;"></img></p>
+                    <br>
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Item.cpp</span>
+                        <div class="accordion-icon">
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the general item functionality.</p>
+                        <pre class="prettyprint lang-csharp">
+                            AItem::AItem()
+{
+	PrimaryActorTick.bCanEverTick = true;
+
+	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponent"));
+	ItemMesh->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	RootComponent = ItemMesh;
+
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	Sphere->SetupAttachment(GetRootComponent());
+
+	EmbersEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Embers"));
+	EmbersEffect->SetupAttachment(GetRootComponent());
+}
+
+void AItem::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
+	Sphere->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
+}
+
+float AItem::TransformedSin()
+{
+	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
+}
+
+float AItem::TransformedCos()
+{
+	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
+}
+
+void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+	if(PlayerCharacter)
+	{
+		PlayerCharacter->SetOverlappingItem(this);
+	}
+
+}
+
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+	if(PlayerCharacter)
+	{
+		PlayerCharacter->SetOverlappingItem(nullptr);
+	}
+}
+
+void AItem::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	RunningTime += DeltaTime;
+	if(ItemState == EItemState::EIS_Hovering)
+	{
+		AddActorWorldOffset(FVector(0.f,0.f, TransformedSin()));
+
+	}
+
+	FVector AvgVector = Avg<FVector>(GetActorLocation(),FVector::Zero());
+	DRAW_POINT_SingleFrame(AvgVector);
+
+                        </pre>
+                    </div>
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Weapon.cpp</span>
+                        <div class="accordion-icon"><i aria-hidden="true"></i>
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates weapon item functionality.</p>
+                        <pre class="prettyprint lang-csharp">
+AWeapon::AWeapon()
+{
+	WeaponBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Weapon Box"));
+	WeaponBox->SetupAttachment(GetRootComponent());
+	WeaponBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	WeaponBox->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
+	WeaponBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
+
+	BoxTraceStart = CreateDefaultSubobject<USceneComponent>(TEXT("Box Trace Start"));
+	BoxTraceStart->SetupAttachment(GetRootComponent());
+	BoxTraceEnd = CreateDefaultSubobject<USceneComponent>(TEXT("Box Trace End"));
+	BoxTraceEnd->SetupAttachment(GetRootComponent());
+
+}
+
+void AWeapon::BeginPlay()
+{
+	Super::BeginPlay();
+	WeaponBox->OnComponentBeginOverlap.AddDynamic(this, &AWeapon::AWeapon::OnBoxOverlap);
+}
+
+void AWeapon::PlayEquipSound()
+{
+	if(EquipSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(
+			this,
+			EquipSound,
+			GetActorLocation()
+		);
+	}
+}
+
+void AWeapon::DisableSphereCollision()
+{
+	if(Sphere)
+	{
+		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+}
+
+void AWeapon::DeactivateEmberEffect()
+{
+	if(EmbersEffect)
+	{
+		EmbersEffect->Deactivate();
+	}
+}
+
+void AWeapon::Equip(USceneComponent* InParent, FName InSocketName, AActor* NewOwner, APawn* NewInstigator)
+{
+	ItemState = EItemState::EIS_Equipped;
+	SetOwner(NewOwner);
+	SetInstigator(NewInstigator);
+	AttachMeshToSocket(InParent, InSocketName);
+	DisableSphereCollision();
+	PlayEquipSound();
+	DeactivateEmberEffect();
+}
+
+void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (ActorIsSameType(OtherActor)) return;
+
+	FHitResult BoxHit;
+	BoxTrace(BoxHit);
+
+	if (BoxHit.GetActor())
+	{
+		if (ActorIsSameType(BoxHit.GetActor())) return;
+
+		UGameplayStatics::ApplyDamage(BoxHit.GetActor(), Damage, GetInstigator()->GetController(), this, UDamageType::StaticClass());
+		ExecuteGetHit(BoxHit);
+		// for destructible objects
+		CreateFields(BoxHit.ImpactPoint);
+	}
+}
+
+bool AWeapon::ActorIsSameType(AActor* OtherActor)
+{
+	return GetOwner()->ActorHasTag(TEXT("Enemy")) && OtherActor->ActorHasTag(TEXT("Enemy"));
+}
+
+void AWeapon::ExecuteGetHit(FHitResult& BoxHit)
+{
+	IHitInterface* HitInterface = Cast<IHitInterface>(BoxHit.GetActor());
+	if (HitInterface)
+	{
+		HitInterface->Execute_GetHit(BoxHit.GetActor(), BoxHit.ImpactPoint, GetOwner());
+	}
+}
+
+void AWeapon::BoxTrace(FHitResult& BoxHit)
+{
+	const FVector Start = BoxTraceStart->GetComponentLocation();
+	const FVector End = BoxTraceEnd->GetComponentLocation();
+
+	TArray<AActor*> ActorsToIgnore;
+	ActorsToIgnore.Add(this);
+
+	for (AActor* Actor : IgnoreActors)
+	{
+		ActorsToIgnore.AddUnique(Actor);
+	}
+
+	UKismetSystemLibrary::BoxTraceSingle(
+		this,
+		Start,
+		End,
+		BoxTraceExtent,
+		BoxTraceStart->GetComponentRotation(),
+		ETraceTypeQuery::TraceTypeQuery1,
+		false,
+		ActorsToIgnore,
+		bShowBoxDebug ? EDrawDebugTrace::ForDuration : EDrawDebugTrace::None,
+		BoxHit,
+		true
+	);
+	IgnoreActors.AddUnique(BoxHit.GetActor());
+}
+
+void AWeapon::AttachMeshToSocket(USceneComponent* InParent, const FName& InSocketName)
+{
+	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+	ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+}
+                        </pre>
+                    </div>
+
+                    <div class="accordion">
+                        <i aria-hidden="true" class="fa fa-code"></i>
+                        <span style="margin-left: 5px;">CODE SNIPPET - Treasure.cpp</span>
+                        <div class="accordion-icon"><i aria-hidden="true"></i>
+                            <i aria-hidden="true" class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <div class="accordion-inner">
+                        <p>The following code demonstrates the treasure item functionality.</p>
+
+                        <pre class="prettyprint lang-csharp">
+void ATreasure::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
+	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
+	if(PlayerCharacter)
+	{
+		if(PickupSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(
+				this,
+				PickupSound,
+				GetActorLocation());
+		}
+		Destroy();
+	}
+}
+                        </pre>
+                    </div>
+                </div>
+
+                <br>
+                <!--<ul class="actions" style="flex-direction: row; flex-wrap: wrap">
+                    <li><a class="button icon solid brands fa-github"
+                           href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Github
+                        (Unity)</a></li>
+                </ul>-->
+
+            </div>
+        </section>
+
         <!-- Game Programming (C#) -->
         <section class="pp-contents">
             <div class="inner">
@@ -1259,1510 +2764,7 @@ public class CharacterManager : MonoBehaviour
             </div>
         </section>
 
-        <!-- Game Programming (C++ & Blueprints) -->
-        <section class="pp-contents">
-            <div class="inner">
-                <header class="major">
-                    <h1>Game Programming (C++ & Blueprints)</h1>
-                    <h2>Click a section to expand</h2>
-                </header>
 
-                <!-- Environment -->
-                <div class="accordion">
-                    <i aria-hidden="true" class="fas fa-tree"></i>
-                    <span style="margin-left: 5px;">Environment</span>
-                    <div class="accordion-icon">
-                        <i aria-hidden="true" class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I developed a breakable object system where the meshes of "BreakableActors" explode in the
-                        direction they are hit with an impact sound.
-                        I used Unreal Chaos Module for the randomized break behavior in
-                        the meshes. Note the breakable object spawns a collectible treasure item on destruction.</p>
-
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.gif"
-                            width="100%;"></img></p>
-
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - BreakableActor.cpp</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates how a breakable actor is set up with necessary geometry
-                            components on specific collision layers, a random treasure object spawns from the break
-                            site, and the BreakableActor's mesh disappears after breaking. </p>
-                        <pre class="prettyprint lang-cpp">
-// Sets default values
-ABreakableActor::ABreakableActor()
-{
- 	// Set this actor to call Tick() every frame.  Can turn this off to improve performance if necessary it.
-	PrimaryActorTick.bCanEverTick = false;
-
-	GeometryCollection = CreateDefaultSubobject<UGeometryCollectionComponent>(TEXT("Geometry Component"));
-	SetRootComponent(GeometryCollection);
-	GeometryCollection->SetGenerateOverlapEvents(true);
-	GeometryCollection->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECR_Ignore);
-	GeometryCollection->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Ignore);
-
-	Capsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
-	Capsule->SetupAttachment(GetRootComponent());
-	Capsule->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECR_Ignore);
-	Capsule->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Block);
-
-}
-
-// Called when the game starts or when spawned
-void ABreakableActor::BeginPlay()
-{
-	Super::BeginPlay();
-
-	GeometryCollection->OnChaosBreakEvent.AddDynamic(this, &ABreakableActor::OnBreak);
-}
-
-// Called every frame
-void ABreakableActor::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
-{
-	if(bBroken) return;
-	bBroken = true;
-	UWorld* World = GetWorld();
-
-	if(World && TreasureClasses.Num() > 0)
-	{
-		FVector Location = GetActorLocation();
-		Location.Z += 75.f;
-		int32 Selection = FMath::RandRange(0, TreasureClasses.Num() - 1);
-		World->SpawnActor<ATreasure>(TreasureClasses[0], Location, GetActorRotation());
-	}
-
-
-}
-
-void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
-{
-	this->SetLifeSpan(5.f);
-	Capsule->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-}
-                        </pre>
-                    </div>
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - BreakableActor.h</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates the code used in the header file for BreakableActor.cpp </p>
-                        <pre class="prettyprint lang-cpp">
-
-#include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
-#include "Interfaces/HitInterface.h"
-#include "BreakableActor.generated.h"
-
-struct FChaosBreakEvent;
-class UGeometryCollectionComponent;
-
-UCLASS()
-class ABreakableActor : public AActor, public IHitInterface
-{
-	GENERATED_BODY()
-
-public:
-	ABreakableActor();
-	virtual void Tick(float DeltaTime) override;
-	virtual void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter) override;
-
-	UFUNCTION()
-	virtual void OnBreak(const FChaosBreakEvent& BreakEvent);
-
-protected:
-	virtual void BeginPlay() override;
-
-	UPROPERTY(VisibleAnywhere)
-	UGeometryCollectionComponent* GeometryCollection;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	class UCapsuleComponent* Capsule;
-
-private:
-	UPROPERTY(EditAnywhere, Category = "Breakable Properties")
-	TArray<TSubclassOf<class ATreasure>> TreasureClasses;
-
-	bool bBroken = false;
-};
-                        </pre>
-                    </div>
-                </div>
-
-                <!-- Characters -->
-                <div class="accordion">
-                    <i aria-hidden="true" class="fas fa-users"></i>
-                    <span style="margin-left: 5px;">Characters</span>
-                    <div class="accordion-icon">
-                        <i aria-hidden="true" class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I developed an modular character system that uses animation instance states, montages, and
-                        EnhancedInput. The player can get hit and respond with an animation from the corresponding direction.
-                        Enemies may equip a sword, shield, none, or both to hand sockets in their skeletons and adjust animations accordingly.</p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.gif"
-                            width="100%;"></img></p>
-
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - PlayerCharacter.cpp</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates the setup of the player character actor with a camera,
-                            appropriate collision layers, and input with Unreal 5's new EnhancedInput module.</p>
-                        <li>A game hud is setup using the players attributes (health, stamina, gold, exp).</li>
-                        <li>Currently the player moves using keyboard directional movement, a mouse to look, space to
-                            jump, 'E' to interact, and clicking to attack.
-                        </li>
-                        <li>Interacting with a weapon causes it to be placed on the players back and can ten be
-                            unsheathed or sheathed for combat.
-                        </li>
-                        <li>Finally the player may die when health is 0.</li>
-                        <pre class="prettyprint lang-cpp">
-                            // Sets default values
-APlayerCharacter::APlayerCharacter()
-{
-	PrimaryActorTick.bCanEverTick = true;
-
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
-	bUseControllerRotationRoll = false;
-
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
-
-	GetMesh()->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
-	GetMesh()->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
-	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldDynamic, ECollisionResponse::ECR_Overlap);
-	GetMesh()->SetGenerateOverlapEvents(true);
-
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(GetRootComponent());
-	CameraBoom->TargetArmLength = 300.f;
-
-	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
-	ViewCamera->SetupAttachment(CameraBoom);
-
-}
-
-void ASlashCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-
-	Tags.Add(FName("EngageableTarget"));
-	Tags.Add(FName("SlashCharacter"));
-
-	if(APlayerController* PlayerController = Cast<APlayerController>(GetController()))
-	{
-		if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
-		{
-			Subsystem->AddMappingContext(SlashContext, 0);
-		}
-		if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
-		{
-			GameOverlay = GameHUD->GetGameOverlay();
-			if (GameOverlay && Attributes)
-			{
-				GameOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
-				GameOverlay->SetStaminaBarPercent(1.f);
-				GameOverlay->SetGold(0);
-				GameOverlay->SetExp(0);
-			}
-		}
-	}
-
-}
-
-void ASlashCharacter::Move(const FInputActionValue& Value)
-{
-	if(ActionState != EActionState::EAS_Unoccupied) return;
-
-	const FVector2D MovementVector = Value.Get<FVector2D>();
-
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0.f, Rotation.Yaw,0.f);
-
-	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	AddMovementInput(ForwardDirection, MovementVector.Y);
-	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	AddMovementInput(RightDirection, MovementVector.X);
-
-
-}
-
-void ASlashCharacter::Look(const FInputActionValue& Value)
-{
-	const FVector2D LookAxisVector = Value.Get<FVector2D>();
-	if(GetController())
-	{
-		AddControllerPitchInput(LookAxisVector.Y);
-		AddControllerYawInput(LookAxisVector.X);
-	}
-}
-
-void ASlashCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	if (Attributes && GameOverlay)
-	{
-		Attributes->RegenStamina(DeltaTime);
-		GameOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
-	}
-
-}
-
-void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	if(UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
-	{
-		// TODO: why use address
-		EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Move);
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Look);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Jump);
-		EnhancedInputComponent->BindAction(EKeyAction, ETriggerEvent::Triggered, this, &ASlashCharacter::EKeyPressed);
-		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Attack);
-		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &ASlashCharacter::Dodge);
-
-	}
-}
-
-void ASlashCharacter::Jump()
-{
-	if (IsUnoccupied())
-	{
-		Super::Jump();
-	}
-}
-
-float ASlashCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator,
-                                  AActor* DamageCauser)
-{
-	HandleDamage(DamageAmount);
-	SetHUDHealth();
-	return DamageAmount;}
-
-void ASlashCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
-{
-	Super::GetHit_Implementation(ImpactPoint, Hitter);
-
-	// disable weapon collision if getting hit
-	SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
-	if (Attributes && Attributes->GetHealthPercent() > 0.f)
-	{
-		ActionState = EActionState::EAS_HitReaction;
-	}
-}
-
-void ASlashCharacter::SetOverlappingItem(AItem* Item)
-{
-OverlappingItem = Item;
-}
-
-void ASlashCharacter::AddSouls(ASoul* Exp)
-{
-	if (Attributes && GameOverlay)
-	{
-		Attributes->AddExp(Exp->GetExp());
-		GameOverlay->SetExp(Attributes->GetExp());
-	}
-}
-
-void ASlashCharacter::AddGold(ATreasure* Treasure)
-{
-	if (Attributes && GameOverlay)
-	{
-		Attributes->AddGold(Treasure->GetGold());
-		GameOverlay->SetGold(Attributes->GetGold());
-	}
-}
-
-void ASlashCharacter::MoveForward(float Value)
-{
-	if(ActionState != EActionState::EAS_Unoccupied) return;
-	if(Controller && (Value != 0.f))
-	{
-		FVector Forward = GetActorForwardVector();
-		AddMovementInput(Forward, Value);
-	}
-}
-
-void ASlashCharacter::EKeyPressed()
-{
-	AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
-	if(OverlappingWeapon)
-	{
-		EquipWeapon(OverlappingWeapon);
-	}
-	else
-	{
-		if(CanDisarm())
-		{
-			Disarm();
-		}
-		else if(CanArm())
-		{
-			Arm();
-		}
-	}
-}
-
-void ASlashCharacter::Attack()
-{
-	if(CanAttack())
-	{
-		PlayAttackMontage();
-		ActionState = EActionState::EAS_Attacking;
-	}
-}
-
-void ASlashCharacter::EquipWeapon(AWeapon* Weapon)
-{
-	Weapon->Equip(GetMesh(), FName("RightHandSocket"),this, this);
-	CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
-	OverlappingItem = nullptr;
-	EquippedWeapon = Weapon;
-}
-
-void ASlashCharacter::AttackEnd()
-{
-	ActionState = EActionState::EAS_Unoccupied;
-}
-
-void ASlashCharacter::DodgeEnd()
-{
-	Super::DodgeEnd();
-	ActionState = EActionState::EAS_Unoccupied;
-}
-
-bool ASlashCharacter::CanAttack()
-{
-	return ActionState == EActionState::EAS_Unoccupied &&
-		CharacterState != ECharacterState::ECS_Unequipped;
-}
-
-bool ASlashCharacter::CanDisarm()
-{
-	return ActionState == EActionState::EAS_Unoccupied &&
-		CharacterState != ECharacterState::ECS_Unequipped;
-}
-
-bool ASlashCharacter::CanArm()
-{
-	return ActionState == EActionState::EAS_Unoccupied &&
-		CharacterState == ECharacterState::ECS_Unequipped && EquippedWeapon;
-}
-
-void ASlashCharacter::Disarm()
-{
-	PlayEquipMontage(FName("Unequip"));
-	CharacterState = ECharacterState::ECS_Unequipped;
-	ActionState = EActionState::EAS_EquippingWeapon;
-}
-
-void ASlashCharacter::Arm()
-{
-	PlayEquipMontage(FName("Equip"));
-	CharacterState = ECharacterState::ECS_EquippedOneHandedWeapon;
-	ActionState = EActionState::EAS_EquippingWeapon;
-}
-
-void ASlashCharacter::AttachWeaponToBack()
-{
-	if (EquippedWeapon)
-	{
-		EquippedWeapon->AttachMeshToSocket(GetMesh(), FName("SpineSocket"));
-	}
-}
-
-void ASlashCharacter::AttachWeaponToHand()
-{
-	if (EquippedWeapon)
-	{
-		EquippedWeapon->AttachMeshToSocket(GetMesh(), FName("RightHandSocket"));
-	}
-}
-
-void ASlashCharacter::FinishEquipping()
-{
-	ActionState = EActionState::EAS_Unoccupied;
-}
-
-void ASlashCharacter::HitReactEnd()
-{
-	ActionState = EActionState::EAS_Unoccupied;
-}
-
-bool ASlashCharacter::IsUnoccupied()
-{
-	return ActionState == EActionState::EAS_Unoccupied;
-
-}
-
-void ASlashCharacter::InitializePlayerEnhancedInput()
-{/*
-	if(UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
-		{
-			Subsystem->AddMappingContext(SlashContext, 0);
-		}*/
-}
-
-void ASlashCharacter::InitializeGameOverlay()
-{
-	/*if (AGameHUD* GameHUD = Cast<AGameHUD>(PlayerController->GetHUD()))
-	{
-		GameOverlay = GameHUD->GetGameOverlay();
-		if (GameOverlay && Attributes)
-		{
-			GameOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
-			GameOverlay->SetStaminaBarPercent(1.f);
-			GameOverlay->SetGold(0);
-			GameOverlay->SetExp(0);
-		}
-	}*/
-}
-
-void ASlashCharacter::SetHUDHealth()
-{
-	if (GameOverlay && Attributes)
-	{
-		GameOverlay->SetHealthBarPercent(Attributes->GetHealthPercent());
-	}
-}
-
-bool ASlashCharacter::IsOccupied()
-{
-	return ActionState != EActionState::EAS_Unoccupied;
-}
-
-bool ASlashCharacter::HasEnoughStamina()
-{
-	return Attributes && Attributes->GetStamina() > Attributes->GetDodgeCost();
-}
-
-void ASlashCharacter::Dodge()
-{
-	if (IsOccupied() || !HasEnoughStamina()) return;
-	PlayDodgeMontage();
-	ActionState = EActionState::EAS_Dodge;
-	if(Attributes && GameOverlay)
-	{
-		Attributes->DrainStamina(Attributes->GetDodgeCost());
-		GameOverlay->SetStaminaBarPercent(Attributes->GetStaminaPercent());
-	}
-}
-
-void ASlashCharacter::PlayEquipMontage(const FName& SectionName)
-{
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if(AnimInstance && EquipMontage)
-	{
-		AnimInstance->Montage_Play(EquipMontage);
-		AnimInstance->Montage_JumpToSection(SectionName, EquipMontage);
-	}
-
-}
-
-void ASlashCharacter::Die()
-{
-	Super::Die();
-	ActionState = EActionState::EAS_Dead;
-	DisableMeshCollision();
-	Tags.Remove(FName("EngageableTarget"));
-}
-
-                        </pre>
-                    </div>
-
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - BaseCharacter.cpp</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates the setup of a character actor with attributes (health,
-                            stamina, exp).</p>
-                        <li>When hit, the character reacts with a directional animation corresponding to the hit
-                            direction along with hit particles and a hit sound.
-                        </li>
-                        <li>Characters also have random death montages that link to dead poses and randomized attack
-                            montages that use translation-rotation-warp to targets.
-                        </li>
-                        <li>Characters have weapon hit boxes that may collide with other objects or characters.</li>
-                        <pre class="prettyprint lang-cpp">
-                          ABaseCharacter::ABaseCharacter()
-{
-	PrimaryActorTick.bCanEverTick = true;
-	Attributes = CreateDefaultSubobject<UAttributeComponent>(TEXT("Attibutes"));
-}
-
-void ABaseCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-
-}
-
-void ABaseCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
-{
-	if (IsAlive() && Hitter)
-	{
-		DirectionalHitReact(Hitter->GetActorLocation());
-	}
-	else Die();
-
-	PlayHitSound(ImpactPoint);
-	SpawnHitParticles(ImpactPoint);
-}
-
-void ABaseCharacter::Attack()
-{
-}
-
-int32 ABaseCharacter::PlayAttackMontage()
-{
-	return PlayRandomMontageSection(AttackMontage, AttackMontageSections);
-}
-
-int32 ABaseCharacter::PlayDeathMontage()
-{
-	const int32 Selection = PlayRandomMontageSection(DeathMontage, DeathMontageSections);
-	TEnumAsByte<EDeathPose> Pose(Selection);
-	if (Pose < EDeathPose::EDP_MAX)
-	{
-		DeathPose = Pose;
-	}
-
-	return Selection;
-}
-
-void ABaseCharacter::StopAttackMontage()
-{
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance)
-	{
-		AnimInstance->Montage_Stop(0.25f, AttackMontage);
-	}
-}
-
-FVector ABaseCharacter::GetTranslationWarpTarget()
-{
-	if (CombatTarget == nullptr) return FVector();
-
-	const FVector CombatTargetLocation = CombatTarget->GetActorLocation();
-	const FVector Location = GetActorLocation();
-
-	FVector TargetToMe = (Location - CombatTargetLocation).GetSafeNormal();
-	TargetToMe *= WarpTargetDistance;
-
-	return CombatTargetLocation + TargetToMe;
-}
-
-FVector ABaseCharacter::GetRotationWarpTarget()
-{
-	if (CombatTarget)
-	{
-		return CombatTarget->GetActorLocation();
-	}
-	return FVector();
-}
-
-void ABaseCharacter::DisableCapsule()
-{
-	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-}
-
-bool ABaseCharacter::CanAttack()
-{
-	return false;
-}
-
-bool ABaseCharacter::IsAlive()
-{
-	return Attributes && Attributes->IsAlive();
-}
-
-void ABaseCharacter::DisableMeshCollision()
-{
-	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-}
-
-void ABaseCharacter::PlayHitReactMontage(const FName& SectionName)
-{
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance && HitReactMontage)
-	{
-		AnimInstance->Montage_Play(HitReactMontage);
-		AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
-	}
-}
-
-void ABaseCharacter::DirectionalHitReact(const FVector& ImpactPoint)
-{
-	const FVector Forward = GetActorForwardVector();
-	// Lower Impact Point to the Enemy's Actor Location Z
-	const FVector ImpactLowered(ImpactPoint.X, ImpactPoint.Y, GetActorLocation().Z);
-	const FVector ToHit = (ImpactLowered - GetActorLocation()).GetSafeNormal();
-
-	// Forward * ToHit = |Forward||ToHit| * cos(theta)
-	// |Forward| = 1, |ToHit| = 1, so Forward * ToHit = cos(theta)
-	const double CosTheta = FVector::DotProduct(Forward, ToHit);
-	// Take the inverse cosine (arc-cosine) of cos(theta) to get theta
-	double Theta = FMath::Acos(CosTheta);
-	// convert from radians to degrees
-	Theta = FMath::RadiansToDegrees(Theta);
-
-	// if CrossProduct points down, Theta should be negative
-	const FVector CrossProduct = FVector::CrossProduct(Forward, ToHit);
-	if (CrossProduct.Z < 0)
-	{
-		Theta *= -1.f;
-	}
-
-	FName Section("FromBack");
-
-	if (Theta >= -45.f && Theta < 45.f)
-	{
-		Section = FName("FromFront");
-	}
-	else if (Theta >= -135.f && Theta < -45.f)
-	{
-		Section = FName("FromLeft");
-	}
-	else if (Theta >= 45.f && Theta < 135.f)
-	{
-		Section = FName("FromRight");
-	}
-
-	PlayHitReactMontage(Section);
-
-}
-
-void ABaseCharacter::PlayHitSound(const FVector& ImpactPoint)
-{
-	if (HitSound)
-	{
-		UGameplayStatics::PlaySoundAtLocation(
-			this,
-			HitSound,
-			ImpactPoint
-		);
-	}
-}
-
-void ABaseCharacter::SpawnHitParticles(const FVector& ImpactPoint)
-{
-	if (HitParticles && GetWorld())
-	{
-		UGameplayStatics::SpawnEmitterAtLocation(
-			GetWorld(),
-			HitParticles,
-			ImpactPoint
-		);
-	}
-}
-
-void ABaseCharacter::HandleDamage(float DamageAmount)
-{
-	if (Attributes)
-	{
-		Attributes->ReceiveDamage(DamageAmount);
-	}
-}
-
-void ABaseCharacter::PlayMontageSection(UAnimMontage* Montage, const FName& SectionName)
-{
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if(AnimInstance && Montage)
-	{
-		AnimInstance->Montage_Play(Montage);
-		AnimInstance->Montage_JumpToSection(SectionName, Montage);
-	}
-}
-
-int32 ABaseCharacter::PlayRandomMontageSection(UAnimMontage* Montage, const TArray<FName>& SectionNames)
-{
-	if(SectionNames.Num() <= 0) return -1;
-	const int32 MaxSectionIndex = SectionNames.Num() - 1;
-	const int32 Selection = FMath::RandRange(0, MaxSectionIndex);
-	PlayMontageSection(Montage, SectionNames[Selection]);
-	return Selection;
-}
-
-void ABaseCharacter::AttackEnd()
-{
-}
-
-void ABaseCharacter::Die()
-{
-	PlayDeathMontage();
-}
-
-void ABaseCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-void ABaseCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type CollisionEnabled)
-{
-	if(EquippedWeapon && EquippedWeapon->GetWeaponBox())
-	{
-		EquippedWeapon->GetWeaponBox()->SetCollisionEnabled(CollisionEnabled);
-		EquippedWeapon->IgnoreActors.Empty();
-	}
-}</pre>
-                    </div>
-                </div>
-
-                <!-- HUD -->
-                <div class="accordion">
-                    <i aria-hidden="true" class="fas fa-compass"></i>
-                    <span style="margin-left: 5px;">Heads-Up Display (HUD)</span>
-                    <div class="accordion-icon">
-                        <i aria-hidden="true" class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I developed an heads-up display that shows player health, enemy health bars above their heads,
-                        and pick up prompts. Note Niagara systems for weapon trail, blood splatter, items, and soul that spawns on character death.</p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.gif"
-                            width="100%;"></img></p>
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - GameOverlay.cpp</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates how the player character attributes are set (as regenerating,
-                            progress bars, and numbers).</p>
-                        <pre class="prettyprint lang-cpp">
-void UGameOverlay::SetHealthBarPercent(float Percent)
-{
-	if (HealthProgressBar)
-	{
-		HealthProgressBar->SetPercent(Percent);
-	}
-}
-
-void UGameOverlay::SetStaminaBarPercent(float Percent)
-{
-	if (StaminaProgressBar)
-	{
-		StaminaProgressBar->SetPercent(Percent);
-	}
-}
-
-void UGameOverlay::SetGold(int32 Gold)
-{
-	if (GoldCountText)
-	{
-		// format  int32 into string into text
-		const FString String = FString::Printf(TEXT("%d"), Gold);
-		const FText Text = FText::FromString(String);
-		GoldCountText->SetText(Text);
-	}
-}
-
-void UGameOverlay::SetExp(int32 Exp)
-{
-	if (ExpCountText)
-	{
-		const FString String = FString::Printf(TEXT("%d"), Exp);
-		const FText Text = FText::FromString(String);
-		ExpCountText->SetText(Text);
-	}
-}
-                        </pre>
-                    </div>
-
-
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - HealthBarComponent.cpp</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates the code used </p>
-                        <pre class="prettyprint lang-cpp">
-void UHealthBarComponent::SetHealthPercent(float Percent)
-{
-	if(HealthBarWidget == nullptr)
-	{
-		HealthBarWidget = Cast<UHealthBar>(GetUserWidgetObject());
-	}
-
-	if(HealthBarWidget && HealthBarWidget->HealthBar)
-	{
-		HealthBarWidget->HealthBar->SetPercent(Percent);
-	}
-}
-                        </pre>
-                    </div>
-
-
-                </div>
-
-                <!-- Enemy-->
-                <div class="accordion">
-                    <i aria-hidden="true" class="fas fa-brain"></i>
-                    <span style="margin-left: 5px;">Enemy AI</span>
-                    <div class="accordion-icon">
-                        <i aria-hidden="true" class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I improved the enemy AI combat system with several states to motion warp and have clearer attack
-                        radius checks. Enemies can also have attack frequency modified in editor (AttackTimer).
-                        The gif shows two enemies, one with a larger pursuit radius that runs after player when close and walks when character is far</p>
-                    <li>Patrolling State: enemies patrol along a list of specified targets in-level, unaware of
-                        player.
-                    </li>
-                    <li>Chase State: enemies notice player based on line of sight and hearing, or player attack, then
-                        chase player.
-                    </li>
-                    <li>Attack State: enemy attacks player.</li>
-                    <li>Dead State: enemy lost all health and soon disappears from level.</li>
-<br>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.gif"
-                            width="100%;"></img></p>
-
-
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Enemy AI</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates the primary enemy AI.</p>
-                        <pre class="prettyprint lang-csharp">
-AEnemy::AEnemy()
-{
- 	PrimaryActorTick.bCanEverTick = true;
-
-	GetMesh()->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
-	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Visibility, ECollisionResponse::ECR_Block);
-	GetMesh()->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECollisionResponse::ECR_Ignore);
-	GetMesh()->SetGenerateOverlapEvents(true);
-
-
-	HealthBarWidget = CreateDefaultSubobject<UHealthBarComponent>(TEXT("HealthBar"));
-	HealthBarWidget->SetupAttachment(GetRootComponent());
-
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
-	bUseControllerRotationRoll = false;
-
-	PawnSensing = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensing"));
-	PawnSensing->SightRadius = 4000.f;
-	PawnSensing->SetPeripheralVisionAngle(45.f);
-}
-
-void AEnemy::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	if (IsDead()) return;
-	if (EnemyState > EEnemyState::EES_Patrolling)
-	{
-		CheckCombatTarget();
-	}
-	else
-	{
-		CheckPatrolTarget();
-	}
-}
-
-float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
-{
-	HandleDamage(DamageAmount);
-	CombatTarget = EventInstigator->GetPawn();
-
-	if(IsInsideAttackRadius())
-	{
-		EnemyState = EEnemyState::EES_Attacking;
-	}
-		else if(IsOutsideAttackRadius())
-		{
-			ChaseTarget();
-		}
-	return DamageAmount;
-}
-
-void AEnemy::Destroyed()
-{
-	if (EquippedWeapon)
-	{
-		EquippedWeapon->Destroy();
-	}
-}
-
-void AEnemy::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
-{
-	Super::GetHit_Implementation(ImpactPoint, Hitter);
-	if (!IsDead()) ShowHealthBar();
-	ClearPatrolTimer();
-	ClearAttackTimer();SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	StopAttackMontage();
-
-}
-
-void AEnemy::BeginPlay()
-{
-	Super::BeginPlay();
-
-	if (PawnSensing) PawnSensing->OnSeePawn.AddDynamic(this, &AEnemy::PawnSeen);
-	InitializeEnemy();
-	Tags.Add(FName("Enemy"));
-}
-
-void AEnemy::Die()
-{
-	Super::Die();
-	EnemyState = EEnemyState::EES_Dead;
-
-	ClearAttackTimer();
-	HideHealthBar();
-	DisableCapsule();
-	SetLifeSpan(DeathLifeSpan);
-	GetCharacterMovement()->bOrientRotationToMovement = false;
-	SetWeaponCollisionEnabled(ECollisionEnabled::NoCollision);
-}
-
-void AEnemy::Attack()
-{
-	EnemyState = EEnemyState::EES_Engaged;
-	Super::Attack();
-	PlayAttackMontage();
-}
-
-bool AEnemy::CanAttack()
-{
-	bool bCanAttack =
-		IsInsideAttackRadius() &&
-		!IsAttacking() &&
-		!IsEngaged() &&
-		!IsDead();
-	return bCanAttack;
-}
-
-void AEnemy::AttackEnd()
-{
-	EnemyState = EEnemyState::EES_NoState;
-	CheckCombatTarget();
-}
-
-void AEnemy::HandleDamage(float DamageAmount)
-{
-	Super::HandleDamage(DamageAmount);
-
-	if (Attributes && HealthBarWidget)
-	{
-		HealthBarWidget->SetHealthPercent(Attributes->GetHealthPercent());
-	}
-}
-
-void AEnemy::InitializeEnemy()
-{
-	EnemyController = Cast<AAIController>(GetController());
-	MoveToTarget(PatrolTarget);
-	HideHealthBar();
-	SpawnDefaultWeapon();
-}
-
-void AEnemy::CheckPatrolTarget()
-{
-	if (InTargetRange(PatrolTarget, PatrolRadius))
-	{
-		PatrolTarget = ChoosePatrolTarget();
-		const float WaitTime = FMath::RandRange(PatrolWaitMin, PatrolWaitMax);
-		GetWorldTimerManager().SetTimer(PatrolTimer, this, &AEnemy::PatrolTimerFinished, WaitTime);
-	}
-}
-
-void AEnemy::CheckCombatTarget()
-{
-	if (IsOutsideCombatRadius())
-	{
-		ClearAttackTimer();
-		LoseInterest();
-		if (!IsEngaged()) StartPatrolling();
-	}
-	else if (IsOutsideAttackRadius() && !IsChasing())
-	{
-		ClearAttackTimer();
-		if (!IsEngaged()) ChaseTarget();
-	}
-	else if (CanAttack())
-	{
-		StartAttackTimer();
-	}
-}
-
-void AEnemy::PatrolTimerFinished()
-{
-	MoveToTarget(PatrolTarget);
-}
-
-void AEnemy::HideHealthBar()
-{
-	if (HealthBarWidget)
-	{
-		HealthBarWidget->SetVisibility(false);
-	}
-}
-
-void AEnemy::ShowHealthBar()
-{
-	if (HealthBarWidget)
-	{
-		HealthBarWidget->SetVisibility(true);
-	}
-}
-
-void AEnemy::LoseInterest()
-{
-	CombatTarget = nullptr;
-	HideHealthBar();
-}
-
-void AEnemy::StartPatrolling()
-{
-	EnemyState = EEnemyState::EES_Patrolling;
-	GetCharacterMovement()->MaxWalkSpeed = PatrollingSpeed;
-	MoveToTarget(PatrolTarget);
-}
-
-void AEnemy::ChaseTarget()
-{
-	EnemyState = EEnemyState::EES_Chasing;
-	GetCharacterMovement()->MaxWalkSpeed = ChasingSpeed;
-	MoveToTarget(CombatTarget);
-}
-
-bool AEnemy::IsOutsideCombatRadius()
-{
-	return !InTargetRange(CombatTarget, CombatRadius);
-}
-
-bool AEnemy::IsOutsideAttackRadius()
-{
-	return !InTargetRange(CombatTarget, AttackRadius);
-}
-
-bool AEnemy::IsInsideAttackRadius()
-{
-	return InTargetRange(CombatTarget, AttackRadius);
-}
-
-bool AEnemy::IsChasing()
-{
-	return EnemyState == EEnemyState::EES_Chasing;
-}
-
-bool AEnemy::IsAttacking()
-{
-	return EnemyState == EEnemyState::EES_Attacking;
-}
-
-bool AEnemy::IsDead()
-{
-	return EnemyState == EEnemyState::EES_Dead;
-}
-
-bool AEnemy::IsEngaged()
-{
-	return EnemyState == EEnemyState::EES_Engaged;
-}
-
-void AEnemy::ClearPatrolTimer()
-{
-	GetWorldTimerManager().ClearTimer(PatrolTimer);
-}
-
-void AEnemy::StartAttackTimer()
-{
-	EnemyState = EEnemyState::EES_Attacking;
-	const float AttackTime = FMath::RandRange(AttackMin, AttackMax);
-	GetWorldTimerManager().SetTimer(AttackTimer, this, &AEnemy::Attack, AttackTime);
-}
-
-void AEnemy::ClearAttackTimer()
-{
-	GetWorldTimerManager().ClearTimer(AttackTimer);
-}
-
-bool AEnemy::InTargetRange(AActor* Target, double Radius)
-{
-	if (Target == nullptr) return false;
-	const double DistanceToTarget = (Target->GetActorLocation() - GetActorLocation()).Size();
-	return DistanceToTarget <= Radius;
-}
-
-void AEnemy::MoveToTarget(AActor* Target)
-{
-	if (EnemyController == nullptr || Target == nullptr) return;
-	FAIMoveRequest MoveRequest;
-	MoveRequest.SetGoalActor(Target);
-	MoveRequest.SetAcceptanceRadius(50.f);
-	EnemyController->MoveTo(MoveRequest);
-}
-
-AActor* AEnemy::ChoosePatrolTarget()
-{
-	TArray<AActor*> ValidTargets;
-	for (AActor* Target : PatrolTargets)
-	{
-		if (Target != PatrolTarget)
-		{
-			ValidTargets.AddUnique(Target);
-		}
-	}
-
-	const int32 NumPatrolTargets = ValidTargets.Num();
-	if (NumPatrolTargets > 0)
-	{
-		const int32 TargetSelection = FMath::RandRange(0, NumPatrolTargets - 1);
-		return ValidTargets[TargetSelection];
-	}
-	return nullptr;
-}
-
-void AEnemy::SpawnDefaultWeapon()
-{
-	UWorld* World = GetWorld();
-	if (World && WeaponClass)
-	{
-		AWeapon* DefaultWeapon = World->SpawnActor<AWeapon>(WeaponClass);
-		DefaultWeapon->Equip(GetMesh(), FName("RightHandSocket"), this, this);
-		EquippedWeapon = DefaultWeapon;
-	}
-}
-
-void AEnemy::PawnSeen(APawn* SeenPawn)
-{
-	const bool bShouldChaseTarget =
-		EnemyState != EEnemyState::EES_Dead &&
-		EnemyState != EEnemyState::EES_Chasing &&
-		EnemyState < EEnemyState::EES_Attacking &&
-		SeenPawn->ActorHasTag(FName("EngageableTarget"));
-
-	if (bShouldChaseTarget)
-	{
-		CombatTarget = SeenPawn;
-		ClearPatrolTimer();
-		ChaseTarget();
-	}
-}
-
-                            </pre>
-                    </div>
-                </div>
-
-                <!-- Items -->
-                <div class="accordion">
-                    <i aria-hidden="true" class="fas fa-glass-martini"></i>
-                    <span style="margin-left: 5px;">Items</span>
-                    <div class="accordion-icon">
-                        <i aria-hidden="true" class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>I developed the item system so that collectible items float in air before being collected.
-                        Here a sword weapon is picked up and automatically equipped, then sheathed and unsheathed.</p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.gif"
-                            width="100%;"></img></p>
-                    <br>
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Item.cpp</span>
-                        <div class="accordion-icon">
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates the general item functionality.</p>
-                        <pre class="prettyprint lang-csharp">
-                            AItem::AItem()
-{
-	PrimaryActorTick.bCanEverTick = true;
-
-	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponent"));
-	ItemMesh->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-	ItemMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	RootComponent = ItemMesh;
-
-	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
-	Sphere->SetupAttachment(GetRootComponent());
-
-	EmbersEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("Embers"));
-	EmbersEffect->SetupAttachment(GetRootComponent());
-}
-
-void AItem::BeginPlay()
-{
-	Super::BeginPlay();
-
-	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
-	Sphere->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
-}
-
-float AItem::TransformedSin()
-{
-	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
-}
-
-float AItem::TransformedCos()
-{
-	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
-}
-
-void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
-	if(PlayerCharacter)
-	{
-		PlayerCharacter->SetOverlappingItem(this);
-	}
-
-}
-
-void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
-	if(PlayerCharacter)
-	{
-		PlayerCharacter->SetOverlappingItem(nullptr);
-	}
-}
-
-void AItem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	RunningTime += DeltaTime;
-	if(ItemState == EItemState::EIS_Hovering)
-	{
-		AddActorWorldOffset(FVector(0.f,0.f, TransformedSin()));
-
-	}
-
-	FVector AvgVector = Avg<FVector>(GetActorLocation(),FVector::Zero());
-	DRAW_POINT_SingleFrame(AvgVector);
-
-                        </pre>
-                    </div>
-
-                    <div class="accordion">
-                        <i aria-hidden="true" class="fa fa-code"></i>
-                        <span style="margin-left: 5px;">CODE SNIPPET - Weapon.cpp</span>
-                        <div class="accordion-icon"><i aria-hidden="true"></i>
-                            <i aria-hidden="true" class="fa fa-times"></i>
-                        </div>
-                    </div>
-                    <div class="accordion-inner">
-                        <p>The following code demonstrates weapon item functionality.</p>
-                        <pre class="prettyprint lang-csharp">
-AWeapon::AWeapon()
-{
-	WeaponBox = CreateDefaultSubobject<UBoxComponent>(TEXT("Weapon Box"));
-	WeaponBox->SetupAttachment(GetRootComponent());
-	WeaponBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	WeaponBox->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
-	WeaponBox->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Ignore);
-
-	BoxTraceStart = CreateDefaultSubobject<USceneComponent>(TEXT("Box Trace Start"));
-	BoxTraceStart->SetupAttachment(GetRootComponent());
-	BoxTraceEnd = CreateDefaultSubobject<USceneComponent>(TEXT("Box Trace End"));
-	BoxTraceEnd->SetupAttachment(GetRootComponent());
-
-}
-
-void AWeapon::BeginPlay()
-{
-	Super::BeginPlay();
-	WeaponBox->OnComponentBeginOverlap.AddDynamic(this, &AWeapon::AWeapon::OnBoxOverlap);
-}
-
-void AWeapon::PlayEquipSound()
-{
-	if(EquipSound)
-	{
-		UGameplayStatics::PlaySoundAtLocation(
-			this,
-			EquipSound,
-			GetActorLocation()
-		);
-	}
-}
-
-void AWeapon::DisableSphereCollision()
-{
-	if(Sphere)
-	{
-		Sphere->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	}
-}
-
-void AWeapon::DeactivateEmberEffect()
-{
-	if(EmbersEffect)
-	{
-		EmbersEffect->Deactivate();
-	}
-}
-
-void AWeapon::Equip(USceneComponent* InParent, FName InSocketName, AActor* NewOwner, APawn* NewInstigator)
-{
-	ItemState = EItemState::EIS_Equipped;
-	SetOwner(NewOwner);
-	SetInstigator(NewInstigator);
-	AttachMeshToSocket(InParent, InSocketName);
-	DisableSphereCollision();
-	PlayEquipSound();
-	DeactivateEmberEffect();
-}
-
-void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	if (ActorIsSameType(OtherActor)) return;
-
-	FHitResult BoxHit;
-	BoxTrace(BoxHit);
-
-	if (BoxHit.GetActor())
-	{
-		if (ActorIsSameType(BoxHit.GetActor())) return;
-
-		UGameplayStatics::ApplyDamage(BoxHit.GetActor(), Damage, GetInstigator()->GetController(), this, UDamageType::StaticClass());
-		ExecuteGetHit(BoxHit);
-		// for destructible objects
-		CreateFields(BoxHit.ImpactPoint);
-	}
-}
-
-bool AWeapon::ActorIsSameType(AActor* OtherActor)
-{
-	return GetOwner()->ActorHasTag(TEXT("Enemy")) && OtherActor->ActorHasTag(TEXT("Enemy"));
-}
-
-void AWeapon::ExecuteGetHit(FHitResult& BoxHit)
-{
-	IHitInterface* HitInterface = Cast<IHitInterface>(BoxHit.GetActor());
-	if (HitInterface)
-	{
-		HitInterface->Execute_GetHit(BoxHit.GetActor(), BoxHit.ImpactPoint, GetOwner());
-	}
-}
-
-void AWeapon::BoxTrace(FHitResult& BoxHit)
-{
-	const FVector Start = BoxTraceStart->GetComponentLocation();
-	const FVector End = BoxTraceEnd->GetComponentLocation();
-
-	TArray<AActor*> ActorsToIgnore;
-	ActorsToIgnore.Add(this);
-
-	for (AActor* Actor : IgnoreActors)
-	{
-		ActorsToIgnore.AddUnique(Actor);
-	}
-
-	UKismetSystemLibrary::BoxTraceSingle(
-		this,
-		Start,
-		End,
-		BoxTraceExtent,
-		BoxTraceStart->GetComponentRotation(),
-		ETraceTypeQuery::TraceTypeQuery1,
-		false,
-		ActorsToIgnore,
-		bShowBoxDebug ? EDrawDebugTrace::ForDuration : EDrawDebugTrace::None,
-		BoxHit,
-		true
-	);
-	IgnoreActors.AddUnique(BoxHit.GetActor());
-}
-
-void AWeapon::AttachMeshToSocket(USceneComponent* InParent, const FName& InSocketName)
-{
-	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
-	ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
-}
-                        </pre>
-                    </div>
-
-                <div class="accordion">
-                    <i aria-hidden="true" class="fa fa-code"></i>
-                    <span style="margin-left: 5px;">CODE SNIPPET - Treasure.cpp</span>
-                    <div class="accordion-icon"><i aria-hidden="true"></i>
-                        <i aria-hidden="true" class="fa fa-times"></i>
-                    </div>
-                </div>
-                <div class="accordion-inner">
-                    <p>The following code demonstrates the treasure item functionality.</p>
-
-                <pre class="prettyprint lang-csharp">
-void ATreasure::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,
-	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	APlayerCharacter* PlayerCharacter = Cast<APlayerCharacter>(OtherActor);
-	if(PlayerCharacter)
-	{
-		if(PickupSound)
-		{
-			UGameplayStatics::PlaySoundAtLocation(
-				this,
-				PickupSound,
-				GetActorLocation());
-		}
-		Destroy();
-	}
-}
-                        </pre>
-                </div>
-            </div>
-
-            <br>
-            <!--<ul class="actions" style="flex-direction: row; flex-wrap: wrap">
-                <li><a class="button icon solid brands fa-github"
-                       href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Github
-                    (Unity)</a></li>
-            </ul>-->
-
-    </div>
-    </section>
 </div>
 
 
