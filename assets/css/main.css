@@ -2939,20 +2939,7 @@ button:disabled,
 
 }
 
-@media screen and (max-width: 736px) {
 
-    .tiles article {
-        padding: 3em 1.5em 1em 1.5em;
-        height: 23em;
-        max-height: none;
-        min-height: 0;
-    }
-
-    .tiles article h3 {
-        font-size: 2.5em;
-    }
-
-}
 
 @media screen and (max-width: 600px) {
 
@@ -4059,12 +4046,11 @@ body.is-preload #banner > .inner {
     }
 
     #banner {
-        padding: 3em 0 1em 0;
+        padding: 1em 0 1em 0;
         height: auto;
-        margin-bottom: -2.75em;
         max-height: none;
         min-height: 0;
-        top: -2.75em;
+
     }
 
     #banner h1 {
@@ -4077,7 +4063,7 @@ body.is-preload #banner > .inner {
 
     #banner > .inner .content > * {
         margin-right: 0;
-        margin-bottom: 2em;
+
     }
 
     #banner.major {
@@ -4091,16 +4077,14 @@ body.is-preload #banner > .inner {
 @media screen and (max-width: 480px) {
 
     #banner {
-        padding: 6em 0 2em 0;
+        padding: 2em 0 2em 0;
     }
 
     #banner > .inner .content p br {
         display: none;
     }
 
-    #banner.major {
-        padding: 8em 0 4em 0;
-    }
+
 
 }
 
@@ -4224,7 +4208,7 @@ body.is-preload #projectbanner h2:before, body.is-preload #projectbanner h2:afte
     background-size: cover;
     border-bottom: 0 !important;
     cursor: default;
-    height: 40vh;
+    height: 30vh;
     /*margin-bottom: -3.25em;*/
     max-height: 30em;
     min-height: 22em;
@@ -4267,7 +4251,7 @@ body.is-preload #projectbanner h2:before, body.is-preload #projectbanner h2:afte
     -webkit-align-items: center;
     -ms-align-items: center;
     align-items: center;
-    margin: 0 0 2em 0;
+    margin: 0 0 0 0;
 }
 
 #projectbanner > .inner .content > * {
@@ -4288,7 +4272,7 @@ body.is-preload #projectbanner h2:before, body.is-preload #projectbanner h2:afte
 
 #projectbanner.major {
     height: 55vh;
-    min-height: 30em;
+    min-height: 10em;
     max-height: 35em;
     background-image: url("banner.jpg");
 }
@@ -4317,6 +4301,7 @@ body.is-preload #projectbanner > .inner {
 
     #projectbanner {
         background-attachment: scroll;
+        height: auto;
     }
 
 }
@@ -4324,6 +4309,9 @@ body.is-preload #projectbanner > .inner {
 
     #projectbanner {
         background-attachment: scroll;
+
+        height: auto;
+
     }
 
 }
@@ -4344,12 +4332,8 @@ body.is-preload #projectbanner > .inner {
     }
 
     #projectbanner {
-        padding: 1em 0 1em 0;
         height: auto;
-        margin-bottom: -1.75em;
-        max-height: none;
-        min-height: 15em;
-        top: -1.75em;
+
     }
 
     #projectbanner h1 {
@@ -4373,21 +4357,6 @@ body.is-preload #projectbanner > .inner {
 
 }
 
-@media screen and (max-width: 480px) {
-
-    #projectbanner {
-        padding: 2em 0 2em 0;
-    }
-
-    #projectbanner > .inner .content p br {
-        display: none;
-    }
-
-    #projectbanner.major {
-        padding: 2em 0 2em 0;
-    }
-
-}
 
 
 /* About */
@@ -4502,7 +4471,7 @@ body.is-preload #about > .inner {
 
     #about {
         background-attachment: scroll;
-        min-height: 43em;
+        height: auto;
         padding: 2em 0 2em 0;
     }
 
@@ -4512,8 +4481,7 @@ body.is-preload #about > .inner {
 
     #about {
         background-attachment: scroll;
-        padding: 2em 0 2em 0;
-        min-height: 45em;
+        height: auto;
 
     }
 
@@ -4524,9 +4492,6 @@ body.is-preload #about > .inner {
     #about {
         padding: 4em 0 2em 0;
         height: auto;
-        max-height: none;
-        min-height: 34em;
-        top: -2.75em;
     }
 
     #about h1 {
