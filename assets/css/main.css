@@ -3469,7 +3469,7 @@ body.is-preload #header.alt {
     -ms-transition-delay: 0.75s;
     transition-delay: 0.75s;
     pointer-events: none;
-    background-color: #141728;
+    background-color: rgba(20, 23, 40, 0.54);
     content: '';
     display: block;
     height: 100%;
@@ -3724,6 +3724,28 @@ body.is-preload #introbanner > .inner {
     -ms-transform: translateX(-0.5em);
     transform: translateX(-0.5em);
     opacity: 0;
+}
+
+.back-video {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+}
+
+@media (min-aspect-ratio: 16/9){
+    .back-video {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-aspect-ratio: 16/9){
+    .back-video {
+        width: auto;
+        height: 100%;
+    }
 }
 
 @media screen and (max-width: 1280px) {
