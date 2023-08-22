@@ -3989,7 +3989,6 @@ body.is-preload #banner h2:before, body.is-preload #banner h2:after {
     height: 55vh;
     min-height: 15em;
     max-height: 25em;
-    background-image: url("Itch_Title.png");
 }
 
 #banner.major.alt {
