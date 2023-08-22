@@ -3671,7 +3671,7 @@ body.is-preload #introbanner h2:before, body.is-preload #introbanner h2:after {
     height: 75vh;
     min-height: 15em;
     max-height: 25em;
-    background-image: url("coding.gif");
+    background-image: url("IntroMovie.mpeg");
 }
 
 #introbanner.major.alt {
@@ -3964,7 +3964,7 @@ body.is-preload #banner h2:before, body.is-preload #banner h2:after {
 }
 
 #banner.major {
-    height: 75vh;
+    height: 55vh;
     min-height: 15em;
     max-height: 25em;
     background-image: url("Itch_Title.png");
@@ -4271,7 +4271,7 @@ body.is-preload #projectbanner h2:before, body.is-preload #projectbanner h2:afte
 }
 
 #projectbanner.major {
-    height: 55vh;
+    height: 35vh;
     min-height: 10em;
     max-height: 35em;
     background-image: url("banner.jpg");
@@ -4346,7 +4346,6 @@ body.is-preload #projectbanner > .inner {
 
     #projectbanner > .inner .content > * {
         margin-right: 0;
-        margin-bottom: 2em;
     }
 
     #projectbanner.major {
