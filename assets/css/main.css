@@ -3727,7 +3727,7 @@ body.is-preload #introbanner > .inner {
 }
 
 .back-video {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     z-index: -1;
@@ -3744,7 +3744,7 @@ body.is-preload #introbanner > .inner {
 @media (max-aspect-ratio: 16/9){
     .back-video {
         width: auto;
-        height: 100%;
+        height: 70em;
     }
 }
 
