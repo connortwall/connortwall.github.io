@@ -94,6 +94,12 @@
 					   href="https://quantum-aether-games.com">Project Development Site
 					</a>
 				</li>
+				<li><a class="button icon solid brands fa-github"
+					   href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Early Github
+					(Unity)</a></li>
+				<li><a class="button icon solid brands fa-github"
+					   href="https://github.com/connortwall/Personal-RPG-Project-Unreal/tree/main/Source/OpenWorldRPG">Early Github
+					(Unreal)</a></li>
             </ul>
 
         </div>
@@ -115,12 +121,7 @@
                     Niagara effects into the UI and overall game. My goal is to polish gameplay feel in Unreal while
                     adding storyline "beats"
                     for an initial story arc. </p>
-				<ul class="actions special" style="flex-direction: row; flex-wrap: wrap">
-					<a class="button icon solid fa-gamepad"
-						   href="https://quantum-aether-games.com">Project Development Site
-					</a>
 
-				</ul>
                 <b>Primary features include:</b>
                 <li>Modular weapon combat (staggering, stat-based blocking, stamina-based parries)</li>
                 <li>Responsive item inventory</li>
@@ -138,6 +139,12 @@
 					   href="https://quantum-aether-games.com">Project Development Site
 				</a>
 				</li>
+				<li><a class="button icon solid brands fa-github"
+					   href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Early Github
+					(Unity)</a></li>
+				<li><a class="button icon solid brands fa-github"
+					   href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Early Github
+					(Unreal)</a></li>
 			</ul>
         </section>
 
@@ -163,8 +170,8 @@
                         I used Unreal Chaos Module for the randomized break behavior in
                         the meshes. Note the breakable object spawns a collectible treasure item on destruction.</p>
 
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.mp4"
-                            width="100%;"></img></p>
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.gif"
+							width="100%;" type="video/mp4"></img></p>
 
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
@@ -299,8 +306,8 @@ private:
                     <p>I developed an modular character system that uses animation instance states, montages, and
                         EnhancedInput. The player can get hit and respond with an animation from the corresponding direction.
                         Enemies may equip a sword, shield, none, or both to hand sockets in their skeletons and adjust animations accordingly.</p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.mp4"
-                            width="100%;"></img></p>
+                    <p><video src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.mp4"
+                            width="100%;"></video></p>
 
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
@@ -931,8 +938,8 @@ void ABaseCharacter::SetWeaponCollisionEnabled(ECollisionEnabled::Type Collision
                 <div class="accordion-inner">
                     <p>I developed an heads-up display that shows player health, enemy health bars above their heads,
                         and pick up prompts. Note Niagara systems for weapon trail, blood splatter, items, and soul that spawns on character death.</p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.mp4"
-                            width="100%;"></img></p>
+                    <p><video src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.mp4"
+                            width="100%;"></video></p>
                     <div class="accordion">
                         <i aria-hidden="true" class="fa fa-code"></i>
                         <span style="margin-left: 5px;">CODE SNIPPET - GameOverlay.cpp</span>
@@ -1033,7 +1040,7 @@ void UHealthBarComponent::SetHealthPercent(float Percent)
                     <li>Attack State: enemy attacks player.</li>
                     <li>Dead State: enemy lost all health and soon disappears from level.</li>
                     <br>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.mp4"
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.gif"
                             width="100%;"></img></p>
 
 
@@ -1382,7 +1389,7 @@ void AEnemy::PawnSeen(APawn* SeenPawn)
                 <div class="accordion-inner">
                     <p>I developed the item system so that collectible items float in air before being collected.
                         Here a sword weapon is picked up and automatically equipped, then sheathed and unsheathed.</p>
-                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.mp4"
+                    <p><img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.gif"
                             width="100%;"></img></p>
                     <br>
                     <div class="accordion">
@@ -1637,11 +1644,11 @@ void ATreasure::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAc
                 </div>
 
                 <br>
-                <!--<ul class="actions" style="flex-direction: row; flex-wrap: wrap">
-                    <li><a class="button icon solid brands fa-github"
-                           href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Github
-                        (Unity)</a></li>
-                </ul>-->
+                <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
+					<li><a class="button icon solid brands fa-github"
+						   href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Early Github
+						(Unreal)</a></li>
+                </ul>
 
             </div>
         </section>
@@ -1653,6 +1660,16 @@ void ATreasure::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAc
                     <h1>Early Unity Programming</h1>
 					<h2>C#</h2>
                 </header>
+				<b>Gameplay Demo 1:</b> <br>
+					<li>Unity store assets</li>
+					<li>Player 8 directional movement + sprint</li>
+					<li>Basic + combo attack</li>
+					<li>Block, blocked + unblocked enemy attack</li>
+					<li>Poison build up + damage.</li>
+				<br>
+				<p><video controls autoplay="true"src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unity/Videos/UnityRPGVideo1.mp4"
+						  width="100%;" type="video/mp4"></video></p>
+
                 <!-- Enemy AI -->
                 <div class="accordion">
                     <i aria-hidden="true" class="fas fa-brain"></i>
@@ -2771,7 +2788,7 @@ public class CharacterManager : MonoBehaviour
 
                 <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
                     <li><a class="button icon solid brands fa-github"
-                           href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Github
+                           href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts">Early Github
                         (Unity)</a></li>
                 </ul>
 
