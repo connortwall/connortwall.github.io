@@ -2924,7 +2924,7 @@ button:disabled,
 
     .tiles article {
         padding: 3em 3em 2em 3em;
-        height: 30vh;
+        height: 25em;
         max-height: 40em;
         min-height: 20em;
     }
