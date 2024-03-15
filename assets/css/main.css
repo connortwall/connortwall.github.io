@@ -2949,6 +2949,20 @@ button:disabled,
 
 }
 
+@media screen and (max-width: 500px) {
+
+    .tiles {
+        display: block;
+    }
+
+    .tiles article {
+        height: 25em;
+        max-height: 50em;
+        width: 100% !important;
+    }
+
+}
+
 /* Contact Method */
 
 .contact-method {
@@ -3606,6 +3620,7 @@ body.is-preload #introbanner h2:before, body.is-preload #introbanner h2:after {
     min-height: 22em;
     position: relative;
     /*top: -3.25em;*/
+    p: 1em;
 }
 
 #introbanner > .inner {
@@ -3795,6 +3810,12 @@ body.is-preload #introbanner > .inner {
 
     #introbanner.major {
         padding: 8em 0 4em 0;
+    }
+    #introbanner h2 {
+        font-size: 1em;
+    }
+    #introbanner p {
+        font-size: 30em;
     }
 
 }
