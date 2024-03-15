@@ -2925,23 +2925,17 @@ button:disabled,
     .tiles article {
         padding: 3em 3em 2em 3em;
         height: 30vh;
-        max-height: 30em;
+        max-height: 40em;
         min-height: 20em;
     }
 
 }
 
-@media screen and (max-width: 980px) {
-
-    .tiles article {
-        width: 50% !important;
-    }
-
-}
 
 
 
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 800px) {
 
     .tiles {
         display: block;
@@ -2949,6 +2943,7 @@ button:disabled,
 
     .tiles article {
         height: 20em;
+        max-height: 50em;
         width: 100% !important;
     }
 
