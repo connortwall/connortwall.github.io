@@ -1217,11 +1217,11 @@ hr.major {
     }
 
     .row.gtr-0.gtr-uniform {
-        margin-top: 0em;
+        margin-top: 0;
     }
 
     .row.gtr-0.gtr-uniform > * {
-        padding-top: 0em;
+        padding-top: 0;
     }
 
     .row.gtr-25 {
@@ -1454,19 +1454,19 @@ hr.major {
 
     .row.gtr-0 {
         margin-top: 0;
-        margin-left: 0em;
+        margin-left: 0;
     }
 
     .row.gtr-0 > * {
-        padding: 0 0 0 0em;
+        padding: 0 0 0 0;
     }
 
     .row.gtr-0.gtr-uniform {
-        margin-top: 0em;
+        margin-top: 0;
     }
 
     .row.gtr-0.gtr-uniform > * {
-        padding-top: 0em;
+        padding-top: 0;
     }
 
     .row.gtr-25 {
