@@ -24,7 +24,7 @@
       width: 100%;
       height: 100%;
       background: url('images/backgrounds/pexels-kai-pilger-1341279.jpg') no-repeat center center;
-      background-size: cover;
+      background-size: 100%;
       z-index: 0;
       pointer-events: none;
     }
@@ -73,7 +73,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 3;
+      z-index: 60;
       pointer-events: none;
     }
 
@@ -85,7 +85,6 @@
       will-change: transform;
       overflow: hidden;
       z-index: 4;
-
       mix-blend-mode: screen;
       opacity: 1; /* Make the bubbles semi-visible initially */
       background: rgb(0, 0, 0); /* Add a soft tint to each bubble */
@@ -173,6 +172,7 @@
     .intro-text p {
       font-size: 1.2rem;
       opacity: 0.8;
+      margin: 20px;
     }
 
     .social-icons {
@@ -227,6 +227,25 @@
       .card {
         width: 45%;
         height: 180px;
+      }
+      .background-image {
+        position: relative;
+        transform: rotate(180deg);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('images/backgrounds/pexels-kai-pilger-1341279.jpg') no-repeat center center;
+        background-size: 200%;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .card-container {
+        margin: -15rem auto;             /* Space above and below */
+        padding: 0 2rem;               /* Page-side padding */
+      }
+      .main-bubble{
+        margin-top: 50px;
       }
     }
 
