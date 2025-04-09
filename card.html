@@ -23,7 +23,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('images/banner.jpg') no-repeat center center;
+      background: url('images/backgrounds/pexels-kai-pilger-1341279.jpg') no-repeat center center;
       background-size: cover;
       z-index: 0;
       pointer-events: none;
@@ -105,7 +105,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      color: #1c3b55;
+      color: #3375ae;
       font-size: 1rem;
       background: rgba(0, 0, 0, 0.6);
       padding: 0.3rem 0.6rem;
@@ -119,7 +119,7 @@
 
     .bubble:hover::after {
       opacity: 1;
-      color: rgba(216, 183, 255, 0.62);
+      color: rgba(197, 161, 253, 0.94);
     }
 
     .main-bubble {
@@ -131,9 +131,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 1;
+      z-index: 2;
       animation: float 6s ease-in-out infinite;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(118, 215, 255, 0.62);
     }
 
     .main-bubble img {
@@ -264,27 +264,35 @@
 <div class="mask-layer" id="mask-layer"></div>
 
 <div class="intro-text">
-  <h1>Connor Wall</h1>
-  <p>Making games. Exploring Indigenous futures. Sharing what I learn.</p>
+  <h1><span style="color: #ffbaf8; background-image: linear-gradient(0deg, #6699FF 0%, #aef8e7 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Connor Wall</span></h1>
+  <p><span style="color: #c10fb4; background-image: linear-gradient(135deg, #6a9cfb 0%, #bcf8ae 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Making games. Exploring Indigenous futures. Sharing what I learn.</span></p>
   <div class="social-icons">
-    <a href="https://bsky.app/profile/YOUR_HANDLE" target="_blank" aria-label="Bluesky"><i class="fas fa-cloud"></i></a>
+    <a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fas fa-cloud"></i></a>
     <a href="https://www.youtube.com/@QuantumAetherGames" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.linkedin.com/in/connortwall/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
     <a href="https://www.instagram.com/quantum.connor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
   </div>
 </div>
 
-<div class="main-bubble" id="main-bubble">
+<div class="main-bubble" id="main-bubble" >
+  <a href="https://connorwall.com/CV.html">
   <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
+  </a>
 </div>
 
 <div class="card-container">
   <div class="card">
+    <a href="https://connorwall.com/Omnivores-Rule.html">
     <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
     <div class="card-title">Omnivores Rule</div>
+    </a>
   </div>
   <div class="card">
+    <a href="https://connorwall.com/Roboleon-Game.html">
     <img src="images/Roboleon.jpg" alt="Card 2" href="https://connorwall.com/Roboleon-Game.html"/>
+    </a>
     <div class="card-title">Roboleon</div>
   </div>
   <!--<div class="card">
