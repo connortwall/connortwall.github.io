@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bubble Mask Website</title>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0e0e0e;
+      overflow-x: hidden;
+      font-family: 'Baron', sans-serif;
+    }
+
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/banner.jpg') no-repeat center center;
+      background-size: cover;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .custom-bg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .custom-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
+      mask-repeat: no-repeat;
+      -webkit-mask-repeat: no-repeat;
+      mask-size: auto;
+      -webkit-mask-size: auto;
+      transition: mask-image 0.3s ease, -webkit-mask-image 0.3s ease;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .bubble:hover ~ .custom-bg-container .custom-bg {
+      opacity: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 2;
+    }
+
+    .mask-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .bubble {
+      position: absolute;
+      pointer-events: auto;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      will-change: transform;
+      overflow: hidden;
+      z-index: 4;
+
+      mix-blend-mode: screen;
+      opacity: 1; /* Make the bubbles semi-visible initially */
+      background: rgb(0, 0, 0); /* Add a soft tint to each bubble */
+    }
+
+    .bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+    }
+
+    .bubble::after {
+      content: attr(data-hover-text);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #0c1924;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      white-space: wrap;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .bubble:hover::after {
+      opacity: 1;
+      color: rgba(216, 183, 255, 0.62);
+    }
+
+    .main-bubble {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .main-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @font-face {
+      font-family: 'Baron';
+      src: url('fonts/baron/baron-neue.regular.eot');
+      src: url('fonts/baron/baron-neue.regular.eot?#iefix') format('embedded-opentype'),
+      url('fonts/baron/baron-neue.regular.woff2') format('woff2'),
+      url('fonts/baron/baron-neue.regular.woff') format('woff'),
+      url('fonts/baron/baron-neue.regular.ttf') format('truetype'),
+      url('fonts/baron/baron-neue.regular.svg#svgFontName') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+
+    .intro-text {
+      position: absolute;
+      top: 10%;
+      width: 100%;
+      text-align: center;
+      z-index: 6;
+      color: #1bafff;
+    }
+
+    .intro-text h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    .intro-text p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .social-icons {
+      margin: 1rem 0;
+    }
+
+    .social-icons a {
+      color: #a4b9ff;
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .social-icons a:hover {
+      color: #01719c;
+      transform: scale(1.2);
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      position: absolute;
+      bottom: 2rem;
+      width: 100%;
+      z-index: 6;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 250px;
+      height: 200px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .card:hover .card-title {
+      opacity: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+      50% { transform: translate(-50%, -50%) translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="background-image"></div>
+<div class="custom-bg-container">
+  <div class="custom-bg" id="bg1"></div>
+  <div class="custom-bg" id="bg2"></div>
+  <div class="custom-bg" id="bg3"></div>
+  <div class="custom-bg" id="bg4"></div>
+  <div class="custom-bg" id="bg5"></div>
+</div>
+<div class="overlay"></div>
+<div class="mask-layer" id="mask-layer"></div>
+
+<div class="intro-text">
+  <h1>Connor Wall</h1>
+  <p>Making games. Exploring Indigenous futures. Sharing what I learn.</p>
+  <div class="social-icons">
+    <a href="https://bsky.app/profile/YOUR_HANDLE" target="_blank" aria-label="Bluesky"><i class="fas fa-cloud"></i></a>
+    <a href="https://www.youtube.com/@QuantumAetherGames" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.linkedin.com/in/YOUR_PROFILE" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/quantum.connor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+</div>
+
+<div class="main-bubble" id="main-bubble">
+  <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
+</div>
+
+<div class="card-container">
+  <div class="card">
+    <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
+    <div class="card-title">Omnivores Rule</div>
+  </div>
+  <div class="card">
+    <img src="images/Roboleon.jpg" alt="Card 2" href="https://connorwall.com/Roboleon-Game.html"/>
+    <div class="card-title">Roboleon</div>
+  </div>
+  <!--<div class="card">
+    <img src="https://via.placeholder.com/250x200" alt="Card 3" />
+    <div class="card-title">Project Three</div>
+  </div>-->
+</div>
+
+<!-- Footer -->
+
+
+<script>
+  const maskLayer = document.getElementById('mask-layer');
+  const bubbles = [];
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+  const bgImages = [
+    'https://i0.wp.com/www.alexbirkett.com/wp-content/uploads/2022/11/iamalexbirkett_jacked_aliens_wandering_through_lord_of_the_ring_0bee4dd7-c4a1-4f73-9b1b-f407f052054f.png?w=828&ssl=1',
+    'images/DiverIntroScene.mp4',
+    'images/coding.jpg',
+    '',
+    ''
+  ];
+
+  const bgDivs = [
+    document.getElementById('bg1'),
+    document.getElementById('bg2'),
+    document.getElementById('bg3'),
+    document.getElementById('bg4'),
+    document.getElementById('bg5')
+  ];
+
+  bgDivs.forEach((div, index) => {
+    div.style.backgroundImage = `url('${bgImages[index]}')`;
+  });
+
+  for (let i = 0; i < 4; i++) {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    switch (i) {
+      case 0:
+        bubble.dataset.hoverText = 'Visuals';
+        break;
+      case 1:
+        bubble.dataset.hoverText = 'Game Dev';
+        break;
+      case 2:
+        bubble.dataset.hoverText = 'Written Work';
+        break;
+      case 3:
+        bubble.dataset.hoverText = 'Organizer';
+
+        break;
+      case 4: bubble.dataset.hoverText = '';
+        break;
+    }
+
+    bubble.addEventListener('mouseenter', () => {
+      bgDivs[i].style.opacity = '1';
+      bubble.style.background = 'images/gamedesign.png';
+      bubble.img.background = 'images/gamedesign.png';
+    });
+    bubble.addEventListener('mouseleave', () => {
+      bgDivs[i].style.opacity = '0';
+
+
+    });
+
+    const size = 80 + Math.random() * 120;
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+
+
+    const mask = `radial-gradient(circle ${size / 2}px at center, white 100%, white 100%)`;
+    bgDivs[i].style.maskImage = mask;
+    bgDivs[i].style.webkitMaskImage = mask;
+
+
+    maskLayer.appendChild(bubble);
+
+    bubbles.push({
+      el: bubble,
+      size,
+      baseRadius: 100 + Math.random() * 250,
+      angle: Math.random() * 360,
+      wobbleOffset: Math.random() * 100,
+      <!--rotateSpeed: 0.3 + Math.random() * 0.3,-->
+      bgDiv: bgDivs[i],
+      <!--rotateSpeed: 0.3 + Math.random() * 0.3-->
+    });
+  }
+
+  let time = 0;
+  function animate() {
+    time += 0.01;
+    bubbles.forEach((b, i) => {
+      const wobble = Math.sin(time * 2 + b.wobbleOffset) * 10;
+      const radius = b.baseRadius + wobble;
+      b.angle += 0.002 + i * 0.0005;
+
+      const x = centerX + Math.cos(b.angle) * radius;
+      const y = centerY + Math.sin(b.angle) * radius;
+
+      b.el.style.left = `${x - b.size / 2}px`;
+      b.el.style.top = `${y - b.size / 2}px`;
+      b.el.style.transform = `rotate(${time * b.rotateSpeed}rad)`;
+
+      const mask = `radial-gradient(circle ${b.size / 2}px at ${x}px ${y}px, white 100%, white 100%)`;
+
+      b.bgDiv.style.webkitMaskImage = mask;
+      b.bgDiv.style.maskImage = mask;
+
+
+
+
+
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+</body>
+</html>
