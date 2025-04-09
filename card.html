@@ -6,8 +6,8 @@
   <title>Bubble Mask Website</title>
 
   <!-- Font Awesome CDN -->
- <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
--->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     body {
       margin: 0;
@@ -133,7 +133,7 @@
       transform: translate(-50%, -50%);
       z-index: 2;
       animation: float 6s ease-in-out infinite;
-      box-shadow: 0 0 20px rgba(118, 215, 255, 0.62);
+      box-shadow: 0 0 20px rgba(118, 255, 198, 0.87);
     }
 
     .main-bubble img {
@@ -180,7 +180,7 @@
     }
 
     .social-icons a {
-      color: #a4b9ff;
+      color: #6cff7a;
       font-size: 1.5rem;
       margin: 0 0.5rem;
       transition: color 0.3s ease, transform 0.3s ease;
@@ -188,29 +188,53 @@
     }
 
     .social-icons a:hover {
-      color: #01719c;
+      color: #c3efff;
       transform: scale(1.2);
     }
 
     .card-container {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
+      justify-content: center;       /* Center horizontally */
+      align-items: center;           /* Optional: center vertically within container */
       gap: 2rem;
-      position: absolute;
-      bottom: 2rem;
-      width: 100%;
-      z-index: 6;
+      position: absolute;           /* Change from absolute */
+      margin: 40rem auto;             /* Space above and below */
+      padding: 0 2rem;               /* Page-side padding */
+      max-width: 1200px;             /* Optional: keeps cards from stretching too wide on large screens */
+      z-index: 1; /* Lower the z-index of the cards container so bubbles can be on top */
+      pointer-events: none; /* Prevent interactions with cards behind the bubbles */
+
+
     }
 
     .card {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 16px;
       overflow: hidden;
-      width: 250px;
+      width: 250px; /* Base size */
+      max-width: 100%; /* Prevent overflow */
+      flex: 1 1 200px; /* Allow shrinking/growing */
       height: 200px;
       position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      pointer-events: auto; /* Allow interaction with individual cards */
+      z-index: 5;
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        width: 45%;
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        width: 20%;
+        height: 160px;
+      }
     }
 
     .card img {
@@ -244,10 +268,55 @@
       opacity: 1;
     }
 
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 8;
+      position: relative;
+      margin-top: 4rem;
+    }
+
     @keyframes float {
       0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
       50% { transform: translate(-50%, -50%) translateY(-20px); }
     }
+
+    /* Position the orb layer in the center of the page, relative to the main bubble */
+    .orb-layer {
+      position: absolute;
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%); /* Adjust the positioning */
+      width: 300px; /* Set fixed width for orb orbit radius */
+      height: 300px; /* Set fixed height for orb orbit radius */
+      pointer-events: none; /* Prevent interaction with the orb layer itself */
+      z-index: 1; /* Make sure the orb layer is above other elements */
+    }
+
+    /* Orbs will orbit tightly around the main bubble */
+    .orb {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%; /* Make them circular */
+      background-color: rgba(118, 215, 255, 0.9); /* Light blue */
+      box-shadow: 0 0 10px rgba(118, 215, 255, 0.62);
+      animation: orb-orbit 8s infinite linear; /* Orbit animation */
+      pointer-events: auto; /* Allow interaction with orbs */
+      z-index: 1; /* Ensure it appears above the main bubble */
+    }
+
+    /* Animation for the orbiting orbs around the main bubble */
+    @keyframes orb-orbit {
+      0% {
+        transform: rotate(0deg) translateX(260px) rotate(0deg); /* Tight orbit */
+      }
+      100% {
+        transform: rotate(360deg) translateX(260px) rotate(-360deg); /* Full orbit */
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -264,9 +333,9 @@
 <div class="mask-layer" id="mask-layer"></div>
 
 <div class="intro-text">
-  <h1><span style="color: #ffbaf8; background-image: linear-gradient(0deg, #6699FF 0%, #aef8e7 100%);
+  <h1><span style="color: #aef8e7; background-image: linear-gradient(0deg, #aef8e7 0%, #6699FF 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Connor Wall</span></h1>
-  <p><span style="color: #c10fb4; background-image: linear-gradient(135deg, #6a9cfb 0%, #bcf8ae 100%);
+  <p><span style="color: #c10fb4; background-image: linear-gradient(135deg,#bcf8ae 0%, #bcf8ae 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Making games. Exploring Indigenous futures. Sharing what I learn.</span></p>
   <div class="social-icons">
     <a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fas fa-cloud"></i></a>
@@ -278,20 +347,21 @@
 
 <div class="main-bubble" id="main-bubble" >
   <a href="https://connorwall.com/CV.html">
-  <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
+    <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
   </a>
 </div>
 
+<div class="main-content">
 <div class="card-container">
   <div class="card">
     <a href="https://connorwall.com/Omnivores-Rule.html">
-    <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
-    <div class="card-title">Omnivores Rule</div>
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
+      <div class="card-title">Omnivores Rule</div>
     </a>
   </div>
   <div class="card">
     <a href="https://connorwall.com/Roboleon-Game.html">
-    <img src="images/Roboleon.jpg" alt="Card 2" href="https://connorwall.com/Roboleon-Game.html"/>
+      <img src="images/Roboleon.jpg" alt="Card 2" href="https://connorwall.com/Roboleon-Game.html"/>
     </a>
     <div class="card-title">Roboleon</div>
   </div>
@@ -300,7 +370,7 @@
     <div class="card-title">Project Three</div>
   </div>-->
 </div>
-
+</div>
 <!-- Footer -->
 
 
@@ -328,6 +398,43 @@
   bgDivs.forEach((div, index) => {
     div.style.backgroundImage = `url('${bgImages[index]}')`;
   });
+
+
+  //orbs
+  const orbLayer = document.createElement('div');
+  orbLayer.classList.add('orb-layer');
+  document.body.appendChild(orbLayer);
+
+  // Center the orb layer on the page
+  orbLayer.style.position = 'absolute';
+  orbLayer.style.top = '50%';
+  orbLayer.style.left = '50%';
+  orbLayer.style.transform = 'translate(-50%, -50%)';  // This centers the layer properly
+  orbLayer.style.width = '1px';  // Set the width for the orbit radius
+  orbLayer.style.height = '1px';  // Set the height for the orbit radius
+  orbLayer.style.pointerEvents = 'none';
+  orbLayer.style.zIndex = '2';
+
+  for (let i = 0; i < 5; i++) {
+    const orb = document.createElement('div');
+    orb.classList.add('orb');
+
+    // Randomize the color and other properties
+    orb.style.backgroundColor = `rgba(118, 215, 255, 0.${Math.random() * 8 + 2})`;
+    const size = 20 + Math.random() * 10;
+    orb.style.width = `${size}px`;
+    orb.style.height = `${size}px`;
+
+    // Set the initial angle for each orb
+    const angle = Math.random() * 360;
+    orb.style.animationDuration = `${8 + Math.random() * 4}s`;  // Randomize orbit speed
+
+    // Position the orb using a radial animation
+    orb.style.transform = `rotate(${angle}deg) translateX(2px) rotate(-${angle}deg)`;  // Start position
+
+    // Append the orb to the orb layer
+    orbLayer.appendChild(orb);
+  }
 
   for (let i = 0; i < 4; i++) {
     const bubble = document.createElement('div');
