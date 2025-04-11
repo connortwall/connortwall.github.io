@@ -11,11 +11,18 @@
   <style>
     body {
       margin: 0;
+      padding: 0;
+      background-image: url('images/backgrounds/pexels-kai-pilger-1341279.jpg'); /* Replace with your actual image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* optional: keeps background static on scroll */
       height: 100vh;
-      background: #0e0e0e;
-      overflow-x: hidden;
+      width: 100vw;
+      overflow: hidden; /* optional: hides scrollbars if not needed */
       font-family: 'Baron', sans-serif;
     }
+
 
     .background-image {
       position: absolute;
@@ -89,6 +96,10 @@
       mix-blend-mode: screen;
       opacity: 1; /* Make the bubbles semi-visible initially */
       background: rgb(0, 0, 0); /* Add a soft tint to each bubble */
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 10px rgba(173, 86, 255, 0.2);
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
     .bubble img {
