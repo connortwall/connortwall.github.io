@@ -542,6 +542,7 @@
     // Touch start
     bubble.addEventListener('touchstart', () => {
       bubble.classList.add('touched');
+      bgDivs[i].style.opacity = '1';
     });
 
     // Touch end
@@ -550,6 +551,7 @@
       setTimeout(() => {
         bubble.classList.remove('touched');
       }, 150);
+      bgDivs[i].style.opacity = '0';
     });
 
     // Optional: tap anywhere else to remove visual feedback
