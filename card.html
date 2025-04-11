@@ -133,6 +133,13 @@
       color: rgba(197, 161, 253, 0.94);
     }
 
+    .bubble.touched {
+      transform: scale(1.1);
+      filter: brightness(1.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+    }
+
     .main-bubble {
       width: 300px;
       height: 300px;
@@ -145,6 +152,40 @@
       z-index: 2;
       animation: float 6s ease-in-out infinite;
       box-shadow: 0 0 20px rgba(118, 255, 198, 0.87);
+    }
+
+    .main-bubble::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(16, 62, 20, 0.4); /* Your overlay color and opacity */
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .main-bubble:hover::after {
+      opacity: 1;
+    }
+
+    .hover-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.1rem;
+      font-family: 'Baron', sans-serif;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .main-bubble:hover .hover-text {
+      opacity: 1;
     }
 
     .main-bubble img {
@@ -329,6 +370,7 @@
       z-index: 1; /* Ensure it appears above the main bubble */
     }
 
+
     /* Animation for the orbiting orbs around the main bubble */
     @keyframes orb-orbit {
       0% {
@@ -367,7 +409,8 @@
   </div>
 </div>
 
-<div class="main-bubble" id="main-bubble" >
+<div class="main-bubble" id="main-bubble" title="CV">
+  <div class="hover-text">About</div>
   <a href="https://connorwall.com/CV.html">
     <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
   </a>
@@ -403,7 +446,7 @@
   const centerY = window.innerHeight / 2;
   const bgImages = [
     'https://i0.wp.com/www.alexbirkett.com/wp-content/uploads/2022/11/iamalexbirkett_jacked_aliens_wandering_through_lord_of_the_ring_0bee4dd7-c4a1-4f73-9b1b-f407f052054f.png?w=828&ssl=1',
-    'images/DiverIntroScene.mp4',
+    'images/Puppetshow.jpeg',
     'images/coding.jpg',
     '',
     ''
@@ -419,7 +462,9 @@
 
   bgDivs.forEach((div, index) => {
     div.style.backgroundImage = `url('${bgImages[index]}')`;
+    div.style.href = 'https://www.linkedin.com/in/connortwall/';
   });
+
 
 
   //orbs
@@ -464,15 +509,19 @@
     switch (i) {
       case 0:
         bubble.dataset.hoverText = 'Visuals';
+        bubble.style.href = 'visualdesign.html';
         break;
       case 1:
         bubble.dataset.hoverText = 'Game Dev';
+        bubble.style.href = 'gamedesign.html';
         break;
       case 2:
         bubble.dataset.hoverText = 'Written Work';
+        bubble.style.href = 'writtenwork.html';
         break;
       case 3:
         bubble.dataset.hoverText = 'Organizer';
+        bubble.style.href = 'https://www.linkedin.com/in/connortwall/';
 
         break;
       case 4: bubble.dataset.hoverText = '';
@@ -486,11 +535,31 @@
     });
     bubble.addEventListener('mouseleave', () => {
       bgDivs[i].style.opacity = '0';
-
-
+    });
+    bubble.addEventListener('click', () => {
+      window.open(bubble.style.href, '_self');
+    });
+    // Touch start
+    bubble.addEventListener('touchstart', () => {
+      bubble.classList.add('touched');
     });
 
-    const size = 80 + Math.random() * 120;
+    // Touch end
+    bubble.addEventListener('touchend', () => {
+      // Delay the removal slightly for visual effect
+      setTimeout(() => {
+        bubble.classList.remove('touched');
+      }, 150);
+    });
+
+    // Optional: tap anywhere else to remove visual feedback
+    document.addEventListener('touchstart', (e) => {
+      if (!bubble.contains(e.target)) {
+        bubble.classList.remove('touched');
+      }
+    });
+
+    const size = 90 + Math.random() * 120;
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
 
@@ -505,7 +574,7 @@
     bubbles.push({
       el: bubble,
       size,
-      baseRadius: 100 + Math.random() * 250,
+      baseRadius: 100 + Math.random() * 220 - innerWidth/1000,
       angle: Math.random() * 360,
       wobbleOffset: Math.random() * 100,
       <!--rotateSpeed: 0.3 + Math.random() * 0.3,-->
@@ -519,8 +588,8 @@
     time += 0.01;
     bubbles.forEach((b, i) => {
       const wobble = Math.sin(time * 2 + b.wobbleOffset) * 10;
-      const radius = b.baseRadius + wobble;
-      b.angle += 0.002 + i * 0.0005;
+      const radius = (b.baseRadius + wobble);
+      b.angle += 0.002 + i * 0.0015;
 
       const x = centerX + Math.cos(b.angle) * radius;
       const y = centerY + Math.sin(b.angle) * radius;
