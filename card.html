@@ -19,7 +19,7 @@
       background-attachment: fixed; /* optional: keeps background static on scroll */
       height: 100vh;
       width: 100vw;
-      overflow: hidden; /* optional: hides scrollbars if not needed */
+      overflow: scroll; /* optional: hides scrollbars if not needed */
       font-family: 'Baron', sans-serif;
     }
 
@@ -142,13 +142,13 @@
     }
 
     .main-bubble {
-      width: 300px;
-      height: 300px;
+      width: 10rem;
+      height: 10rem;
       border-radius: 50%;
       overflow: hidden;
-      position: absolute;
-      top: 45%;
-      left: 50%;
+      position: relative;
+      top: auto;
+      left: auto;
       transform: translate(-50%, -50%);
       z-index: 2;
       animation: float 6s ease-in-out infinite;
@@ -210,7 +210,7 @@
 
 
     .intro-text {
-      position: absolute;
+      position: relative;
       top: 10%;
       width: 100%;
       text-align: center;
@@ -228,7 +228,15 @@
       opacity: 0.8;
       margin: 20px;
     }
-
+    .bubble-title {
+      position: relative;
+      top: 10%;
+      width: 100%;
+      text-align: center;
+      z-index: 1000;
+      color: #1bafff;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
     .social-icons {
       margin: 1rem 0;
       z-index: 100;
@@ -253,7 +261,7 @@
       justify-content: center;       /* Center horizontally */
       align-items: center;           /* Optional: center vertically within container */
       gap: 2rem;
-      position: absolute;
+      position: relative;
       padding-right: 15px;
       padding-left: 15px; /* Change from absolute */
       margin-top: 2rem;             /* Space above and below */ /* Page-side padding */
@@ -284,15 +292,7 @@
       transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
     }
 
-    .bubble-title {
-      text-align: center;
-      margin-top: 36rem;
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-      z-index: 2000;
-    }
+
 
 
     @media (max-width: 980px) {
@@ -333,7 +333,7 @@
     }
 
     .card-title {
-      position: absolute;
+      position: relative;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -362,7 +362,17 @@
       flex-direction: column;
       align-items: center;
       z-index: 8;
+      gap: 1rem;
       position: relative;
+      max-width: 1000px;
+      width: 90%;
+    }
+    #main-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* centers the children horizontally */
+      gap: 2rem; /* adds spacing between .main-bubble and .main-content */
+      margin-top: 2rem; /* optional: space from the intro-text above */
     }
 
     @keyframes float {
@@ -420,7 +430,9 @@
 <div class="overlay"></div>
 <div class="mask-layer" id="mask-layer"></div>
 
-<div class="intro-text">
+
+<div id="main-wrapper">
+  <div class="intro-text">
   <h1><span style="color: #aef8e7; background-image: linear-gradient(0deg, #aef8e7 0%, #6699FF 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Connor Wall</span></h1>
   <p><span style="color: #c10fb4; background-image: linear-gradient(135deg,#bcf8ae 0%, #bcf8ae 100%);
@@ -432,20 +444,19 @@
     <a href="https://www.instagram.com/quantum.connor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
   </div>
 </div>
-
-<div class="main-bubble" id="main-bubble" title="CV">
+  <div class="main-bubble" id="main-bubble" title="CV">
   <div class="hover-text">About</div>
   <a href="https://connorwall.com/CV.html">
     <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
   </a>
 </div>
 
-<div class="bubble-title">
-  <h1><span style="color: #aef8e7; background-image: linear-gradient(0deg, #aef8e7 0%, #6699FF 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
-</div>
-<div class="main-content">
 
+<div class="main-content">
+  <div class="intro-text">
+    <h1><span style="color: #aef8e7; background-image: linear-gradient(0deg, #aef8e7 0%, #6699FF 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
+  </div>
 <div class="card-container">
 
   <div class="card">
@@ -464,6 +475,7 @@
     <img src="https://via.placeholder.com/250x200" alt="Card 3" />
     <div class="card-title">Project Three</div>
   </div>-->
+</div>
 </div>
 </div>
 <!-- Footer -->
