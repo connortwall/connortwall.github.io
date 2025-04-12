@@ -377,7 +377,7 @@
       flex-direction: column;
       align-items: center; /* centers the children horizontally */
       gap: 1rem; /* adds spacing between .main-bubble and .main-content */
-      margin-top: 2rem; /* optional: space from the intro-text above */
+      margin-top: 5rem; /* optional: space from the intro-text above */
     }
 
     @keyframes float {
@@ -466,8 +466,8 @@
   </div>
 <div class="card-container">
   <div class="card">
-    <a href="https://connorwall.com/Roboleon-Game.html">
-      <img src="images/Roboleon.jpg" alt="Card 2" href="https://connorwall.com/Roboleon-Game.html"/>
+    <a href="https://connortwall.itch.io/roboleon">
+      <img src="images/Roboleon.jpg" alt="Card 2" href="https://connortwall.itch.io/roboleon"/>
     </a>
     <div class="card-title">Download Free</div>
   </div>
@@ -494,12 +494,12 @@
   const maskLayer = document.getElementById('mask-layer');
   const bubbles = [];
   const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+  const centerY = window.innerHeight / 2.5;
   const bgImages = [
     'https://i0.wp.com/www.alexbirkett.com/wp-content/uploads/2022/11/iamalexbirkett_jacked_aliens_wandering_through_lord_of_the_ring_0bee4dd7-c4a1-4f73-9b1b-f407f052054f.png?w=828&ssl=1',
     'images/Puppetshow.jpeg',
     'images/coding.jpg',
-    '',
+    'images/quantumconnor+nickolai.JPG',
     ''
   ];
 
@@ -528,8 +528,8 @@
   orbLayer.style.top = '50%';
   orbLayer.style.left = '50%';
   orbLayer.style.transform = 'translate(-50%, -50%)';  // This centers the layer properly
-  orbLayer.style.width = '1px';  // Set the width for the orbit radius
-  orbLayer.style.height = '1px';  // Set the height for the orbit radius
+  orbLayer.style.width = '.5rem';  // Set the width for the orbit radius
+  orbLayer.style.height = '.5rem';  // Set the height for the orbit radius
   orbLayer.style.pointerEvents = 'none';
   orbLayer.style.zIndex = '2';
 
@@ -545,7 +545,7 @@
 
     // Set the initial angle for each orb
     const angle = Math.random() * 360;
-    orb.style.animationDuration = `${8 + Math.random() * 4}s`;  // Randomize orbit speed
+    orb.style.animationDuration = `${4 + Math.random() * 4}s`;  // Randomize orbit speed
 
     // Position the orb using a radial animation
     orb.style.transform = `rotate(${angle}deg) translateX(2px) rotate(-${angle}deg)`;  // Start position
@@ -610,12 +610,12 @@
       }
     });
 
-    const size = 70 + Math.random() * 90 + innerWidth/300;
+    const size = 70 + Math.random() * 90 + innerWidth/400;
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
 
 
-    const mask = `radial-gradient(circle ${size / 2}px at center, white 100%, white 100%)`;
+    const mask = `radial-gradient(circle ${size / 4}px at center, white 100%, white 100%)`;
     bgDivs[i].style.maskImage = mask;
     bgDivs[i].style.webkitMaskImage = mask;
 
@@ -625,7 +625,7 @@
     bubbles.push({
       el: bubble,
       size,
-      baseRadius: 70 + Math.random() * 90 + innerWidth/300,
+      baseRadius: 70 + Math.random() * 90 + innerWidth/400,
       angle: Math.random() * 360,
       wobbleOffset: Math.random() * 100,
       <!--rotateSpeed: 0.3 + Math.random() * 0.3,-->
@@ -646,7 +646,7 @@
       const y = centerY + Math.sin(b.angle) * radius;
 
       b.el.style.left = `${x - b.size / 2}px`;
-      b.el.style.top = `${y - b.size / 2}px`;
+      b.el.style.top = `${y - b.size / 3}px`;
       b.el.style.transform = `rotate(${time * b.rotateSpeed}rad)`;
 
       const mask = `radial-gradient(circle ${b.size / 2}px at ${x}px ${y}px, white 100%, white 100%)`;
