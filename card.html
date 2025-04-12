@@ -60,6 +60,9 @@
       opacity: 0;
       transition: opacity 0.5s ease;
       z-index: 40;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .bubble:hover ~ .custom-bg-container .custom-bg {
@@ -74,10 +77,11 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.4);
       z-index: 2;
+
     }
 
     .mask-layer {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -101,6 +105,7 @@
       box-shadow: 0 0 10px rgba(173, 86, 255, 0.2);
       transition: transform 0.3s ease;
       cursor: pointer;
+      font-size: .6rem;
     }
 
     .bubble img {
@@ -118,7 +123,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       color: #3375ae;
-      font-size: 1rem;
+      font-size: .8rem;
       background: rgba(0, 0, 0, 0.6);
       padding: 0.3rem 0.6rem;
       border-radius: 8px;
@@ -153,7 +158,7 @@
       z-index: 2;
       animation: float 6s ease-in-out infinite;
       box-shadow: 0 0 20px rgba(118, 255, 198, 0.87);
-      margin-top: 2rem;
+      margin-top: 4rem;
     }
 
     .main-bubble::after {
@@ -255,6 +260,10 @@
       color: #c3efff;
       transform: scale(1.2);
     }
+    .social-icons svg:hover {
+      color: #c3efff;
+      transform: scale(1.2);
+    }
 
     .card-container {
       display: flex;
@@ -265,10 +274,11 @@
       position: relative;
       padding-right: 15px;
       padding-left: 15px; /* Change from absolute */
-      margin-top: 2rem;             /* Space above and below */ /* Page-side padding */
+      /* Space above and below */ /* Page-side padding */
       max-width: 1200px;             /* Optional: keeps cards from stretching too wide on large screens */
       z-index: 1; /* Lower the z-index of the cards container so bubbles can be on top */
       pointer-events: none; /* Prevent interactions with cards behind the bubbles */
+      margin-bottom: 2rem;
     }
 
     .card {
@@ -289,7 +299,7 @@
     .card.touched {
       transform: scale(1.1);
       filter: brightness(1.2);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 10px rgb(184, 134, 255);
       transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
     }
 
@@ -327,7 +337,7 @@
     }
 
     .card-title {
-      position: relative;
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -360,6 +370,7 @@
       position: relative;
       max-width: 1000px;
       width: 90%;
+      margin-top: -4rem;
     }
     #main-wrapper {
       display: flex;
@@ -433,6 +444,8 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Making games. Exploring Indigenous futures. Sharing what I learn.</span></p>
   <div class="social-icons">
     <a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fas fa-sky"></i></a>
+    <svg url="svg/Bluesky Logo Vector.svg" width="24" height="24">
+    </svg>
     <a href="https://www.youtube.com/@QuantumAetherGames" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
     <a href="https://www.linkedin.com/in/connortwall/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
     <a href="https://www.instagram.com/quantum.connor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -452,19 +465,21 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
   </div>
 <div class="card-container">
-
-  <div class="card">
-    <a href="https://connorwall.com/Omnivores-Rule.html">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
-      <div class="card-title">Omnivores Rule</div>
-    </a>
-  </div>
   <div class="card">
     <a href="https://connorwall.com/Roboleon-Game.html">
       <img src="images/Roboleon.jpg" alt="Card 2" href="https://connorwall.com/Roboleon-Game.html"/>
     </a>
-    <div class="card-title">Roboleon</div>
+    <div class="card-title">Download Free</div>
   </div>
+  <div class="card">
+    <a href="https://store.steampowered.com/app/3221630/Omnivores_Rule/">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
+      <div class="card-title">Wishlist on Steam!</div>
+
+    </a>
+  </div>
+    <!--<iframe style="z-index: 2000" src="https://store.steampowered.com/widget/3221630/" frameborder="0" width="646" height="190"></iframe>-->
+
   <!--<div class="card">
     <img src="https://via.placeholder.com/250x200" alt="Card 3" />
     <div class="card-title">Project Three</div>
@@ -552,11 +567,11 @@
         bubble.style.href = 'gamedesign.html';
         break;
       case 2:
-        bubble.dataset.hoverText = 'Written Work';
+        bubble.dataset.hoverText = 'Writing';
         bubble.style.href = 'writtenwork.html';
         break;
       case 3:
-        bubble.dataset.hoverText = 'Organizer';
+        bubble.dataset.hoverText = 'Community';
         bubble.style.href = 'https://www.linkedin.com/in/connortwall/';
 
         break;
@@ -595,7 +610,7 @@
       }
     });
 
-    const size = 80 + Math.random() * 70 + innerWidth/100;
+    const size = 70 + Math.random() * 90 + innerWidth/300;
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
 
@@ -610,7 +625,7 @@
     bubbles.push({
       el: bubble,
       size,
-      baseRadius: 70 + Math.random() * 100 + innerWidth/100,
+      baseRadius: 70 + Math.random() * 90 + innerWidth/300,
       angle: Math.random() * 360,
       wobbleOffset: Math.random() * 100,
       <!--rotateSpeed: 0.3 + Math.random() * 0.3,-->
