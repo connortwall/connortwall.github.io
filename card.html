@@ -19,7 +19,7 @@
       background-attachment: fixed; /* optional: keeps background static on scroll */
       height: 100vh;
       width: 100vw;
-      overflow: visible; /* optional: hides scrollbars if not needed */
+      overflow: hidden; /* optional: hides scrollbars if not needed */
       font-family: 'Baron', sans-serif;
     }
 
@@ -142,8 +142,8 @@
     }
 
     .main-bubble {
-      width: max-content;
-      height: 30%;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
       overflow: hidden;
       position: absolute;
@@ -268,8 +268,8 @@
       overflow: hidden;
       width: 250px; /* Base size */
       max-width: 100%; /* Prevent overflow */
-      flex: 1 1 170px; /* Allow shrinking/growing */
-      height: 170px;
+      flex: 1 1 200px; /* Allow shrinking/growing */
+      height: 200px;
       position: relative;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
