@@ -33,519 +33,679 @@
     <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
     <meta content="programming, portfolio, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, gamedev, game design"
           name="programming, portfolio, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, gamedev, game design">
-    <link href="assets/css/main.css" rel="stylesheet"/>
+
     <noscript>
         <link href="assets/css/noscript.css" rel="stylesheet"/>
     </noscript>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-image: url('images/backgrounds/night-shining-starry-sky-blue-space-background-with-stars-space-beautiful-night-sky-vector.jpg'); /* Replace with your actual image path */
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-color: #131620;
+                /* optional: keeps background static on scroll */
+                height: 100%;
+                width: 100%;
+                overflow: scroll; /* optional: hides scrollbars if not needed */
+                font-family: 'Baron', sans-serif;
+            }
+
+
+            .background-image {
+                position: absolute;
+                background-size: cover;
+                top: 0;
+                left: 0;
+                transform: rotate(90deg);
+                width: 100%;
+                height: 100%;
+                z-index:1;
+                pointer-events: none;
+            }
+
+            .custom-bg-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+
+            .custom-bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                mask-repeat: no-repeat;
+                -webkit-mask-repeat: no-repeat;
+                mask-size: contain;
+                -webkit-mask-size: auto;
+                transition: mask-image 0.3s ease, -webkit-mask-image 0.3s ease;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                z-index: 40;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .bubble:hover ~ .custom-bg-container .custom-bg {
+                opacity: 0;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 2;
+
+            }
+
+            .mask-layer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 60;
+                pointer-events: none;
+            }
+
+            .bubble {
+                position: absolute;
+                pointer-events: auto;
+                border-radius: 50%;
+                transition: transform 0.3s ease;
+                will-change: transform;
+                overflow: hidden;
+                z-index: 4;
+                mix-blend-mode: screen;
+                opacity: 1; /* Make the bubbles semi-visible initially */
+                background: rgb(0, 0, 0); /* Add a soft tint to each bubble */
+                backdrop-filter: blur(10px);
+                box-shadow: 0 0 10px rgba(173, 86, 255, 0.2);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+                font-size: .6rem;
+            }
+
+            .bubble img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+
+            }
+
+            .bubble::after {
+                content: attr(data-hover-text);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: #3375ae;
+                font-size: .8rem;
+                background: rgba(0, 0, 0, 0.6);
+                padding: 0.3rem 0.6rem;
+                border-radius: 8px;
+                opacity: 1;
+                transition: opacity 0.3s ease;
+                white-space: wrap;
+                pointer-events: none;
+                z-index: 2;
+            }
+
+            .bubble:hover::after {
+                opacity: 1;
+                color: rgba(103, 242, 255, 0.94);
+            }
+
+            .bubble.touched {
+                transform: scale(1.1);
+                filter: brightness(1.2);
+                box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+                transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+            }
+
+            .main-bubble {
+                width: 10rem;
+                height: 10rem;
+                border-radius: 50%;
+                overflow: hidden;
+                position: sticky;
+                top: inherit;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                animation: float 6s ease-in-out infinite;
+                box-shadow: 0 0 20px rgba(118, 255, 198, 0.87);
+                margin-top: 4rem;
+            }
+
+            .main-bubble::after {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(16, 62, 20, 0.4); /* Your overlay color and opacity */
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+            .main-bubble:hover::after {
+                opacity: 1;
+            }
+
+            .hover-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #b5fff6;
+                font-size: 1.1rem;
+                font-family: 'Baron', sans-serif;
+                text-align: center;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+                pointer-events: none;
+                z-index: 2;
+            }
+            .main-bubble:hover .hover-text {
+                opacity: 1;
+            }
+
+            .main-bubble img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            @font-face {
+                font-family: 'Baron';
+                src: url('fonts/baron/baron-neue.regular.eot');
+                src: url('fonts/baron/baron-neue.regular.eot?#iefix') format('embedded-opentype'),
+                url('fonts/baron/baron-neue.regular.woff2') format('woff2'),
+                url('fonts/baron/baron-neue.regular.woff') format('woff'),
+                url('fonts/baron/baron-neue.regular.ttf') format('truetype'),
+                url('fonts/baron/baron-neue.regular.svg#svgFontName') format('svg');
+                font-weight: normal;
+                font-style: normal;
+                font-display: swap;
+            }
+
+
+            .intro-text {
+                position: relative;
+                top: 10%;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+                color: #a7defd;
+            }
+
+            .intro-text h1 {
+                font-size: 3rem;
+                margin: 0;
+            }
+
+            .intro-text p {
+                font-size: 1.2rem;
+                opacity: 0.8;
+                margin: 20px;
+            }
+            .bubble-title {
+                position: relative;
+                top: 10%;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+                color: #1bafff;
+                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            }
+            .social-icons {
+                margin: 1rem 0;
+                z-index: 100;
+            }
+
+            .social-icons a {
+                color: #6cff7a;
+                font-size: 1.5rem;
+                margin: 0 0.5rem;
+                transition: color 0.3s ease, transform 0.3s ease;
+                display: inline-block;
+            }
+
+            .social-icons a:hover {
+                color: #c3efff;
+                transform: scale(1.2);
+            }
+            .social-icons svg:hover {
+                color: #c3efff;
+                transform: scale(1.2);
+            }
+
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;       /* Center horizontally */
+                align-items: center;           /* Optional: center vertically within container */
+                gap: 2rem;
+                position: relative;
+                padding-right: 15px;
+                padding-left: 15px; /* Change from absolute */
+                /* Space above and below */ /* Page-side padding */
+                max-width: 1200px;             /* Optional: keeps cards from stretching too wide on large screens */
+                z-index: 1; /* Lower the z-index of the cards container so bubbles can be on top */
+                pointer-events: none; /* Prevent interactions with cards behind the bubbles */
+                margin-bottom: 2rem;
+            }
+
+            .card {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                overflow: hidden;
+                width: 250px; /* Base size */
+                max-width: 100%; /* Prevent overflow */
+                flex: 1 1 200px; /* Allow shrinking/growing */
+                height: 200px;
+                position: relative;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                cursor: pointer;
+                pointer-events: auto; /* Allow interaction with individual cards */
+                z-index: 5;
+            }
+
+            .card.touched {
+                transform: scale(1.1);
+                filter: brightness(1.2);
+                box-shadow: 0 0 10px rgb(134, 245, 255);
+                transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+            }
+
+
+
+
+            @media (max-width: 980px) {
+                .card-container {
+                    /* Space above and below */
+                    gap: 1rem;
+                    /* Page-side padding */
+                }
+                .card {
+                    width: 45%;
+                    height: 100px;
+                }
+            }
+
+            @media (max-width: 768px) {
+
+
+            }
+
+            @media (max-width: 480px) {
+                .card {
+                    width: 80%;
+                    height: 140px;
+                }
+            }
+
+            .card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .card-title {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                background: rgba(0, 0, 0, 0.6);
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                font-size: 1.2rem;
+                text-align: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+            }
+
+            .card:hover .card-title {
+                opacity: 1;
+            }
+
+            .main-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 8;
+                gap: 1rem;
+                position: relative;
+                max-width: 1000px;
+                width: 90%;
+                margin-top: -4rem;
+            }
+            #main-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* centers the children horizontally */
+                gap: 1rem; /* adds spacing between .main-bubble and .main-content */
+                margin-top: 5rem; /* optional: space from the intro-text above */
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+                50% { transform: translate(-50%, -50%) translateY(-20px); }
+            }
+
+            /* Position the orb layer in the center of the page, relative to the main bubble */
+            .orb-layer {
+                position: absolute;
+                top: 50%; /* Center vertically */
+                left: 50%; /* Center horizontally */
+                transform: translate(-50%, -50%); /* Adjust the positioning */
+                width: 300px; /* Set fixed width for orb orbit radius */
+                height: 300px; /* Set fixed height for orb orbit radius */
+                pointer-events: none; /* Prevent interaction with the orb layer itself */
+                z-index: 1; /* Make sure the orb layer is above other elements */
+            }
+
+            /* Orbs will orbit tightly around the main bubble */
+            .orb {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%; /* Make them circular */
+                background-color: rgba(118, 215, 255, 0.9); /* Light blue */
+                box-shadow: 0 0 10px rgba(118, 215, 255, 0.62);
+                animation: orb-orbit 8s infinite linear; /* Orbit animation */
+                pointer-events: auto; /* Allow interaction with orbs */
+                z-index: 1; /* Ensure it appears above the main bubble */
+            }
+
+            /* Animation for the orbiting orbs around the main bubble */
+            @keyframes orb-orbit {
+                0% {
+                    transform: rotate(0deg) translateX(260px) rotate(0deg); /* Tight orbit */
+                }
+                100% {
+                    transform: rotate(360deg) translateX(260px) rotate(-360deg); /* Full orbit */
+                }
+            }
+
+        </style>
 </head>
-<body class="is-preload">
-
-<!-- Wrapper -->
-<div id="wrapper">
-
-    <!-- Header -->
-    <header class="alt" id="header">
-        <a class="logo" href="index.html"><strong>Connor Wall</strong>Portfolio<span></span></a>
-        <nav>
-            <a href="#menu">Menu</a>
-        </nav>
-    </header>
-
-    <!-- Menu -->
-    <nav id="menu">
-        <ul class="actions stacked">
-            <li><a class="button fit" href="index.html">Home</a></li>
-        </ul>
-        <ul class="links">
-            <li><a href="gamedesign.html"><span class="icon solid fas fa-dice major"></span> Game Design <span
-                    class="icon solid fas fa-dice major"></span></a></li>
-            <li><a href="writtenwork.html"><span class="icon solid fas fa-pencil-alt major style1"></span> Written Work
-                <span class="icon solid fas fa-pencil-alt major style1"></span></a></li>
-            <li><a href="coding.html"><span class="icon solid fas fa-code major style1"></span> Coding <span
-                    class="icon solid fas fa-code major style1"></span></a></li>
-            <li><a href="visualdesign.html"><span class="icon solid fas fa-pen-fancy major style1"></span> Visual Design
-                <span class="icon solid fas fa-pen-fancy major style1"></span></a></li>
-
-        </ul>
-        <ul class="actions stacked">
-            <li><a class="button primary fit icon solid fa-clipboard-list" href="CV.html">
-										<span style="color: #B664B0; background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color:transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">CV<span class="label"></span>
-										</span>
-            </a></li>
-        </ul>
-        <ul class="icons">
-            <li><a class="icon brands alt fa-github" href="https://github.com/connortwall"><span
-                    class="label">GitHub</span></a></li>
-            <li><a class="icon brands alt fa-linkedin-in" href="https://www.linkedin.com/in/connortwall/"><span
-                    class="label">LinkedIn</span></a></li>
-            <li><a class="icon solid alt fa-gamepad" href="https://connorthewall.itch.io"><span
-                    class="label">Itch.io</span></a></li>
-        </ul>
-    </nav>
-    <video autoplay muted loop class= "back-video">
-        <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Cinematic1.mp4" type="video/mp4" />
-    </video>
-    <!-- Intro Banner -->
-    <section class="major" id="introbanner">
-
-        <div class="inner">
-
-            <header class="major">
-
-                <h2><a href="card.html">
-
-									<span style="font-size: 300%; color: #B664B0; background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%);
-								  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-									-webkit-box-decoration-break: clone; background-repeat: no-repeat;"><strong>Connor Wall</strong>
-                                    </span></a>
-                </h2>
-                <p style="font-size: 150%;"> Game UX Programmer & Designer</p>
-                <h3>I code games and write Indigenous sci-fi narratives to inspire empathy and awe.</h3>
-            </header>
-            <ul class="actions special" style="flex-direction: row; flex-wrap: wrap">
-                <li>
-                    <a class="button icon solid fa-clipboard-list" href="CV.html">
-										<span style="color: #B664B0; background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color:transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">CV<span class="label"></span>
-										</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="button icon solid brands fa-github" href="https://github.com/connortwall">
-										<span style="color: #B664B0; background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">Github<span class="label"></span>
-										</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="button icon solid brands fa-linkedin-in" href="https://www.linkedin.com/in/connortwall/">
-										<span style="color: #B664B0; ">
-											<span style="background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone; background-repeat: no-repeat;">LinkedIn<span
-                                                    class="label"></span>
-											</span>
-										</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="button icon solid fa-gamepad" href="https://connorthewall.itch.io">
-										<span style="color: #B664B0; ">
-											<span style="background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone; background-repeat: no-repeat;">Itch.io<span
-                                                    class="label"></span>
-											</span>
-										</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- About Me-->
-    <section class="about" id="about">
-        <div class="inner">
-            <header class="major">
-                <h1>Who am I?</h1>
-                <!--1-->
-                <p style="font-size: 1.2em;font-weight: 3;text-transform: none;letter-spacing: 0.01em;">
-                    <b>I'm a creative programmer.</b>
-                    I implement <b><i>gameplay</i></b> and <b><i>UX</i></b> for games in my professional work —most recently at <a href="https://neptunescloud.com/duality-king-of-dragons/">Neptune's Cloud</a> and as a solo developer at <a href="https://quantum-aether-games.com/">Quantum Aether Games</a>.
-
-                </p>
-                <br>
-
-                <!--2-->
-                <p style="font-size: 1.2em;font-weight: 3;text-transform: none;letter-spacing: 0.01em;">
-                    <b>I'm a versatile designer.</b>
-                    I've used <b><i>design thinking</i></b> and <b><i>iteration</i></b> in multiple industries:
-                    research at <a href="https://hms.harvard.edu/">Harvard Medical</a>, entrepreneurship at <a href="https://ventures.jhu.edu/programs-services/fastforward-u/">Johns Hopkins</a>,
-                    and environmental education at <a href="https://www.massaudubon.org/">Mass Audubon</a>.
-                </p>
-                <br>
-
-                <!--3-->
-                <p style="font-size: 1.2em;font-weight: 3;text-transform: none;letter-spacing: 0.01em;">
-                    <b>I'm an immersive storyteller.</b>
-                    My <b><i>multicultural</i></b> and <b><i>polyglot</i></b> backgrounds inspire me to write meaningful narratives (often exploring <b><i>Indigenous futurisms</i></b>).
-                </p>
-
-                <br>
-                <!--
-                <ul class="actions special" style="flex-direction: row; flex-wrap: wrap">
-                    <li>
-                        <a class=" icon solid fa-gamepad button" href="Personal-RPG-Project.html">
-										<span style="color: #50174f; background-image: linear-gradient(135deg,  #7ae019 0%, #ffffff 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">RECENT SOLO DEV PROJECT<span
-                                                class="label"></span>
-										</span>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a class="button icon solid fa-gamepad" href="Roboleon-Game.html">
-										<span style="color: #172a50; background-image: linear-gradient(135deg,  #ce67d0 0%, #bb34b2 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">PROFESSIONAL PROJECT<span class="label"></span>
-										</span>
-                        </a>
-                    </li>
-                </ul>-->
-
-            </header>
-        </div>
-    </section>
-
-    <!-- Main -->
-    <div id="main">
-        <!-- Project Banner-->
-        <section class="major" id="projectbanner">
-            <div class="inner">
-                    <span class="image">
-                        <img alt="" src="images/pic01.jpg"/></span>
-                <header class="major">
-                    <h2>
-										<span style="font-size: 300%;">
-											Recent Projects
-										</span>
-
-                    </h2>
-                </header>
-            </div>
-        </section>
-        <!-- One -->
-        <section class="tiles" id="one">
-            <!-- Omnivores Rule -->
-            <article>
-                <span class="image">
-                    <img alt="" src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png"/>
-                </span>
-                <header class="major">
-                    <h3><a class="link" href="Omnivores-Rule.html">Omnivores Rule <span class="major style1"><span
-                            class="label"></span></span></a></h3>
-                    <h4>SOLO DEVELOPER (Unreal, C++, HLSL)</h4>
-                    <h5><b><i>In this personal project my goals were to explore trans-species psychology by exploring
-                        the beauty and brutality of nature from the perspective of an android.</i></b></h5>
-                    <h6><i>6 months</i></h6>
-                </header>
-            </article>
-
-            <!-- Roboleon -->
-            <article>
-                <span class="image">
-                    <img alt="" src="images/Roboleon2.webp"/>
-                </span>
-                <header class="major">
-                    <h3><a class="link" href="Roboleon-Game.html">Roboleon <span class="major style1"><span
-                            class="label"></span></span></a></h3>
-                    <h4>NARRATIVE DESIGN, UX, GAMEPLAY PROGRAMMER (Unity, C#)</h4>
-                    <h5><b><i>In this Master's program project my goals were to setup a narrative dilemma & integrate save-load and UX systems into polished gameplay.</i></b></h5>
-                    <h6><i>6 weeks</i></h6>
-                </header>
-            </article>
-
-            <!-- King of Dareux - Duality -->
-            <!--<article>
-                <span class="image">
-                    <img alt="" src="uploads/ConnorWall_Portfolio/Game_Design/King_of_Dareux/Gameplay.png"/>
-                </span>
-                <header class="major">
-                    <h3><a class="link" href="King-of-Dareux-Duality-Game.html">King of Dareux<span class="major style1"><span
-                            class="label"></span></span></a>
-                    </h3>
-                    <h4>GAMEPLAY & UX PROGRAMMER (Unreal, C++)</h4>
-			        <h5><b><i>In contract work I implemented & debugged existing gameplay & UI systems for an upcoming AA sci-fi game.</i></b></h5>
-                    <h6><i>2 months</i></h6>
-                </header>
-            </article>-->
-            <!-- Quipu -->
-            <article>
-                <span class="image">
-                    <img alt="" src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/DiverIntroScene.webp"/>
-                </span>
-                <header class="major">
-                    <h3><a class="link" href="Personal-RPG-Project.html">Quipu<span class="major style1"><span
-                            class="label"></span></span></a>
-                    </h3>
-                    <h4>SOLO DEVELOPER (Unreal, C++, Unity, C#)</h4>
-                    <h5><b><i>In a personal project I adapted my screenplay into Unity & Unreal games to gain development fluency between engines.</i></b></h5>
-                        <h6><i>5 months</i></h6>
-                </header>
-            </article>
-            <!-- Metawalker -->
-            <article>
-									<span class="image">
-										<picture>
-  <source type="image/webp" srcset="images/Metawalker.webp">
-  <img alt="" src="images/Metawalker.webp">
-</picture>
-									</span>
-                <header class="major">
-                    <h3><a class="link" href="Metawalker-Game.html">Metawalker<span class="major style1"><span
-                            class="label"></span></span></a>
-                    </h3>
-                    <h4>NARRATIVE DESIGNER, WRITER (Mobile)</h4>
-                    <h5><b><i>In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</i></b></h5>
-                    <h6><i>5 months</i></h6>
-                </header>
-            </article>
-            <!-- Roboleon-->
-            <!--
-            <article>
-									<span class="image">
-										<img alt=""
-                                             src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/Cover_Title.jpg"/>
-									</span>
-                <header class="major">
-                    <h3><a class="link" href="Totally-Accurate-Warehouse-Simulator-Game.html">Warehouse
-                        Simulator <span class="major style1"><span class="label"></span></span></a>
-                    </h3>
-                    <p>Game Programmer (Unity C#)</p>
-                </header>
-            </article>-->
-            <!--<article>
-									<span class="image">
-										<img alt=""
-                                             src="images/Puppetshow.jpeg"/>
-									</span>
-                <header class="major">
-                    <h3><a class="link" href="Puppetshow-Game.html">The Amazing Puppet Show <span
-                            class="major style1"><span class="label"></span></span></a>
-                    </h3>
-                    <p>Game Programmer (Unity C#)</p>
-                </header>
-            </article>-->
-        </section>
-        <section class="major" id="banner">
-            <div class="inner">
-                    <span class="image">
-                        </span>
-                <header class="major">
-                    <h2>
-                        <span style="font-size: 300%;">
-                            Focus Areas
-                        </span>
-                    </h2>
-                </header>
-            </div>
-        </section>
-
-        <section class="tiles" id="two">
-            <!--Game Design-->
-            <article>
-									<span class="image">
-										<img alt="" src="images/gamedesign.png"/>
-									</span>
-                <header class="major">
-                    <h3><a class="link" href="gamedesign.html">Game Design</a></h3>
-			<i><b>Experiences built with a focus on interactivity.</b></i>
-                    <!--<p>Unity 3D, Java, Android, Print & Play, Stornaway.io</p>-->
-                </header>
-            </article>
-            <!--Coding-->
-            <article>
-									<span class="image">
-										<img alt="" src="images/coding.jpg"/>
-									</span>
-                <header class="major">
-                    <h3><a class="link" href="coding.html">Coding</a></h3>
-			<i><b>Projects crafted with precision in the languages of computers.</b></i>
-                    <!--<p>C#, C++, Java, R</p>-->
-                </header>
-            </article>
-            <!--Visual Design-->
-            <article>
-                <span class="image">
-                    <img alt=""
-                         src="uploads/ConnorWall_Portfolio/Digital_Illustration/Escuela%20Amigos%20School%20Official%20Mascot/Jaguare_2013.jpeg"/>
-                </span>
-                <header class="major">
-                    <h3><a class="link" href="visualdesign.html">Visual Design</a></h3>
-			<i><b>Colorful designs crafted in various mediums.</b></i>
-                    <!--<p>Graphic Design, Illustration, Photography, Painting</p>-->
-                </header>
-            </article>
-            <!--Written Work-->
-            <article>
-									<span class="image">
-										<img alt="" src="images/writtenwork2.jpg"/>
-									</span>
-                <header class="major">
-                    <h3><a class="link" href="writtenwork.html">Written Work</a></h3>
-			<i><b>Venture into seemingly familiar worlds...</b></i>
-                    <!--<p>Game Narrative, Screenplays, Short Stories</p>-->
-                </header>
-            </article>
-
-
-            <!--<article>
-                <span class="image">
-                    <img src="images/digitalillustration.jpg" alt="" />
-                </span>
-                <header class="major">
-                    <h3><a href="visualdesign.html" class="link">Digital Illustration <span class="icon fas fa-pen-fancy major style1"></span></span></a></h3>
-                    <p>Adobe Illustrator, Adobe Photoshop, Adobe Animate</p>
-                </header>
-            </article>
-            <article>
-                <span class="image">
-                    <img src="images/graphicdesign2.jpg" alt="" />
-                </span>
-                <header class="major">
-                    <h3><a href="graphicdesign.html" class="link">Graphic Design <span class="icon fas fa-object-group major style1"></span></span></a></h3>
-                    <p>Adobe Illustrator, Adobe Photoshop, Adobe Animate</p>
-                </header>
-            </article>
-            <article>
-                <span class="image">
-                    <img src="images/photography2.jpeg" alt="" />
-                </span>
-                <header class="major">
-                    <h3><a href="photography.html" class="link">Photography <span class="icon fa-camera-retro major style1"></span></span></a></h3>
-                    <p>16mm Nikon, iPhone</p>
-                </header>
-            </article>
-            <article>
-                <span class="image">
-                    <img src="images/3Ddesign.png" alt="" />
-                </span>
-                <header class="major">
-                    <h3><a href="3Ddesign.html" class="link">3D Design <span class="icon fa-cubes major style1"></span></span></a></h3>
-                    <p>Blender, Maya, Studio (Lego)</p>
-                </header>
-            </article>
-            <article>
-                <span class="image">
-                    <img src="images/painting2.png" alt="" />
-                </span>
-                <header class="major">
-                    <h3><a href="painting.html" class="link">Painting <span class="icon fa-paint-brush major style1"></span></span></a></h3>
-                    <p>Sumi Watercolor, Oil Paint</p>
-                </header>
-            </article> -->
-        </section>
-    </div>
-
-    <!-- Contact -->
-    <!--
-        <section id="contact">
-            <div class="inner">
-                <section>
-                    <form method="post" action="#">
-                        <div class="fields">
-                            <div class="field half">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" id="name" />
-                            </div>
-                            <div class="field half">
-                                <label for="email">Email</label>
-                                <input type="text" name="email" id="email" />
-                            </div>
-                            <div class="field">
-                                <label for="message">Message</label>
-                                <textarea name="message" id="message" rows="6"></textarea>
-                            </div>
-                        </div>
-                        <ul class="actions">
-                            <li><input type="submit" value="Send Message" class="primary" /></li>
-                            <li><input type="reset" value="Clear" /></li>
-                        </ul>
-                    </form>
-                </section>
-
-                <section class="split">
-                    <section>
-                        <div class="contact-method">
-                            <span class="icon solid alt fa-envelope"></span>
-                            <h3>Email</h3>
-                            <a href="#">connor.wall@verizon.net</a>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="contact-method">
-                            <span class="icon solid alt fa-phone"></span>
-                            <h3>Phone</h3>
-                            <span>(000) 000-0000 x12387</span>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="contact-method">
-                            <span class="icon solid alt fa-home"></span>
-                            <h3>Locations</h3>
-                            <span>Boston, MA, USA<br />
-                                Baltimore, MD, USA<br />
-                                Copenhagen, Denmark
-                            </span>
-                        </div>
-                    </section>
-                </section>
-            </div>
-        </section>
-    -->
-
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="inner">
-            <header class="major">
-                <h1>Get in Touch</h1>
-            </header>
-            <!--            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="connortwall" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/connortwall?trk=profile-badge">Connor Wall</a></div>-->
-
-            <ul class="actions" style="flex-direction: row; flex-wrap: wrap">
-                <li>
-                    <a class="button icon solid fa-clipboard-list" href="CV.html">
-										<span style="color: #B664B0; background-image: linear-gradient(135deg, #6699FF 0%, #FF3366 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color:transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">CV<span class="label"></span>
-										</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="button icon solid brands fa-github" href="https://github.com/connortwall">
-										<span style="color: #B664B0; background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%);
-										 -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone;
-										background-repeat: no-repeat;">Github<span class="label"></span>
-										</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="button icon solid brands fa-linkedin-in" href="https://www.linkedin.com/in/connortwall/">
-										<span style="color: #B664B0; ">
-											<span style="background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone; background-repeat: no-repeat;">LinkedIn<span
-                                                    class="label"></span>
-											</span>
-										</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="button icon solid fa-gamepad" href="https://connorthewall.itch.io">
-										<span style="color: #B664B0; ">
-											<span style="background-image: linear-gradient(135deg, #6699FF 0%, #F7AEF8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; -webkit-box-decoration-break: clone; background-repeat: no-repeat;">Itch.io<span
-                                                    class="label"></span>
-											</span>
-										</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; <i>Website coded and designed </i> by Connor Wall</li>
-            </ul>
-        </div>
-    </footer>
-
-</div>
 
 <!-- Scripts -->
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
 
+
+<body>
+
+<div class="background-image"></div>
+<div class="custom-bg-container">
+    <div class="custom-bg" id="bg1"></div>
+    <div class="custom-bg" id="bg2"></div>
+    <div class="custom-bg" id="bg3"></div>
+    <div class="custom-bg" id="bg4"></div>
+    <div class="custom-bg" id="bg5"></div>
+</div>
+<div class="overlay"></div>
+<div class="mask-layer" id="mask-layer"></div>
+
+
+<div id="main-wrapper">
+    <div class="intro-text">
+        <h1><span style="color: #aef8e7; background-image: linear-gradient(0deg, #67d3ca 0%, #95f6bf 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Connor Wall</span></h1>
+        <p><span style="color: #c10fb4; background-image: linear-gradient(135deg,#55e9f6 0%, #8fdafa 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Making games. Exploring Indigenous futures. Sharing what I learn.</span></p>
+        <div class="social-icons">
+            <a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fab fa-skyatlas"></i></a>
+            <!--<a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fas fa-sky"></i></a>
+            <svg url="svg/Bluesky Logo Vector.svg" width="24" height="24">
+            </svg>-->
+            <a href="https://www.youtube.com/@QuantumAetherGames" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/in/connortwall/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/quantum.connor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="main-bubble" id="main-bubble" title="CV">
+        <div class="hover-text">CV</div>
+        <a href="https://connorwall.com/CV.html">
+            <img src="images/Profile_Photos/Dubrovnik_Profile_Wall.jpg" alt="Main Bubble" />
+        </a>
+    </div>
+
+
+    <div class="main-content">
+        <div class="intro-text">
+            <h1><span style="color: #b8aef8; background-image: linear-gradient(0deg, #aef6f8 0%, #66d6ff 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <a href="https://connortwall.itch.io/roboleon">
+                    <img src="images/Roboleon.jpg" alt="Card 2" href="https://connortwall.itch.io/roboleon"/>
+                </a>
+                <div class="card-title">Download Free</div>
+            </div>
+            <div class="card">
+                <a href="https://store.steampowered.com/app/3221630/Omnivores_Rule/">
+                    <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
+                    <div class="card-title">Wishlist on Steam!</div>
+
+                </a>
+            </div>
+            <!--<iframe style="z-index: 2000" src="https://store.steampowered.com/widget/3221630/" frameborder="0" width="646" height="190"></iframe>-->
+
+            <!--<div class="card">
+              <img src="https://via.placeholder.com/250x200" alt="Card 3" />
+              <div class="card-title">Project Three</div>
+            </div>-->
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+
+
+<script>
+    const maskLayer = document.getElementById('mask-layer');
+    const bubbles = [];
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2.5;
+    const bgImages = [
+        'images/VJ.gif',
+        'uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif',
+        'images/Puppetshow.jpeg',
+        'images/PlantMotion.gif',
+        /*'images/quantumconnor+nickolai.JPG',*/
+        ''
+    ];
+
+    const bgDivs = [
+        document.getElementById('bg1'),
+        document.getElementById('bg2'),
+        document.getElementById('bg3'),
+        document.getElementById('bg4'),
+        document.getElementById('bg5')
+    ];
+
+    bgDivs.forEach((div, index) => {
+        div.style.backgroundImage = `url('${bgImages[index]}')`;
+        div.style.href = 'https://www.linkedin.com/in/connortwall/';
+    });
+
+
+
+    //orbs
+    const orbLayer = document.createElement('div');
+    orbLayer.classList.add('orb-layer');
+    document.body.appendChild(orbLayer);
+
+    // Center the orb layer on the page
+    orbLayer.style.position = 'absolute';
+    orbLayer.style.top = '50%';
+    orbLayer.style.left = '50%';
+    orbLayer.style.transform = 'translate(-50%, -50%)';  // This centers the layer properly
+    orbLayer.style.width = '.5rem';  // Set the width for the orbit radius
+    orbLayer.style.height = '.5rem';  // Set the height for the orbit radius
+    orbLayer.style.pointerEvents = 'none';
+    orbLayer.style.zIndex = '2';
+
+    for (let i = 0; i < 5; i++) {
+        const orb = document.createElement('div');
+        orb.classList.add('orb');
+
+        // Randomize the color and other properties
+        orb.style.backgroundColor = `rgba(118, 215, 255, 0.${Math.random() * 8 + 2})`;
+        const size = 20 + Math.random() * 10;
+        orb.style.width = `${size}px`;
+        orb.style.height = `${size}px`;
+
+        // Set the initial angle for each orb
+        const angle = Math.random() * 360;
+        orb.style.animationDuration = `${4 + Math.random() * 4}s`;  // Randomize orbit speed
+
+        // Position the orb using a radial animation
+        orb.style.transform = `rotate(${angle}deg) translateX(2px) rotate(-${angle}deg)`;  // Start position
+
+        // Append the orb to the orb layer
+        orbLayer.appendChild(orb);
+    }
+
+    for (let i = 0; i < 4; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        switch (i) {
+            case 0:
+                bubble.dataset.hoverText = 'Visuals';
+                bubble.style.href = 'visualdesign.html';
+                break;
+            case 1:
+                bubble.dataset.hoverText = 'Game Dev';
+                bubble.style.href = 'gamedesign.html';
+                break;
+            case 2:
+                bubble.dataset.hoverText = 'Writing';
+                bubble.style.href = 'writtenwork.html';
+                break;
+            case 3:
+                bubble.dataset.hoverText = 'Community';
+                bubble.style.href = 'https://www.linkedin.com/in/connortwall/';
+
+                break;
+            case 4: bubble.dataset.hoverText = '';
+                break;
+        }
+
+        bubble.addEventListener('mouseenter', () => {
+            bgDivs[i].style.opacity = '1';
+        });
+        bubble.addEventListener('mouseleave', () => {
+            bgDivs[i].style.opacity = '0';
+        });
+        bubble.addEventListener('click', () => {
+            window.open(bubble.style.href, '_self');
+        });
+        // Touch start
+        bubble.addEventListener('touchstart', () => {
+            bubble.classList.add('touched');
+            bgDivs[i].style.opacity = '1';
+        });
+
+        // Touch end
+        bubble.addEventListener('touchend', () => {
+            // Delay the removal slightly for visual effect
+            setTimeout(() => {
+                bubble.classList.remove('touched');
+            }, 150);
+            bgDivs[i].style.opacity = '0';
+        });
+
+        // Optional: tap anywhere else to remove visual feedback
+        document.addEventListener('touchstart', (e) => {
+            if (!bubble.contains(e.target)) {
+                bubble.classList.remove('touched');
+            }
+        });
+
+        const size = 70 + Math.random() * 90 + innerWidth/400;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+
+
+        const mask = `radial-gradient(circle ${size / 4}px at center, white 100%, white 100%)`;
+        bgDivs[i].style.maskImage = mask;
+        bgDivs[i].style.webkitMaskImage = mask;
+
+
+        maskLayer.appendChild(bubble);
+
+        bubbles.push({
+            el: bubble,
+            size,
+            baseRadius: 70 + Math.random() * 90 + innerWidth/400,
+            angle: Math.random() * 360,
+            wobbleOffset: Math.random() * 100,
+            <!--rotateSpeed: 0.3 + Math.random() * 0.3,-->
+            bgDiv: bgDivs[i],
+            <!--rotateSpeed: 0.3 + Math.random() * 0.3-->
+        });
+    }
+
+    let time = 0;
+    function animate() {
+        time += 0.01;
+        bubbles.forEach((b, i) => {
+            const wobble = Math.sin(time * 2 + b.wobbleOffset) * 10;
+            const radius = (b.baseRadius + wobble);
+            b.angle += 0.002 + i * 0.0015;
+
+            const x = centerX + Math.cos(b.angle) * radius;
+            const y = centerY + Math.sin(b.angle) * radius;
+
+            b.el.style.left = `${x - b.size / 2}px`;
+            b.el.style.top = `${y - b.size / 3}px`;
+            b.el.style.transform = `rotate(${time * b.rotateSpeed}rad)`;
+
+            const mask = `radial-gradient(circle ${b.size / 2}px at ${x}px ${y}px, white 100%, white 100%)`;
+
+            b.bgDiv.style.webkitMaskImage = mask;
+            b.bgDiv.style.maskImage = mask;
+
+
+
+
+
+        });
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
 </body>
 </html>
