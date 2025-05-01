@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Filterable Projects</title>
+  <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="programming, portfolio, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, gamedev, game design"
+        name="programming, portfolio, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, gamedev, game design">
+
+  <title>Projects</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
@@ -120,6 +124,12 @@
       font-size: 1rem;
     }
 
+    .project-overlay p2 {
+      font-family: Rampung , sans-serif;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
     .project-overlay .hover-text {
       font-size: 1rem;
       font-family: Nexa-Bold, sans-serif;
@@ -189,6 +199,17 @@
       font-style: normal;
     }
 
+    @font-face {
+      font-family: 'Rampung';
+      src:url('fonts/rampung/Rampung.woff') format('woff'),
+      url('fonts/rampung/Rampung.svg') format('svg'),
+      url('fonts/rampung/Rampung.eot'),
+      url('fonts/rampung/Rampung.eot?#iefix') format('embedded-opentype');
+    url('fonts/rampung/Rampung.ttf') format('truetype');
+      font-weight: bold;
+      font-style: normal;
+    }
+
 
   </style>
 </head>
@@ -199,40 +220,84 @@
 
   <div class="filter-buttons">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="game">Game</button>
+    <button class="filter-btn" data-filter="game">Games</button>
     <button class="filter-btn" data-filter="visuals">Visuals</button>
     <button class="filter-btn" data-filter="writing">Writing</button>
+    <button class="filter-btn" data-filter="coding">Coding</button>
   </div>
 
   <div class="project-grid">
-    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals">
+    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals coding">
       <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Omnivores Rule Project">
       <div class="project-overlay">
         <h3>omnivOres Rule</h3>
         <p>solo developer (Unreal, C++, HLSL)</p>
         <p class="hover-text">Exploring trans-species psychology &
           the beauty and brutality of nature from the perspective of an android.</p> <!-- Additional text -->
-
+        <p2>2024</p2>
       </div>
     </a>
 
-    <a href="Roboleon-Game.html" class="project-card show" data-tags="game writing">
+    <a href="Roboleon-Game.html" class="project-card show" data-tags="game writing coding">
       <img src="images/Roboleon2.webp" alt="Roboleon Project">
       <div class="project-overlay">
         <h3>Roboleon</h3>
-        <p>Narrative design, UX, Programmer (Unity, C#)</p>
+        <p>Game Programmer, Narrative Designer (Unity, C#)</p>
         <p class="hover-text">In this Master's program project my goals were to setup a narrative dilemma &
           integrate save-load and UX systems into polished gameplay.</p> <!-- Additional text -->
-
+        <p2>2024, 6 weeks</p2>
       </div>
     </a>
 
-    <a href="Personal-RPG-Project.html" class="project-card show" data-tags="game visuals writing">
+    <a href="Totally-Accurate-Warehouse-Simulator-Game.html" class="project-card show" data-tags="game coding">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/Cover_Title.png" alt="Totally Accurate Warehouse Project">
+      <div class="project-overlay">
+        <h3>Totally Accurate Warehouse Simulator</h3>
+        <p>Game Programmer (Unity, C#)</p>
+        <p class="hover-text">I programmed <b>rigid body movement</b>, <b>procedural content</b>, <b>UI</b>, and <b>localization</b>
+          systems for an order delivery game.</p>
+        <p2>2022, 1 week</p2>
+      </div>
+    </a>
+
+    <a href="Puppetshow-Game.html" class="project-card show" data-tags="game coding">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Puppetshow/Title.jpeg" alt="Puppetshow Game">
+      <div class="project-overlay">
+        <h3>Amazing Puppet Show</h3>
+        <p>Game Programmer (Unity, C#)</p>
+        <p class="hover-text">I programmed <b>Enemy AI</b>, <b>Movement</b>, <b>Menu</b> systems in a
+          3rd-person 2.5D roguelike mini-game that uses simulated puppetry movement on a controller.</p>
+        <p2>2022, 1 week</p2>
+      </div>
+    </a>
+
+    <a href="Personal-RPG-Project.html" class="project-card show" data-tags="game visuals writing coding">
       <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/DiverIntroScene.webp" alt="Quipu Project">
       <div class="project-overlay">
         <h3>Quipu</h3>
         <p>Solo Developer (Unreal, C++, Unity, C#).</p>
         <p class="hover-text">In a personal project I adapted my screenplay into Unity & Unreal games to gain development fluency between engines.</p>
+        <p2>2023</p2>
+      </div>
+    </a>
+
+    <a href="" class="project-card show" data-tags="visuals">
+      <img src="images/PlantMotion.gif" alt="Plant">
+      <div class="project-overlay">
+        <h3>Foliage Growth</h3>
+        <p>Motion Designer (Unreal, C++).</p>
+        <p class="hover-text">In a personal project I created a growth simulation and animated it in sequencer.</p>
+        <p2>2024</p2>
+      </div>
+    </a>
+
+    <a href="" class="project-card show" data-tags="visuals coding">
+      <img src="images/VJ.gif" alt="Flying Character">
+      <div class="project-overlay">
+        <h3>Flying Character</h3>
+        <p>VJ, Motion Designer (Unreal, HLSL).</p>
+        <p class="hover-text">In a personal project I created a flying character and animated it sequencer for live control.</p>
+        <p2>2024</p2>
       </div>
     </a>
 
@@ -242,36 +307,59 @@
         <h3>Metawalker</h3>
         <p>Narrative Designer, Writer (Mobile)</p>
         <p class="hover-text">In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</p>
+        <p2>2022, 5 months</p2>
+      </div>
+    </a>
+
+    <a href="King-of-Dareux-Duality-Game.html" class="project-card show" data-tags="game coding">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/King_of_Dareux/Scene.png" alt="King of Dareux Project">
+      <div class="project-overlay">
+        <h3>King of Dareux</h3>
+        <p>Game Programmer (Unreal, C++)</p>
+        <p class="hover-text">I worked as contract <b>Gameplay</b> and <b>UI Programmer</b> to fix bugs and implements features on an AA action-adventure RPG based on 4040 post-apocalyptic Earth.</p>
+        <p2>2023, 3 months</p2>
       </div>
     </a>
 
     <a href="fastforwardu.html" class="project-card show" data-tags="visuals">
-      <img src="uploads/ConnorWall_Portfolio/Graphic_Design/FastForwardU/FFU_Notion_Graphics/17.png" alt="FFU/Pava Center Project">
+      <img src="uploads/ConnorWall_Portfolio/Graphic_Design/FastForwardU/FFU_Notion_Graphics/17.png" alt="FFU/Pava Center Project" loading="lazy">
       <div class="project-overlay">
         <h3>Incubator Curricula</h3>
         <p>Educator, Visual Designer</p>
         <p class="hover-text">I designed material for
           Johns Hopkins Curriculum
           while working as an intern; educating student entrepreneurs about business.</p>
+        <p2>2022, 3 weeks</p2>
       </div>
     </a>
 
     <a href="wildones.html" class="project-card show" data-tags="game visuals">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/Wild_Ones/back.png" alt="Metawalker Project">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Wild_Ones/back.png" alt="Metawalker Project" loading="lazy">
       <div class="project-overlay">
         <h3>Wild Ones Card Game</h3>
         <p>Game Designer, Visual Designer</p>
         <p class="hover-text">I designed a fast-paced and strategic print-and-play card game about adventure with a team @Maryland Institute College of Art.</p>
-
+        <p2>2021, 3 weeks</p2>
       </div>
     </a>
 
     <a href="amigosjaguares.html" class="project-card show" data-tags="visuals">
-      <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Escuela Amigos School Official Mascot/Jaguare_2013.jpeg" alt="Jaguare Project">
+      <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Escuela Amigos School Official Mascot/Jaguare_2013.jpeg" alt="Jaguare Project" loading="lazy">
       <div class="project-overlay">
         <h3>Escuela Amigos Mascot</h3>
         <p>Illustrator, Graphic Designer</p>
-        <p class="hover-text">I designed the logo "Jaguare" (2013) that is still used in official merchandise & marketing for the "Escuela Amigos School".</p>
+        <p class="hover-text">I designed the logo "Jaguare" that is still used in official merchandise & marketing for the "Escuela Amigos School".</p>
+        <p2>2013, 1 week</p2>
+      </div>
+    </a>
+
+    <a href="intdc.html" class="project-card show" data-tags="visuals">
+      <img src="uploads/ConnorWall_Portfolio/Graphic_Design/Neural Tube Defect Conference/Copy of CME_Intl_NeuralTubeDefects_WelcomeEasel_Final.jpg" alt="INTD Conference" loading="lazy">
+      <div class="project-overlay">
+        <h3>INTD Conference</h3>
+        <p>Illustrator, Graphic Designer</p>
+        <p class="hover-text">While a medical research intern at Boston Children's Hospital and Harvard Medical School, I designed materials for the <b>2019 International Neural Tube Defect Conference</b> using <b></b>Illustrator</b> and <b>InDesign</b>.</p>
+        <p2>2019, 1 week</p2>
       </div>
     </a>
 
