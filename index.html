@@ -184,8 +184,8 @@
             }
 
             .main-bubble {
-                width: 10rem;
-                height: 10rem;
+                width: 18rem;
+                height: 18rem;
                 border-radius: 50%;
                 overflow: hidden;
                 position: sticky;
@@ -195,7 +195,7 @@
                 z-index: 2;
                 animation: float 6s ease-in-out infinite;
                 box-shadow: 0 0 20px rgba(118, 255, 198, 0.87);
-                margin-top: 4rem;
+                margin-top: 7rem;
             }
 
             .main-bubble::after {
@@ -418,8 +418,8 @@
             }
 
             @keyframes float {
-                0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
-                50% { transform: translate(-50%, -50%) translateY(-20px); }
+                0%, 100% { transform: translate(-50%, -50%) translateY(50px); }
+                50% { transform: translate(-50%, -50%) translateY(20px); }
             }
             @keyframes blob-wobble {
                 0%, 100% {
@@ -431,11 +431,9 @@
             }
 
             .bubble {
-                animation: blob-wobble 6s ease-in-out infinite;
+                animation: blob-wobble 3s ease-in-out infinite;
             }
-            .main-bubble {
-                animation: blob-wobble 6s ease-in-out infinite;
-            }
+
 
             /* Position the orb layer in the center of the page, relative to the main bubble */
             .orb-layer {
