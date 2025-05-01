@@ -421,6 +421,21 @@
                 0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
                 50% { transform: translate(-50%, -50%) translateY(-20px); }
             }
+            @keyframes blob-wobble {
+                0%, 100% {
+                    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                }
+                50% {
+                    border-radius: 40% 60% 70% 30% / 50% 60% 30% 70%;
+                }
+            }
+
+            .bubble {
+                animation: blob-wobble 6s ease-in-out infinite;
+            }
+            .main-bubble {
+                animation: blob-wobble 6s ease-in-out infinite;
+            }
 
             /* Position the orb layer in the center of the page, relative to the main bubble */
             .orb-layer {
@@ -652,6 +667,10 @@
         const size = 70 + Math.random() * 90 + innerWidth/400;
         bubble.style.width = `${size}px`;
         bubble.style.height = `${size}px`;
+
+        // Generate irregular border-radius
+        const irregularRadius = `${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% / ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}%`;
+        bubble.style.borderRadius = irregularRadius;
 
 
         const mask = `radial-gradient(circle ${size / 4}px at center, white 100%, white 100%)`;
