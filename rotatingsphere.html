@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rotating Sphere Planet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Container for the rotating sphere */
+    .sphere-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden; /* Initially hidden */
+    }
+
+    .sphere {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.8));
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      animation: rotate 5s infinite linear;
+      cursor: pointer;
+    }
+
+    /* Animation for rotating the sphere */
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Animation for dropping the sphere */
+    @keyframes drop {
+      0% {
+        transform: translateY(-150vh);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .sphere-container.show {
+      visibility: visible;
+      animation: drop 2s ease-out forwards;
+      animation-delay: 1s; /* Delay for 1 second before dropping */
+    }
+
+  </style>
+</head>
+<body>
+<div class="sphere-container" id="sphere-container">
+  <div class="sphere" onclick="sphereClick()"></div>
+</div>
+
+<script>
+  // JavaScript to trigger the sphere drop after a short delay
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById('sphere-container').classList.add('show');
+    }, 500); // 0.5s delay before showing the sphere
+  };
+
+  // Function to handle the click event on the sphere
+  function sphereClick() {
+    alert("You clicked the rotating sphere!");
+  }
+</script>
+</body>
+</html>

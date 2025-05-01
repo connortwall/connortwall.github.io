@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alive Plant Growth</title>
+  <style>
+    body {
+      margin: 0;
+      height: 250vh;
+      background: #f0fdf4;
+    }
+
+    #plant-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    path {
+      stroke: #228b22;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+    }
+  </style>
+</head>
+<body>
+
+<div style="height: 120vh;"></div> <!-- Scroll spacer -->
+
+<div id="plant-container">
+  <svg id="plant" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet"></svg>
+</div>
+
+<script>
+  const svg = document.getElementById("plant");
+  let pathData = "";
+
+  function drawBranch(x, y, length, angle, depth, randomness = 1) {
+    if (depth === 0) return;
+
+    const angleOffset = (Math.random() - 0.5) * 0.5 * randomness;
+    const lengthOffset = (Math.random() - 0.3) * 10 * randomness;
+    const controlDist = length * 0.5;
+
+    const newAngle = angle + angleOffset;
+    const newLength = length + lengthOffset;
+
+    const x2 = x + Math.cos(newAngle) * newLength;
+    const y2 = y + Math.sin(newAngle) * newLength;
+
+    const cx = x + Math.cos(newAngle) * controlDist + (Math.random() - 0.5) * 30;
+    const cy = y + Math.sin(newAngle) * controlDist + (Math.random() - 0.5) * 30;
+
+    pathData += `M ${x} ${y} Q ${cx} ${cy} ${x2} ${y2} `;
+
+    const branches = 2 + Math.floor(Math.random() * 2); // 2–3 subbranches
+    for (let i = 0; i < branches; i++) {
+      drawBranch(x2, y2, newLength * 0.8, newAngle + (Math.random() - 0.5), depth - 1, randomness * 0.9);
+    }
+  }
+
+  drawBranch(400, 700, 60, -Math.PI / 2, 6);
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathData);
+  svg.appendChild(path);
+
+  const pathLength = path.getTotalLength();
+  path.setAttribute("stroke-dasharray", pathLength);
+  path.setAttribute("stroke-dashoffset", pathLength);
+  path.style.transition = "stroke-dashoffset 3s ease-out";
+
+  const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              path.setAttribute("stroke-dashoffset", "0");
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.1 }
+  );
+
+  observer.observe(svg);
+</script>
+
+</body>
+</html>

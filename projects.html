@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filterable Projects</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Baron, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    .projects-section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      font-family: Baron, sans-serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .filter-buttons button {
+      font-family: Baron, sans-serif;
+      background: #333;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .filter-buttons button.active,
+    .filter-buttons button:hover {
+      background: #007acc;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1; /* Makes it a square */
+      border-radius: 0%; /* Start square */
+      transition: border-radius 0.6s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      display: none;
+    }
+
+    .project-card.show {
+      display: block;
+    }
+
+    .project-card:hover {
+      border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%; /* Irregular circle blob */
+    }
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      border-radius: inherit;
+    }
+
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-overlay h3 {
+      font-family: Baron, sans-serif;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .project-overlay p {
+      font-family: Santanelli , sans-serif;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .project-overlay .hover-text {
+      font-size: 1rem;
+      font-family: nexa-bold, sans-serif;
+      opacity: 0;
+      max-height: 0; /* Hide the text initially */
+      transition: opacity 0.3s ease, max-height 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .project-card:hover .project-overlay .hover-text {
+      opacity: 1;
+      max-height: 100px; /* Allow some space for the text */
+    }
+
+    @keyframes blobMorph {
+      0% {
+        border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+      }
+      33% {
+        border-radius: 60% 45% 50% 55% / 50% 55% 45% 60%;
+      }
+      66% {
+        border-radius: 55% 50% 45% 60% / 60% 45% 55% 50%;
+      }
+      100% {
+        border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+      }
+    }
+
+    .project-card:hover {
+      border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+      animation: blobMorph 4s infinite ease-in-out 0.6s;
+    }
+
+    @font-face {
+      font-family: 'Baron';
+      src: url('fonts/baron/baron-neue.regular.eot');
+      src: url('fonts/baron/baron-neue.regular.eot?#iefix') format('embedded-opentype'),
+      url('fonts/baron/baron-neue.regular.woff2') format('woff2'),
+      url('fonts/baron/baron-neue.regular.woff') format('woff'),
+      url('fonts/baron/baron-neue.regular.ttf') format('truetype'),
+      url('fonts/baron/baron-neue.regular.svg#svgFontName') format('svg');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Santanelli';
+      src:url('fonts/santanelli/Santanelli.ttf.woff') format('woff'),
+      url('fonts/santanelli/Santanelli.ttf.svg') format('svg'),
+      url('fonts/santanelli/Santanelli.ttf.eot'),
+      url('fonts/santanelli/Santanelli.ttf.eot?#iefix') format('embedded-opentype');
+      url('fonts/santanelli/Santanelli.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Nexa-Bold';
+      src:url('fonts/nexa-bold/Nexa-Bold.woff') format('woff'),
+      url('fonts/nexa-bold/Nexa-Bold.svg') format('svg'),
+      url('fonts/nexa-bold/Nexa-Bold.eot'),
+      url('fonts/nexa-bold/Nexa-Bold.eot?#iefix') format('embedded-opentype');
+    url('fonts/nexa-bold/Nexa-Bold.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+
+  </style>
+</head>
+<body>
+
+<section class="projects-section">
+  <h2>Projects</h2>
+
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="game">Game</button>
+    <button class="filter-btn" data-filter="visuals">Visuals</button>
+    <button class="filter-btn" data-filter="writing">Writing</button>
+  </div>
+
+  <div class="project-grid">
+    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game art">
+      <img src="https://via.placeholder.com/400x300" alt="Project 1">
+      <div class="project-overlay">
+        <h3>omnivOres Rule</h3>
+        <p>solo developer (Unreal, C++, HLSL)</p>
+        <p class="hover-text"><b><i>In this personal project my goals were to explore trans-species psychology by exploring
+          the beauty and brutality of nature from the perspective of an android.</i></b></p> <!-- Additional text -->
+
+      </div>
+    </a>
+
+    <a href="https://dadiu.itch.io/roboleon" class="project-card show" data-tags="tech">
+      <img src="https://via.placeholder.com/400x300" alt="Project 2">
+      <div class="project-overlay">
+        <h3>Roboleon</h3>
+        <p>Built with machine learning tools.</p>
+      </div>
+    </a>
+
+    <div class="project-card show" data-tags="art">
+      <img src="https://via.placeholder.com/400x300" alt="Project 3">
+      <div class="project-overlay">
+        <h3>Digital Art</h3>
+        <p>A collection of generative visuals.</p>
+      </div>
+    </div>
+
+    <div class="project-card show" data-tags="game tech">
+      <img src="https://via.placeholder.com/400x300" alt="Project 4">
+      <div class="project-overlay">
+        <h3>Game Engine</h3>
+        <p>Built in Unreal Engine.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags');
+        if (filter === 'all' || tags.includes(filter)) {
+          card.classList.add('show');
+        } else {
+          card.classList.remove('show');
+        }
+      });
+    });
+  });
+</script>
+
+
+</body>
+</html>
