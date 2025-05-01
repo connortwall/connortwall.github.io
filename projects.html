@@ -120,7 +120,7 @@
 
     .project-overlay .hover-text {
       font-size: 1rem;
-      font-family: nexa-bold, sans-serif;
+      font-family: Nexa-Bold, sans-serif;
       opacity: 0;
       max-height: 0; /* Hide the text initially */
       transition: opacity 0.3s ease, max-height 0.3s ease;
@@ -183,7 +183,7 @@
       url('fonts/nexa-bold/Nexa-Bold.eot'),
       url('fonts/nexa-bold/Nexa-Bold.eot?#iefix') format('embedded-opentype');
     url('fonts/nexa-bold/Nexa-Bold.ttf') format('truetype');
-      font-weight: normal;
+      font-weight: bold;
       font-style: normal;
     }
 
@@ -203,40 +203,45 @@
   </div>
 
   <div class="project-grid">
-    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game art">
-      <img src="https://via.placeholder.com/400x300" alt="Project 1">
+    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Omnivores Rule Project">
       <div class="project-overlay">
         <h3>omnivOres Rule</h3>
         <p>solo developer (Unreal, C++, HLSL)</p>
-        <p class="hover-text"><b><i>In this personal project my goals were to explore trans-species psychology by exploring
-          the beauty and brutality of nature from the perspective of an android.</i></b></p> <!-- Additional text -->
+        <p class="hover-text">Exploring trans-species psychology &
+          the beauty and brutality of nature from the perspective of an android.</p> <!-- Additional text -->
 
       </div>
     </a>
 
-    <a href="https://dadiu.itch.io/roboleon" class="project-card show" data-tags="tech">
-      <img src="https://via.placeholder.com/400x300" alt="Project 2">
+    <a href="Roboleon-Game.html" class="project-card show" data-tags="game writing">
+      <img src="images/Roboleon2.webp" alt="Roboleon Project">
       <div class="project-overlay">
         <h3>Roboleon</h3>
-        <p>Built with machine learning tools.</p>
+        <p>Narrative design, UX, Programmer (Unity, C#)</p>
+        <p class="hover-text">In this Master's program project my goals were to setup a narrative dilemma &
+          integrate save-load and UX systems into polished gameplay.</p> <!-- Additional text -->
+
       </div>
     </a>
 
-    <div class="project-card show" data-tags="art">
-      <img src="https://via.placeholder.com/400x300" alt="Project 3">
+    <a href="Personal-RPG-Project.html" class="project-card show" data-tags="game visuals writing">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/DiverIntroScene.webp" alt="Quipu Project">
       <div class="project-overlay">
-        <h3>Digital Art</h3>
-        <p>A collection of generative visuals.</p>
+        <h3>Quipu</h3>
+        <p>Solo Developer (Unreal, C++, Unity, C#).</p>
+        <p class="hover-text">In a personal project I adapted my screenplay into Unity & Unreal games to gain development fluency between engines.</p>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card show" data-tags="game tech">
-      <img src="https://via.placeholder.com/400x300" alt="Project 4">
+    <a href="Metawalker-Game.html" class="project-card show" data-tags="game">
+      <img srcset="images/Metawalker.webp" alt="Metawalker Project">
       <div class="project-overlay">
-        <h3>Game Engine</h3>
-        <p>Built in Unreal Engine.</p>
+        <h3>Metawalker</h3>
+        <p>Narrative Designer, Writer (Mobile)</p>
+        <p class="hover-text">In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</p>
       </div>
-    </div>
+    </a>
   </div>
 
 </section>
@@ -244,6 +249,34 @@
 <script>
   const buttons = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.project-card');
+
+  // Function to get query parameter
+  function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+  }
+
+  // Apply filter from URL on load
+  window.addEventListener('DOMContentLoaded', () => {
+    const initialFilter = getQueryParam('filter');
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+
+    if (initialFilter) {
+      buttons.forEach(b => b.classList.remove('active'));
+      const matchedBtn = document.querySelector(`.filter-btn[data-filter="${initialFilter}"]`);
+      if (matchedBtn) matchedBtn.classList.add('active');
+
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags');
+        if (tags.includes(initialFilter)) {
+          card.classList.add('show');
+        } else {
+          card.classList.remove('show');
+        }
+      });
+    }
+  });
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
