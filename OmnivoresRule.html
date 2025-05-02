@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connor Wall Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #0a0f1c, #1b2c3f);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .bubble {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: #101f33;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .bubble:hover {
+      transform: scale(1.1);
+    }
+
+    .modal-grow {
+      position: fixed;
+      border-radius: 50%;
+      background: #101f33;
+      color: #e0f7ff;
+      box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+      overflow: hidden;
+      z-index: 1000;
+      transition: all 0.6s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .modal-grow.active {
+      opacity: 1;
+      pointer-events: auto;
+      border-radius: 2rem;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      opacity: 0;
+      transition: opacity 0.4s ease 0.3s;
+    }
+
+    .modal-grow.active .modal-content {
+      opacity: 1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #ff6e6e;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div class="bubble" onclick="openSection('about')">About</div>
+  <div class="bubble" onclick="openSection('studio')">Studio</div>
+  <div class="bubble" onclick="openSection('projects')">Projects</div>
+  <div class="bubble" onclick="openSection('community')">Community</div>
+  <div class="bubble" onclick="openSection('contact')">Contact</div>
+</div>
+
+<div class="modal-grow" id="dynamicModal">
+  <button class="close-btn" onclick="closeModal()">✕</button>
+  <div class="modal-content" id="modalContent">
+    <!-- Filled dynamically -->
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("dynamicModal");
+  const content = document.getElementById("modalContent");
+
+  const data = {
+    about: {
+      title: "About",
+      body: "Connor Wall is a speculative designer and game developer building poetic technology and collaborative futures."
+    },
+    studio: {
+      title: "Studio",
+      body: "Connor runs Quantum Aether Games, a studio scaling emotional insight into systemic action through interactive media."
+    },
+    projects: {
+      title: "Projects",
+      body: "<strong>Omnivore’s Rule:</strong> A speculative worldbuilding game exploring decolonial ecological systems and emotional AI storytelling."
+    },
+    community: {
+      title: "Community",
+      body: "Connor has helped grow organizations like Black in Gaming (6K→11K+), Boston Game Dev (1.5K→5K+), and Boston Tech Poetics (300→1K+)."
+    },
+    contact: {
+      title: "Contact",
+      body: "Get in touch: connor@quantumaether.games<br>Twitter / Mastodon / LinkedIn / GitHub"
+    }
+  };
+
+  function openSection(id) {
+    const bubble = document.querySelector(`.bubble[onclick=\"openSection('${id}')\"]`);
+    const rect = bubble.getBoundingClientRect();
+
+    modal.style.top = `${rect.top}px`;
+    modal.style.left = `${rect.left}px`;
+    modal.style.width = `${rect.width}px`;
+    modal.style.height = `${rect.height}px`;
+
+    content.innerHTML = `<h2>${data[id].title}</h2><p>${data[id].body}</p>`;
+
+    requestAnimationFrame(() => {
+      modal.classList.add("active");
+      modal.style.top = "10vh";
+      modal.style.left = "10vw";
+      modal.style.width = "80vw";
+      modal.style.height = "80vh";
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+    setTimeout(() => {
+      modal.removeAttribute("style");
+      content.innerHTML = "";
+    }, 600);
+  }
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+</script>
+</body>
+
+</html>
