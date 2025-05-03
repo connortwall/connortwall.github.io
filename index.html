@@ -131,7 +131,7 @@
                 position: absolute;
                 pointer-events: auto;
                 border-radius: 50%;
-                transition: transform 0.3s ease;
+                transition: transform 0.3s ease, background-color 0.3s ease;
                 will-change: transform;
                 overflow: hidden;
                 z-index: 4;
@@ -159,9 +159,9 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 text-align: center;
-                color: #3375ae;
+                color: #255a88;
                 font-size: .8rem;
-                background: rgba(0, 0, 0, 0.6);
+                background: rgba(136, 54, 54, 0);     /*text background color*/
                 padding: 0.3rem 0.6rem;
                 border-radius: 8px;
                 opacity: 1;
@@ -173,13 +173,13 @@
 
             .bubble:hover::after {
                 opacity: 1;
-                color: rgba(103, 242, 255, 0.94);
+                color: rgba(0, 59, 168, 0.94);
             }
 
             .bubble.touched {
                 transform: scale(1.1);
                 filter: brightness(1.2);
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+                box-shadow: 0 0 10px rgba(127, 244, 195, 0.79); /*social media icons*/
                 transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
             }
 
@@ -271,13 +271,13 @@
                 opacity: 0.8;
                 margin: 20px;
             }
-            .bubble-title {
+            .bubble-title { /*orb*/
                 position: relative;
                 top: 10%;
                 width: 100%;
                 text-align: center;
                 z-index: 1000;
-                color: #1bafff;
+                color: rgba(20, 23, 40, 0.84);
                 text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
             }
             .social-icons {
@@ -294,11 +294,11 @@
             }
 
             .social-icons a:hover {
-                color: #c3efff;
+                color: #8ff3b7;
                 transform: scale(1.2);
             }
             .social-icons svg:hover {
-                color: #c3efff;
+                color: #85fdb9;
                 transform: scale(1.2);
             }
 
@@ -453,8 +453,8 @@
                 width: 30px;
                 height: 30px;
                 border-radius: 50%; /* Make them circular */
-                background-color: rgba(118, 215, 255, 0.9); /* Light blue */
-                box-shadow: 0 0 10px rgba(118, 215, 255, 0.62);
+
+                box-shadow: 0 0 10px rgba(14, 56, 74, 0.62);
                 animation: orb-orbit 8s infinite linear; /* Orbit animation */
                 pointer-events: auto; /* Allow interaction with orbs */
                 z-index: 1; /* Ensure it appears above the main bubble */
@@ -587,8 +587,8 @@
     orbLayer.style.top = '50%';
     orbLayer.style.left = '50%';
     orbLayer.style.transform = 'translate(-50%, -50%)';  // This centers the layer properly
-    orbLayer.style.width = '.5rem';  // Set the width for the orbit radius
-    orbLayer.style.height = '.5rem';  // Set the height for the orbit radius
+    orbLayer.style.width = '.3rem';  // Set the width for the orbit radius
+    orbLayer.style.height = '.3rem';  // Set the height for the orbit radius
     orbLayer.style.pointerEvents = 'none';
     orbLayer.style.zIndex = '2';
 
@@ -597,14 +597,14 @@
         orb.classList.add('orb');
 
         // Randomize the color and other properties
-        orb.style.backgroundColor = `rgba(118, 215, 255, 0.${Math.random() * 8 + 2})`;
-        const size = 20 + Math.random() * 10;
+        orb.style.backgroundColor = `rgba(${Math.random() * 100}, 200, ${Math.random() * 500}, .5)`;
+        const size = 10 + Math.random() * 7;
         orb.style.width = `${size}px`;
         orb.style.height = `${size}px`;
 
         // Set the initial angle for each orb
         const angle = Math.random() * 360;
-        orb.style.animationDuration = `${4 + Math.random() * 4}s`;  // Randomize orbit speed
+        orb.style.animationDuration = `${10 + Math.random() * 4}s`;  // Randomize orbit speed
 
         // Position the orb using a radial animation
         orb.style.transform = `rotate(${angle}deg) translateX(2px) rotate(-${angle}deg)`;  // Start position
@@ -640,21 +640,21 @@
         }
 
         bubble.addEventListener('mouseenter', () => {
-            hoveredBubble = bubble;
             bgDivs[i].style.opacity = '1';
-        });
-
-        bubble.addEventListener('mouseleave', () => {
-            hoveredBubble = null;
-            bgDivs[i].style.opacity = '0';
-        });
-        bubble.addEventListener('mouseenter', () => {
+            bgDivs[i].style.opacity = '1';
+            bubble.style.backgroundColor = 'white'; // turn white on hover
             bubbles[i].isHovered = true;
         });
 
         bubble.addEventListener('mouseleave', () => {
+            bgDivs[i].style.opacity = '0';
+            // reset to original color with some opacity
+            bubble.style.backgroundColor = bubbles[i].originalColor;
             bubbles[i].isHovered = false;
         });
+
+
+
         bubble.addEventListener('click', () => {
             window.open(bubble.style.href, '_self');
         });
@@ -680,7 +680,7 @@
             }
         });
 
-        const size = 70 + Math.random() * 90 + innerWidth/400;
+        const size = 90 + Math.random() * 90 + innerWidth/400;
         bubble.style.width = `${size}px`;
         bubble.style.height = `${size}px`;
 
@@ -693,26 +693,32 @@
         bgDivs[i].style.maskImage = mask;
         bgDivs[i].style.webkitMaskImage = mask;
 
+        // Randomize the color and store it
+        const alpha = Math.max(Math.random() * 0.9 + 0.3,0.8) ;
+        const color = `rgba(118, 215, 255, ${alpha})`;
+        bubble.style.backgroundColor = color;
 
         maskLayer.appendChild(bubble);
-        const rotateSpeed = 0.003 + Math.random() * 0.003;
+        const rotateSpeed = 0.001 + Math.random() * 0.003;
         bubbles.push({
             el: bubble,
             size,
-            baseRadius: 70 + Math.random() * 90 + innerWidth / 400,
+            baseRadius: 40 + Math.random() * 90 + innerWidth / 400, //orbit radius
             angle: Math.random() * 360,
             wobbleOffset: Math.random() * 100,
             rotateSpeed,
             currentSpeed: rotateSpeed, // track current speed separately
             isHovered: false,
             bgDiv: bgDivs[i],
+            originalColor: color  // ← Store original
+
         });
     }
 
     let time = 0;
     function animate() {
         time += 0.01;
-        let hoveredBubble = null;
+
         bubbles.forEach((b, i) => {
             const wobble = Math.sin(time * 2 + b.wobbleOffset) * 10;
             const radius = (b.baseRadius + wobble);
@@ -723,11 +729,40 @@
             b.currentSpeed += (targetSpeed - b.currentSpeed) * 0.05;
             b.angle += b.currentSpeed;
 
-            const x = centerX + Math.cos(b.angle) * radius;
-            const y = centerY + Math.sin(b.angle) * radius;
+            let x = centerX + Math.cos(b.angle) * radius;
+            let y = centerY + Math.sin(b.angle) * radius;
+            const b1 = bubbles[i];
+            let fx = 0, fy = 0;
+            // Apply repulsion from other bubbles
+            for (let j = 0; j < bubbles.length; j++) {
+                if (i === j) continue;
+                const b2 = bubbles[j];
+                const otherX = parseFloat(b2.el.style.left || 0);
+                const otherY = parseFloat(b2.el.style.top || 0);
+                const dx = x - otherX;
+                const dy = y - otherY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
 
-            b.el.style.left = `${x - b.size / 2}px`;
-            b.el.style.top = `${y - b.size / 3}px`;
+                if (dist > 0.1) {
+                    const repulsionStrength = 10; // Adjust this value
+                    const force = repulsionStrength / (dist * dist); // Inverse-square law
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                }
+                const buffer = 800; // desired separation buffer
+                if (dist < buffer && dist > 0.1) {
+                    const force = (buffer - dist) * 3; // Linear pushback
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                }
+            }
+
+            // Apply repulsion forces
+            x += fx * 0.02;  // Adjust multiplier for desired push
+            y += fy * 0.02;
+
+            b.el.style.left = `${x}px`;
+            b.el.style.top = `${y}px`;
 
             // Sticky effect: nudge toward mouse if close
             const dx = mouseX - x;
