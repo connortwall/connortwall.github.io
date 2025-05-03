@@ -554,6 +554,13 @@
         /*'images/quantumconnor+nickolai.JPG',*/
         ''
     ];
+    let mouseX = centerX;
+    let mouseY = centerY;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
 
     const bgDivs = [
         document.getElementById('bg1'),
@@ -609,6 +616,7 @@
     for (let i = 0; i < 4; i++) {
         const bubble = document.createElement('div');
         bubble.classList.add('bubble');
+
         switch (i) {
             case 0:
                 bubble.dataset.hoverText = 'Visuals';
@@ -632,10 +640,20 @@
         }
 
         bubble.addEventListener('mouseenter', () => {
+            hoveredBubble = bubble;
             bgDivs[i].style.opacity = '1';
         });
+
         bubble.addEventListener('mouseleave', () => {
+            hoveredBubble = null;
             bgDivs[i].style.opacity = '0';
+        });
+        bubble.addEventListener('mouseenter', () => {
+            bubbles[i].isHovered = true;
+        });
+
+        bubble.addEventListener('mouseleave', () => {
+            bubbles[i].isHovered = false;
         });
         bubble.addEventListener('click', () => {
             window.open(bubble.style.href, '_self');
@@ -677,32 +695,51 @@
 
 
         maskLayer.appendChild(bubble);
-
+        const rotateSpeed = 0.003 + Math.random() * 0.003;
         bubbles.push({
             el: bubble,
             size,
-            baseRadius: 70 + Math.random() * 90 + innerWidth/400,
+            baseRadius: 70 + Math.random() * 90 + innerWidth / 400,
             angle: Math.random() * 360,
             wobbleOffset: Math.random() * 100,
-            <!--rotateSpeed: 0.3 + Math.random() * 0.3,-->
+            rotateSpeed,
+            currentSpeed: rotateSpeed, // track current speed separately
+            isHovered: false,
             bgDiv: bgDivs[i],
-            <!--rotateSpeed: 0.3 + Math.random() * 0.3-->
         });
     }
 
     let time = 0;
     function animate() {
         time += 0.01;
+        let hoveredBubble = null;
         bubbles.forEach((b, i) => {
             const wobble = Math.sin(time * 2 + b.wobbleOffset) * 10;
             const radius = (b.baseRadius + wobble);
-            b.angle += 0.002 + i * 0.0015;
+
+            //b.angle += 0.002 + i * 0.0015;
+            // Smoothly slow down speed when hovered
+            const targetSpeed = b.isHovered ? b.rotateSpeed * 0.25 : b.rotateSpeed;
+            b.currentSpeed += (targetSpeed - b.currentSpeed) * 0.05;
+            b.angle += b.currentSpeed;
 
             const x = centerX + Math.cos(b.angle) * radius;
             const y = centerY + Math.sin(b.angle) * radius;
 
             b.el.style.left = `${x - b.size / 2}px`;
             b.el.style.top = `${y - b.size / 3}px`;
+
+            // Sticky effect: nudge toward mouse if close
+            const dx = mouseX - x;
+            const dy = mouseY - y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const stickyStrength = Math.min(50, Math.max(0, 100 - dist)) / 200;
+
+            const xSticky = x + dx * stickyStrength;
+            const ySticky = y + dy * stickyStrength;
+
+            b.el.style.left = `${xSticky - b.size / 2}px`;
+            b.el.style.top = `${ySticky - b.size / 3}px`;
             b.el.style.transform = `rotate(${time * b.rotateSpeed}rad)`;
 
             const mask = `radial-gradient(circle ${b.size / 2}px at ${x}px ${y}px, white 100%, white 100%)`;
