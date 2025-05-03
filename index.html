@@ -301,6 +301,17 @@
                 color: #85fdb9;
                 transform: scale(1.2);
             }
+            .divider {
+                width: 10px;
+                height: 1.5rem;
+                background-color: white;
+                z-index: 10000;
+            }
+
+            .footer hover {
+                color: rgba(133, 253, 239, 0.42);
+                transform: scale(1.2);
+            }
 
             .card-container {
                 display: flex;
@@ -355,15 +366,14 @@
                 }
             }
 
-            @media (max-width: 768px) {
 
 
-            }
-
-            @media (max-width: 480px) {
-                .card {
-                    width: 80%;
-                    height: 140px;
+            @media (max-width: 580px) {
+                .main-bubble {
+                    width: 50%;
+                    height: 50%;
+                    margin-left: 7rem;
+                    margin-bottom: 1rem;
                 }
             }
 
@@ -412,9 +422,10 @@
             #main-wrapper {
                 display: flex;
                 flex-direction: column;
-                align-items: center; /* centers the children horizontally */
-                gap: 1rem; /* adds spacing between .main-bubble and .main-content */
-                margin-top: 5rem; /* optional: space from the intro-text above */
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                margin-top: 2rem;
             }
 
             @keyframes float {
@@ -537,9 +548,12 @@
             </div>-->
         </div>
     </div>
-</div>
-<!-- Footer -->
 
+    <ul class="footer" style="z-index: 1000; color: rgba(138,190,183,0.42)" >
+        &copy; <i>Website coded and designed </i> by Connor Wall <a href="https://connorwall.com/CV.html" target="_blank" aria-label="CV"><i class="fas fa-file-alt"></i></a>
+
+    </ul>
+</div>
 
 <script>
     const maskLayer = document.getElementById('mask-layer');
@@ -587,8 +601,8 @@
     orbLayer.style.top = '50%';
     orbLayer.style.left = '50%';
     orbLayer.style.transform = 'translate(-50%, -50%)';  // This centers the layer properly
-    orbLayer.style.width = '.3rem';  // Set the width for the orbit radius
-    orbLayer.style.height = '.3rem';  // Set the height for the orbit radius
+    orbLayer.style.width = '.5rem';  // Set the width for the orbit radius
+    orbLayer.style.height = '.5rem';  // Set the height for the orbit radius
     orbLayer.style.pointerEvents = 'none';
     orbLayer.style.zIndex = '2';
 
