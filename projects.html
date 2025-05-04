@@ -234,6 +234,7 @@
     }
 
 
+
   </style>
 </head>
 <body>
@@ -424,52 +425,86 @@
 <script>
   const buttons = document.querySelectorAll('.filter-btn');
   const cards = document.querySelectorAll('.project-card');
+  const mobileFilter = document.getElementById('mobile-filter');
 
-  // Function to get query parameter
+  function applyFilter(filter) {
+    buttons.forEach(b => b.classList.remove('active'));
+    const matchedBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+    if (matchedBtn) matchedBtn.classList.add('active');
+
+    cards.forEach(card => {
+      const tags = card.getAttribute('data-tags');
+      if (filter === 'all' || tags.includes(filter)) {
+        card.classList.add('show');
+      } else {
+        card.classList.remove('show');
+      }
+    });
+  }
+
+  // On load: get query param
+  window.addEventListener('DOMContentLoaded', () => {
+    const initialFilter = getQueryParam('filter');
+    if (initialFilter) {
+      applyFilter(initialFilter);
+      if (mobileFilter) mobileFilter.value = initialFilter;
+    }
+  });
+
+  // Desktop buttons
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      applyFilter(filter);
+      if (mobileFilter) mobileFilter.value = filter;
+    });
+  });
+
+  // Mobile dropdown
+  if (mobileFilter) {
+    mobileFilter.addEventListener('change', () => {
+      const filter = mobileFilter.value;
+      applyFilter(filter);
+    });
+  }
+
+  // Enable tap-to-show-overlay on mobile
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', function (e) {
+      const isMobile = window.innerWidth <= 768;
+
+      if (!isMobile) return;
+
+      // If already showing overlay, follow link
+      if (card.classList.contains('show-overlay')) {
+        return true; // allow default behavior
+      }
+
+      // Prevent navigation on first tap
+      e.preventDefault();
+
+      // Remove overlay from all cards
+      document.querySelectorAll('.project-card').forEach(c => c.classList.remove('show-overlay'));
+
+      // Add overlay to tapped card
+      card.classList.add('show-overlay');
+    });
+  });
+
+  // Optional: Tap outside to close overlays
+  document.addEventListener('click', function (e) {
+    const isCard = e.target.closest('.project-card');
+    if (!isCard) {
+      document.querySelectorAll('.project-card').forEach(c => c.classList.remove('show-overlay'));
+    }
+  });
+
   function getQueryParam(param) {
     const params = new URLSearchParams(window.location.search);
     return params.get(param);
   }
-
-  // Apply filter from URL on load
-  window.addEventListener('DOMContentLoaded', () => {
-    const initialFilter = getQueryParam('filter');
-    const buttons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.project-card');
-
-    if (initialFilter) {
-      buttons.forEach(b => b.classList.remove('active'));
-      const matchedBtn = document.querySelector(`.filter-btn[data-filter="${initialFilter}"]`);
-      if (matchedBtn) matchedBtn.classList.add('active');
-
-      cards.forEach(card => {
-        const tags = card.getAttribute('data-tags');
-        if (tags.includes(initialFilter)) {
-          card.classList.add('show');
-        } else {
-          card.classList.remove('show');
-        }
-      });
-    }
-  });
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter');
-
-      cards.forEach(card => {
-        const tags = card.getAttribute('data-tags');
-        if (filter === 'all' || tags.includes(filter)) {
-          card.classList.add('show');
-        } else {
-          card.classList.remove('show');
-        }
-      });
-    });
-  });
 </script>
+
 
 
 </body>
