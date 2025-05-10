@@ -247,6 +247,18 @@
       z-index: 9999;
     }
 
+    .project-modal h3 {
+      margin-top: -0.5rem;
+      text-align: center;
+      color: #7fbddc;
+      font-family: 'Santanelli';
+    }
+
+    .project-modal p {
+      font-size: larger;
+      font-family: 'nexa-bold'
+    }
+
     .project-modal.hidden {
       display: none;
     }
@@ -291,6 +303,168 @@
     }
 
 
+    /* Omnivores Rule Bubble Navigation Styles */
+    .game-dev-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .dev-bubble {
+      background: linear-gradient(145deg, #2a2a2a, #3d3d3d);
+      color: #00b4cc;
+      border: 2px solid #00b4cc;
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dev-bubble:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background: #00b4cc;
+      color: #121212;
+    }
+
+    .dev-bubble.active {
+      background: #00b4cc;
+      color: #121212;
+      transform: scale(1.05);
+    }
+
+    .mini-modal {
+      display: none;
+      background: rgba(18, 18, 18, 0.95);
+      border: 1px solid #00b4cc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .mini-modal.active {
+      display: block;
+    }
+
+    .mini-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .mini-modal-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #00b4cc;
+      margin: 0;
+    }
+
+    .close-mini-modal {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #777;
+      transition: color 0.2s;
+    }
+
+    .close-mini-modal:hover {
+      color: #00b4cc;
+    }
+
+    .mini-modal-content {
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    .mini-modal img,
+    .mini-modal video {
+      width: 100%;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .mini-gallery img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .mini-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Preview Specific Styles */
+    .preview-header {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--background-light);
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .preview-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .game-dev-bubbles {
+        gap: 8px;
+      }
+
+      .dev-bubble {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+      }
+
+      .mini-modal {
+        padding: 15px;
+      }
+
+      .mini-modal-title {
+        font-size: 1.1rem;
+      }
+
+      .mini-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+
+      .mini-gallery img {
+        height: 80px;
+      }
+    }
+
 
   </style>
 </head>
@@ -311,8 +485,8 @@
   </div>
 
   <div class="project-grid">
-    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals coding">
-      <video autoplay muted loop playsinline class="project-thumbnail">
+    <!--<a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals coding">
+      <video autoplay muted loop plays inline class="project-thumbnail">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
@@ -320,11 +494,11 @@
         <h3>omnivOres Rule</h3>
         <p>solo developer (Unreal, C++, HLSL)</p>
         <p class="hover-text">Exploring trans-species psychology &
-          the beauty and brutality of nature from the perspective of an android.</p> <!-- Additional text -->
+          the beauty and brutality of nature from the perspective of an android.</p>
         <p2>2024</p2>
       </div>
-    </a>
-    <!--<div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores')">
+    </a>-->
+    <div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores-rule')">
       <video autoplay muted loop playsinline class="project-thumbnail">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
         Your browser does not support the video tag.
@@ -336,7 +510,7 @@
           the beauty and brutality of nature from the perspective of an android.</p>
         <p2>2024</p2>
       </div>
-    </div>-->
+    </div>
 
     <a href="Roboleon-Game.html" class="project-card show" data-tags="game writing coding">
       <img src="images/Roboleon2.webp" alt="Roboleon Project">
@@ -549,6 +723,7 @@
 
     function applyFilter(filter) {
       buttons.forEach(b => b.classList.remove('active'));
+      // Fix: corrected selector syntax
       const matchedBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
       if (matchedBtn) matchedBtn.classList.add('active');
 
@@ -622,122 +797,310 @@
       return params.get(param);
     }
 
-    // ----------------- MODAL FUNCTIONALITY -----------------
+// ----------------- MODAL FUNCTIONALITY -----------------
     const modal = document.getElementById("project-modal");
     const modalContent = document.getElementById("project-modal-content");
 
     const projectDetails = {
-      "modal-omnivores": `
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Omnivores Rule</h2>
-      <p><strong>Tools:</strong> Unreal Engine, C++, HLSL</p>
-      <p>
-        A surreal solarpunk exploration game that merges ecological simulation with poetic storytelling.
-        Players shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.
-      </p>
-      <video controls style="width: 100%; border-radius: 0.5rem; margin-top: 1rem;">
-        <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
-        Your browser does not support the video tag.
-      </video>
-    `,
-      "modal-metawalker":`
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h2>Trailer + Studio Update</h2>
-        <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Timeframe: 5 months</h4>
-        <p>I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a style="color: #00b4cc" href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
-        <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
-        <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      "modal-omnivores-rule": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>omnivOres Rule</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++, HLSL)</h3>
+<p>My most recent solo dev project! </p>
+  <p>
+  Explore mile-high jungles. Echolocate through storms. Embrace local cycles.
+  </p>
+  <p>
+  Players shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.
+  A surreal solarpunk exploration game that merges ecological simulation with poetic storytelling.
+</p>
 
-    `,
-      "modal-prey":`
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Prey and Indigenous Futures</h2>
-  <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
-  <div style="margin: 1.5rem 0; text-align: center;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%202.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%203.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%204.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
-      </div>
-      `,
-      "modal-scavengers":`
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <h2>Scavengers Reign & Authentic Speculative Biology</h2>
-    <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
-    <div style="margin: 1.5rem 0; text-align: center;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/Scavengers-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/2.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+<div style="display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;">
+                <iframe
+                    src="https://www.youtube.com/embed/6yPzknO44BA?si=EBUdpLak_QmhwqVF"
+                        style="width:100%;
+                        max-width: 760px;
+                        aspect-ratio: 16 / 9;"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+   </div>
 
-    </div>
-    `
-    // TODO: Add more modal entries for other project cards like "modal-roboleon", etc.
-  };
+<div class="game-dev-bubbles">
+  <div class="dev-bubble" data-section="gameplay">Gameplay</div>
+  <div class="dev-bubble" data-section="art">Art Direction</div>
+  <div class="dev-bubble" data-section="systems">Systems Design</div>
+  <div class="dev-bubble" data-section="narrative">Narrative</div>
+  <div class="dev-bubble" data-section="tech">Tech Features</div>
+</div>
 
-  // Add click event listeners to all cards that should open modals
-  document.querySelectorAll('.project-card[data-project]').forEach(card => {
-    card.addEventListener('click', function(e) {
-      // Only prevent default if we're not on mobile or if overlay is already shown
-      const isMobile = window.innerWidth <= 768;
-      if (!isMobile || card.classList.contains('show-overlay')) {
-        e.preventDefault();
-        const projectId = this.getAttribute('data-project');
-        openModal(`modal-${projectId}`);
+<div id="mini-modal-gameplay" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Core Gameplay</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('gameplay')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment:</p>
+<ul>
+<li>Players can either rapidly extract energy from plants (damaging them) or wait for symbiotic recharge (slow but sustainable)</li>
+<li>Environmental puzzles require understanding the ecosystem's interconnections</li>
+<li>Movement mechanics include vine swinging, plant climbing, and gliding</li>
+</ul>
+<div class="mini-gallery">
+<img src="/api/placeholder/200/150" alt="Gameplay placeholder">
+<img src="/api/placeholder/200/150" alt="Gameplay placeholder">
+<img src="/api/placeholder/200/150" alt="Gameplay placeholder">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-art" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Art Direction</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('art')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The visual style blends organic shapes with surreal elements:</p>
+<ul>
+<li>Color palette inspired by bioluminescence, with predominant cyan, magenta, and emerald green</li>
+<li>Handpainted textures combined with procedural shaders for the foliage</li>
+<li>Adaptive lighting system that responds to player actions and time of day</li>
+</ul>
+<div class="mini-gallery">
+<img src="/api/placeholder/200/150" alt="Art direction placeholder">
+<img src="/api/placeholder/200/150" alt="Art direction placeholder">
+<img src="/api/placeholder/200/150" alt="Art direction placeholder">
+<img src="/api/placeholder/200/150" alt="Art direction placeholder">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-systems" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Systems Design</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('systems')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The game features several interconnected systems:</p>
+<ul>
+<li>Ecological simulation tracking plant health, growth cycles, and resource distribution</li>
+<li>Weather system affecting plant growth and player movement capabilities</li>
+<li>Progression system based on discovery rather than combat or traditional leveling</li>
+<li>Dynamic ecosystem responses to player actions (extraction vs. symbiosis)</li>
+</ul>
+<div class="mini-gallery">
+<img src="/api/placeholder/200/150" alt="Systems design placeholder">
+<img src="/api/placeholder/200/150" alt="Systems design placeholder">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-narrative" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Narrative Design</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('narrative')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The story unfolds through environmental storytelling and discovered artifacts:</p>
+<ul>
+<li>Players piece together the history of a failed ecological experiment</li>
+<li>Narrative beats revealed through plant memories accessed during symbiotic connections</li>
+<li>Multiple story threads that can be discovered in any order</li>
+<li>Themes exploring balance, sustainable existence, and the consequences of extraction</li>
+</ul>
+<div class="mini-gallery">
+<img src="/api/placeholder/200/150" alt="Narrative placeholder">
+<img src="/api/placeholder/200/150" alt="Narrative placeholder">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-tech" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Technical Features</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('tech')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>Key technical implementations include:</p>
+<ul>
+<li>Custom HLSL shaders for interactive plant movement and bioluminescence</li>
+<li>Procedural animation system for organic movement of foliage</li>
+<li>Advanced particle systems for energy visualization</li>
+<li>Custom C++ components for the ecological simulation backend</li>
+<li>Optimized LOD system allowing for dense vegetation while maintaining performance</li>
+</ul>
+<div class="mini-gallery">
+<img src="/api/placeholder/200/150" alt="Tech feature placeholder">
+<img src="/api/placeholder/200/150" alt="Tech feature placeholder">
+<img src="/api/placeholder/200/150" alt="Tech feature placeholder">
+</div>
+</div>
+</div>
+`,
+      "modal-metawalker": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+  <h2>Trailer + Studio Update</h2>
+  <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Timeframe: 5 months</h4>
+  <p>I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a style="color: #00b4cc" href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
+  <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
+  <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+`,
+      "modal-prey": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Prey and Indigenous Futures</h2>
+<h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
+<div style="margin: 1.5rem 0; text-align: center;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%202.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%203.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%204.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+</div>
+`,
+      "modal-scavengers": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Scavengers Reign & Authentic Speculative Biology</h2>
+<h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
+<div style="margin: 1.5rem 0; text-align: center;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/Scavengers-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/2.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+</div>
+`
+      // TODO: Add more modal entries for other project cards like "modal-roboleon", etc.
+    };
+
+    // Add click event listeners to all cards that should open modals
+    document.querySelectorAll('.project-card[data-project]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Only prevent default if we're not on mobile or if overlay is already shown
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile || card.classList.contains('show-overlay')) {
+          e.preventDefault();
+          const projectId = this.getAttribute('data-project');
+          // Fix: corrected template string syntax
+          openModal(`modal-${projectId}`);
+        }
+      });
+    });
+
+    window.openModal = function(modalId) {
+      const content = projectDetails[modalId];
+      if (content) {
+        modalContent.innerHTML = content;
+        modal.classList.remove("hidden");
+
+        // Fix: Ensure we setup bubble listeners after content is added to DOM
+        if (modalId === 'modal-omnivores-rule') {
+          setTimeout(() => {
+            setupBubbleListeners();
+          }, 100);
+        }
+      }
+
+      // Update the hash
+      const hashId = modalId.replace("modal-", "");
+      // Fix: corrected template string syntax
+      history.pushState(null, "", `#${hashId}`);
+
+      window.scrollTo(0, 0);
+    }
+
+    window.closeModal = function() {
+      modal.classList.add("hidden");
+      modalContent.innerHTML = ""; // Clear content on close
+      history.pushState("", document.title, window.location.pathname + window.location.search); // clear hash
+    }
+
+    // Optional: Close modal on Escape key
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
       }
     });
-  });
 
-  window.openModal = function(modalId) {
-    const content = projectDetails[modalId];
-    if (content) {
-      modalContent.innerHTML = content;
-      modal.classList.remove("hidden");
-    }
+    // Optional: Close modal on backdrop click
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
 
-    // Update the hash
-    const hashId = modalId.replace("modal-", "");
-    history.pushState(null, "", `#${hashId}`);
-
-    window.scrollTo(0, 0);
-  }
-
-  window.closeModal = function() {
-    modal.classList.add("hidden");
-    modalContent.innerHTML = ""; // Clear content on close
-    history.pushState("", document.title, window.location.pathname + window.location.search); // clear hash
-  }
-
-  // Optional: Close modal on Escape key
-  window.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-      closeModal();
+    // Check for hash on page load and open corresponding modal
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = hash.substring(1); // remove the '#'
+      // Fix: corrected template string syntax
+      const modalId = `modal-${targetId}`;
+      if (projectDetails[modalId]) {
+        openModal(modalId);
+      }
     }
   });
 
-  // Optional: Close modal on backdrop click
-  modal.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+  // ---------------------- MINI-MODAL FUNCTIONS ----------------------
 
-  // Check for hash on page load and open corresponding modal
-  const hash = window.location.hash;
-  if (hash) {
-    const targetId = hash.substring(1); // remove the '#'
-    const modalId = `modal-${targetId}`;
-    if (projectDetails[modalId]) {
-      openModal(modalId);
-    }
+  // Function to handle opening mini-modals
+  function openMiniModal(section) {
+    // Close any open mini-modals first
+    document.querySelectorAll('.mini-modal').forEach(modal => {
+      modal.classList.remove('active');
+    });
+
+    // Remove active class from all bubbles
+    document.querySelectorAll('.dev-bubble').forEach(bubble => {
+      bubble.classList.remove('active');
+    });
+
+    // Add active class to clicked bubble
+    // Fix: corrected selector syntax
+    document.querySelector(`.dev-bubble[data-section="${section}"]`).classList.add('active');
+
+    // Show the selected mini modal
+    // Fix: corrected template string syntax
+    document.getElementById(`mini-modal-${section}`).classList.add('active');
+
+    // Scroll to the mini modal with a smooth animation
+    // Fix: corrected template string syntax
+    document.getElementById(`mini-modal-${section}`).scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
+    });
   }
-});
+
+  // Function to close a mini-modal
+  function closeMiniModal(section) {
+    // Fix: corrected template string syntax
+    document.getElementById(`mini-modal-${section}`).classList.remove('active');
+    // Fix: corrected selector syntax
+    document.querySelector(`.dev-bubble[data-section="${section}"]`).classList.remove('active');
+  }
+
+  // Add event listeners to dev bubbles when the modal opens
+  function setupBubbleListeners() {
+    document.querySelectorAll('.dev-bubble').forEach(bubble => {
+      const section = bubble.getAttribute('data-section');
+
+      // Fix: Create a properly named handler function for each bubble
+      bubble.onclick = function() {
+        openMiniModal(section);
+      };
+    });
+  }
+
+  // Expose functions to the global scope so they can be called from HTML
+  window.openMiniModal = openMiniModal;
+  window.closeMiniModal = closeMiniModal;
+  window.setupBubbleListeners = setupBubbleListeners;
 </script>
 </body>
 </html>
