@@ -433,7 +433,18 @@
       </div>
     </a>
 
-    <a href="Metawalker-Game.html" class="project-card show" data-tags="game writing">
+    <div href="#writing-prey" class="project-card show" data-tags="writing" onclick="openModal('modal-prey')">
+      <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png">
+      Your browser does not support the img tag.
+      </img>
+      <div class="project-overlay">
+        <h3>Prey and Indigenous Futures</h3>
+        <p class="hover-text">Blog Post</p> <!-- Additional text -->
+        <p2>July, 2024</p2>
+      </div>
+    </div>
+
+    <div class="project-card show" data-tags="game writing" onclick="openModal('modal-metawalker')">
       <img srcset="images/Metawalker.webp" alt="Metawalker Project">
       <div class="project-overlay">
         <h3>Metawalker</h3>
@@ -441,7 +452,7 @@
         <p class="hover-text">In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</p>
         <p2>2022, 5 months</p2>
       </div>
-    </a>
+    </div>
 
     <a href="fastforwardu.html" class="project-card show" data-tags="visuals">
       <img src="uploads/ConnorWall_Portfolio/Graphic_Design/FastForwardU/FFU_Notion_Graphics/17.png" alt="FFU/Pava Center Project" loading="lazy">
@@ -485,14 +496,14 @@
       </div>
     </a>
 
-    <div class="project-card show" data-tags="writing" onclick="openModal('modal-prey')">
-      <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png">
-        Your browser does not support the video tag.
+    <div class="project-card show" data-tags="writing" onclick="openModal('modal-scavengers')">
+      <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png">
+      Your browser does not support the img tag.
       </img>
       <div class="project-overlay">
-        <h3>Prey</h3>
-        <p class="hover-text">Prey and Indigenous Futures.</p> <!-- Additional text -->
-        <p2>July, 2024</p2>
+        <h3>Scavengers Reign & Authentic Speculative Biology</h3>
+        <p class="hover-text">Blog Post</p> <!-- Additional text -->
+        <p2>August, 2024</p2>
       </div>
     </div>
 
@@ -633,26 +644,12 @@
     `,
     "modal-metawalker":`
       <span class="close-modal" onclick="closeModal()">&times;</span>
-      <p style="font-size: 150%">I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
-                        <ul class="actions special" style="flex-direction: row; flex-wrap: wrap">
-                            <li><a href="https://nordicstonestudio.com" class="button icon solid fa-gamepad">Game Website</a></li>
-                        </ul>
-                </div>
-            </section>
-            <div id="main" class="alt">
-                <!-- Trailer -->
-                <section id="trailer">
-                    <div class="inner">
-                        <header class="major">
-                            <h1>Trailer + Studio Update</h1>
-\t\t\t\t<h2>Timeframe: 5 months</h2>
-                        </header>
-                        <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
+        <h2>Trailer + Studio Update</h2>
+        <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Timeframe: 5 months</h4>
+        <p>I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a style="color: #00b4cc" href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
+        <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
+        <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                        <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                </section>
-            </div>
     `,
     "modal-prey":`
       <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -666,6 +663,22 @@
     <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%202.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
     <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%203.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
     <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%204.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+   <!--<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%205.png" alt="Image 5" style="width: 100%; border-radius: 0.5rem;" />-->
+
+  </div>
+    `,
+    "modal-scavengers":`
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2>Scavengers Reign & Authentic Speculative Biology</h2>
+  <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
+  <div style="margin: 1.5rem 0; text-align: center;">
+    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/Scavengers-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
+    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/2.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
+    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
+    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
    <!--<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%205.png" alt="Image 5" style="width: 100%; border-radius: 0.5rem;" />-->
 
   </div>
@@ -699,6 +712,13 @@
       closeModal();
     }
   });
+
+  window.onload = () => {
+    const hash = window.location.hash.substring(1); // remove the #
+    if (hash && modalContents[`modal-${hash}`]) {
+      openModal(`modal-${hash}`);
+    }
+  };
 </script>
 </body>
 </html>
