@@ -686,6 +686,13 @@
     // Add more modal entries for other project cards like "modal-roboleon", etc.
   };
 
+  document.getElementById("modal-content").innerHTML = content;
+  document.getElementById("modal-overlay").style.display = "flex";
+
+  // Update the hash
+  const hashId = modalId.replace("modal-", "");
+  history.pushState(null, "", `#${hashId}`);
+
   function openModal(modalId) {
     const content = projectDetails[modalId];
     if (content) {
@@ -697,6 +704,8 @@
   function closeModal() {
     modal.classList.add("hidden");
     modalContent.innerHTML = ""; // Clear content on close
+    history.pushState("", document.title, window.location.pathname + window.location.search); // clear hash
+
   }
 
   // Optional: Close modal on Escape key
