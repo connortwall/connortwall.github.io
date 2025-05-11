@@ -394,7 +394,7 @@
 
     .mini-gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 10px;
       margin-top: 15px;
     }
@@ -806,14 +806,9 @@
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>omnivOres Rule</h2>
 <h3><strong>Solo Developer</strong> (Unreal Engine, C++, HLSL)</h3>
-<p>My most recent solo dev project! </p>
-  <p>
-  Explore mile-high jungles. Echolocate through storms. Embrace local cycles.
-  </p>
-  <p>
-  Players shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.
-  A surreal solarpunk exploration game that merges ecological simulation with poetic storytelling.
-</p>
+  <p>Explore mile-high jungles. Echolocate through storms. Embrace local cycles.</p>
+  <p>Players shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.
+  A surreal solarpunk exploration game that merges ecological simulation with poetic storytelling.</p>
 
 <div style="display: flex;
   justify-content: center;
@@ -832,7 +827,7 @@
 <div class="game-dev-bubbles">
   <div class="dev-bubble" data-section="gameplay">Gameplay</div>
   <div class="dev-bubble" data-section="art">Art Direction</div>
-  <div class="dev-bubble" data-section="systems">Systems Design</div>
+  <div class="dev-bubble" data-section="systems">AI & Systems Design</div>
   <div class="dev-bubble" data-section="narrative">Narrative</div>
   <div class="dev-bubble" data-section="tech">Tech Features</div>
 </div>
@@ -880,10 +875,135 @@
 
 <div id="mini-modal-systems" class="mini-modal">
 <div class="mini-modal-header">
-<h3 class="mini-modal-title">Systems Design</h3>
+<h3 class="mini-modal-title">Game AI Programming & Design</h3>
 <span class="close-mini-modal" onclick="closeMiniModal('systems')">&times;</span>
 </div>
 <div class="mini-modal-content">
+<span>Part 1: Researching Common Behavior Patterns</span>
+<p>An overview of the seeking system (seen in mammals) [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7219919/]</p>
+<ol><i>
+                                1. SEEKING--Expectancy. Stimulating the nucleus accumbens and the lateral hypothalamus, areas associated with the SEEKING System, will generate an urge to seek, expect, investigate, and be motivated. Related to Dopamine.
+                                <br>
+                                2. FEAR--Anxiety. When the amygdala and periaqueductal gray (PAG) areas of the brain are stimulated, the “fight, flight, or freeze” reaction will quickly emerge.
+                                <br>
+                                3. RAGE--Anger. When the medial area of the amygdala is stimulated, the animal will propel themself forward to fend off the offensive object, and snarl or bite.
+                                <br>
+                                4. LUST--Sexual excitement. This primary emotion is generated in the amygdala and
+                                hypothalamus.
+                                <br>
+                                5. CARE--Nurturance. When this system is aroused, an animal has strong impulses to tenderly take care of another.
+                                <br>
+                                6. PANIC/GRIEF--Sadness. This primary emotion is often triggered by separation distress.
+                                <br>
+                                7. PLAY--Social joy. Playful and light-hearted movements and laughter characterize this primary emotion.</i>
+                            </ol>
+
+<span>Part 2: Abstracting Behavior into Gameplay</span>
+<p>In abstracting forms of universal gameplay, I determined two categories for action-oriented behavior (accessible to the player and NPCs):</p>
+                        <table>
+      <thead>
+      <tr>
+      <th><h3>Interaction</h3></th>
+      <th><h3>Movement</h3></th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr>
+      <td>
+      <i><li>Take: (consuming / destroying a resource)</li>
+      <li>Give: (creating / sharing a resource)</li>
+      <li>Aggression / Attack / Dominance:</li>
+      <li>Submission / Mate / Care / Collaboration:</li></i>
+      </td>
+      <td>
+      <i><li>Wait: (freeze, resting)</li>
+      <li>Follow: (fight, searching for food, stalking)</li>
+      <li>Leave: (flight, loss of interest, searching for safety)</li></i>
+      </td>
+      </tr>
+      </tr>
+      </tbody>
+      </tfoot>
+      </table>
+    <p>These categories apply to all organisms and can be used in various combinations to achieve more complex behavior on an individual, community, and species level.</p>
+                            <div class="mini-gallery">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            </div>
+
+<br>
+<span>Part 3: Creating Emotional Beats by Combining Behaviors</span>
+<p>Combing behaviors can easily balloon scope.
+                            To remain focused, I looked at the most player-centered interactions that
+                            elicit intrinsic (emotional) rewards. The natural world operates without us
+                            watching. It’s especially important to optimize for what players notice.
+                            These limits also maintain performance and reduce the potential of obscure
+                            systems that “feel unfair”. I believe the most exciting (and manageable)
+                            emergent behavior occurs through interaction.
+                            So I identified the focus of this gameplay in this game as the
+                            intersection of independent and social behaviors.</p>
+                    <div class="table-wrapper">
+                            <table>
+
+      <thead>
+      <tr>
+      <th><h3 stlye="bold">Type of Behavior</h3></th>
+      <th><h3>Effect on Donor</h3></th>
+      <th><h3>Effect on Receiver</h3></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><h3>Egoistic</h3></td>
+      <td><ul><h4>Neutral / Increases fitness</h4>Entitlement, manipulative</ul></td>
+      <td><ul><h4>Decreases fitness</h4>Unhappy, angry, bitter</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Cooperative</h3></td>
+      <td><ul><h4>Neutral / Increases fitness</h4> Gratitude, connection</ul></td>
+      <td><ul><h4>Neutral / Increases fitness</h4>Connection</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Altruistic</h3></td>
+      <td><ul><h4>Decreases fitness</h4>Connection, nurturing</ul></td>
+      <td><ul><h4>Neutral / Increases fitness</h4>Gratitude, manipulative</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Revengeful</h3></td>
+      <td><ul><h4>Decreases fitness.</h4>Unhappy, angry</ul></td>
+      <td><ul><h4>Decreases fitness.</h4>Unhappy, angry</ul></td>
+      </tr>
+      </tbody>
+      </tfoot>
+      </table>
+      </div>
+
+      <p>This table provides a clear action-reaction framework for player and NPC behavior while maintaining flexibility (including relationships such as
+      mutualism, parasitism, and predation).</p>
+      </div>
+
+  <span>Part 4: Player Influence</span>
+   <p>To create a similar simple behavior structure for the player I reduced the interactions to 3 forms:</p>
+   <i>
+                        <li>Aggressive Shout</li>
+                        <li>Submissive Whisper</li>
+                        <li>Neutral Ping</li>
+                        </li></i>
+<div class="mini-gallery">
+
+                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/goo-pt1.webm"
+                                    type="video/mp4"/>
+                        </video>
+                        </div>
+<br>
+<span>Part 5: Refinements</span>
+<p>Evolution of species through children with randomized traits
+Community “memory” (some societal behavior is learned, some is genetic) Some species inherit automatic responses instinctually while others inherit it by learning.
+                    </p>
 <p>The game features several interconnected systems:</p>
 <ul>
 <li>Ecological simulation tracking plant health, growth cycles, and resource distribution</li>
@@ -892,8 +1012,6 @@
 <li>Dynamic ecosystem responses to player actions (extraction vs. symbiosis)</li>
 </ul>
 <div class="mini-gallery">
-<img src="/api/placeholder/200/150" alt="Systems design placeholder">
-<img src="/api/placeholder/200/150" alt="Systems design placeholder">
 </div>
 </div>
 </div>
