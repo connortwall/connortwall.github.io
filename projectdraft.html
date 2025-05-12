@@ -130,7 +130,7 @@
       font-size: 1rem;
     }
 
-    .project-overlay p2 {
+    .project-overlay h5 {
       font-family: Rampung , sans-serif;
       margin-top: 0.5rem;
       font-size: 1rem;
@@ -369,6 +369,13 @@
       margin: 0;
     }
 
+    .mini-modal h5 {
+      font-family: Rampung , sans-serif;
+      font-size: 2rem;
+      text-align: center;
+      color: #7fbddc;
+    }
+
     .close-mini-modal {
       font-size: 1.5rem;
       cursor: pointer;
@@ -387,34 +394,115 @@
 
     .mini-modal img,
     .mini-modal video {
-      width: 100%;
       border-radius: 8px;
       margin: 10px 0;
+      max-width: 400px;
+      object-fit: cover;
+      display: flex;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+       /* Larger width for a single image */
+      height: 300px; /* Taller height for a single image */
     }
 
     .mini-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 10px;
-      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Aligns items at the top */
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px auto;
+      max-width: 90%;
     }
 
-    .mini-gallery img {
-      width: 100%;
-      height: 100px;
+    .mini-gallery img,
+    .mini-gallery video {
+      max-width: 200px;
       object-fit: cover;
       border-radius: 6px;
       transition: transform 0.3s ease;
       cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: 200px;
+      height: 150px;
+      display: block; /* Ensures image sits properly above caption */
+      margin-bottom: 8px;
     }
 
     .mini-gallery img:hover {
       transform: scale(1.05);
     }
 
+
+
+    /* For galleries with more than 4 images, keep the default size */
+    /* Handle different numbers of images responsively */
+    /* For galleries with 1 image */
+    .mini-gallery:has(video:only-child) video {
+      width: 400px; /* Larger width for a single image */
+      height: 300px; /* Taller height for a single image */
+    }
+
+    /* For galleries with 2 images */
+    .mini-gallery:has(video:first-child:nth-last-child(2)) video,
+    .mini-gallery:has(video:first-child:nth-last-child(2) ~ video) {
+      width: 300px;
+      height: 225px;
+    }
+
+    /* For galleries with 3 images */
+    .mini-gallery:has(video:first-child:nth-last-child(3)) video,
+    .mini-gallery:has(video:first-child:nth-last-child(3) ~ video) {
+      width: 250px;
+      height: 188px;
+    }
+
+    /* Media queries for better responsiveness */
+    @media (max-width: 768px) {
+      .mini-gallery img {
+        width: 160px;
+        height: 120px;
+      }
+
+      .mini-gallery:has(img:only-child) video {
+        width: 100%;
+        height: 250px;
+      }
+
+      .mini-gallery:has(img:first-child:nth-last-child(2)) video,
+      .mini-gallery:has(img:first-child:nth-last-child(2) ~ video) {
+        width: 45%;
+        height: 180px;
+      }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    .caption {
+      text-align: center;
+      font-size: .8rem;
+      color: #7fbddc; /* Changed from #333 to match your color scheme */
+      margin-top: 5px;
+      max-width: 400px; /* Ensures caption doesn't extend beyond image */
+      word-wrap: break-word; /* Ensures long words wrap */
+      overflow-wrap: break-word; /* Additional support for word wrapping */
+      padding: 0 5px; /* Small padding on sides to prevent text touching edges */
+      box-sizing: border-box; /* Includes padding in width calculation */
+      display: block; /* Ensures the caption takes full width */
+      line-height: 1;
+
+    }
+    .image-container {
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 15px;
+      justify-content: center;
+      text-align: center;
+      width: auto;
     }
 
     /* Preview Specific Styles */
@@ -465,6 +553,14 @@
       }
     }
 
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(20, 23, 40, 0.24);
+    }
+
 
   </style>
 </head>
@@ -508,7 +604,7 @@
         <p>solo developer (Unreal, C++, HLSL)</p>
         <p class="hover-text">Exploring trans-species psychology &
           the beauty and brutality of nature from the perspective of an android.</p>
-        <p2>2024</p2>
+        <h5>2024</h5>
       </div>
     </div>
 
@@ -519,7 +615,7 @@
         <p>Game Programmer, Narrative Designer (Unity, C#)</p>
         <p class="hover-text">In this Master's program project my goals were to setup a narrative dilemma &
           integrate save-load and UX systems into polished gameplay.</p> <!-- Additional text -->
-        <p2>2024, 6 weeks</p2>
+        <h5>2024, 6 weeks</h5>
       </div>
     </a>
 
@@ -534,7 +630,7 @@
         - vibe coding is real (and can actually yield functional results)
         - sometimes being present and persistent is enough (despite finishing with a wall of half-finished code)
         - what might a game look like where the landscape itself is a character?-->
-        <p2>2025, 6 hours</p2>
+        <h5>2025, 6 hours</h5>
       </div>
     </a>
 
@@ -545,7 +641,7 @@
         <p>Game Programmer (Unity, C#)</p>
         <p class="hover-text">I programmed <b>rigid body movement</b>, <b>procedural content</b>, <b>UI</b>, and <b>localization</b>
           systems for an order delivery game.</p>
-        <p2>2022, 1 week</p2>
+        <h5>2022, 1 week</h5>
       </div>
     </a>
 
@@ -555,7 +651,7 @@
         <h3>King of Dareux</h3>
         <p>Game Programmer (Unreal, C++)</p>
         <p class="hover-text">I worked as contract <b>Gameplay</b> and <b>UI Programmer</b> to fix bugs and implements features on an AA action-adventure RPG based on 4040 post-apocalyptic Earth.</p>
-        <p2>2023, 3 months</p2>
+        <h5>2023, 3 months</h5>
       </div>
     </a>
 
@@ -566,7 +662,7 @@
         <p>Game Programmer (Unity, C#)</p>
         <p class="hover-text">I programmed <b>Enemy AI</b>, <b>Movement</b>, <b>Menu</b> systems in a
           3rd-person 2.5D roguelike mini-game that uses simulated puppetry movement on a controller.</p>
-        <p2>2022, 1 week</p2>
+        <h5>2022, 1 week</h5>
       </div>
     </a>
 
@@ -576,7 +672,7 @@
         <h3>Quipu</h3>
         <p>Solo Developer (Unreal, C++, Unity, C#).</p>
         <p class="hover-text">In a personal project I adapted my screenplay into Unity & Unreal games to gain development fluency between engines.</p>
-        <p2>2023</p2>
+        <h5>2023</h5>
       </div>
     </a>
 
@@ -589,7 +685,7 @@
         <h3>Foliage Growth</h3>
         <p>Motion Designer (Unreal, C++).</p>
         <p class="hover-text">In a personal project I created a growth simulation and animated it in sequencer.</p>
-        <p2>2024</p2>
+        <h5>2024</h5>
       </div>
     </a>
 
@@ -602,7 +698,7 @@
         <h3>Flying Character</h3>
         <p>VJ, Motion Designer (Unreal, HLSL).</p>
         <p class="hover-text">In a personal project I created a flying character and animated it sequencer for live control.</p>
-        <p2>2024</p2>
+        <h5>2024</h5>
       </div>
     </a>
 
@@ -611,7 +707,7 @@
       <div class="project-overlay">
         <h3>Prey and Indigenous Futures</h3>
         <p class="hover-text">Blog Post</p>
-        <p2>July, 2024</p2>
+        <h5>July, 2024</h5>
       </div>
     </a>
 
@@ -621,7 +717,7 @@
         <h3>Metawalker</h3>
         <p>Narrative Designer, Writer (Mobile)</p>
         <p class="hover-text">In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</p>
-        <p2>2022, 5 months</p2>
+        <h5>2022, 5 months</h5>
       </div>
     </a>
 
@@ -633,7 +729,7 @@
         <p class="hover-text">I designed material for
           Johns Hopkins Curriculum
           while working as an intern; educating student entrepreneurs about business.</p>
-        <p2>2022, 3 weeks</p2>
+        <h5>2022, 3 weeks</h5>
       </div>
     </a>
 
@@ -643,7 +739,7 @@
         <h3>Wild Ones Card Game</h3>
         <p>Game Designer, Visual Designer</p>
         <p class="hover-text">I designed a fast-paced and strategic print-and-play card game about adventure with a team @Maryland Institute College of Art.</p>
-        <p2>2021, 3 weeks</p2>
+        <h5>2021, 3 weeks</h5>
       </div>
     </a>
 
@@ -653,7 +749,7 @@
         <h3>Hermaeus Mora</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">I illustrated an eldritch deity from the Elder Scrolls franchise Hermaeus Mora in Adobe Illustrator for fun :).</p>
-        <p2>2022, 2hr</p2>
+        <h5>2022, 2hr</h5>
       </div>
     </a>
 
@@ -663,7 +759,7 @@
         <h3>Sunset Sticker</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">I illustrated a sunset sticker in Adobe Illustrator for fun :).</p>
-        <p2>2021, 30min</p2>
+        <h5>2021, 30min</h5>
       </div>
     </a>
 
@@ -674,7 +770,7 @@
       <div class="project-overlay">
         <h3>Scavengers Reign & Authentic Speculative Biology</h3>
         <p class="hover-text">Blog Post</p> <!-- Additional text -->
-        <p2>August, 2024</p2>
+        <h5>August, 2024</h5>
       </div>
     </div>
 
@@ -684,7 +780,7 @@
         <h3>Escuela Amigos Mascot</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">I designed the logo "Jaguare" that is still used in official merchandise & marketing for the "Escuela Amigos School".</p>
-        <p2>2013, 1 week</p2>
+        <h5>2013, 1 week</h5>
       </div>
     </a>
 
@@ -694,7 +790,7 @@
         <h3>INTD Conference</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">While a medical research intern at Boston Children's Hospital and Harvard Medical School, I designed materials for the <b>2019 International Neural Tube Defect Conference</b> using <b></b>Illustrator</b> and <b>InDesign</b>.</p>
-        <p2>2019, 1 week</p2>
+        <h5>2019, 1 week</h5>
       </div>
     </a>
   </div>
@@ -825,11 +921,11 @@
    </div>
 
 <div class="game-dev-bubbles">
-  <div class="dev-bubble" data-section="gameplay">Gameplay</div>
-  <div class="dev-bubble" data-section="art">Art Direction</div>
+  <div class="dev-bubble" data-section="gameplay">Gameplay Design</div>
+  <div class="dev-bubble" data-section="art">Tech Art</div>
   <div class="dev-bubble" data-section="systems">AI & Systems Design</div>
-  <div class="dev-bubble" data-section="narrative">Narrative</div>
-  <div class="dev-bubble" data-section="tech">Tech Features</div>
+  <!--<div class="dev-bubble" data-section="narrative">Narrative</div>-->
+  <!--<div class="dev-bubble" data-section="tech">Graphics Programming</div>-->
 </div>
 
 <div id="mini-modal-gameplay" class="mini-modal">
@@ -838,37 +934,83 @@
 <span class="close-mini-modal" onclick="closeMiniModal('gameplay')">&times;</span>
 </div>
 <div class="mini-modal-content">
-<p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment:</p>
-<ul>
-<li>Players can either rapidly extract energy from plants (damaging them) or wait for symbiotic recharge (slow but sustainable)</li>
-<li>Environmental puzzles require understanding the ecosystem's interconnections</li>
-<li>Movement mechanics include vine swinging, plant climbing, and gliding</li>
-</ul>
+<p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment.
+The following mechanics are available to the player and slowly learned through environmental puzzles</p>
+   <table>
+   <tbody>
+       <thead>
+      <tr>
+      <th><h3 stlye="bold">Player Action</h3></th>
+      <th><h3>Emotion</h3></th>
+      <th><h3>Game Effects</h3></th>
+      </tr>
+      </thead>
+   <tr>
+      <td><ul><h3>Shout</h3></ul></td>
+      <td><ul><h4>Aggressive</h4></ul></td>
+      <td><ul><h4>Intimidate predators</h4>Destroy obstacles</ul></td>
+      </tr>
+      <tr>
+      <td><ul><h3>Whisper</h3></ul></td>
+      <td><ul><h4>Submissive</h4></ul></td>
+      <td><ul><h4>Slow down</h4>Connect with wildlife</ul></td>
+      </tr>
+      <tr>
+      <td><ul><h3>Ping</h3></ul></td>
+      <td><ul><h4>Neutral</h4></ul></td>
+      <td><ul><h4>Echolocate</h4>Query Relationship Status</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Power Off</h3></td>
+      <td><ul><h4>Neutral</h4></ul></td>
+      <td><ul><h4>Hide from predators</h4>Shelter during storms</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Flight</h3></td>
+      <td><ul><h4>Powerful</h4></ul></td>
+      <td><ul><h4>Navigate vertically</h4>follow airborn wildlife</ul></td>
+      </tr>
+      </tbody>
+   </table>
 <div class="mini-gallery">
-<img src="/api/placeholder/200/150" alt="Gameplay placeholder">
-<img src="/api/placeholder/200/150" alt="Gameplay placeholder">
-<img src="/api/placeholder/200/150" alt="Gameplay placeholder">
 </div>
 </div>
 </div>
 
 <div id="mini-modal-art" class="mini-modal">
 <div class="mini-modal-header">
-<h3 class="mini-modal-title">Art Direction</h3>
+<h3 class="mini-modal-title">Tech Art Direction</h3>
 <span class="close-mini-modal" onclick="closeMiniModal('art')">&times;</span>
 </div>
 <div class="mini-modal-content">
-<p>The visual style blends organic shapes with surreal elements:</p>
+<p>The art direction of this project combines stylized volumetric shaders, Niagara particle systems, weather + time of day systems, and foliage interactions. The goal for the feel of this project is "beauty and brutality". Inspired by Moebius and Miyazaki, the volumetric shader combines a colorful physical based cell shader, textured shadows, black gritty outlines (day), and white outlines (night)</p>
+<div class="mini-gallery">
+
+</div>
 <ul>
-<li>Color palette inspired by bioluminescence, with predominant cyan, magenta, and emerald green</li>
-<li>Handpainted textures combined with procedural shaders for the foliage</li>
-<li>Adaptive lighting system that responds to player actions and time of day</li>
 </ul>
 <div class="mini-gallery">
-<img src="/api/placeholder/200/150" alt="Art direction placeholder">
-<img src="/api/placeholder/200/150" alt="Art direction placeholder">
-<img src="/api/placeholder/200/150" alt="Art direction placeholder">
-<img src="/api/placeholder/200/150" alt="Art direction placeholder">
+<div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FallingFog.webm"
+                                    type="video/mp4"/>
+                        </video>
+    <div class="caption">To capture beauty, I added rich, saturated color.</div>
+    </div>
+<div class="image-container">
+                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaIntro.webm"
+                                    type="video/mp4"/>
+                        </video>
+  <div class="caption">To capture brutality, I added outlines and noise (black spots) to make a gritty feel.</div>
+</div>
+<div class="image-container">
+                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/PlayerCloseUp.webm"
+                                    type="video/mp4"/>
+                        </video>
+  <div class="caption">To make it feel alien, I added yellow highlights and purple shadows (avoiding the colors green and blue as much as possible).</div>
+</div>
 </div>
 </div>
 </div>
@@ -879,7 +1021,7 @@
 <span class="close-mini-modal" onclick="closeMiniModal('systems')">&times;</span>
 </div>
 <div class="mini-modal-content">
-<span>Part 1: Researching Common Behavior Patterns</span>
+<h5>Part 1: Researching Common Behavior Patterns</h5>
 <p>An overview of the seeking system (seen in mammals) [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7219919/]</p>
 <ol><i>
                                 1. SEEKING--Expectancy. Stimulating the nucleus accumbens and the lateral hypothalamus, areas associated with the SEEKING System, will generate an urge to seek, expect, investigate, and be motivated. Related to Dopamine.
@@ -898,7 +1040,7 @@
                                 7. PLAY--Social joy. Playful and light-hearted movements and laughter characterize this primary emotion.</i>
                             </ol>
 
-<span>Part 2: Abstracting Behavior into Gameplay</span>
+<h5>Part 2: Abstracting Behavior into Gameplay</h5>
 <p>In abstracting forms of universal gameplay, I determined two categories for action-oriented behavior (accessible to the player and NPCs):</p>
                         <table>
       <thead>
@@ -932,19 +1074,23 @@
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
                                         type="video/mp4"/>
                             </video>
+                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
+                                        type="video/mp4"/>
+                            </video>
                             </div>
 
 <br>
-<span>Part 3: Creating Emotional Beats by Combining Behaviors</span>
-<p>Combing behaviors can easily balloon scope.
-                            To remain focused, I looked at the most player-centered interactions that
-                            elicit intrinsic (emotional) rewards. The natural world operates without us
+<h5>Part 3: Creating Emotional Beats by Combining Behaviors</h5>
+<p>Combining behaviors can easily balloon scope.
+                            I focused on the most player-centered interactions that
+                            suggest intrinsic (emotional) rewards for the player. The natural world operates without us
                             watching. It’s especially important to optimize for what players notice.
-                            These limits also maintain performance and reduce the potential of obscure
+                            These limits maintain performance and reduce the potential of obscure
                             systems that “feel unfair”. I believe the most exciting (and manageable)
                             emergent behavior occurs through interaction.
-                            So I identified the focus of this gameplay in this game as the
-                            intersection of independent and social behaviors.</p>
+                            As such, I identified the focus of this gameplay as the
+                            intersection of <i>independent</i> and <i>social behaviors</i>.</p>
                     <div class="table-wrapper">
                             <table>
 
@@ -985,13 +1131,14 @@
       mutualism, parasitism, and predation).</p>
       </div>
 
-  <span>Part 4: Player Influence</span>
+  <h5>Part 4: Player Influence</h5>
    <p>To create a similar simple behavior structure for the player I reduced the interactions to 3 forms:</p>
-   <i>
-                        <li>Aggressive Shout</li>
-                        <li>Submissive Whisper</li>
-                        <li>Neutral Ping</li>
-                        </li></i>
+   <table>
+    <td><ul><h3>Aggressive</h3>Shout</ul></td>
+    <td><ul><h3>Submissive</h3>Whisper</ul></td>
+    <td><ul><h3>Neutral</h3>Ping</ul></td>
+
+   </table>
 <div class="mini-gallery">
 
                         <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
@@ -1000,17 +1147,11 @@
                         </video>
                         </div>
 <br>
-<span>Part 5: Refinements</span>
+<h5>Part 5: Refinements</h5>
 <p>Evolution of species through children with randomized traits
 Community “memory” (some societal behavior is learned, some is genetic) Some species inherit automatic responses instinctually while others inherit it by learning.
                     </p>
-<p>The game features several interconnected systems:</p>
-<ul>
-<li>Ecological simulation tracking plant health, growth cycles, and resource distribution</li>
-<li>Weather system affecting plant growth and player movement capabilities</li>
-<li>Progression system based on discovery rather than combat or traditional leveling</li>
-<li>Dynamic ecosystem responses to player actions (extraction vs. symbiosis)</li>
-</ul>
+
 <div class="mini-gallery">
 </div>
 </div>
@@ -1022,13 +1163,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <span class="close-mini-modal" onclick="closeMiniModal('narrative')">&times;</span>
 </div>
 <div class="mini-modal-content">
-<p>The story unfolds through environmental storytelling and discovered artifacts:</p>
-<ul>
-<li>Players piece together the history of a failed ecological experiment</li>
-<li>Narrative beats revealed through plant memories accessed during symbiotic connections</li>
-<li>Multiple story threads that can be discovered in any order</li>
-<li>Themes exploring balance, sustainable existence, and the consequences of extraction</li>
-</ul>
+
 <div class="mini-gallery">
 <img src="/api/placeholder/200/150" alt="Narrative placeholder">
 <img src="/api/placeholder/200/150" alt="Narrative placeholder">
@@ -1042,6 +1177,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <span class="close-mini-modal" onclick="closeMiniModal('tech')">&times;</span>
 </div>
 <div class="mini-modal-content">
+<p>Procedural caves, </p>
 <p>Key technical implementations include:</p>
 <ul>
 <li>Custom HLSL shaders for interactive plant movement and bioluminescence</li>
@@ -1051,9 +1187,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <li>Optimized LOD system allowing for dense vegetation while maintaining performance</li>
 </ul>
 <div class="mini-gallery">
-<img src="/api/placeholder/200/150" alt="Tech feature placeholder">
-<img src="/api/placeholder/200/150" alt="Tech feature placeholder">
-<img src="/api/placeholder/200/150" alt="Tech feature placeholder">
+
 </div>
 </div>
 </div>
