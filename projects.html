@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
-  <meta content="programming, portfolio, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, gamedev, game design"
-        name="programming, portfolio, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, gamedev, game design">
-
+  <meta content="programming, portfolio, guyana, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, ai, indie, omnivores rule, scavengers reign, journey, outer wilds, gamedev, game design"
+        name="programming, portfolio, guyana, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, ai, indie, omnivores rule, scavengers reign, journey, outer wilds, gamedev, game design">
   <title>Projects</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -131,7 +130,7 @@
       font-size: 1rem;
     }
 
-    .project-overlay p2 {
+    .project-overlay h5 {
       font-family: Rampung , sans-serif;
       margin-top: 0.5rem;
       font-size: 1rem;
@@ -248,6 +247,18 @@
       z-index: 9999;
     }
 
+    .project-modal h3 {
+      margin-top: -0.5rem;
+      text-align: center;
+      color: #7fbddc;
+      font-family: 'Santanelli';
+    }
+
+    .project-modal p {
+      font-size: larger;
+      font-family: 'nexa-bold'
+    }
+
     .project-modal.hidden {
       display: none;
     }
@@ -292,6 +303,264 @@
     }
 
 
+    /* Omnivores Rule Bubble Navigation Styles */
+    .game-dev-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .dev-bubble {
+      background: linear-gradient(145deg, #2a2a2a, #3d3d3d);
+      color: #00b4cc;
+      border: 2px solid #00b4cc;
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dev-bubble:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      background: #00b4cc;
+      color: #121212;
+    }
+
+    .dev-bubble.active {
+      background: #00b4cc;
+      color: #121212;
+      transform: scale(1.05);
+    }
+
+    .mini-modal {
+      display: none;
+      background: rgba(18, 18, 18, 0.95);
+      border: 1px solid #00b4cc;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .mini-modal.active {
+      display: block;
+    }
+
+    .mini-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .mini-modal-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #00b4cc;
+      margin: 0;
+    }
+
+    .mini-modal h5 {
+      font-family: Rampung , sans-serif;
+      font-size: 2rem;
+      text-align: center;
+      color: #7fbddc;
+    }
+
+    .close-mini-modal {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #777;
+      transition: color 0.2s;
+    }
+
+    .close-mini-modal:hover {
+      color: #00b4cc;
+    }
+
+    .mini-modal-content {
+      color: #eee;
+      line-height: 1.6;
+    }
+
+    .mini-modal img,
+    .mini-modal video {
+      border-radius: 8px;
+      margin: 10px 0;
+      max-width: 400px;
+      object-fit: cover;
+      display: flex;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      /* Larger width for a single image */
+      height: 300px; /* Taller height for a single image */
+    }
+
+    .mini-gallery {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Aligns items at the top */
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px auto;
+      max-width: 90%;
+    }
+
+    .mini-gallery img,
+    .mini-gallery video {
+      max-width: 200px;
+      object-fit: cover;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      width: 200px;
+      height: 150px;
+      display: block; /* Ensures image sits properly above caption */
+      margin-bottom: 8px;
+    }
+
+    .mini-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+
+
+    /* For galleries with more than 4 images, keep the default size */
+    /* Handle different numbers of images responsively */
+    /* For galleries with 1 image */
+    .mini-gallery:has(video:only-child) video {
+      width: 400px; /* Larger width for a single image */
+      height: 300px; /* Taller height for a single image */
+    }
+
+    /* For galleries with 2 images */
+    .mini-gallery:has(video:first-child:nth-last-child(2)) video,
+    .mini-gallery:has(video:first-child:nth-last-child(2) ~ video) {
+      width: 300px;
+      height: 225px;
+    }
+
+    /* For galleries with 3 images */
+    .mini-gallery:has(video:first-child:nth-last-child(3)) video,
+    .mini-gallery:has(video:first-child:nth-last-child(3) ~ video) {
+      width: 250px;
+      height: 188px;
+    }
+
+    /* Media queries for better responsiveness */
+    @media (max-width: 768px) {
+      .mini-gallery img {
+        width: 160px;
+        height: 120px;
+      }
+
+      .mini-gallery:has(img:only-child) video {
+        width: 100%;
+        height: 250px;
+      }
+
+      .mini-gallery:has(img:first-child:nth-last-child(2)) video,
+      .mini-gallery:has(img:first-child:nth-last-child(2) ~ video) {
+        width: 45%;
+        height: 180px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .caption {
+      text-align: center;
+      font-size: .8rem;
+      color: #7fbddc; /* Changed from #333 to match your color scheme */
+      margin-top: 5px;
+      max-width: 200px; /* Ensures caption doesn't extend beyond image */
+      word-wrap: break-word; /* Ensures long words wrap */
+      overflow-wrap: break-word; /* Additional support for word wrapping */
+      padding: 0 5px; /* Small padding on sides to prevent text touching edges */
+      box-sizing: border-box; /* Includes padding in width calculation */
+      display: block; /* Ensures the caption takes full width */
+      line-height: 1;
+
+    }
+    .image-container {
+      display: inline-block;
+      vertical-align: top;
+      margin-bottom: 15px;
+      justify-content: center;
+      text-align: center;
+      width: auto;
+    }
+
+    /* Preview Specific Styles */
+    .preview-header {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--background-light);
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .preview-actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .game-dev-bubbles {
+        gap: 8px;
+      }
+
+      .dev-bubble {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+      }
+
+      .mini-modal {
+        padding: 15px;
+      }
+
+      .mini-modal-title {
+        font-size: 1.1rem;
+      }
+
+      .mini-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      }
+
+      .mini-gallery img {
+        height: 80px;
+      }
+    }
+
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(20, 23, 40, 0.24);
+    }
+
 
   </style>
 </head>
@@ -312,21 +581,8 @@
   </div>
 
   <div class="project-grid">
-    <a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals coding">
-      <video autoplay muted loop playsinline class="project-thumbnail">
-        <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
-        Your browser does not support the video tag.
-      </video>
-      <div class="project-overlay">
-        <h3>omnivOres Rule</h3>
-        <p>solo developer (Unreal, C++, HLSL)</p>
-        <p class="hover-text">Exploring trans-species psychology &
-          the beauty and brutality of nature from the perspective of an android.</p> <!-- Additional text -->
-        <p2>2024</p2>
-      </div>
-    </a>
-    <!--<div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores')">
-      <video autoplay muted loop playsinline class="project-thumbnail">
+    <!--<a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals coding">
+      <video autoplay muted loop plays inline class="project-thumbnail">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
@@ -337,7 +593,20 @@
           the beauty and brutality of nature from the perspective of an android.</p>
         <p2>2024</p2>
       </div>
-    </div>-->
+    </a>-->
+    <div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores-rule')">
+      <video autoplay muted loop playsinline class="project-thumbnail">
+        <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+      <div class="project-overlay">
+        <h3>omnivOres Rule</h3>
+        <p>solo developer (Unreal, C++, HLSL)</p>
+        <p class="hover-text">Exploring trans-species psychology &
+          the beauty and brutality of nature from the perspective of an android.</p>
+        <h5>2024</h5>
+      </div>
+    </div>
 
     <a href="Roboleon-Game.html" class="project-card show" data-tags="game writing coding">
       <img src="images/Roboleon2.webp" alt="Roboleon Project">
@@ -346,7 +615,7 @@
         <p>Game Programmer, Narrative Designer (Unity, C#)</p>
         <p class="hover-text">In this Master's program project my goals were to setup a narrative dilemma &
           integrate save-load and UX systems into polished gameplay.</p> <!-- Additional text -->
-        <p2>2024, 6 weeks</p2>
+        <h5>2024, 6 weeks</h5>
       </div>
     </a>
 
@@ -361,7 +630,7 @@
         - vibe coding is real (and can actually yield functional results)
         - sometimes being present and persistent is enough (despite finishing with a wall of half-finished code)
         - what might a game look like where the landscape itself is a character?-->
-        <p2>2025, 6 hours</p2>
+        <h5>2025, 6 hours</h5>
       </div>
     </a>
 
@@ -372,7 +641,7 @@
         <p>Game Programmer (Unity, C#)</p>
         <p class="hover-text">I programmed <b>rigid body movement</b>, <b>procedural content</b>, <b>UI</b>, and <b>localization</b>
           systems for an order delivery game.</p>
-        <p2>2022, 1 week</p2>
+        <h5>2022, 1 week</h5>
       </div>
     </a>
 
@@ -382,7 +651,7 @@
         <h3>King of Dareux</h3>
         <p>Game Programmer (Unreal, C++)</p>
         <p class="hover-text">I worked as contract <b>Gameplay</b> and <b>UI Programmer</b> to fix bugs and implements features on an AA action-adventure RPG based on 4040 post-apocalyptic Earth.</p>
-        <p2>2023, 3 months</p2>
+        <h5>2023, 3 months</h5>
       </div>
     </a>
 
@@ -393,7 +662,7 @@
         <p>Game Programmer (Unity, C#)</p>
         <p class="hover-text">I programmed <b>Enemy AI</b>, <b>Movement</b>, <b>Menu</b> systems in a
           3rd-person 2.5D roguelike mini-game that uses simulated puppetry movement on a controller.</p>
-        <p2>2022, 1 week</p2>
+        <h5>2022, 1 week</h5>
       </div>
     </a>
 
@@ -403,7 +672,7 @@
         <h3>Quipu</h3>
         <p>Solo Developer (Unreal, C++, Unity, C#).</p>
         <p class="hover-text">In a personal project I adapted my screenplay into Unity & Unreal games to gain development fluency between engines.</p>
-        <p2>2023</p2>
+        <h5>2023</h5>
       </div>
     </a>
 
@@ -416,7 +685,7 @@
         <h3>Foliage Growth</h3>
         <p>Motion Designer (Unreal, C++).</p>
         <p class="hover-text">In a personal project I created a growth simulation and animated it in sequencer.</p>
-        <p2>2024</p2>
+        <h5>2024</h5>
       </div>
     </a>
 
@@ -429,30 +698,28 @@
         <h3>Flying Character</h3>
         <p>VJ, Motion Designer (Unreal, HLSL).</p>
         <p class="hover-text">In a personal project I created a flying character and animated it sequencer for live control.</p>
-        <p2>2024</p2>
+        <h5>2024</h5>
       </div>
     </a>
 
-    <div class="project-card show" data-tags="writing" onclick="openModal('modal-prey')">
-      <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png">
-      Your browser does not support the img tag.
-      </img>
+    <a href="#prey" class="project-card show" data-tags="writing" data-project="prey">
+      <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Prey Blog">
       <div class="project-overlay">
         <h3>Prey and Indigenous Futures</h3>
-        <p class="hover-text">Blog Post</p> <!-- Additional text -->
-        <p2>July, 2024</p2>
+        <p class="hover-text">Blog Post</p>
+        <h5>July, 2024</h5>
       </div>
-    </div>
+    </a>
 
-    <div class="project-card show" data-tags="game writing" onclick="openModal('modal-metawalker')">
+    <a href="#metawalker" class="project-card show" data-tags="game writing" onclick="openModal('modal-metawalker')">
       <img srcset="images/Metawalker.webp" alt="Metawalker Project">
-      <div class="project-overlay">
+      <div class="project-overlay" onclick="closeModal()">
         <h3>Metawalker</h3>
         <p>Narrative Designer, Writer (Mobile)</p>
         <p class="hover-text">In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</p>
-        <p2>2022, 5 months</p2>
+        <h5>2022, 5 months</h5>
       </div>
-    </div>
+    </a>
 
     <a href="fastforwardu.html" class="project-card show" data-tags="visuals">
       <img src="uploads/ConnorWall_Portfolio/Graphic_Design/FastForwardU/FFU_Notion_Graphics/17.png" alt="FFU/Pava Center Project" loading="lazy">
@@ -462,7 +729,7 @@
         <p class="hover-text">I designed material for
           Johns Hopkins Curriculum
           while working as an intern; educating student entrepreneurs about business.</p>
-        <p2>2022, 3 weeks</p2>
+        <h5>2022, 3 weeks</h5>
       </div>
     </a>
 
@@ -472,7 +739,7 @@
         <h3>Wild Ones Card Game</h3>
         <p>Game Designer, Visual Designer</p>
         <p class="hover-text">I designed a fast-paced and strategic print-and-play card game about adventure with a team @Maryland Institute College of Art.</p>
-        <p2>2021, 3 weeks</p2>
+        <h5>2021, 3 weeks</h5>
       </div>
     </a>
 
@@ -482,7 +749,7 @@
         <h3>Hermaeus Mora</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">I illustrated an eldritch deity from the Elder Scrolls franchise Hermaeus Mora in Adobe Illustrator for fun :).</p>
-        <p2>2022, 2hr</p2>
+        <h5>2022, 2hr</h5>
       </div>
     </a>
 
@@ -492,7 +759,7 @@
         <h3>Sunset Sticker</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">I illustrated a sunset sticker in Adobe Illustrator for fun :).</p>
-        <p2>2021, 30min</p2>
+        <h5>2021, 30min</h5>
       </div>
     </a>
 
@@ -503,7 +770,7 @@
       <div class="project-overlay">
         <h3>Scavengers Reign & Authentic Speculative Biology</h3>
         <p class="hover-text">Blog Post</p> <!-- Additional text -->
-        <p2>August, 2024</p2>
+        <h5>August, 2024</h5>
       </div>
     </div>
 
@@ -513,7 +780,7 @@
         <h3>Escuela Amigos Mascot</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">I designed the logo "Jaguare" that is still used in official merchandise & marketing for the "Escuela Amigos School".</p>
-        <p2>2013, 1 week</p2>
+        <h5>2013, 1 week</h5>
       </div>
     </a>
 
@@ -523,13 +790,13 @@
         <h3>INTD Conference</h3>
         <p>Illustrator, Graphic Designer</p>
         <p class="hover-text">While a medical research intern at Boston Children's Hospital and Harvard Medical School, I designed materials for the <b>2019 International Neural Tube Defect Conference</b> using <b></b>Illustrator</b> and <b>InDesign</b>.</p>
-        <p2>2019, 1 week</p2>
+        <h5>2019, 1 week</h5>
       </div>
     </a>
   </div>
 
 
-  <!-- Example Modal for Omnivores Rule -->
+  <!-- Example Modal -->
   <div id="project-modal" class="project-modal hidden">
     <div class="project-modal-content" id="project-modal-content">
       <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -543,175 +810,598 @@
 </ul>
 
 <script>
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards = document.querySelectorAll('.project-card');
-  const mobileFilter = document.getElementById('mobile-filter');
+  // Combined script for project filtering and modal functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // ----------------- FILTERING FUNCTIONALITY -----------------
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+    const mobileFilter = document.getElementById('mobile-filter');
 
-  function applyFilter(filter) {
-    buttons.forEach(b => b.classList.remove('active'));
-    const matchedBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
-    if (matchedBtn) matchedBtn.classList.add('active');
+    function applyFilter(filter) {
+      buttons.forEach(b => b.classList.remove('active'));
+      // Fix: corrected selector syntax
+      const matchedBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+      if (matchedBtn) matchedBtn.classList.add('active');
 
-    cards.forEach(card => {
-      const tags = card.getAttribute('data-tags');
-      if (filter === 'all' || tags.includes(filter)) {
-        card.classList.add('show');
-      } else {
-        card.classList.remove('show');
-      }
-    });
-  }
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags');
+        if (filter === 'all' || tags.includes(filter)) {
+          card.classList.add('show');
+        } else {
+          card.classList.remove('show');
+        }
+      });
+    }
 
-  // On load: get query param
-  window.addEventListener('DOMContentLoaded', () => {
+    // On load: get query param for filtering
     const initialFilter = getQueryParam('filter');
     if (initialFilter) {
       applyFilter(initialFilter);
       if (mobileFilter) mobileFilter.value = initialFilter;
     }
-  });
 
-  // Desktop buttons
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter');
-      applyFilter(filter);
-      if (mobileFilter) mobileFilter.value = filter;
+    // Desktop buttons
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        applyFilter(filter);
+        if (mobileFilter) mobileFilter.value = filter;
+      });
     });
-  });
 
-  // Mobile dropdown
-  if (mobileFilter) {
-    mobileFilter.addEventListener('change', () => {
-      const filter = mobileFilter.value;
-      applyFilter(filter);
+    // Mobile dropdown
+    if (mobileFilter) {
+      mobileFilter.addEventListener('change', () => {
+        const filter = mobileFilter.value;
+        applyFilter(filter);
+      });
+    }
+
+    // Enable tap-to-show-overlay on mobile
+    cards.forEach(card => {
+      card.addEventListener('click', function (e) {
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) return;
+
+        // If already showing overlay, follow link
+        if (card.classList.contains('show-overlay')) {
+          return true; // allow default behavior
+        }
+
+        // Prevent navigation on first tap
+        e.preventDefault();
+
+        // Remove overlay from all cards
+        document.querySelectorAll('.project-card').forEach(c => c.classList.remove('show-overlay'));
+
+        // Add overlay to tapped card
+        card.classList.add('show-overlay');
+      });
     });
-  }
 
-  // Enable tap-to-show-overlay on mobile
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', function (e) {
-      const isMobile = window.innerWidth <= 768;
+    // Optional: Tap outside to close overlays
+    document.addEventListener('click', function (e) {
+      const isCard = e.target.closest('.project-card');
+      if (!isCard) {
+        document.querySelectorAll('.project-card').forEach(c => c.classList.remove('show-overlay'));
+      }
+    });
 
-      if (!isMobile) return;
+    function getQueryParam(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
 
-      // If already showing overlay, follow link
-      if (card.classList.contains('show-overlay')) {
-        return true; // allow default behavior
+// ----------------- MODAL FUNCTIONALITY -----------------
+    const modal = document.getElementById("project-modal");
+    const modalContent = document.getElementById("project-modal-content");
+
+    const projectDetails = {
+      "modal-omnivores-rule": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>omnivOres Rule</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++, HLSL)</h3>
+  <p>Explore mile-high jungles. Echolocate through storms. Embrace local cycles.</p>
+  <p>Players shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.
+  A surreal solarpunk exploration game that merges ecological simulation with poetic storytelling.</p>
+
+<div style="display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;">
+                <iframe
+                    src="https://www.youtube.com/embed/6yPzknO44BA?si=EBUdpLak_QmhwqVF"
+                        style="width:100%;
+                        max-width: 760px;
+                        aspect-ratio: 16 / 9;"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+   </div>
+
+<div class="game-dev-bubbles">
+  <div class="dev-bubble" data-section="gameplay">Gameplay Design</div>
+  <div class="dev-bubble" data-section="art">Tech Art</div>
+  <div class="dev-bubble" data-section="systems">AI & Systems Design</div>
+  <!--<div class="dev-bubble" data-section="narrative">Narrative</div>-->
+  <!--<div class="dev-bubble" data-section="tech">Graphics Programming</div>-->
+</div>
+
+<div id="mini-modal-gameplay" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Core Gameplay</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('gameplay')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment.
+The following mechanics are available to the player and slowly learned through environmental puzzles.</p>
+                       <div class="mini-gallery">
+                            <div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Echolocation.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Echolocate.</div>
+                            </div>
+                            <div class="image-container">
+                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/GodMode.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Fly.</div>
+                            </div>
+                            <div class="image-container">
+                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FlyingShout.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Shout.</div>
+                            </div>
+                            </div>
+   <table>
+   <tbody>
+       <thead>
+      <tr>
+      <th><h3 stlye="bold">Player Action</h3></th>
+      <th><h3>Emotion</h3></th>
+      <th><h3>Game Effects</h3></th>
+      </tr>
+      </thead>
+   <tr>
+      <td><ul><h3>Shout</h3></ul></td>
+      <td><ul><h4>Aggressive</h4></ul></td>
+      <td><ul><h4>Intimidate predators</h4>Destroy obstacles</ul></td>
+      </tr>
+      <tr>
+      <td><ul><h3>Whisper</h3></ul></td>
+      <td><ul><h4>Submissive</h4></ul></td>
+      <td><ul><h4>Slow down</h4>Connect with wildlife</ul></td>
+      </tr>
+      <tr>
+      <td><ul><h3>Ping</h3></ul></td>
+      <td><ul><h4>Neutral</h4></ul></td>
+      <td><ul><h4>Echolocate</h4>Query Relationship Status</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Power Off</h3></td>
+      <td><ul><h4>Neutral</h4></ul></td>
+      <td><ul><h4>Hide from predators</h4>Shelter during storms</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Flight</h3></td>
+      <td><ul><h4>Powerful</h4></ul></td>
+      <td><ul><h4>Navigate vertically</h4>follow airborn wildlife</ul></td>
+      </tr>
+      </tbody>
+   </table>
+<div class="mini-gallery">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-art" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Tech Art Direction</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('art')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The art direction of this project combines stylized volumetric shaders, Niagara particle systems, weather + time of day systems, and foliage interactions. The goal for the feel of this project is "beauty and brutality". Inspired by Moebius and Miyazaki, the volumetric shader combines a colorful physical based cell shader, textured shadows, black gritty outlines (day), and white outlines (night)</p>
+<div class="mini-gallery">
+
+</div>
+<ul>
+</ul>
+<div class="mini-gallery">
+<div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FallingFog.webm"
+                                    type="video/mp4"/>
+                        </video>
+    <div class="caption">To capture beauty, I added rich, saturated color.</div>
+    </div>
+<div class="image-container">
+                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaIntro.webm"
+                                    type="video/mp4"/>
+                        </video>
+  <div class="caption">To capture brutality, I added outlines and noise (black spots) to make a gritty feel.</div>
+</div>
+<div class="image-container">
+                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/PlayerCloseUp.webm"
+                                    type="video/mp4"/>
+                        </video>
+  <div class="caption">To make it feel alien, I added yellow highlights and purple shadows (avoiding the colors green and blue as much as possible).</div>
+</div>
+
+ Each "call and response" ability also creates wind impulses that affect trees, leaves, and grass.
+</div>
+</div>
+</div>
+
+<div id="mini-modal-systems" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Game AI Programming & Design</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('systems')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<h5>Part 1: Researching Common Behavior Patterns</h5>
+<p>An overview of the seeking system (seen in mammals) [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7219919/]</p>
+<ol><i>
+                                1. SEEKING--Expectancy. Stimulating the nucleus accumbens and the lateral hypothalamus, areas associated with the SEEKING System, will generate an urge to seek, expect, investigate, and be motivated. Related to Dopamine.
+                                <br>
+                                2. FEAR--Anxiety. When the amygdala and periaqueductal gray (PAG) areas of the brain are stimulated, the “fight, flight, or freeze” reaction will quickly emerge.
+                                <br>
+                                3. RAGE--Anger. When the medial area of the amygdala is stimulated, the animal will propel themself forward to fend off the offensive object, and snarl or bite.
+                                <br>
+                                4. LUST--Sexual excitement. This primary emotion is generated in the amygdala and
+                                hypothalamus.
+                                <br>
+                                5. CARE--Nurturance. When this system is aroused, an animal has strong impulses to tenderly take care of another.
+                                <br>
+                                6. PANIC/GRIEF--Sadness. This primary emotion is often triggered by separation distress.
+                                <br>
+                                7. PLAY--Social joy. Playful and light-hearted movements and laughter characterize this primary emotion.</i>
+                            </ol>
+
+<h5>Part 2: Abstracting Behavior into Gameplay</h5>
+<p>In abstracting forms of universal gameplay, I determined two categories for action-oriented behavior (accessible to the player and NPCs):</p>
+                        <table>
+      <thead>
+      <tr>
+      <th><h3>Interaction</h3></th>
+      <th><h3>Movement</h3></th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr>
+      <td>
+      <i><li>Take: (consuming / destroying a resource)</li>
+      <li>Give: (creating / sharing a resource)</li>
+      <li>Aggression / Attack / Dominance:</li>
+      <li>Submission / Mate / Care / Collaboration:</li></i>
+      </td>
+      <td>
+      <i><li>Wait: (freeze, resting)</li>
+      <li>Follow: (fight, searching for food, stalking)</li>
+      <li>Leave: (flight, loss of interest, searching for safety)</li></i>
+      </td>
+      </tr>
+      </tr>
+      </tbody>
+      </tfoot>
+      </table>
+    <p>These categories apply to all organisms and can be used in various combinations to achieve more complex behavior on an individual, community, and species level.</p>
+                            <div class="mini-gallery">
+                            <div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Fauna leads the way.</div>
+                            </div>
+                            <div class="image-container">
+                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SquidDisappear.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Fauna becomes translucent after using ink.</div>
+                            </div>
+                            <div class="image-container">
+                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SpiderCrawl.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Fauna runs and changes color.</div>
+
+
+                            </div>
+                            </div>
+
+<br>
+<h5>Part 3: Creating Emotional Beats by Combining Behaviors</h5>
+<p>Combining behaviors can easily balloon scope.
+                            I focused on the most player-centered interactions that
+                            suggest intrinsic (emotional) rewards for the player. The natural world operates without us
+                            watching. It’s especially important to optimize for what players notice.
+                            These limits maintain performance and reduce the potential of obscure
+                            systems that “feel unfair”. I believe the most exciting (and manageable)
+                            emergent behavior occurs through interaction.
+                            As such, I identified the focus of this gameplay as the
+                            intersection of <i>independent</i> and <i>social behaviors</i>.</p>
+                    <div class="table-wrapper">
+                            <table>
+
+      <thead>
+      <tr>
+      <th><h3 stlye="bold">Type of Behavior</h3></th>
+      <th><h3>Effect on Donor</h3></th>
+      <th><h3>Effect on Receiver</h3></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td><h3>Egoistic</h3></td>
+      <td><ul><h4>Neutral / Increases fitness</h4>Entitlement, manipulative</ul></td>
+      <td><ul><h4>Decreases fitness</h4>Unhappy, angry, bitter</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Cooperative</h3></td>
+      <td><ul><h4>Neutral / Increases fitness</h4> Gratitude, connection</ul></td>
+      <td><ul><h4>Neutral / Increases fitness</h4>Connection</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Altruistic</h3></td>
+      <td><ul><h4>Decreases fitness</h4>Connection, nurturing</ul></td>
+      <td><ul><h4>Neutral / Increases fitness</h4>Gratitude, manipulative</ul></td>
+      </tr>
+      <tr>
+      <td><h3>Revengeful</h3></td>
+      <td><ul><h4>Decreases fitness.</h4>Unhappy, angry</ul></td>
+      <td><ul><h4>Decreases fitness.</h4>Unhappy, angry</ul></td>
+      </tr>
+      </tbody>
+      </tfoot>
+      </table>
+      </div>
+
+      <p>This table provides a clear action-reaction framework for player and NPC behavior while maintaining flexibility (including relationships such as
+      mutualism, parasitism, and predation).</p>
+      </div>
+
+  <h5>Part 4: Player Influence</h5>
+   <p>To create a similar simple behavior structure for the player I reduced the interactions to 3 forms:</p>
+   <table>
+    <td><ul><h3>Aggressive</h3>Shout</ul></td>
+    <td><ul><h3>Submissive</h3>Whisper</ul></td>
+    <td><ul><h3>Neutral</h3>Ping</ul></td>
+
+   </table>
+<div class="mini-gallery">
+ <div class="image-container">
+                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/goo-pt1.webm"
+                                    type="video/mp4"/>
+                        </video>
+                        <div class="caption">A tentacled creature responds to shouts and whispers.</div>
+                        </div>
+                              <div class="image-container">
+                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/MantaMessage.webm"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">A flying creature responds.</div>
+                        </div>
+                        </div>
+<br>
+<h5>Part 5: Refinements</h5>
+<p>Evolution of species through children with randomized traits
+Community “memory” (some societal behavior is learned, some is genetic) Some species inherit automatic responses instinctually while others inherit it by learning.
+                    </p>
+
+<div class="mini-gallery">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-narrative" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Narrative Design</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('narrative')">&times;</span>
+</div>
+<div class="mini-modal-content">
+
+<div class="mini-gallery">
+<img src="/api/placeholder/200/150" alt="Narrative placeholder">
+<img src="/api/placeholder/200/150" alt="Narrative placeholder">
+</div>
+</div>
+</div>
+
+<div id="mini-modal-tech" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Technical Features</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('tech')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>Procedural caves, </p>
+<p>Key technical implementations include:</p>
+<ul>
+<li>Custom HLSL shaders for interactive plant movement and bioluminescence</li>
+<li>Procedural animation system for organic movement of foliage</li>
+<li>Advanced particle systems for energy visualization</li>
+<li>Custom C++ components for the ecological simulation backend</li>
+<li>Optimized LOD system allowing for dense vegetation while maintaining performance</li>
+</ul>
+<div class="mini-gallery">
+
+</div>
+</div>
+</div>
+`,
+      "modal-metawalker": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+  <h2>Trailer + Studio Update</h2>
+  <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Timeframe: 5 months</h4>
+  <p>I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a style="color: #00b4cc" href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
+  <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
+  <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+`,
+      "modal-prey": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Prey and Indigenous Futures</h2>
+<h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
+<div style="margin: 1.5rem 0; text-align: center;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%202.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%203.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%204.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+</div>
+`,
+      "modal-scavengers": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Scavengers Reign & Authentic Speculative Biology</h2>
+<h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
+<div style="margin: 1.5rem 0; text-align: center;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/Scavengers-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/2.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
+<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+</div>
+`
+      // TODO: Add more modal entries for other project cards like "modal-roboleon", etc.
+    };
+
+    // Add click event listeners to all cards that should open modals
+    document.querySelectorAll('.project-card[data-project]').forEach(card => {
+      card.addEventListener('click', function(e) {
+        // Only prevent default if we're not on mobile or if overlay is already shown
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile || card.classList.contains('show-overlay')) {
+          e.preventDefault();
+          const projectId = this.getAttribute('data-project');
+          // Fix: corrected template string syntax
+          openModal(`modal-${projectId}`);
+        }
+      });
+    });
+
+    window.openModal = function(modalId) {
+      const content = projectDetails[modalId];
+      if (content) {
+        modalContent.innerHTML = content;
+        modal.classList.remove("hidden");
+
+        // Fix: Ensure we setup bubble listeners after content is added to DOM
+        if (modalId === 'modal-omnivores-rule') {
+          setTimeout(() => {
+            setupBubbleListeners();
+          }, 100);
+        }
       }
 
-      // Prevent navigation on first tap
-      e.preventDefault();
+      // Update the hash
+      const hashId = modalId.replace("modal-", "");
+      // Fix: corrected template string syntax
+      history.pushState(null, "", `#${hashId}`);
 
-      // Remove overlay from all cards
-      document.querySelectorAll('.project-card').forEach(c => c.classList.remove('show-overlay'));
+      window.scrollTo(0, 0);
+    }
 
-      // Add overlay to tapped card
-      card.classList.add('show-overlay');
+    window.closeModal = function() {
+      modal.classList.add("hidden");
+      modalContent.innerHTML = ""; // Clear content on close
+      history.pushState("", document.title, window.location.pathname + window.location.search); // clear hash
+    }
+
+    // Optional: Close modal on Escape key
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
     });
-  });
 
-  // Optional: Tap outside to close overlays
-  document.addEventListener('click', function (e) {
-    const isCard = e.target.closest('.project-card');
-    if (!isCard) {
-      document.querySelectorAll('.project-card').forEach(c => c.classList.remove('show-overlay'));
+    // Optional: Close modal on backdrop click
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Check for hash on page load and open corresponding modal
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = hash.substring(1); // remove the '#'
+      // Fix: corrected template string syntax
+      const modalId = `modal-${targetId}`;
+      if (projectDetails[modalId]) {
+        openModal(modalId);
+      }
     }
   });
 
-  function getQueryParam(param) {
-    const params = new URLSearchParams(window.location.search);
-    return params.get(param);
-  }
-</script>
-<script>
-  const modal = document.getElementById("project-modal");
-  const modalContent = document.getElementById("project-modal-content");
+  // ---------------------- MINI-MODAL FUNCTIONS ----------------------
 
-  const projectDetails = {
-    "modal-omnivores": `
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Omnivores Rule</h2>
-      <p><strong>Tools:</strong> Unreal Engine, C++, HLSL</p>
-      <p>
-        A surreal solarpunk exploration game that merges ecological simulation with poetic storytelling.
-        Players shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.
-      </p>
-      <video controls style="width: 100%; border-radius: 0.5rem; margin-top: 1rem;">
-        <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
-        Your browser does not support the video tag.
-      </video>
-    `,
-    "modal-metawalker":`
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-        <h2>Trailer + Studio Update</h2>
-        <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Timeframe: 5 months</h4>
-        <p>I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a style="color: #00b4cc" href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
-        <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
-        <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  // Function to handle opening mini-modals
+  function openMiniModal(section) {
+    // Close any open mini-modals first
+    document.querySelectorAll('.mini-modal').forEach(modal => {
+      modal.classList.remove('active');
+    });
 
-    `,
-    "modal-prey":`
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Prey and Indigenous Futures</h2>
-  <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
-  <div style="margin: 1.5rem 0; text-align: center;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%202.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%203.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%204.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
-   <!--<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%205.png" alt="Image 5" style="width: 100%; border-radius: 0.5rem;" />-->
+    // Remove active class from all bubbles
+    document.querySelectorAll('.dev-bubble').forEach(bubble => {
+      bubble.classList.remove('active');
+    });
 
-  </div>
-    `,
-    "modal-scavengers":`
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2>Scavengers Reign & Authentic Speculative Biology</h2>
-  <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
-  <div style="margin: 1.5rem 0; text-align: center;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/Scavengers-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/2.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
-    <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
-   <!--<img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%205.png" alt="Image 5" style="width: 100%; border-radius: 0.5rem;" />-->
+    // Add active class to clicked bubble
+    // Fix: corrected selector syntax
+    document.querySelector(`.dev-bubble[data-section="${section}"]`).classList.add('active');
 
-  </div>
-    `
-    // Add more modal entries for other project cards like "modal-roboleon", etc.
-  };
+    // Show the selected mini modal
+    // Fix: corrected template string syntax
+    document.getElementById(`mini-modal-${section}`).classList.add('active');
 
-  function openModal(modalId) {
-    const content = projectDetails[modalId];
-    if (content) {
-      modalContent.innerHTML = content;
-      modal.classList.remove("hidden");
-    }
+    // Scroll to the mini modal with a smooth animation
+    // Fix: corrected template string syntax
+    document.getElementById(`mini-modal-${section}`).scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest'
+    });
   }
 
-  function closeModal() {
-    modal.classList.add("hidden");
-    modalContent.innerHTML = ""; // Clear content on close
+  // Function to close a mini-modal
+  function closeMiniModal(section) {
+    // Fix: corrected template string syntax
+    document.getElementById(`mini-modal-${section}`).classList.remove('active');
+    // Fix: corrected selector syntax
+    document.querySelector(`.dev-bubble[data-section="${section}"]`).classList.remove('active');
   }
 
-  // Optional: Close modal on Escape key
-  window.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-      closeModal();
-    }
-  });
+  // Add event listeners to dev bubbles when the modal opens
+  function setupBubbleListeners() {
+    document.querySelectorAll('.dev-bubble').forEach(bubble => {
+      const section = bubble.getAttribute('data-section');
 
-  // Optional: Close modal on backdrop click
-  modal.addEventListener("click", function (e) {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
+      // Fix: Create a properly named handler function for each bubble
+      bubble.onclick = function() {
+        openMiniModal(section);
+      };
+    });
+  }
+
+  // Expose functions to the global scope so they can be called from HTML
+  window.openMiniModal = openMiniModal;
+  window.closeMiniModal = closeMiniModal;
+  window.setupBubbleListeners = setupBubbleListeners;
 </script>
 </body>
 </html>
