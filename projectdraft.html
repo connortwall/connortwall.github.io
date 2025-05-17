@@ -8,6 +8,10 @@
         name="programming, portfolio, guyana, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, ai, indie, omnivores rule, scavengers reign, journey, outer wilds, gamedev, game design">
   <title>Projects</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+  <!-- Add language-specific components as needed -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-csharp.min.js"></script>
 
   <style>
     body {
@@ -612,7 +616,126 @@
     }
 
 
+    /* Button row styling */
+    .roboleon-button-row {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .roboleon-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .roboleon-btn:hover {
+      background-color: #2980b9;
+    }
+
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      .roboleon-button-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .roboleon-btn {
+        width: 80%;
+      }
+
+      .image-viewer-content, .video-viewer-content {
+        width: 95%;
+      }
+
+      .download-options-content {
+        width: 80%;
+      }
+    }
+
+    .zoomable-image, .zoomable-video {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      max-width: 100%;
+    }
+
+    .zoomable-image:hover, .zoomable-video:hover {
+      transform: scale(1.03);
+    }
+
+    /* Expanded state for images and videos */
+    .expanded-media {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      z-index: 9999;
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 30px;
+      margin: 0 !important;
+      box-sizing: border-box;
+    }
+
+    /* Caption for expanded media */
+    .expanded-caption {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 18px;
+      z-index: 10000;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Close button for expanded media */
+    .expanded-close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10001;
+    }
+
+    /* Overlay for expanded media */
+    .media-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9998;
+      background-color: transparent;
+    }
+
+
+
+
+
+
+
+
+
   </style>
+
+
 </head>
 <body>
 
@@ -631,19 +754,6 @@
   </div>
 
   <div class="project-grid">
-    <!--<a href="Omnivores-Rule.html" class="project-card show" data-tags="game visuals coding">
-      <video autoplay muted loop plays inline class="project-thumbnail">
-        <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
-        Your browser does not support the video tag.
-      </video>
-      <div class="project-overlay">
-        <h3>omnivOres Rule</h3>
-        <p>solo developer (Unreal, C++, HLSL)</p>
-        <p class="hover-text">Exploring trans-species psychology &
-          the beauty and brutality of nature from the perspective of an android.</p>
-        <p2>2024</p2>
-      </div>
-    </a>-->
     <div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores-rule')">
       <video autoplay muted loop playsinline class="project-thumbnail">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
@@ -859,11 +969,18 @@
   &copy; <i>Website coded and designed </i> by Connor Wall <a href="https://connorwall.com/CV.html" target="_blank" aria-label="CV"><i class="fas fa-file-alt"></i></a>
 </ul>
 
+
+
+
+
+`
+
 <!-- Load the modularized scripts -->
 <script src="js/utils.js"></script>
 <script src="js/projectFilter.js"></script>
 <script src="js/projectModal.js"></script>
 <script src="js/miniModal.js"></script>
+<script src="js/assetModal.js"></script>
 <script src="js/projectData.js"></script>
 <script src="js/main.js"></script>
 </body>

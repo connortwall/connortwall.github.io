@@ -7,4 +7,5 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectFilter = new ProjectFilter();
     const projectModal = new ProjectModal();
     const miniModal = new MiniModal();
+    const assetModal = new AssetModal();
 });

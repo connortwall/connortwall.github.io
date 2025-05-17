@@ -67,7 +67,7 @@ class ProjectModal {
             this.modal.classList.remove("hidden");
 
             // Setup bubble listeners after content is added to DOM
-            if (modalId === 'modal-omnivores-rule') {
+            if (modalId === 'modal-omnivores-rule' || modalId === 'modal-roboleon') {
                 setTimeout(() => {
                     window.setupBubbleListeners();
                 }, 100);
