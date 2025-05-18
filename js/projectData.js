@@ -913,16 +913,25 @@ public class FireSpawner : MonoBehaviour
 `,
     "modal-totally-accurate-warehouse-simulator": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
-<h2>omnivOres Rule</h2>
-<h3><strong>Solo Developer</strong> (Unreal Engine, C++, HLSL)</h3>
-  <p>Explore mile-high jungles. Echolocate through storms. Embrace local cycles. Shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.</p>
+<h2>Totally Accurate Warehouse Simulator</h2>
+<h3><strong>Game Programmer</strong> (Unity, C#)</h3>
+<h5>Timeframe: 1 week</h5>
+  <h4>I programmed <b>rigid  body movement</b>, <b>procedural content</b>, <b>UI</b>, and <b>localization</b>
+                            systems for a 3rd-person order delivery game in Unity's HDRP — working on a team of 19 members.</h4>
+
+
+<div class="game-dev-bubbles">
+  <a href="https://github.com/connortwall/Totally-Accurate-Warehouse-Simulator-Game"><div class="dev-bubble">View Code</div></a>
+  <a href="hhttps://connortwall.itch.io/race-delivery-game"><div class="dev-bubble">Play Demo</div></a>
+  <div class="dev-bubble" data-section="gameplay">Technical Details</div>
+</div>
 
 <div style="display: flex;
   justify-content: center;
   align-items: center;
   margin: 2rem auto;">
-                <iframe
-                    src="https://www.youtube.com/embed/6yPzknO44BA?si=EBUdpLak_QmhwqVF"
+<iframe
+                    src="https://www.youtube.com/embed/L9dLvSPTLko? &autoplay=1"
                         style="width:100%;
                         max-width: 760px;
                         aspect-ratio: 16 / 9;"
@@ -932,16 +941,14 @@ public class FireSpawner : MonoBehaviour
    </div>
 <h2>Read More</h2>
 <div class="game-dev-bubbles">
-  <div class="dev-bubble" data-section="gameplay">Gameplay Design</div>
-  <div class="dev-bubble" data-section="art">Tech Art</div>
-  <div class="dev-bubble" data-section="systems">AI & Systems Design</div>
-  <!--<div class="dev-bubble" data-section="narrative">Narrative</div>-->
-  <!--<div class="dev-bubble" data-section="tech">Graphics Programming</div>-->
+  <div class="dev-bubble" data-section="gameplay">Gameplay Programming</div>
+  <div class="dev-bubble" data-section="procedural">Procedural Obstacle Generation</div>
+   <div class="dev-bubble" data-section="movement">Physics-Based Movement System</div>
 </div>
 
 <div id="mini-modal-gameplay" class="mini-modal">
 <div class="mini-modal-header">
-<h3 class="mini-modal-title">Core Gameplay</h3>
+<h3 class="mini-modal-title">Gameplay UI</h3>
 <span class="close-mini-modal" onclick="closeMiniModal('gameplay')">&times;</span>
 </div>
 <div class="mini-modal-content">
@@ -949,306 +956,238 @@ public class FireSpawner : MonoBehaviour
 The following mechanics are available to the player and slowly learned through environmental puzzles.</p>
                        <div class="mini-gallery">
                             <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Echolocation.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">Echolocate.</div>
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/gameplayGif.gif"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Gameplay</div>
                             </div>
+
                             <div class="image-container">
-                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/GodMode.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">Fly.</div>
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/2.svg"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Game Summary pt1</div>
                             </div>
-                            <div class="image-container">
-                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FlyingShout.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">Shout.</div>
+                            
+                                  <div class="image-container">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/3.png"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Game Summary pt2</div>
                             </div>
+                            
+                                  <div class="image-container">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/4.svg"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Game Summary pt3</div>
                             </div>
-   <table>
-   <tbody>
-       <thead>
-      <tr>
-      <th><h3 stlye="bold">Player Action</h3></th>
-      <th><h3>Emotion</h3></th>
-      <th><h3>Game Effects</h3></th>
-      </tr>
-      </thead>
-   <tr>
-      <td><ul><h3>Shout</h3></ul></td>
-      <td><ul><h4>Aggressive</h4></ul></td>
-      <td><ul><h4>Intimidate predators</h4>Destroy obstacles</ul></td>
-      </tr>
-      <tr>
-      <td><ul><h3>Whisper</h3></ul></td>
-      <td><ul><h4>Submissive</h4></ul></td>
-      <td><ul><h4>Slow down</h4>Connect with wildlife</ul></td>
-      </tr>
-      <tr>
-      <td><ul><h3>Ping</h3></ul></td>
-      <td><ul><h4>Neutral</h4></ul></td>
-      <td><ul><h4>Echolocate</h4>Query Relationship Status</ul></td>
-      </tr>
-      <tr>
-      <td><h3>Power Off</h3></td>
-      <td><ul><h4>Neutral</h4></ul></td>
-      <td><ul><h4>Hide from predators</h4>Shelter during storms</ul></td>
-      </tr>
-      <tr>
-      <td><h3>Flight</h3></td>
-      <td><ul><h4>Powerful</h4></ul></td>
-      <td><ul><h4>Navigate vertically</h4>follow airborn wildlife</ul></td>
-      </tr>
-      </tbody>
-   </table>
-<div class="mini-gallery">
-</div>
+                       </div>
+  
 </div>
 </div>
 
-<div id="mini-modal-art" class="mini-modal">
+
+<div id="mini-modal-procedural" class="mini-modal">
 <div class="mini-modal-header">
-<h3 class="mini-modal-title">Tech Art Direction</h3>
-<span class="close-mini-modal" onclick="closeMiniModal('art')">&times;</span>
+<h3 class="mini-modal-title">Procedural Obstacle Generation</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('procedural')">&times;</span>
 </div>
 <div class="mini-modal-content">
-<p>The art direction of this project combines stylized volumetric shaders, Niagara particle systems, weather + time of day systems, and foliage interactions. The goal for the feel of this project is "beauty and brutality". Inspired by Moebius and Miyazaki, the volumetric shader combines a colorful physical based cell shader, textured shadows, black gritty outlines (day), and white outlines (night)</p>
-<div class="mini-gallery">
+<p><li>I developed a procedural object spawner using Poisson Disk Sampling.</li>
+                        <li>The following code demonstrates the algorithm used to spawn game objects in the game scene.</li>
+                        <li>A Poisson disk sampling algorithm populates a list of spawn points using editor parameters such as density and is created and used to add
+                            randomness into fast-paced gameplay</li>
+                        <li>This is repeated for each new type of spawned item. </li></p>
 
-</div>
-<ul>
-</ul>
-<div class="mini-gallery">
-<div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FallingFog.webm"
-                                    type="video/mp4"/>
-                        </video>
-    <div class="caption">To capture beauty, I added rich, saturated color.</div>
-    </div>
-<div class="image-container">
-                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaIntro.webm"
-                                    type="video/mp4"/>
-                        </video>
-  <div class="caption">To capture brutality, I added outlines and noise (black spots) to make a gritty feel.</div>
-</div>
-<div class="image-container">
-                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/PlayerCloseUp.webm"
-                                    type="video/mp4"/>
-                        </video>
-  <div class="caption">To make it feel alien, I added yellow highlights and purple shadows (avoiding the colors green and blue as much as possible).</div>
-</div>
+       
+                                        
 
- Each "call and response" ability also creates wind impulses that affect trees, leaves, and grass.
-</div>
-</div>
-</div>
-
-<div id="mini-modal-systems" class="mini-modal">
-<div class="mini-modal-header">
-<h3 class="mini-modal-title">Game AI Programming & Design</h3>
-<span class="close-mini-modal" onclick="closeMiniModal('systems')">&times;</span>
-</div>
-<div class="mini-modal-content">
-<h5>Part 1: Researching Common Behavior Patterns</h5>
-<p>An overview of the seeking system (seen in mammals) [https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7219919/]</p>
-<ol><i>
-                                1. SEEKING--Expectancy. Stimulating the nucleus accumbens and the lateral hypothalamus, areas associated with the SEEKING System, will generate an urge to seek, expect, investigate, and be motivated. Related to Dopamine.
-                                <br>
-                                2. FEAR--Anxiety. When the amygdala and periaqueductal gray (PAG) areas of the brain are stimulated, the “fight, flight, or freeze” reaction will quickly emerge.
-                                <br>
-                                3. RAGE--Anger. When the medial area of the amygdala is stimulated, the animal will propel themself forward to fend off the offensive object, and snarl or bite.
-                                <br>
-                                4. LUST--Sexual excitement. This primary emotion is generated in the amygdala and
-                                hypothalamus.
-                                <br>
-                                5. CARE--Nurturance. When this system is aroused, an animal has strong impulses to tenderly take care of another.
-                                <br>
-                                6. PANIC/GRIEF--Sadness. This primary emotion is often triggered by separation distress.
-                                <br>
-                                7. PLAY--Social joy. Playful and light-hearted movements and laughter characterize this primary emotion.</i>
-                            </ol>
-
-<h5>Part 2: Abstracting Behavior into Gameplay</h5>
-<p>In abstracting forms of universal gameplay, I determined two categories for action-oriented behavior (accessible to the player and NPCs):</p>
-                        <table>
-      <thead>
-      <tr>
-      <th><h3>Interaction</h3></th>
-      <th><h3>Movement</h3></th>
-      </tr>
-      </thead>
-      <tbody>
-
-      <tr>
-      <td>
-      <i><li>Take: (consuming / destroying a resource)</li>
-      <li>Give: (creating / sharing a resource)</li>
-      <li>Aggression / Attack / Dominance:</li>
-      <li>Submission / Mate / Care / Collaboration:</li></i>
-      </td>
-      <td>
-      <i><li>Wait: (freeze, resting)</li>
-      <li>Follow: (fight, searching for food, stalking)</li>
-      <li>Leave: (flight, loss of interest, searching for safety)</li></i>
-      </td>
-      </tr>
-      </tr>
-      </tbody>
-      </tfoot>
-      </table>
-    <p>These categories apply to all organisms and can be used in various combinations to achieve more complex behavior on an individual, community, and species level.</p>
-                            <div class="mini-gallery">
+ <h5>CODE SNIPPET - Poisson Disk Sampling Algorithm</h5>
+  <div class="mini-gallery">
                             <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">Fauna leads the way.</div>
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/5.png"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Obstacle Generation Documentation</div>
                             </div>
                             <div class="image-container">
-                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SquidDisappear.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">Fauna becomes translucent after using ink.</div>
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/6.svg"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Obstacle Generation Documentation</div>
                             </div>
-                            <div class="image-container">
-                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SpiderCrawl.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">Fauna runs and changes color.</div>
-
-
+                        
                             </div>
-                            </div>
+ <p>The following code demonstrates the algorithm used to spawn game objects in the game
+                                scene.</p>
+                         <div style="display: inline-flex;">
+    <pre data-code-block data-modal-id="mini-modal-tech" data-language="csharp">
 
-<br>
-<h5>Part 3: Creating Emotional Beats by Combining Behaviors</h5>
-<p>Combining behaviors can easily balloon scope.
-                            I focused on the most player-centered interactions that
-                            suggest intrinsic (emotional) rewards for the player. The natural world operates without us
-                            watching. It’s especially important to optimize for what players notice.
-                            These limits maintain performance and reduce the potential of obscure
-                            systems that “feel unfair”. I believe the most exciting (and manageable)
-                            emergent behavior occurs through interaction.
-                            As such, I identified the focus of this gameplay as the
-                            intersection of <i>independent</i> and <i>social behaviors</i>.</p>
-                    <div class="table-wrapper">
-                            <table>
+public static class PoissonProceduralObstacleGeneration
+{
+    static bool is_valid(List<Vector2> samples, int[,] grid, Vector2 sample, Vector2 sample_zone,float radius, float cell_size)
+    {
+        // candidate sample vector must be within sample region/zone
+        if(sample.x < sample_zone.x && sample.x >= 0 && sample.y < sample_zone.y && sample.y >= 0)
+        {
+            // find out which cell the candidate is in, and search surround cells
+            int x = (int)(sample.x / cell_size);
+            int y = (int)(sample.y / cell_size);
+            //start two cells to the left and end two cells to the right
+            int offset_x = Mathf.Max(0, x - 2);
+            int out_x = Mathf.Min(x + 2, grid.GetLength(0) - 1);
+            int offset_y = Mathf.Max(0, y - 2);
+            int out_y = Mathf.Min(y + 2, grid.GetLength(1) - 1);
 
-      <thead>
-      <tr>
-      <th><h3 stlye="bold">Type of Behavior</h3></th>
-      <th><h3>Effect on Donor</h3></th>
-      <th><h3>Effect on Receiver</h3></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td><h3>Egoistic</h3></td>
-      <td><ul><h4>Neutral / Increases fitness</h4>Entitlement, manipulative</ul></td>
-      <td><ul><h4>Decreases fitness</h4>Unhappy, angry, bitter</ul></td>
-      </tr>
-      <tr>
-      <td><h3>Cooperative</h3></td>
-      <td><ul><h4>Neutral / Increases fitness</h4> Gratitude, connection</ul></td>
-      <td><ul><h4>Neutral / Increases fitness</h4>Connection</ul></td>
-      </tr>
-      <tr>
-      <td><h3>Altruistic</h3></td>
-      <td><ul><h4>Decreases fitness</h4>Connection, nurturing</ul></td>
-      <td><ul><h4>Neutral / Increases fitness</h4>Gratitude, manipulative</ul></td>
-      </tr>
-      <tr>
-      <td><h3>Revengeful</h3></td>
-      <td><ul><h4>Decreases fitness.</h4>Unhappy, angry</ul></td>
-      <td><ul><h4>Decreases fitness.</h4>Unhappy, angry</ul></td>
-      </tr>
-      </tbody>
-      </tfoot>
-      </table>
-      </div>
+            for (int i = offset_x; i < out_x; i++)
+            {
+                for (int j = offset_y; j < out_y; j++)
+                {
+                    // get sample point's index
+                    int s_index = grid[i, j] - 1;
+                    // if there is no point in the cell
+                    if(s_index != -1)
+                    {
+                        // get distance between point at index and candidate point (using sqrMagnitude bc its cheaper on system to get than mag)
+                        float dist = (sample - samples[s_index]).sqrMagnitude;
+                        // if radius is too close to the point reject point
+                        if(dist < radius*radius)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            // is valid
+            return true;
+        }
+        // not valid
+        return false;
+    }
+    public static List<Vector2> GeneratePoint(float radius, Vector2 grid_size, int numSamplesBeforeRejection  = 30)
+    {
+        // find the size of a cell's square
+        float cell_size = radius / Mathf.Sqrt(2);
 
-      <p>This table provides a clear action-reaction framework for player and NPC behavior while maintaining flexibility (including relationships such as
-      mutualism, parasitism, and predation).</p>
-      </div>
+        // number of times the cell size fits into sample region size, for each cell
+        // grid will tell us for each cell, what the index is of each point, (0 means no point, 1 has index 0)
+        // to get the number of columns divide the width / cell_size and rows
+        int[,] grid = new int[Mathf.CeilToInt(grid_size.x / cell_size), Mathf.CeilToInt(grid_size.y / cell_size)];
 
-  <h5>Part 4: Player Influence</h5>
-   <p>To create a similar simple behavior structure for the player I reduced the interactions to 3 forms:</p>
-   <table>
-    <td><ul><h3>Aggressive</h3>Shout</ul></td>
-    <td><ul><h3>Submissive</h3>Whisper</ul></td>
-    <td><ul><h3>Neutral</h3>Ping</ul></td>
+        // create new vectors of sample candidate points
+        List<Vector2> samples = new List<Vector2>();
+        List<Vector2> spawn_samples = new List<Vector2>();
 
-   </table>
-<div class="mini-gallery">
- <div class="image-container">
-                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/goo-pt1.webm"
-                                    type="video/mp4"/>
-                        </video>
-                        <div class="caption">A tentacled creature responds to shouts and whispers.</div>
+        // create spawn point list
+        spawn_samples.Add(grid_size / 2);
+        // while spawn point list is not empty
+        while (spawn_samples.Count > 0)
+        {
+            int index = Random.Range(0, spawn_samples.Count);
+            Vector2 current_spawn_sample = spawn_samples[index];
+            bool rejected_sample = true;
+            for (int i = 0; i < numSamplesBeforeRejection; i++)
+            {
+                // angle of candidate point
+                float angle_offset = Random.value * Mathf.PI * 2;
+                //rotate a vector at a given angle
+                float x = Mathf.Sin(angle_offset);
+                float y = Mathf.Cos(angle_offset);
+
+                Vector2 offset_direction = new Vector2(x, y);
+
+                // new magnitude
+                // radius is min so that candidate is spawned outside spawn center
+                float new_magnitude = Random.Range(radius, 2 * radius);
+                offset_direction *= new_magnitude;
+
+                // assign info to sample
+                Vector2 sample = current_spawn_sample + offset_direction;
+                if (is_valid(samples, grid, sample, grid_size, radius, cell_size))
+                {
+                    // add sample to point list
+                    samples.Add(sample);
+                    // add sample as new spawn point
+                    spawn_samples.Add(sample);
+                    // record which cell the sample point ends up in
+                    grid[(int)(sample.x / cell_size), (int)(sample.y / cell_size)] = samples.Count;
+                    rejected_sample = false;
+                    break;
+                }
+            }
+
+            // if not accepted remove from spawn point list
+            if (rejected_sample)
+            {
+                spawn_samples.RemoveAt(index);
+            }
+        }
+        return samples;
+    }
+
+}
+                                </pre>
                         </div>
-                              <div class="image-container">
-                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
-                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/MantaMessage.webm"
-                                        type="video/mp4"/>
-                            </video>
-                            <div class="caption">A flying creature responds.</div>
-                        </div>
-                        </div>
-<br>
-<h5>Part 5: Refinements</h5>
-<p>Evolution of species through children with randomized traits
-Community “memory” (some societal behavior is learned, some is genetic) Some species inherit automatic responses instinctually while others inherit it by learning.
-                    </p>
 
-<div class="mini-gallery">
-</div>
-</div>
+ <h5>CODE SNIPPET - Procedural Object Spawning Manager</h5>
+<div>
+                                <pre class="prettyprint lang-csharp">public class ProceduralObjectManager : MonoBehaviour
+{
+    private List<Vector2> samples;
+    public List<GameObject> obstacles;
+
+    public Vector2 zone= Vector2.one;
+    public float sparcity = 1;
+    private int k = 2;
+    public float scale = 1;
+
+    private void Start()
+    {
+        samples = Poisson.GeneratePoint(sparcity, zone, k);
+        if(samples != null)
+        {
+            foreach(Vector2 sample in samples)
+            {
+
+                int index = Random.Range(0, obstacles.Count);
+                GameObject obstacle = Instantiate(obstacles[index], new Vector3(sample.x, 0, sample.y)+transform.position, Quaternion.identity)as GameObject;
+                obstacle.transform.Rotate(0, Random.Range(0, 360), 0);
+                obstacle.transform.localScale = Vector3.one * scale;
+            }
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube((new Vector3(zone.x, 0, zone.y) / 2)+transform.position, new Vector3(zone.x, 0, zone.y));
+
+    }
+
+}
+
+
+</pre>
 </div>
 
-<div id="mini-modal-narrative" class="mini-modal">
+</div>
+
+</div>
+
+<div id="mini-modal-movement" class="mini-modal">
 <div class="mini-modal-header">
-<h3 class="mini-modal-title">Narrative Design</h3>
-<span class="close-mini-modal" onclick="closeMiniModal('narrative')">&times;</span>
+<h3 class="mini-modal-title">Player Movement System</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('movement')">&times;</span>
 </div>
 <div class="mini-modal-content">
+<p>I developed a physics-based movement system.</p>
 
-<div class="mini-gallery">
-<img src="/api/placeholder/200/150" alt="Narrative placeholder">
-<img src="/api/placeholder/200/150" alt="Narrative placeholder">
-</div>
-</div>
-</div>
-
-<div id="mini-modal-tech" class="mini-modal">
-<div class="mini-modal-header">
-<h3 class="mini-modal-title">Technical Features</h3>
-<span class="close-mini-modal" onclick="closeMiniModal('tech')">&times;</span>
-</div>
-<div class="mini-modal-content">
-<p>Procedural caves, </p>
-<p>Key technical implementations include:</p>
-<ul>
-<li>Custom HLSL shaders for interactive plant movement and bioluminescence</li>
-<li>Procedural animation system for organic movement of foliage</li>
-<li>Advanced particle systems for energy visualization</li>
-<li>Custom C++ components for the ecological simulation backend</li>
-<li>Optimized LOD system allowing for dense vegetation while maintaining performance</li>
-</ul>
-<div class="mini-gallery">
-
-</div>
+         <div class="mini-gallery">
+                            <div class="image-container">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation.png"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Player Movement Documentation pt1</div>
+                            </div>
+                            <div class="image-container">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation2.png"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Player Movement Documentation pt2</div>
+                            </div>
+                            </div>
 </div>
 </div>
 `,
