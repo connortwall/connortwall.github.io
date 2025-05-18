@@ -9,7 +9,7 @@ const projectData = {
 <h2>omnivOres Rule</h2>
 <h3><strong>Solo Developer</strong> (Unreal Engine, C++, HLSL)</h3>
 <h5>Timeframe: 10 months</h5>
-  <h4>My most recent solo dev project! Originally developed as a protoype from the <a style="color: #00b4cc" href="https://itch.io/jam/just-play-jam-climate/rate/2694711" >Climate Futures Game Jam</a>. Explore mile-high jungles. Echolocate through storms. Embrace local cycles. Shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.</h4>
+  <h4>My most recent solo dev project! Originally developed as a prototype from the <a style="color: #00b4cc" href="https://itch.io/jam/just-play-jam-climate/rate/2694711" >Climate Futures Game Jam</a>. Explore mile-high jungles. Echolocate through storms. Embrace local cycles. Shift between extractive and symbiotic recharging mechanics, unraveling ecosystem-based puzzles.</h4>
 
 <div style="display: flex;
   justify-content: center;
@@ -361,7 +361,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <div class="game-dev-bubbles">
   <a href="https://github.com/connortwall/Roboleon-Game"><div class="dev-bubble">View Code</div></a>
   <a href="https://dadiu.itch.io/roboleon"><div class="dev-bubble">Play Demo</div></a>
-  <div class="dev-bubble" data-section="art">Technical Details</div>
+  <div class="dev-bubble" data-section="gameplay">Technical Details</div>
 </div>
 
 <div style="display: flex;
@@ -1605,17 +1605,369 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 `,
     "modal-quipu": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
-<h2>Scavengers Reign & Authentic Speculative Biology</h2>
-<h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
-<div style="margin: 1.5rem 0; text-align: center;">
-<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/Scavengers-LinkedIn.png" alt="Main Feature" style="max-width: 100%; border-radius: 1rem;" />
+<h2>Quipu</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++, Unity, C#)</h3>
+<h5>Timeframe: 3 months (Unity) + 2 months (Unreal 5.2)</h5>
+  <h4>I solo developed a 3rd-person souls-like combat, stylized, action RPG game in
+                    <b>Unity</b> and <b>Unity Version Control</b> using Unity asset store assets.
+                    My goal was to learn Unreal Engine while restructuring the project, integrating Metahumans, environment foliage, and
+                    Niagara effects into the UI and overall game.</h4>
+                    <h4>
+                <b>Primary features include:</b>
+                <li>Modular weapon combat (staggering, stat-based blocking, stamina-based parries)</li>
+                <li>Responsive item inventory</li>
+                <li>Enemies</li>
+                <li>Player + Enemy stats</li>
+                <li>Consumables</li>
+                <li>UI</li>
+                <li>Enemy Combat + Detection AI</li>
+                <li>Level event triggers</li>
+                <li>(and more)...</li></h4>
+<div class="game-dev-bubbles">
+  <a href="https://github.com/connortwall/Personal-RPG-Project/tree/main/Assets/Scripts"><div class="dev-bubble">Early GitHub (Unity)</div></a>
+  <a href="https://github.com/connortwall/Personal-RPG-Project-Unreal/tree/main/Source/OpenWorldRPG"><div class="dev-bubble">Early GitHub (Unreal)</div></a>
+  <div class="dev-bubble" data-section="unreal">Technical Details</div>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; margin-top: 1rem;">
-<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Image 1" style="width: 100%; border-radius: 0.5rem;" />
-<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/2.png" alt="Image 2" style="width: 100%; border-radius: 0.5rem;" />
-<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
-<img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
+<div style="display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;">
+                <iframe
+                    src="https://youtu.be/vceRLDM8p0w?si=_rI8LnaOUAoRCcSo"
+                        style="width:100%;
+                        max-width: 760px;
+                        aspect-ratio: 16 / 9;"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allowfullscreen></iframe>
+   </div>
+<h2>Read More</h2>
+<div class="game-dev-bubbles">
+
+  <div class="dev-bubble" data-section="narrative">Narrative</div>
+    <div class="dev-bubble" data-section="unity">Unity Programming</div>
+     <div class="dev-bubble" data-section="unreal">Unreal Programming</div>
 </div>
+
+<div id="mini-modal-narrative" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Screenplays & Narrative Design</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('narrative')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<h5>Narrative Vision</h5>
+ <p>I wrote a film screenplay following an orphaned free diver living in a technocracy. 
+ First part of an <b>Indigenous-futuristic</b> immersive action story based in pre-colonial, pre-Incan Peru. 
+ The purpose of this piece is to explore imaginative realism -especially with South American, Andean Indigenous culture and technology.
+ What if the secrets Quipus held were retained and not destroyed?</p>
+                                  <h5><iframe src="uploads/ConnorWall_Portfolio/Written_Work/Quipu/VisionPitch.pdf"
+                                               width="60%" height="600px"></iframe>  </h5>
+                    
+                            
+  <h5>Film Screenplay</h5> 
+  <p>I developed 12-page screenplay in a writers workshop over 4 weeks. </p>
+                
+                        <h5><iframe src="uploads/ConnorWall_Portfolio/Written_Work/Quipu/Quipu-Screenplay-ConnorWall-FinalwithNote.pdf"
+                                               width="60%" height="600px"></iframe></h5>
+
+ <h5>Comic Screenplay</h5> 
+ <p>I wrote, storyboarded, sketched, and colored a comic book screenplay adaptation following an orphaned free diver living in a technocracy. 
+ First part of an indigenous-futuristic immersive action story based in pre-colonial, pre-Incan Peru.</p>
+<h5><iframe src="uploads/ConnorWall_Portfolio/Written_Work/Quipu/Quipu-ComicScript-ConnorWall-Final.pdf"
+                                               width="60%" height="600px"></iframe></h5>
+                        
+
+ <h5>Early Storyboard</h5> 
+<h5><iframe src="uploads/ConnorWall_Portfolio/Written_Work/Quipu/Connor%20Wall%20Storyboard.pdf"
+                                              width="60%" height="600px"></iframe></h5>
+
+ <h5>Personal Reflections</h5>             
+<h5><iframe src="uploads/ConnorWall_Portfolio/Written_Work/Quipu/Writing_Reflections.pdf"
+                                               width="60%" height="600px"></iframe></h5>
+
+</div>
+</div>
+<div id="mini-modal-unreal" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Early Unreal Programming</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('unreal')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<h5>Environment</h5>
+<p>I developed a breakable object system where the meshes of "BreakableActors" explode in the direction they are hit with an impact sound. 
+I used Unreal Engine's Chaos Module for the randomized break behavior in the meshes. Note the breakable object spawns a collectible treasure item on destruction.</p>
+                       <div class="mini-gallery">
+                            <div class="image-container">
+                       
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.gif"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Player breaks a vase into Chaos-simulated pieces.</div>
+                            </div>
+                                <!--<p>The following code demonstrates how a breakable actor is set up with necessary geometry
+                            components on specific collision layers, a random treasure object spawns from the break
+                            site, and the BreakableActor's mesh disappears after breaking. </p>
+                            <div>// Sets default values
+ABreakableActor::ABreakableActor()
+{
+ \t// Set this actor to call Tick() every frame.  Can turn this off to improve performance if necessary it.
+\tPrimaryActorTick.bCanEverTick = false;
+
+\tGeometryCollection = CreateDefaultSubobject<UGeometryCollectionComponent>(TEXT("Geometry Component"));
+\tSetRootComponent(GeometryCollection);
+\tGeometryCollection->SetGenerateOverlapEvents(true);
+\tGeometryCollection->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECR_Ignore);
+\tGeometryCollection->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Ignore);
+
+\tCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule"));
+\tCapsule->SetupAttachment(GetRootComponent());
+\tCapsule->SetCollisionResponseToChannel(ECollisionChannel::ECC_Camera, ECR_Ignore);
+\tCapsule->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECR_Block);
+
+}
+
+// Called when the game starts or when spawned
+void ABreakableActor::BeginPlay()
+{
+\tSuper::BeginPlay();
+
+\tGeometryCollection->OnChaosBreakEvent.AddDynamic(this, &ABreakableActor::OnBreak);
+}
+
+// Called every frame
+void ABreakableActor::Tick(float DeltaTime)
+{
+\tSuper::Tick(DeltaTime);
+
+}
+
+void ABreakableActor::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
+{
+\tif(bBroken) return;
+\tbBroken = true;
+\tUWorld* World = GetWorld();
+
+\tif(World && TreasureClasses.Num() > 0)
+\t{
+\t\tFVector Location = GetActorLocation();
+\t\tLocation.Z += 75.f;
+\t\tint32 Selection = FMath::RandRange(0, TreasureClasses.Num() - 1);
+\t\tWorld->SpawnActor<ATreasure>(TreasureClasses[0], Location, GetActorRotation());
+\t}
+
+
+}
+
+void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
+{
+\tthis->SetLifeSpan(5.f);
+\tCapsule->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+}
+                        </div>
+                            -->
+                            <!--<p>The following code demonstrates the code used in the header file for BreakableActor.cpp </p>-->
+                            </div>
+                            
+  <h5>Characters</h5> 
+  <p>I developed a modular character system that uses animation instance states, montages, and
+                        EnhancedInput. The player can get hit and respond with an animation from the corresponding direction.
+                        Enemies may equip a sword, shield, none, or both to hand sockets in their skeletons and adjust animations accordingly.</p>
+                        <li>When hit, the character reacts with a directional animation corresponding to the hit
+                            direction along with hit particles and a hit sound.
+                        </li>
+                        <li>Characters also have random death montages that link to dead poses and randomized attack
+                            montages that use translation-rotation-warp to targets.
+                        </li>
+                        <li>Characters have weapon hit boxes that may collide with other objects or characters.</li>
+<div class="mini-gallery">
+<div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Enemies attack player wherever player is mid-animation.</div>
+                            </div>
+</div>
+
+ <h5>Heads Up Display (HUD)</h5> 
+ <p>I developed an heads-up display that shows player health, enemy health bars above their heads, and pick up prompts. 
+ Note Niagara systems for weapon trail, blood splatter, items, and soul that spawns on character death.
+ The following code demonstrates the setup of a character actor with attributes (health,
+                            stamina, exp).</p>
+                        
+                        <li>A game hud is set up using the players attributes (health, stamina, gold, exp).</li>
+                        <li>Currently, the player moves using keyboard directional movement, a mouse to look, space to
+                            jump, 'E' to interact, and clicking to attack.
+                        </li>
+                        <li>Interacting with a weapon causes it to be placed on the players back and can ten be
+                            unsheathed or sheathed for combat.
+                        </li>
+                        <li>Finally, the enemy may die when health is 0.</li>
+<div class="mini-gallery">
+<div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                            <div class="caption">Enemy staggers in direction hit, dies, and enters a new animation state.</div>
+                            </div>
+</div>
+
+ <h5>Enemy AI</h5> 
+ <p>I improved the enemy AI combat system with several states to motion warp and have clearer attack
+                        radius checks. Enemies can also have attack frequency modified in editor (AttackTimer).</p>
+                        <li>Patrolling State: enemies patrol along a list of specified targets in-level, unaware of
+                        player.
+                    </li>
+                    <li>Chase State: enemies notice player based on line-of-sight and hearing, or player attack, then
+                        chase player.
+                    </li>
+                    <li>Attack State: enemy attacks player.</li>
+                    <li>Dead State: enemy lost all health and soon disappears from level.</li>
+<div class="mini-gallery">
+<div class="image-container">
+                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.gif"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Two enemies: pursuit radii small & large. Chasing player when close, walking when far.</div>
+                            </div>
+</div>
+
+ <h5>Items</h5> 
+ <p>I developed the item system so that collectible items float in air before being collected.
+                        Here a sword weapon is picked up and automatically equipped, then sheathed and unsheathed.</p>
+                 
+<div class="mini-gallery">
+<div class="image-container">
+                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.gif"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Two enemies: pursuit radii (small & large). Chase player when close, walk when far.</div>
+                            </div>
+</div>
+
+</div>
+</div>
+
+<div id="mini-modal-unity" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Early Unity Programming</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('unity')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<h5>Gameplay Demo 1:</h5> 
+\t\t\t\t\t<li>Unity store assets</li>
+\t\t\t\t\t<li>Player 8 directional movement + sprint</li>
+\t\t\t\t\t<li>Basic + combo attack</li>
+\t\t\t\t\t<li>Block, blocked + unblocked enemy attack</li>
+\t\t\t\t\t<li>Poison build up + damage.</li><div class="mini-gallery">
+
+</div>
+<ul>
+</ul>
+<div class="mini-gallery">
+<div class="image-container">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unity/Videos/UnityRPGVideo1.mp4"
+                                    type="video/mp4"/>
+                        </video>
+    <div class="caption">To capture beauty, I added rich, saturated color.</div>
+</div>
+
+  <div>
+<h5>Enemy AI</h5> 
+<p>I developed an enemy AI combat system with several states.</p>
+                    <li>Idle State: enemies patrol unaware</li>
+                    <li>Ambush State: enemies lie stationary, unaware, get up and react</li>
+                    <li>Combat State: enemies stand guard</li>
+                    <li>Pursue Target State: enemies chase player</li>
+                    <li>Attack State: enemy attacks player</li>
+                    <li>Boss Combat State: boss switches attack animations based on state change</li>
+               
+<h5>User Interface (UI)</h5> 
+<p>I developed a user interface system with a pause menu with three options and in-game UI.</p>
+                    <li>Inventory: view current inventory items, replace and equip new ones</li>
+                    <li>Game Settings: template buttons for volume and language</li>
+                    <li>Equipped Items: view character items</li>
+                    <li>Pop Up UI: pop up messages that show item icon and name</li>
+                    <li>Quick Slots: cyclable items to use in combat and gameplay for left and right hand, spell, and
+                        consumable.
+                    </li>
+                    <li>Player Stats: Health, Magic, Stamina, Experience, Current Poison Effects</li>
+                    
+<h5>Player Combat Mechanics</h5> 
+<p>I developed a combat system with a series of combat colliders that detect various forms of
+                        damage.</p>
+                    <li>Damage Collider: general collider for when characters are hit</li>
+                    <li>Spell Damage Collider: detects spell damage and elemental damage types (fire, poison,
+                        physical)
+                    </li>
+                    <li>Bomb Damage Collider: impacts characters in a radius of explosion and adjusts damage based on
+                        proximity to blast impact
+                    </li>
+                    <li>Blocking Collider: detects when character is blocking and receive reduced damaged based on
+                        shield stats and stagger attacker if timed correctly
+                    </li>
+                    <li>Critical Damage Collider: detects when a critical attack is attempted and possible; allows for
+                        special assassination animation
+                    </li>
+                    <li>Posion: poisons character with a damage-over-time status after a limit of poison resistance is
+                        reached
+                    </li>
+                    
+<h5>Player Character Managers</h5> 
+<p>I developed a player system with input and camera behavior managers. Note: Enemies have
+                        corresponding modularized
+                        versions that have similar functionality for non-playable characters.</p>
+                    <li>Camera Manager: Determines camera behavior when player is moving or locking onto enemy targets
+                    </li>
+                    <li>Input Handler: Determines input behavior based on states and defined inputs</li>
+                    <li>Player Animator Manager: determines which animations and overlays will play based on player
+                        state (attacking, blocking, sprinting, etc)
+                    </li>
+                    <li>Player Combat Manager: determines enemy "teams", player combat states (attacking, blocking,
+                        dying, staggering, etc), enemy lock on targets, and available
+                        attacks based on current weapons, stamina, and magic
+                    </li>
+                    <li>Player Effects Manager: instantiates blood splatter and fire effects</li>
+                    <li>Player Inventory Manager: holds UI information for left hand, right hand, current spell, current
+                        consumable, pause menu, and picked-up items
+                    </li>
+                    <li>Player Stats Manager: holds health, stamina, magic, experience points, and poise (likelihood to
+                        stagger from enemy attack). Player shrugs when out of stamina or magic
+                    </li>
+                    <li>Player Equipment Manager: holds equipment information for inventory and combat use</li>
+                    <li>Player Locomotion Manager: holds movement behavior data based on combat and movement behavior
+                        such as dodging, jumping, sprinting, etc.</li>
+                        
+<h5>Items (weapons, armor, consumables)</h5> 
+<p>I developed an item system collection system where weapons
+                        and consumables can be collected and appear in chests, producing a sparkle effect until
+                        collected. Each item has its own consume animation an effects.
+                        Weapons and consumables exist as scriptable objects with customizable damage, animaitons, and
+                        meshes. Equipment can be equipped and replaced.
+                        Consumable and equipment types include:</p>
+                    <li>Bomb: a throwable object that explodes on impact with modifiable arc, damage, and explosion</li>
+                    <li>Cure: a potion that heals health and stops poison effects</li>
+                    <li>Flask: a potion that heals magic and boosts regeneration</li>
+                    <li>Equipment Items: Helmet, Feet, Torso, Legs, Hands</li>
+
+<h5>Inventory</h5> 
+<p>I developed an inventory system with weapon slots, inventory consumable slots, and item pick up
+                        funcitonality.</p>
+                        
+<h5>Events</h5> 
+<p>I developed several events systems that trigger on command.</p>
+                    <li>Open Chest: player opens chest and collects item</li>
+                    <li>Enter Boss Arena: player enters an arena by diving over fire and is blocked from re-entering
+                    </li>
+                    <li>Fog Wall/Illusionary Door: a pathway is blocked by fog until player steps through</li>
+<h5>Misc</h5> 
+<p>I developed a series of managers to modularize all characters' inventories, locomotion,
+                        animation, effects, stats, UI, and behavior.</p>
+</div>
+
+</div>
+</div>
+</div>
+
 `
     // Add more modal templates here as needed
 };
