@@ -746,8 +746,24 @@
     <button class="filter-btn" data-filter="writing">Writing</button>
   </div>
 
-
+  <!-- Optimized project grid with data-driven rendering -->
   <div class="project-grid" id="projects-container">
+    <!-- Skeleton placeholders for initial rendering -->
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+  </div>
+
+  <div class="project-grid" >
     <div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores-rule')">
       <video autoplay muted loop playsinline class="project-thumbnail">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
@@ -971,29 +987,15 @@
 `
 
 
-<!-- Critical inline script for immediate startup -->
-<script>
-  // Create global objects that will be populated later
-  window.projectsListData = window.projectsListData || [];
-  window.projectData = window.projectData || {};
 
-  // Function to hide skeleton loaders when real content arrives
-  document.addEventListener('projectsDataReady', function() {
-    // Remove skeleton placeholders once real data is ready
-    const skeletons = document.querySelectorAll('.project-card.skeleton');
-    skeletons.forEach(skeleton => {
-      skeleton.style.display = 'none';
-    });
-  });
-</script>
 
 <!-- Load optimized scripts in correct order with performance attributes -->
 <!-- The preloader needs to execute first -->
-<script src="js/projectDataPreloader.js"></script>
+
 
 <!-- Non-critical scripts with defer to avoid blocking -->
 <script src="js/utils.js"></script>
-<script src="js/projectCardLoader.js"></script>
+
 <script src="js/projectModal.js"></script>
 <script src="js/projectFilter.js"></script>
 
