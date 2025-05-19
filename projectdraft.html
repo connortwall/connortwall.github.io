@@ -724,14 +724,14 @@
       z-index: 9998;
       background-color: transparent;
     }
-
-
   </style>
 
-
+  <!-- Preconnect to critical domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 </head>
-<body>
 
+<body>
 <section class="projects-section">
   <div class="home-icon">
     <a href="index.html"><i class="fas fa-home"></i></a>
@@ -744,6 +744,23 @@
     <button class="filter-btn" data-filter="coding">Coding</button>
     <button class="filter-btn" data-filter="visuals">Visuals</button>
     <button class="filter-btn" data-filter="writing">Writing</button>
+  </div>
+
+  <!-- Optimized project grid with data-driven rendering -->
+  <div class="project-grid" id="projects-container">
+    <!-- Skeleton placeholders for initial rendering -->
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
   </div>
 
   <div class="project-grid">
@@ -955,6 +972,11 @@
       <span class="close-modal" onclick="closeModal()">&times;</span>
       <!-- Content will be dynamically injected here -->
     </div>
+  </div>
+
+  <!-- Loading spinner -->
+  <div id="modal-loading" class="loading-spinner">
+    <div class="spinner"></div>
   </div>
 </section>
 
