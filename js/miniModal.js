@@ -58,3 +58,8 @@ class MiniModal {
         });
     }
 }
+
+// Make sure to instantiate the class
+document.addEventListener('DOMContentLoaded', () => {
+    new MiniModal();
+});
