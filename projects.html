@@ -728,12 +728,10 @@
 
   </style>
 
-  <!-- Preconnect to critical domains -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-</head>
 
+</head>
 <body>
+
 <section class="projects-section">
   <div class="home-icon">
     <a href="index.html"><i class="fas fa-home"></i></a>
@@ -746,23 +744,6 @@
     <button class="filter-btn" data-filter="coding">Coding</button>
     <button class="filter-btn" data-filter="visuals">Visuals</button>
     <button class="filter-btn" data-filter="writing">Writing</button>
-  </div>
-
-  <!-- Optimized project grid with data-driven rendering -->
-  <div class="project-grid" id="projects-container">
-    <!-- Skeleton placeholders for initial rendering -->
-    <div class="project-card skeleton">
-      <div class="placeholder-content"></div>
-    </div>
-    <div class="project-card skeleton">
-      <div class="placeholder-content"></div>
-    </div>
-    <div class="project-card skeleton">
-      <div class="placeholder-content"></div>
-    </div>
-    <div class="project-card skeleton">
-      <div class="placeholder-content"></div>
-    </div>
   </div>
 
   <div class="project-grid">
@@ -975,11 +956,6 @@
       <!-- Content will be dynamically injected here -->
     </div>
   </div>
-
-  <!-- Loading spinner -->
-  <div id="modal-loading" class="loading-spinner">
-    <div class="spinner"></div>
-  </div>
 </section>
 
 <ul class="footer" style="text-align: center; z-index: 1000; font-size: x-small; color: rgba(138,190,183,0.42)" >
@@ -988,34 +964,11 @@
 
 `
 
-
-<!-- Critical inline script for immediate startup -->
-<script>
-  // Create global objects that will be populated later
-  window.projectsListData = window.projectsListData || [];
-  window.projectData = window.projectData || {};
-
-  // Function to hide skeleton loaders when real content arrives
-  document.addEventListener('projectsDataReady', function() {
-    // Remove skeleton placeholders once real data is ready
-    const skeletons = document.querySelectorAll('.project-card.skeleton');
-    skeletons.forEach(skeleton => {
-      skeleton.style.display = 'none';
-    });
-  });
-</script>
-
-<!-- Load optimized scripts in correct order with performance attributes -->
-<!-- The preloader needs to execute first -->
-<script src="js/projectDataPreloader.js"></script>
-
-<!-- Non-critical scripts with defer to avoid blocking -->
+<!-- Load the modularized scripts -->
 <script src="js/utils.js"></script>
-<script src="js/projectCardLoader.js"></script>
-<script src="js/projectModal.js"></script>
 <script src="js/projectFilter.js"></script>
-
-<!-- Lowest priority scripts -->
+<script src="js/projectModal.js"></script>
+<script src="js/projectCardLoader.js"></script>
 <script src="js/miniModal.js"></script>
 <script src="js/assetModal.js"></script>
 <script src="js/projectData.js"></script>
