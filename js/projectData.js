@@ -3,7 +3,7 @@
  * Project data for modal content
  * Separated to make it easier to maintain
  */
-let projectData = {
+const projectData = {
     "modal-omnivores-rule": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>omnivOres Rule</h2>

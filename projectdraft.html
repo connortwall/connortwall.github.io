@@ -724,8 +724,6 @@
       z-index: 9998;
       background-color: transparent;
     }
-
-
   </style>
 
   <!-- Preconnect to critical domains -->
@@ -748,7 +746,24 @@
     <button class="filter-btn" data-filter="writing">Writing</button>
   </div>
 
+  <!-- Optimized project grid with data-driven rendering -->
   <div class="project-grid" id="projects-container">
+    <!-- Skeleton placeholders for initial rendering -->
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+    <div class="project-card skeleton">
+      <div class="placeholder-content"></div>
+    </div>
+  </div>
+
+  <div class="project-grid">
     <div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores-rule')">
       <video autoplay muted loop playsinline class="project-thumbnail">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
