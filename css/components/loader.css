@@ -36,6 +36,29 @@
 .project-grid {
     position: relative;
     min-height: 200px; /* Ensure there's space for the loader */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-gap: 20px;
+    contain: layout style; /* Improve performance */
+}
+
+/* Optimize grid layout for large item collections */
+@media (min-width: 768px) {
+    .project-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+}
+
+/* Add card fade-in animation */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Optimize image and video loading */
@@ -43,18 +66,78 @@
 .project-card video {
     will-change: opacity;
     content-visibility: auto;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle placeholder color */
 }
 
 /* Improve performance of overlays */
 .project-overlay {
     will-change: opacity;
     backface-visibility: hidden;
+    contain: content;
 }
 
 /* Improve UI responsiveness */
 .project-card {
     will-change: transform, opacity;
     contain: layout style paint;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Add placeholder styling */
+.image-placeholder {
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@keyframes shimmer {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+/* Modal loading animation */
+.modal-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
+
+/* Enhance performance for mobile interactions */
+@media (max-width: 768px) {
+    .project-card.show-overlay {
+        z-index: 2;
+    }
+
+    .project-card:not(.show-overlay) .project-overlay {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    /* Smaller touch targets for dense layouts */
+    .project-grid {
+        grid-gap: 10px;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
 }
 
 /* Add placeholder styling */
