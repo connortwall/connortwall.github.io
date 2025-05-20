@@ -8,11 +8,33 @@
         name="programming, portfolio, guyana, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, ai, indie, omnivores rule, scavengers reign, journey, outer wilds, gamedev, game design">
   <title>Connor Wall - Projects</title>
 
+  <!-- Critical CSS (inline for faster loading) -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+    .project-grid {
+      position: relative;
+      display: grid;
+      grid-gap: 20px;
+      padding: 20px;
+    }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+    }
+  </style>
+
+  <!-- Preload key resources -->
+  <link rel="preload" href="css/projects.css" as="style">
+  <link rel="preload" href="css/components/project-card.css" as="style">
+  <link rel="preload" href="js/projectLoader.js" as="script">
+
   <!-- External CSS and JS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-csharp.min.js"></script>
 
   <!-- Internal CSS -->
   <link rel="stylesheet" href="css/projects.css">
@@ -24,6 +46,11 @@
   <link rel="stylesheet" href="css/components/modal.css">
   <link rel="stylesheet" href="css/components/project-card.css">
   <link rel="stylesheet" href="css/components/responsive.css">
+  <link rel="stylesheet" href="css/components/loader.css">
+
+  <!-- Deferred JS loading for better performance -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-csharp.min.js" defer></script>
 
 </head>
 <body>
@@ -42,9 +69,11 @@
     <button class="filter-btn" data-filter="writing">Writing</button>
   </div>
 
+  <!-- Project Grid with all cards properly optimized -->
   <div class="project-grid">
-    <div class="project-card show" data-tags="game visuals coding" onclick="openModal('modal-omnivores-rule')">
-      <video autoplay muted loop playsinline class="project-thumbnail">
+    <!-- Card 1: omnivOres Rule -->
+    <div class="project-card show" data-tags="game visuals coding writing" data-project="omnivores-rule">
+      <video muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
@@ -57,34 +86,33 @@
       </div>
     </div>
 
-    <a href="#roboleon" class="project-card show" data-tags="game writing coding" onclick="openModal('modal-roboleon')">
-      <img src="images/Roboleon2.webp" alt="Roboleon Project">
+    <!-- Card 2: Roboleon -->
+    <div class="project-card show" data-tags="game writing coding" data-project="roboleon">
+      <img src="images/Roboleon2.webp" alt="Roboleon Project" loading="lazy">
       <div class="project-overlay">
         <h3>Roboleon</h3>
         <p>Game Programmer, Narrative Designer (Unity, C#)</p>
         <p class="hover-text">In this Master's program project my goals were to setup a narrative dilemma &
-          integrate save-load and UX systems into polished gameplay.</p> <!-- Additional text -->
+          integrate save-load and UX systems into polished gameplay.</p>
         <h5>2024, 6 weeks</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="#environment-ai-hackathon" class="project-card show" data-tags="coding" onclick="openModal('modal-environment-ai-hackathon')">
-      <img src="uploads/ConnorWall_Portfolio/Hackathons/environment-green.png" alt="Environment AI Hackathon Game">
+    <!-- Card 3: Environment AI Hackathon -->
+    <div class="project-card show" data-tags="coding" data-project="environment-ai-hackathon">
+      <img src="uploads/ConnorWall_Portfolio/Hackathons/environment-green.png" alt="Environment AI Hackathon Game" loading="lazy">
       <div class="project-overlay">
         <h3>Environment Hackathon @AGI House</h3>
         <p>Hacker (Unreal, C++, Python)</p>
         <p class="hover-text">
           Won 2nd place crafting a UE plugin that makes landscape crafting faster using MasterpieceX🏔️ (bc us tech artists have had enough material node spaghetti graphs 🍝😆). </p>
-        <!--I learned:
-        - vibe coding is real (and can actually yield functional results)
-        - sometimes being present and persistent is enough (despite finishing with a wall of half-finished code)
-        - what might a game look like where the landscape itself is a character?-->
         <h5>2025, 6 hours</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="#totally-accurate-warehouse-simulator" class="project-card show" data-tags="game coding" onclick="openModal('modal-totally-accurate-warehouse-simulator')">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/Cover_Title.png" alt="Totally Accurate Warehouse Project">
+    <!-- Card 4: Totally Accurate Warehouse Simulator -->
+    <div class="project-card show" data-tags="game coding" data-project="totally-accurate-warehouse-simulator">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/Cover_Title.png" alt="Totally Accurate Warehouse Project" loading="lazy">
       <div class="project-overlay">
         <h3>Totally Accurate Warehouse Simulator</h3>
         <p>Game Programmer (Unity, C#)</p>
@@ -92,20 +120,22 @@
           systems for an order delivery game.</p>
         <h5>2022, 1 week</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="King-of-Dareux-Duality-Game.html" class="project-card show" data-tags="game coding">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/King_of_Dareux/Scene.png" alt="King of Dareux Project">
+    <!-- Card 5: King of Dareux -->
+    <div class="project-card show" data-tags="game coding" data-project="king-of-dareux">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/King_of_Dareux/Scene.png" alt="King of Dareux Project" loading="lazy">
       <div class="project-overlay">
         <h3>King of Dareux</h3>
         <p>Game Programmer (Unreal, C++)</p>
         <p class="hover-text">I worked as contract <b>Gameplay</b> and <b>UI Programmer</b> to fix bugs and implements features on an AA action-adventure RPG based on 4040 post-apocalyptic Earth.</p>
         <h5>2023, 3 months</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="Puppetshow-Game.html" class="project-card show" data-tags="game coding">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/Puppetshow/Title.jpeg" alt="Puppetshow Game">
+    <!-- Card 6: Amazing Puppet Show -->
+    <div class="project-card show" data-tags="game coding" data-project="puppetshow">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Puppetshow/Title.jpeg" alt="Puppetshow Game" loading="lazy">
       <div class="project-overlay">
         <h3>Amazing Puppet Show</h3>
         <p>Game Programmer (Unity, C#)</p>
@@ -113,20 +143,22 @@
           3rd-person 2.5D roguelike mini-game that uses simulated puppetry movement on a controller.</p>
         <h5>2022, 1 week</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="#quipu" class="project-card show" data-tags="game visuals writing coding" onclick="openModal('modal-quipu')">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/DiverIntroScene.webp" alt="Quipu Project">
+    <!-- Card 7: Quipu -->
+    <div class="project-card show" data-tags="game visuals writing coding" data-project="quipu">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/DiverIntroScene.webp" alt="Quipu Project" loading="lazy">
       <div class="project-overlay">
         <h3>Quipu</h3>
         <p>Solo Developer (Unreal, C++, Unity, C#).</p>
         <p class="hover-text">In a personal project I adapted my screenplay into Unity & Unreal games to gain development fluency between engines.</p>
         <h5>2023, 5 months</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="" class="project-card show" data-tags="visuals">
-      <video autoplay muted loop playsinline class="project-thumbnail">
+    <!-- Card 8: Foliage Growth -->
+    <div class="project-card show" data-tags="visuals" data-project="foliage-growth">
+      <video muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
         <source src="images/Plant.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
@@ -136,10 +168,11 @@
         <p class="hover-text">In a personal project I created a growth simulation and animated it in sequencer.</p>
         <h5>2024, 2 hours</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="" class="project-card show" data-tags="visuals coding">
-      <video autoplay muted loop playsinline class="project-thumbnail">
+    <!-- Card 9: Flying Character -->
+    <div class="project-card show" data-tags="visuals coding" data-project="flying-character">
+      <video muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
         <source src="images/VJ.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
@@ -149,28 +182,31 @@
         <p class="hover-text">In a personal project I created a flying character and animated it sequencer for live control.</p>
         <h5>2024, 2 days</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="#prey" class="project-card show" data-tags="writing" data-project="prey">
-      <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Prey Blog">
+    <!-- Card 10: Prey and Indigenous Futures -->
+    <div class="project-card show" data-tags="writing" data-project="prey">
+      <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Prey Blog" loading="lazy">
       <div class="project-overlay">
         <h3>Prey and Indigenous Futures</h3>
         <p class="hover-text">Blog Post</p>
         <h5>July, 2024</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="#metawalker" class="project-card show" data-tags="game writing" onclick="openModal('modal-metawalker')">
-      <img srcset="images/Metawalker.webp" alt="Metawalker Project">
-      <div class="project-overlay" onclick="closeModal()">
+    <!-- Card 11: Metawalker -->
+    <div class="project-card show" data-tags="game writing" data-project="metawalker">
+      <img src="images/Metawalker.webp" alt="Metawalker Project" loading="lazy">
+      <div class="project-overlay">
         <h3>Metawalker</h3>
         <p>Narrative Designer, Writer (Mobile)</p>
         <p class="hover-text">In an internship, I wrote character bios & chapters for the central storyline for an action-RPG mobile game in development.</p>
         <h5>2022, 5 months</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="fastforwardu.html" class="project-card show" data-tags="visuals">
+    <!-- Card 12: Incubator Curricula -->
+    <div class="project-card show" data-tags="visuals" data-project="fastforwardu">
       <img src="uploads/ConnorWall_Portfolio/Graphic_Design/FastForwardU/FFU_Notion_Graphics/17.png" alt="FFU/Pava Center Project" loading="lazy">
       <div class="project-overlay">
         <h3>Incubator Curricula</h3>
@@ -180,19 +216,21 @@
           while working as an intern; educating student entrepreneurs about business.</p>
         <h5>2022, 3 weeks</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="wildones.html" class="project-card show" data-tags="game visuals">
-      <img src="uploads/ConnorWall_Portfolio/Game_Design/Wild_Ones/back.png" alt="Metawalker Project" loading="lazy">
+    <!-- Card 13: Wild Ones Card Game -->
+    <div class="project-card show" data-tags="game visuals" data-project="wildones">
+      <img src="uploads/ConnorWall_Portfolio/Game_Design/Wild_Ones/back.png" alt="Wild Ones Card Game" loading="lazy">
       <div class="project-overlay">
         <h3>Wild Ones Card Game</h3>
         <p>Game Designer, Visual Designer</p>
         <p class="hover-text">I designed a fast-paced and strategic print-and-play card game about adventure with a team @Maryland Institute College of Art.</p>
         <h5>2021, 3 weeks</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="" class="project-card show" data-tags="visuals">
+    <!-- Card 14: Hermaeus Mora -->
+    <div class="project-card show" data-tags="visuals" data-project="hermaeus-mora">
       <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Personal_Projects/Hermaous_Mora.jpg" alt="Hermaeus Mora" loading="lazy">
       <div class="project-overlay">
         <h3>Hermaeus Mora</h3>
@@ -200,9 +238,10 @@
         <p class="hover-text">I illustrated an eldritch deity from the Elder Scrolls franchise Hermaeus Mora in Adobe Illustrator for fun :).</p>
         <h5>2022, 2hr</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="" class="project-card show" data-tags="visuals">
+    <!-- Card 15: Sunset Sticker -->
+    <div class="project-card show" data-tags="visuals" data-project="sunset-sticker">
       <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Sunset_Sticker.jpeg" alt="Sunset Sticker" loading="lazy">
       <div class="project-overlay">
         <h3>Sunset Sticker</h3>
@@ -210,20 +249,20 @@
         <p class="hover-text">I illustrated a sunset sticker in Adobe Illustrator for fun :).</p>
         <h5>2021, 30min</h5>
       </div>
-    </a>
+    </div>
 
-    <div class="project-card show" data-tags="writing" onclick="openModal('modal-scavengers')">
-      <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png">
-      Your browser does not support the img tag.
-      </img>
+    <!-- Card 16: Scavengers Reign -->
+    <div class="project-card show" data-tags="writing" data-project="scavengers">
+      <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Scavengers Reign" loading="lazy">
       <div class="project-overlay">
         <h3>Scavengers Reign & Authentic Speculative Biology</h3>
-        <p class="hover-text">Blog Post</p> <!-- Additional text -->
+        <p class="hover-text">Blog Post</p>
         <h5>August, 2024</h5>
       </div>
     </div>
 
-    <a href="amigosjaguares.html" class="project-card show" data-tags="visuals">
+    <!-- Card 17: Escuela Amigos Mascot -->
+    <div class="project-card show" data-tags="visuals" data-project="amigosjaguares">
       <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Escuela Amigos School Official Mascot/Jaguare_2013.jpeg" alt="Jaguare Project" loading="lazy">
       <div class="project-overlay">
         <h3>Escuela Amigos Mascot</h3>
@@ -231,17 +270,18 @@
         <p class="hover-text">I designed the logo "Jaguare" that is still used in official merchandise & marketing for the "Escuela Amigos School".</p>
         <h5>2013, 1 week</h5>
       </div>
-    </a>
+    </div>
 
-    <a href="intdc.html" class="project-card show" data-tags="visuals">
+    <!-- Card 18: INTD Conference -->
+    <div class="project-card show" data-tags="visuals" data-project="intdc">
       <img src="uploads/ConnorWall_Portfolio/Graphic_Design/Neural Tube Defect Conference/Copy of CME_Intl_NeuralTubeDefects_WelcomeEasel_Final.jpg" alt="INTD Conference" loading="lazy">
       <div class="project-overlay">
         <h3>INTD Conference</h3>
         <p>Illustrator, Graphic Designer</p>
-        <p class="hover-text">While a medical research intern at Boston Children's Hospital and Harvard Medical School, I designed materials for the <b>2019 International Neural Tube Defect Conference</b> using <b></b>Illustrator</b> and <b>InDesign</b>.</p>
+        <p class="hover-text">While a medical research intern at Boston Children's Hospital and Harvard Medical School, I designed materials for the <b>2019 International Neural Tube Defect Conference</b> using <b>Illustrator</b> and <b>InDesign</b>.</p>
         <h5>2019, 1 week</h5>
       </div>
-    </a>
+    </div>
   </div>
 
 
@@ -262,12 +302,19 @@
 
 <!-- Load the modularized scripts -->
 <script src="js/utils.js"></script>
-<script src="js/projectFilter.js"></script>
+<script src="js/projectData.js"></script>
 <script src="js/projectModal.js"></script>
+<script src="js/projectFilter.js"></script>
 <script src="js/miniModal.js"></script>
 <script src="js/assetModal.js"></script>
-<script src="js/projectData.js"></script>
 <script src="js/main.js"></script>
+<script>
+  // Inline small critical script for faster execution
+  document.querySelector('.close-modal').addEventListener('click', function() {
+    document.getElementById('project-modal').classList.add('hidden');
+    history.pushState("", document.title, window.location.pathname + window.location.search);
+  });
+</script>
 </body>
 </html>
 
