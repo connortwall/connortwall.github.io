@@ -1,0 +1,75 @@
+/* Button component styles */
+
+/* Filter buttons */
+.filter-buttons button {
+    font-family: Baron, sans-serif;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+    background: #79fffb;
+    color: black;
+}
+
+/* Dev bubble buttons */
+.dev-bubble {
+    background: linear-gradient(145deg, #2a2a2a, #3d3d3d);
+    color: #00b4cc;
+    border: 2px solid #00b4cc;
+    border-radius: 50px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dev-bubble:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: #00b4cc;
+    color: #121212;
+}
+
+.dev-bubble.active {
+    background: #00b4cc;
+    color: #121212;
+    transform: scale(1.05);
+}
+
+/* Roboleon buttons */
+.roboleon-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.roboleon-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Close button for mini-modal */
+.close-mini-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.2s;
+}
+
+.close-mini-modal:hover {
+    color: #00b4cc;
+}

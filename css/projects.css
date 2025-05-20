@@ -1,0 +1,52 @@
+/* Main CSS file that imports all modules */
+
+/* Import font declarations */
+@import 'fonts.css';
+
+/* Import layout styles */
+@import 'layout.css';
+
+/* Import component styles */
+@import 'components/project-card.css';
+@import 'components/modal.css';
+@import 'components/buttons.css';
+@import 'components/mini-modal.css';
+@import 'components/media-viewer.css';
+
+/* Import responsive styles */
+@import 'responsive.css';
+
+/* Global styles */
+body {
+    margin: 0;
+    font-family: Baron, sans-serif;
+    background: #111;
+    color: white;
+}
+
+/* Common elements */
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(20, 23, 40, 0.24);
+}
+
+ul {
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    z-index: 1000;
+    font-size: x-small;
+    color: rgba(138,190,183,0.42);
+    list-style-type: none;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}

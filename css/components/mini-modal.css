@@ -1,0 +1,118 @@
+/* Mini Modal component styles */
+
+.mini-modal {
+    display: none;
+    background: rgba(18, 18, 18, 0.95);
+    border: 1px solid #00b4cc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+.mini-modal.active {
+    display: block;
+}
+
+.mini-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.mini-modal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #00b4cc;
+    margin: 0;
+}
+
+.mini-modal h4 {
+    font-family: Baron, sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    color: #f6fdff;
+}
+
+.mini-modal h5 {
+    font-family: Rampung, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    color: #7fbddc;
+}
+
+.mini-modal-content {
+    color: #eee;
+    line-height: 1.6;
+}
+
+.mini-modal img,
+.mini-modal video {
+    border-radius: 8px;
+    margin: 10px 0;
+    max-width: 400px;
+    object-fit: cover;
+    display: flex;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    height: 300px; /* Taller height for a single image */
+}
+
+.mini-gallery img,
+.mini-gallery video {
+    max-width: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 200px;
+    height: 150px;
+    display: block; /* Ensures image sits properly above caption */
+    margin-bottom: 8px;
+}
+
+.mini-gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* For galleries with more than 4 images, keep the default size */
+/* Handle different numbers of images responsively */
+/* For galleries with 1 image */
+.mini-gallery:has(video:only-child) video {
+    width: 400px; /* Larger width for a single image */
+    height: 300px; /* Taller height for a single image */
+}
+
+/* For galleries with 2 images */
+.mini-gallery:has(video:first-child:nth-last-child(2)) video,
+.mini-gallery:has(video:first-child:nth-last-child(2) ~ video) {
+    width: 300px;
+    height: 225px;
+}
+
+/* For galleries with 3 images */
+.mini-gallery:has(video:first-child:nth-last-child(3)) video,
+.mini-gallery:has(video:first-child:nth-last-child(3) ~ video) {
+    width: 250px;
+    height: 188px;
+}
+
+.caption {
+    text-align: center;
+    font-size: .8rem;
+    color: #7fbddc; /* Changed from #333 to match your color scheme */
+    margin-top: 5px;
+    max-width: 200px; /* Ensures caption doesn't extend beyond image */
+    word-wrap: break-word; /* Ensures long words wrap */
+    overflow-wrap: break-word; /* Additional support for word wrapping */
+    padding: 0 5px; /* Small padding on sides to prevent text touching edges */
+    box-sizing: border-box; /* Includes padding in width calculation */
+    display: block; /* Ensures the caption takes full width */
+    line-height: 1;
+}

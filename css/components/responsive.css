@@ -1,0 +1,66 @@
+/* Responsive styles */
+
+/* Media queries for better responsiveness */
+@media (max-width: 768px) {
+    /* Mini gallery responsive adjustments */
+    .mini-gallery img {
+        width: 160px;
+        height: 120px;
+    }
+
+    .mini-gallery:has(img:only-child) video {
+        width: 100%;
+        height: 250px;
+    }
+
+    .mini-gallery:has(img:first-child:nth-last-child(2)) video,
+    .mini-gallery:has(img:first-child:nth-last-child(2) ~ video) {
+        width: 45%;
+        height: 180px;
+    }
+
+    /* Game dev bubbles responsive */
+    .game-dev-bubbles {
+        gap: 8px;
+    }
+
+    .dev-bubble {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    /* Mini modal responsive */
+    .mini-modal {
+        padding: 15px;
+    }
+
+    .mini-modal-title {
+        font-size: 1.1rem;
+    }
+
+    .mini-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+
+    .mini-gallery img {
+        height: 80px;
+    }
+
+    /* Button row responsive */
+    .roboleon-button-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .roboleon-btn {
+        width: 80%;
+    }
+
+    .image-viewer-content, .video-viewer-content {
+        width: 95%;
+    }
+
+    .download-options-content {
+        width: 80%;
+    }
+}

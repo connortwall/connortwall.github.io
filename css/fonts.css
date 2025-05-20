@@ -1,0 +1,58 @@
+/* Font declarations */
+
+@font-face {
+    font-family: 'Baron';
+    src: url('../fonts/baron/baron-neue.regular.eot');
+    src: url('../fonts/baron/baron-neue.regular.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/baron/baron-neue.regular.woff2') format('woff2'),
+    url('../fonts/baron/baron-neue.regular.woff') format('woff'),
+    url('../fonts/baron/baron-neue.regular.ttf') format('truetype'),
+    url('../fonts/baron/baron-neue.regular.svg#svgFontName') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Santanelli';
+    src:url('../fonts/santanelli/Santanelli.ttf.woff') format('woff'),
+    url('../fonts/santanelli/Santanelli.ttf.svg') format('svg'),
+    url('../fonts/santanelli/Santanelli.ttf.eot'),
+    url('../fonts/santanelli/Santanelli.ttf.eot?#iefix') format('embedded-opentype');
+url('../fonts/santanelli/Santanelli.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa-Bold';
+    src:url('../fonts/nexa-bold/Nexa-Bold.woff') format('woff'),
+    url('../fonts/nexa-bold/Nexa-Bold.svg') format('svg'),
+    url('../fonts/nexa-bold/Nexa-Bold.eot'),
+    url('../fonts/nexa-bold/Nexa-Bold.eot?#iefix') format('embedded-opentype');
+url('../fonts/nexa-bold/Nexa-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nexa-Light';
+    src:url('../fonts/nexa-light/Nexa-Light.woff') format('woff'),
+    url('../fonts/nexa-light/Nexa-Light.svg') format('svg'),
+    url('../fonts/nexa-light/Nexa-Light.eot'),
+    url('../fonts/nexa-light/Nexa-Light.eot?#iefix') format('embedded-opentype');
+url('../fonts/nexa-light/Nexa-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rampung';
+    src:url('../fonts/rampung/Rampung.woff') format('woff'),
+    url('../fonts/rampung/Rampung.svg') format('svg'),
+    url('../fonts/rampung/Rampung.eot'),
+    url('../fonts/rampung/Rampung.eot?#iefix') format('embedded-opentype');
+url('../fonts/rampung/Rampung.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

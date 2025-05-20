@@ -1,0 +1,97 @@
+/* Layout styles */
+
+.projects-section {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.home-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.home-icon a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.home-icon a:hover {
+    color: #00b4cc;
+}
+
+h2 {
+    font-family: Baron, sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    max-width: 1000px; /* Optional: keeps grid width tighter */
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+
+.filter-buttons {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Preview Specific Styles */
+.preview-header {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--background-light);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.preview-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Game dev bubbles navigation */
+.game-dev-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+/* Mini gallery layout */
+.mini-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligns items at the top */
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+.image-container {
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 15px;
+    justify-content: center;
+    text-align: center;
+    width: auto;
+}
+
+/* Button row styling */
+.roboleon-button-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
