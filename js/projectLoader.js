@@ -6,7 +6,9 @@ class ProjectLoader {
     constructor() {
         this.projectGrid = document.querySelector('.project-grid');
         this.cards = Array.from(document.querySelectorAll('.project-card'));
-        this.loadingDelay = 100; // ms between each card animation
+        this.cardCount = this.cards.length;
+        this.loadingDelay = 80; // ms between each card animation (smaller delay for more cards)
+        this.batchSize = 5; // How many cards to load at once
         this.imagesLoaded = 0;
         this.totalImages = 0;
         this.videoElements = [];
