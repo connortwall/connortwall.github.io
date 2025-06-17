@@ -171,7 +171,7 @@ I added hue and brightness parameters for lit areas, shadows, and a special shad
 I created a multithreaded fish swarm (5000 instances) that responsively changes color, speed, and direction.
 </div>
 
-<div class="mini-gallery"> 
+<div class="mini-gallery">
 <div class="image-container">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FishSwarmMove.webm"
