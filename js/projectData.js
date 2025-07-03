@@ -45,21 +45,21 @@ The following mechanics are available to the player and slowly learned through e
                             <div class="image-container">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Echolocation.webm"
-                                        type="video/mp4"/>
+                                        type="video/webm"/>
                             </video>
                             <div class="caption">Echolocate.</div>
                             </div>
                             <div class="image-container">
                                    <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/GodMode.webm"
-                                        type="video/mp4"/>
+                                        type="video/webm"/>
                             </video>
                             <div class="caption">Fly.</div>
                             </div>
                             <div class="image-container">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FlyingShout.webm"
-                                        type="video/mp4"/>
+                                        type="video/webm"/>
                             </video>
                             <div class="caption">Shout.</div>
                             </div>
@@ -122,30 +122,30 @@ I added hue and brightness parameters for lit areas, shadows, and a special shad
 
 
 <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FallingFog.webm"
-                                    type="video/mp4"/>
+                                    type="video/webm"/>
                         </video>
     <div class="caption">To capture beauty, I added rich, saturated color.</div>
     </div>
 <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/ShaderBreakdown.webm"
-                                    type="video/mp4"/>
+                                    type="video/webm"/>
                         </video>
     <div class="caption">Material instance allows real-time control of outlines, color, and shadow patterns.</div>
     </div>
 <div class="image-container">
-                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaIntro.webm"
-                                    type="video/mp4"/>
+                                    type="video/webm"/>
                         </video>
   <div class="caption">To capture brutality, I added outlines and noise (black spots) to make a gritty feel.</div>
 </div>
 <div class="image-container">
-                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/PlayerCloseUp.webm"
-                                    type="video/mp4"/>
+                                    type="video/webm"/>
                         </video>
   <div class="caption">To make it feel alien, I added yellow highlights and purple shadows (avoiding the colors green and blue as much as possible).</div>
 </div>
@@ -155,16 +155,16 @@ I added hue and brightness parameters for lit areas, shadows, and a special shad
 
 <div class="mini-gallery">
 <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/VineGrowthFrame.webm"
-                                    type="video/mp4"/>
+                                    type="video/webm"/>
                         </video>
     <div class="caption">First I set up logic using static mesh as input. Vines start from the bottom of the mesh and grow upward.</div>
     </div>
 <div class="image-container">
-                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/HoudiniIvyGrowth.webm"
-                                    type="video/mp4"/>
+                                    type="video/webm"/>
                         </video>
   <div class="caption">I added randomized leaf varieties using a material atlas as input.</div>
 </div>
@@ -173,14 +173,14 @@ I created a multithreaded fish swarm (5000 mesh instances) that responsively cha
 
 <div class="mini-gallery">
 <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FishSwarmMove.webm"
                                     type="video/mp4"/>
                         </video>
     <div class="caption">The swarm follows a boid pattern to determine position and speed in relation to other instanced meshes.</div>
     </div>
 <div class="image-container">
-                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                          <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FishSwarmMove.webm"
                                     type="video/mp4"/>
                         </video>
@@ -251,21 +251,21 @@ Each "call and response" ability also creates wind impulses that affect trees, l
     <p>These categories apply to all organisms and can be used in various combinations to achieve more complex behavior on an individual, community, and species level.</p>
                             <div class="mini-gallery">
                             <div class="image-container">
-                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fauna leads the way.</div>
                             </div>
                             <div class="image-container">
-                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                                   <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SquidDisappear.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fauna becomes translucent after using ink.</div>
                             </div>
                             <div class="image-container">
-                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SpiderCrawl.webm"
                                         type="video/mp4"/>
                             </video>
@@ -349,14 +349,14 @@ Each "call and response" ability also creates wind impulses that affect trees, l
    </table>
 <div class="mini-gallery">
  <div class="image-container">
-                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                        <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/goo-pt1.webm"
                                     type="video/mp4"/>
                         </video>
                         <div class="caption">A tentacled creature responds to shouts and whispers.</div>
                         </div>
                               <div class="image-container">
-                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
+                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/MantaMessage.webm"
                                         type="video/mp4"/>
                             </video>
