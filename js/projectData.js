@@ -168,7 +168,7 @@ I added hue and brightness parameters for lit areas, shadows, and a special shad
                         </video>
   <div class="caption">I added randomized leaf varieties using a material atlas as input.</div>
 </div>
-I created a multithreaded fish swarm (5000 instances) that responsively changes color, speed, and direction.
+I created a multithreaded fish swarm (5000 mesh instances) that responsively changes color, speed, and direction.
 </div>
 
 <div class="mini-gallery">
@@ -286,6 +286,19 @@ Each "call and response" ability also creates wind impulses that affect trees, l
                             emergent behavior occurs through interaction.
                             As such, I identified the focus of this gameplay as the
                             intersection of <i>independent</i> and <i>social behaviors</i>.</p>
+                            <div class="mini-gallery">
+                            <div class="image-container">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/AIStateTree_Behavior.png"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Fauna Behavioral States (AI Controller + AI State Tree)</div>
+                            </div>
+                            
+                            <div class="image-container">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/AIStateTree_Sound.png"
+                             width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Fauna Relationship States / Sound Response Behavior (AI Controller + AI State Tree)</div>
+                            </div>
+                            </div>
                     <div class="table-wrapper">
                             <table>
 
@@ -352,8 +365,8 @@ Each "call and response" ability also creates wind impulses that affect trees, l
                         </div>
 <br>
 <h5>Part 5: Refinements</h5>
-<p>Evolution of species through children with randomized traits
-Community “memory” (some societal behavior is learned, some is genetic) Some species inherit automatic responses instinctually while others inherit it by learning.
+<p>Evolution of species through children with randomized traits.
+Community “memory”: (some societal behavior is learned, some is genetic). Some species inherit automatic responses instinctually while others inherit it by learning.
                     </p>
 
 <div class="mini-gallery">
