@@ -29,6 +29,7 @@ const projectData = {
   <div class="dev-bubble" data-section="gameplay">Gameplay Design</div>
   <div class="dev-bubble" data-section="art">Tech Art</div>
   <div class="dev-bubble" data-section="systems">AI & Systems Design</div>
+  <div class="dev-bubble" data-section="ui">UI Structure & Design</div>
   <!--<div class="dev-bubble" data-section="narrative">Narrative</div>-->
   <!--<div class="dev-bubble" data-section="tech">Graphics Programming</div>-->
 </div>
@@ -42,21 +43,21 @@ const projectData = {
 <p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment.
 The following mechanics are available to the player and slowly learned through environmental puzzles.</p>
                        <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Echolocation.webm"
                                         type="video/webm"/>
                             </video>
                             <div class="caption">Echolocate.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                                    <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/GodMode.webm"
                                         type="video/webm"/>
                             </video>
                             <div class="caption">Fly.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FlyingShout.webm"
                                         type="video/webm"/>
@@ -121,28 +122,28 @@ Using material graph, I made a post process material that cell shades based on p
 I added hue and brightness parameters for lit areas, shadows, and a special shadow pattern.
 
 
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FallingFog.webm"
                                     type="video/webm"/>
                         </video>
     <div class="caption">To capture beauty, I added rich, saturated color.</div>
     </div>
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/ShaderBreakdown.webm"
                                     type="video/webm"/>
                         </video>
     <div class="caption">Material instance allows real-time control of outlines, color, and shadow patterns.</div>
     </div>
-<div class="image-container">
+<div class="media-item">
                           <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaIntro.webm"
                                     type="video/webm"/>
                         </video>
   <div class="caption">To capture brutality, I added outlines and noise (black spots) to make a gritty feel.</div>
 </div>
-<div class="image-container">
+<div class="media-item">
                         <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/PlayerCloseUp.webm"
                                     type="video/webm"/>
@@ -154,14 +155,14 @@ I added hue and brightness parameters for lit areas, shadows, and a special shad
 </div>
 
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/VineGrowthFrame.webm"
                                     type="video/webm"/>
                         </video>
     <div class="caption">First I set up logic using static mesh as input. Vines start from the bottom of the mesh and grow upward.</div>
     </div>
-<div class="image-container">
+<div class="media-item">
                           <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/HoudiniIvyGrowth.webm"
                                     type="video/webm"/>
@@ -172,14 +173,14 @@ I created a multithreaded fish swarm (5000 mesh instances) that responsively cha
 </div>
 
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FishSwarmMove.webm"
                                     type="video/mp4"/>
                         </video>
     <div class="caption">The swarm follows a boid pattern to determine position and speed in relation to other instanced meshes.</div>
     </div>
-<div class="image-container">
+<div class="media-item">
                           <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FishSwarmMove.webm"
                                     type="video/mp4"/>
@@ -189,9 +190,6 @@ I created a multithreaded fish swarm (5000 mesh instances) that responsively cha
 Each "call and response" ability also creates wind impulses that affect trees, leaves, and grass using render targets.
 
 </div>
-</div>
-
-
 </div>
 </div>
 
@@ -250,21 +248,21 @@ Each "call and response" ability also creates wind impulses that affect trees, l
       </table>
     <p>These categories apply to all organisms and can be used in various combinations to achieve more complex behavior on an individual, community, and species level.</p>
                             <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fauna leads the way.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                                    <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SquidDisappear.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fauna becomes translucent after using ink.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SpiderCrawl.webm"
                                         type="video/mp4"/>
@@ -287,13 +285,13 @@ Each "call and response" ability also creates wind impulses that affect trees, l
                             As such, I identified the focus of this gameplay as the
                             intersection of <i>independent</i> and <i>social behaviors</i>.</p>
                             <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/AIStateTree_Behavior.png"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Fauna Behavioral States (AI Controller + AI State Tree)</div>
                             </div>
                             
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/AIStateTree_Sound.png"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Fauna Relationship States / Sound Response Behavior (AI Controller + AI State Tree)</div>
@@ -304,7 +302,7 @@ Each "call and response" ability also creates wind impulses that affect trees, l
 
       <thead>
       <tr>
-      <th><h3 stlye="bold">Type of Behavior</h3></th>
+      <th><h3 style="bold">Type of Behavior</h3></th>
       <th><h3>Effect on Donor</h3></th>
       <th><h3>Effect on Receiver</h3></th>
       </tr>
@@ -337,7 +335,7 @@ Each "call and response" ability also creates wind impulses that affect trees, l
 
       <p>This table provides a clear action-reaction framework for player and NPC behavior while maintaining flexibility (including relationships such as
       mutualism, parasitism, and predation).</p>
-      </div>
+      
 
   <h5>Part 4: Player Influence</h5>
    <p>To create a similar simple behavior structure for the player I reduced the interactions to 3 forms:</p>
@@ -348,14 +346,14 @@ Each "call and response" ability also creates wind impulses that affect trees, l
 
    </table>
 <div class="mini-gallery">
- <div class="image-container">
+ <div class="media-item">
                         <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/goo-pt1.webm"
                                     type="video/mp4"/>
                         </video>
                         <div class="caption">A tentacled creature responds to shouts and whispers.</div>
                         </div>
-                              <div class="image-container">
+                              <div class="media-item">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/MantaMessage.webm"
                                         type="video/mp4"/>
@@ -371,6 +369,46 @@ Community “memory”: (some societal behavior is learned, some is genetic). So
 
 <div class="mini-gallery">
 </div>
+</div>
+</div>
+
+<div id="mini-modal-ui" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">UI Structure & Design</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('ui')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The goal was to create a minimalistic, language agnostic UI that immerses the player in the environment as much as possible.
+The UI consists of GUI (energy bar, call/response symbols), a pause menu, and a main menu.
+</p>
+<div class="mini-gallery">
+Using material graph, I made an SDF-driven UI material that can dynamically morph between symbols. 
+Below is the workflow from design to implementation.
+<div class="mini-gallery">
+                         
+                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SDFGeneration.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="First, I created a symbol in Gimp/Photoshop">
+                            <div class="caption">First, I created a symbol in Gimp/Photoshop</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SDFSymbol.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Second, I created a gradient map to shade the symbol as an SDF.</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SymbolMaterial.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Third, I lerped each texture into each other using UE material graph.</div>
+                            </div>
+                            <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/MantaMessage.webm" type="video/mp4"/>
+                            </video>
+                            <div class="caption">Abstract symbols communicate specific fauna behavior.</div>
+                            </div>
+                         </div>
+
 </div>
 </div>
 
@@ -408,8 +446,7 @@ Community “memory”: (some societal behavior is learned, some is genetic). So
 </div>
 </div>
 </div>
-`,
-    "modal-roboleon": `
+`, "modal-roboleon": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Roboleon</h2>
 <h3><strong>Game Programmer, Narrative Designer</strong> (Unity, C#)</h3>
@@ -459,13 +496,13 @@ Community “memory”: (some societal behavior is learned, some is genetic). So
 <p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment.
 The following mechanics are available to the player and slowly learned through environmental puzzles.</p>
                        <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation10.webp"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Main Menu Documentation</div>
                             </div>
 
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation11.webp"
                              width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">In-Game UI Documentation</div>
@@ -484,7 +521,7 @@ The following mechanics are available to the player and slowly learned through e
 <p>I developed a Save - Load system with a manager and saveable interface.</p>
 
          <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation7.webp"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Save & Load Documentation</div>
@@ -775,12 +812,12 @@ public class SaveableManager : MonoBehaviour
 <p>I developed a procedural object spawner using Poisson Disk Sampling.</p>
 
          <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation8.webp"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Obstacle Generation Documentation</div>
                             </div>
-                           <!-- <div class="image-container">
+                           <!-- <div class="media-item">
                                    <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.mp4"
                                         type="video/mp4"/>
@@ -928,7 +965,7 @@ public class FireSpawner : MonoBehaviour
 <p>I developed a translation manager using Unity's built-in localization  system.</p>
 
          <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation9.webp"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Localization Documentation</div>
@@ -947,7 +984,7 @@ public class FireSpawner : MonoBehaviour
 <p>I developed a physics-based movement system.</p>
 
          <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation5.webp"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Player Movement Documentation</div>
@@ -965,7 +1002,7 @@ public class FireSpawner : MonoBehaviour
 <p>I developed a camera manager for game designers to create cutscenes.</p>
 
          <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Roboleon/technicaldocument/DADIU_2022_Team3_TechnicalDesignPresentation12.webp"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Cinematics Documentation</div>
@@ -973,8 +1010,7 @@ public class FireSpawner : MonoBehaviour
                             </div>
 </div>
 </div>
-`,
-    "modal-totally-accurate-warehouse-simulator": `
+`, "modal-totally-accurate-warehouse-simulator": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Totally Accurate Warehouse Simulator</h2>
 <h3><strong>Game Programmer</strong> (Unity, C#)</h3>
@@ -1018,25 +1054,25 @@ public class FireSpawner : MonoBehaviour
 <p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment.
 The following mechanics are available to the player and slowly learned through environmental puzzles.</p>
                        <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/gameplayGif.gif"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Gameplay</div>
                             </div>
 
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/2.svg"
                              width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Game Summary pt1</div>
                             </div>
                             
-                                  <div class="image-container">
+                                  <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/3.png"
                              width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Game Summary pt2</div>
                             </div>
                             
-                                  <div class="image-container">
+                                  <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/4.svg"
                              width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Game Summary pt3</div>
@@ -1064,12 +1100,12 @@ The following mechanics are available to the player and slowly learned through e
 
  <h5>CODE SNIPPET - Poisson Disk Sampling Algorithm</h5>
   <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/5.png"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Obstacle Generation Documentation</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/6.svg"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Obstacle Generation Documentation</div>
@@ -1240,12 +1276,12 @@ public static class PoissonProceduralObstacleGeneration
 <p>I developed a physics-based movement system.</p>
 
          <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation.png"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Player Movement Documentation pt1</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Warehouse_Simulator/MGP2%20Technical%20Design%20Presentation2.png"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Player Movement Documentation pt2</div>
@@ -1253,8 +1289,7 @@ public static class PoissonProceduralObstacleGeneration
                             </div>
 </div>
 </div>
-`,
-    "modal-amazing-puppet-show": `
+`, "modal-amazing-puppet-show": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>omnivOres Rule</h2>
 <h3><strong>Solo Developer</strong> (Unreal Engine, C++, HLSL)</h3>
@@ -1291,21 +1326,21 @@ public static class PoissonProceduralObstacleGeneration
 <p>The central gameplay loop revolves around balancing extractive and symbiotic relationships with the environment.
 The following mechanics are available to the player and slowly learned through environmental puzzles.</p>
                        <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Echolocation.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Echolocate.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                                    <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/GodMode.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fly.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FlyingShout.webm"
                                         type="video/mp4"/>
@@ -1367,21 +1402,21 @@ The following mechanics are available to the player and slowly learned through e
 <ul>
 </ul>
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FallingFog.webm"
                                     type="video/mp4"/>
                         </video>
     <div class="caption">To capture beauty, I added rich, saturated color.</div>
     </div>
-<div class="image-container">
+<div class="media-item">
                           <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaIntro.webm"
                                     type="video/mp4"/>
                         </video>
   <div class="caption">To capture brutality, I added outlines and noise (black spots) to make a gritty feel.</div>
 </div>
-<div class="image-container">
+<div class="media-item">
                         <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/PlayerCloseUp.webm"
                                     type="video/mp4"/>
@@ -1449,21 +1484,21 @@ The following mechanics are available to the player and slowly learned through e
       </table>
     <p>These categories apply to all organisms and can be used in various combinations to achieve more complex behavior on an individual, community, and species level.</p>
                             <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/JerboaCircles.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fauna leads the way.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                                    <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SquidDisappear.webm"
                                         type="video/mp4"/>
                             </video>
                             <div class="caption">Fauna becomes translucent after using ink.</div>
                             </div>
-                            <div class="image-container">
+                            <div class="media-item">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SpiderCrawl.webm"
                                         type="video/mp4"/>
@@ -1534,14 +1569,14 @@ The following mechanics are available to the player and slowly learned through e
 
    </table>
 <div class="mini-gallery">
- <div class="image-container">
+ <div class="media-item">
                         <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/goo-pt1.webm"
                                     type="video/mp4"/>
                         </video>
                         <div class="caption">A tentacled creature responds to shouts and whispers.</div>
                         </div>
-                              <div class="image-container">
+                              <div class="media-item">
                              <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/MantaMessage.webm"
                                         type="video/mp4"/>
@@ -1594,16 +1629,14 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 </div>
 </div>
 </div>
-`,
-    "modal-metawalker": `
+`, "modal-metawalker": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
   <h2>Trailer + Studio Update</h2>
   <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Timeframe: 5 months</h4>
   <p>I wrote character bios and chapters for the central storyline in a new action-RPG mobile game at <a style="color: #00b4cc" href= "https://nordicstonestudio.com">Nordic Stone Studios.</a></p>
   <p>Collect heroes and important people from the past to fight for the future. Set off on a quest to find an ancient Talisman before it can fall into the wrong hands!</p>
   <iframe width="100%" height="415" src="https://www.youtube.com/embed/vr-b1dk_OHs" title="YouTube video player" allow="accelerometer; &autoplay=1; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-`,
-    "modal-prey": `
+`, "modal-prey": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Prey and Indigenous Futures</h2>
 <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
@@ -1616,8 +1649,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%203.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
 <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%204.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
 </div>
-`,
-    "modal-scavengers": `
+`, "modal-scavengers": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Scavengers Reign & Authentic Speculative Biology</h2>
 <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
@@ -1630,8 +1662,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
 <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
 </div>
-`,
-    "modal-environment-ai-hackathon": `
+`, "modal-environment-ai-hackathon": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
   <h2>Environment Hackathon @AGI House</h2>
   <h3><strong>Hacker</strong></h3>
@@ -1639,10 +1670,10 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <br>
   Won 2nd place crafting a UE plugin that makes landscape crafting faster using MasterpieceX🏔️ (bc us tech artists have had enough material node spaghetti graphs 🍝😆). </p>
   <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
   <img src="uploads/ConnorWall_Portfolio/Hackathons/Environment1.png" alt="Environment AI Hackathon Image 1" style="width: 100%; border-radius: 0.5rem;" />
 </div>
-<div class="image-container">
+<div class="media-item">
   <img src="uploads/ConnorWall_Portfolio/Hackathons/environment-green.png" alt="Environment AI Hackathon Image 1" style="width: 100%; border-radius: 0.5rem;" />
 </div>
 </div>
@@ -1651,8 +1682,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
  <h2 style="color: #00b4cc;" target="_blank" class="inline-flex items-center px-4 py-2 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition">
   <a href="https://github.com/connortwall/MasterpieceX" style="color: #00b4cc;"><i class="fab fa-github mr-2" style="color: #00b4cc;text-align: center;"></i> GitHub</a>
 </h2>
-`,
-    "modal-ffu": `
+`, "modal-ffu": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Scavengers Reign & Authentic Speculative Biology</h2>
 <h4 style="margin-top: -0.5rem; text-align: center; color: #aaa;">Blog Post</h4>
@@ -1665,8 +1695,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/3.png" alt="Image 3" style="width: 100%; border-radius: 0.5rem;" />
 <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/4.png" alt="Image 4" style="width: 100%; border-radius: 0.5rem;" />
 </div>
-`,
-    "modal-quipu": `
+`, "modal-quipu": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Quipu</h2>
 <h3><strong>Solo Developer</strong> (Unreal Engine, C++, Unity, C#)</h3>
@@ -1760,7 +1789,7 @@ Community “memory” (some societal behavior is learned, some is genetic) Some
 <p>I developed a breakable object system where the meshes of "BreakableActors" explode in the direction they are hit with an impact sound. 
 I used Unreal Engine's Chaos Module for the randomized break behavior in the meshes. Note the breakable object spawns a collectible treasure item on destruction.</p>
                        <div class="mini-gallery">
-                            <div class="image-container">
+                            <div class="media-item">
                        
                             <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/breakableactor.gif"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
@@ -1842,7 +1871,7 @@ void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
                         </li>
                         <li>Characters have weapon hit boxes that may collide with other objects or characters.</li>
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/directionalhit-motionwarp.mp4"
                                         type="video/mp4"/>
@@ -1866,7 +1895,7 @@ void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
                         </li>
                         <li>Finally, the enemy may die when health is 0.</li>
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemy-death.mp4"
                                         type="video/mp4"/>
@@ -1887,7 +1916,7 @@ void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
                     <li>Attack State: enemy attacks player.</li>
                     <li>Dead State: enemy lost all health and soon disappears from level.</li>
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                              <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/enemypursuit.gif"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Two enemies: pursuit radii small & large. Chasing player when close, walking when far.</div>
@@ -1899,7 +1928,7 @@ void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
                         Here a sword weapon is picked up and automatically equipped, then sheathed and unsheathed.</p>
                  
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                              <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/Gifs/equip-sword.gif"
                              width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)">
                             <div class="caption">Two enemies: pursuit radii (small & large). Chase player when close, walk when far.</div>
@@ -1926,7 +1955,7 @@ void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
 <ul>
 </ul>
 <div class="mini-gallery">
-<div class="image-container">
+<div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;">
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unity/Videos/UnityRPGVideo1.mp4"
                                     type="video/mp4"/>
