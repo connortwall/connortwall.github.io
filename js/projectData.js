@@ -410,6 +410,45 @@ Below is the workflow from design to implementation.
                          </div>
 
 </div>
+<div class="mini-gallery">
+Using material graph, I made an SDF-driven UI material that can dynamically morph between symbols. 
+Below is the workflow from design to implementation.
+<div class="mini-gallery">
+                         
+                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/UIInteract.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="First, I created a symbol in Gimp/Photoshop">
+                            <div class="caption">Player interaction prompt UI: Appearance triggered by on mesh look at or proximity to player.</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/UIDialogue.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Dialogue UI: NPC displays dialogue lines.</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/UILowPower.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">NPC interaction disabled.</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FruitDissolve.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Lower power bar pulses red and green.</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/FullEnergy.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Upon absorbing fruit energy, power bar glows blue and electricity jitters.</div>
+                            </div>
+                            <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                            <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/EnergyUIShowcase.webm" type="video/mp4"/>
+                            </video>
+                            <div class="caption">Player interacts with NPC, then fills power bar.</div>
+                            </div>
+                         </div>
+
+</div>
 </div>
 
 <div id="mini-modal-narrative" class="mini-modal">

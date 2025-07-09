@@ -1,0 +1,182 @@
+/* Mini Modal component styles */
+
+.mini-modal {
+    display: none;
+    background: rgba(18, 18, 18, 0.95);
+    border: 1px solid #00b4cc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+.mini-modal.active {
+    display: block;
+}
+
+.mini-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.mini-modal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #00b4cc;
+    margin: 0;
+}
+
+.mini-modal h4 {
+    font-family: Baron, sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    color: #f6fdff;
+}
+
+.mini-modal h5 {
+    font-family: Rampung, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    color: #7fbddc;
+}
+
+.mini-modal-content {
+    color: #eee;
+    line-height: 1.6;
+}
+
+.mini-modal img,
+.mini-modal video {
+    border-radius: 8px;
+    margin: 10px 0;
+    max-width: 400px;
+    object-fit: cover;
+    display: flex;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    height: 225px; /* 16:9 aspect ratio for single modal images */
+}
+
+/* Media item wrapper for proper caption alignment */
+.media-item {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+}
+
+.mini-gallery img,
+.mini-gallery video {
+    max-width: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 200px;
+    height: 112px; /* 16:9 aspect ratio (200 * 9/16 = 112.5) */
+    display: block; /* Ensures image sits properly above caption */
+    margin-bottom: 8px;
+}
+
+.mini-gallery img:hover,
+.mini-gallery video:hover{
+    transform: scale(1.05);
+}
+
+/* For galleries with more than 4 images, keep the default size */
+/* Handle different numbers of images responsively */
+/* For galleries with 1 image */
+.mini-gallery:has(img:only-child) img,
+.mini-gallery:has(video:only-child) video {
+    width: 400px; /* Larger width for a single image */
+    height: 225px; /* 16:9 aspect ratio (400 * 9/16 = 225) */
+}
+
+/* For galleries with 2 images */
+.mini-gallery:has(img:first-child:nth-last-child(2)) img,
+.mini-gallery:has(img:first-child:nth-last-child(2) ~ img),
+.mini-gallery:has(video:first-child:nth-last-child(2)) video,
+.mini-gallery:has(video:first-child:nth-last-child(2) ~ video) {
+    width: 300px;
+    height: 169px; /* 16:9 aspect ratio (300 * 9/16 = 168.75) */
+}
+
+/* For galleries with 3 images */
+.mini-gallery:has(img:first-child:nth-last-child(3)) img,
+.mini-gallery:has(img:first-child:nth-last-child(3) ~ img),
+.mini-gallery:has(video:first-child:nth-last-child(3)) video,
+.mini-gallery:has(video:first-child:nth-last-child(3) ~ video) {
+    width: 250px;
+    height: 141px; /* 16:9 aspect ratio (250 * 9/16 = 140.625) */
+}
+
+.caption {
+    text-align: center;
+    font-size: .8rem;
+    color: #7fbddc;
+    margin-top: 5px;
+    max-width: 200px; /* Default width matches default image width */
+    width: 200px; /* Ensures caption takes full width of container */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 5px;
+    box-sizing: border-box;
+    display: block;
+    line-height: 1.2;
+}
+
+/* Caption width adjustments to match image/video sizes */
+/* For single image/video galleries */
+.mini-gallery:has(img:only-child) .caption,
+.mini-gallery:has(video:only-child) .caption {
+    max-width: 400px;
+    width: 400px;
+}
+
+/* For 2-image/video galleries */
+.mini-gallery:has(img:first-child:nth-last-child(2)) .caption,
+.mini-gallery:has(img:first-child:nth-last-child(2) ~ img) ~ .caption,
+.mini-gallery:has(video:first-child:nth-last-child(2)) .caption,
+.mini-gallery:has(video:first-child:nth-last-child(2) ~ video) ~ .caption {
+    max-width: 300px;
+    width: 300px;
+}
+
+/* For 3-image/video galleries */
+.mini-gallery:has(img:first-child:nth-last-child(3)) .caption,
+.mini-gallery:has(img:first-child:nth-last-child(3) ~ img) ~ .caption,
+.mini-gallery:has(video:first-child:nth-last-child(3)) .caption,
+.mini-gallery:has(video:first-child:nth-last-child(3) ~ video) ~ .caption {
+    max-width: 250px;
+    width: 250px;
+}
+
+/* Alternative approach using CSS Grid for better caption alignment */
+.mini-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.mini-gallery .media-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0; /* Remove default margin since we're using gap */
+}
+
+.mini-gallery .media-item img,
+.mini-gallery .media-item video {
+    margin-bottom: 8px;
+}
+
+.mini-gallery .media-item .caption {
+    margin-top: 0; /* Remove top margin since we're using margin-bottom on media */
+}
