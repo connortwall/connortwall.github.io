@@ -30,6 +30,7 @@ const projectData = {
   <div class="dev-bubble" data-section="art">Tech Art</div>
   <div class="dev-bubble" data-section="systems">AI & Systems Design</div>
   <div class="dev-bubble" data-section="ui">UI Structure & Design</div>
+  <div class="dev-bubble" data-section="production">Production & Narrative</div>
   <!--<div class="dev-bubble" data-section="narrative">Narrative</div>-->
   <!--<div class="dev-bubble" data-section="tech">Graphics Programming</div>-->
 </div>
@@ -445,6 +446,49 @@ Below is the workflow from design to implementation.
                             <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/EnergyUIShowcase.webm" type="video/mp4"/>
                             </video>
                             <div class="caption">Player interacts with NPC, then fills power bar.</div>
+                            </div>
+                         </div>
+
+</div>
+</div>
+</div>
+
+<div id="mini-modal-production" class="mini-modal">
+<div class="mini-modal-header">
+<h3 class="mini-modal-title">Production & Narrative Structure</h3>
+<span class="close-mini-modal" onclick="closeMiniModal('production')">&times;</span>
+</div>
+<div class="mini-modal-content">
+<p>The goal was to create a mystery driven story with 4 main pillars of curiosity (like Outer Wilds). </p>
+<div class="mini-gallery">
+Each narrative curiosity is also linked to a location and skill-use progression.
+<div class="mini-gallery">
+                         
+                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/GDDProduction.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="First, I created a symbol in Gimp/Photoshop">
+                            <div class="caption">Production sprints were drafted on a weekly basis.</div>
+                            </div>
+                      
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/NarrativeDesignPillars.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">I structured the narrative to center around these central mysteries / emotional pillars.</div>
+                             <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SampleKeyMystery.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Each central curiosity centers around a question and is made of sub-curiosities/questions.</div>
+                            </div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/NarrativeSubCuriosity.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Each "sub-curiosity" consists of skill progression, level balance mechanics, and narrative beats.</div>
+                            </div>
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/SampleSpectacles.png" 
+                            width="100%" class="zoomable-image" onclick="toggleMediaExpansion(this)" alt="Second, I created a gradient map to shade the symbol as an SDF.">
+                            <div class="caption">Third, I lerped each texture into each other using UE material graph.</div>
                             </div>
                          </div>
 
