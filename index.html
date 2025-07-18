@@ -1,0 +1,811 @@
+<!DOCTYPE HTML>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/html">
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="/favicon.png" rel="shortcut icon" type="image/png">
+<link href="/site.webmanifest" rel="manifest">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0K46MH6H28"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-0K46MH6H28');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-48NR9YM9PH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-48NR9YM9PH');
+    </script>
+    <title>Connor Wall Portfolio</title>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport"/>
+    <meta content="programming, portfolio, guyana, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, ai, indie, omnivores rule, scavengers reign, journey, outer wilds, gamedev, game design"
+          name="programming, portfolio, guyana, narrative, indigenous, black, game, development, game development, connor wall, c++, c#, ai, indie, omnivores rule, scavengers reign, journey, outer wilds, gamedev, game design">
+
+    <noscript>
+        <link href="assets/css/noscript.css" rel="stylesheet"/>
+    </noscript>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-image: url('images/backgrounds/night-shining-starry-sky-blue-space-background-with-stars-space-beautiful-night-sky-vector.jpg'); /* Replace with your actual image path */
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-color: #131620;
+                /* optional: keeps background static on scroll */
+                height: 100%;
+                width: 100%;
+                overflow: scroll; /* optional: hides scrollbars if not needed */
+                font-family: 'Baron', sans-serif;
+            }
+
+
+            .background-image {
+                position: fixed;
+                background-size: cover;
+                top: 0;
+                left: 0;
+                transform: rotate(90deg);
+                width: 100%;
+                height: 100%;
+                z-index:1;
+                pointer-events: none;
+            }
+
+            .custom-bg-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+            }
+
+            .custom-bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                mask-repeat: no-repeat;
+                -webkit-mask-repeat: no-repeat;
+                mask-size: contain;
+                -webkit-mask-size: auto;
+                transition: mask-image 0.3s ease, -webkit-mask-image 0.3s ease;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+                z-index: 40;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .bubble:hover ~ .custom-bg-container .custom-bg {
+                opacity: 0;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 2;
+
+            }
+
+            .mask-layer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 60;
+                pointer-events: none;
+            }
+
+            .bubble {
+                position: absolute;
+                pointer-events: auto;
+                border-radius: 50%;
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                will-change: transform;
+                overflow: hidden;
+                z-index: 4;
+                mix-blend-mode: screen;
+                opacity: 1; /* Make the bubbles semi-visible initially */
+                background: rgb(0, 0, 0); /* Add a soft tint to each bubble */
+                backdrop-filter: blur(10px);
+                box-shadow: 0 0 10px rgba(173, 86, 255, 0.2);
+                transition: transform 0.3s ease;
+                cursor: pointer;
+                font-size: .6rem;
+            }
+
+            .bubble img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+
+            }
+
+            .bubble::after {
+                content: attr(data-hover-text);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: #2f2588;
+                font-size: .8rem;
+                background: rgba(136, 54, 54, 0);     /*text background color*/
+                padding: 0.3rem 0.6rem;
+                border-radius: 8px;
+                opacity: 1;
+                transition: opacity 0.3s ease;
+                white-space: wrap;
+                pointer-events: none;
+                z-index: 2;
+            }
+
+            .bubble:hover::after {
+                opacity: 1;
+                color: rgba(0, 59, 168, 0.94);
+            }
+
+            .bubble.touched {
+                transform: scale(1.1);
+                filter: brightness(1.2);
+                box-shadow: 0 0 10px rgba(240, 246, 190, 0.79); /*social media icons*/
+                transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+            }
+
+            .main-bubble {
+                width: 18rem;
+                height: 18rem;
+                border-radius: 50%;
+                overflow: hidden;
+                position: sticky;
+                top: inherit;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                animation: float 6s ease-in-out infinite;
+                box-shadow: 0 0 20px rgba(237, 255, 118, 0.87);
+                margin-top: 7rem;
+            }
+
+            .main-bubble::after {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(202, 183, 58, 0.93); /* Your overlay color and opacity */
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                border-radius: 50%;
+                pointer-events: none;
+            }
+
+            .main-bubble:hover::after {
+                opacity: 1;
+            }
+
+            .hover-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff5b5;
+                font-size: 1.1rem;
+                font-family: 'Baron', sans-serif;
+                text-align: center;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+                pointer-events: none;
+                z-index: 2;
+            }
+            .main-bubble:hover .hover-text {
+                opacity: 1;
+            }
+
+            .main-bubble img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            @font-face {
+                font-family: 'Baron';
+                src: url('fonts/baron/baron-neue.regular.eot');
+                src: url('fonts/baron/baron-neue.regular.eot?#iefix') format('embedded-opentype'),
+                url('fonts/baron/baron-neue.regular.woff2') format('woff2'),
+                url('fonts/baron/baron-neue.regular.woff') format('woff'),
+                url('fonts/baron/baron-neue.regular.ttf') format('truetype'),
+                url('fonts/baron/baron-neue.regular.svg#svgFontName') format('svg');
+                font-weight: normal;
+                font-style: normal;
+                font-display: swap;
+            }
+
+
+            .intro-text {
+                position: relative;
+                top: 10%;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+                color: #fafda7;
+            }
+
+            .intro-text h1 {
+                font-size: 3rem;
+                margin: 0;
+            }
+
+            .intro-text p {
+                font-size: 1.2rem;
+                opacity: 0.8;
+                margin: 20px;
+            }
+            .bubble-title { /*orb*/
+                position: relative;
+                top: 10%;
+                width: 100%;
+                text-align: center;
+                z-index: 1000;
+                color: rgba(20, 23, 40, 0.84);
+                text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+            }
+            .social-icons {
+                margin: 1rem 0;
+                z-index: 100;
+            }
+
+            .social-icons a {
+                color: #f0ff6c;
+                font-size: 1.5rem;
+                margin: 0 0.5rem;
+                transition: color 0.3s ease, transform 0.3s ease;
+                display: inline-block;
+            }
+
+            .social-icons a:hover {
+                color: #faffd9;
+                transform: scale(1.2);
+            }
+            .social-icons svg:hover {
+                color: #85fdb9;
+                transform: scale(1.2);
+            }
+            .divider {
+                width: 10px;
+                height: 1.5rem;
+                background-color: white;
+                z-index: 10000;
+            }
+
+            .footer hover {
+                color: rgba(133, 253, 239, 0.42);
+                transform: scale(1.2);
+            }
+
+            .card-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;       /* Center horizontally */
+                align-items: center;           /* Optional: center vertically within container */
+                gap: 2rem;
+                position: relative;
+                padding-right: 15px;
+                padding-left: 15px; /* Change from absolute */
+                /* Space above and below */ /* Page-side padding */
+                max-width: 1200px;             /* Optional: keeps cards from stretching too wide on large screens */
+                z-index: 1; /* Lower the z-index of the cards container so bubbles can be on top */
+                pointer-events: none; /* Prevent interactions with cards behind the bubbles */
+                margin-bottom: 2rem;
+            }
+
+            .card {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 16px;
+                overflow: hidden;
+                width: 250px; /* Base size */
+                max-width: 100%; /* Prevent overflow */
+                flex: 1 1 200px; /* Allow shrinking/growing */
+                height: 200px;
+                position: relative;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                cursor: pointer;
+                pointer-events: auto; /* Allow interaction with individual cards */
+                z-index: 5;
+            }
+
+            .card.touched {
+                transform: scale(1.1);
+                filter: brightness(1.2);
+                box-shadow: 0 0 10px rgb(134, 245, 255);
+                transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+            }
+
+
+
+
+            @media (max-width: 980px) {
+                .card-container {
+                    /* Space above and below */
+                    gap: 1rem;
+                    /* Page-side padding */
+                }
+                .card {
+                    width: 45%;
+                    height: 100px;
+                }
+
+            }
+
+
+
+            @media (max-width: 580px) {
+                .main-bubble {
+                    width: 50%;
+                    height: 50%;
+                    margin-left: 7rem;
+                    margin-bottom: 4rem;
+                    margin-top: 2rem;
+                }
+            }
+
+            .card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .card-title {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: white;
+                background: rgba(0, 0, 0, 0.6);
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                font-size: 1.2rem;
+                text-align: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                pointer-events: none;
+            }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+            }
+
+            .card:hover .card-title {
+                opacity: 1;
+            }
+
+            .main-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 8;
+                gap: 1rem;
+                position: relative;
+                max-width: 1000px;
+                width: 90%;
+                margin-top: -4rem;
+            }
+            #main-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                margin-top: 2rem;
+            }
+
+            @keyframes float {
+                0%, 100% { transform: translate(-50%, -50%) translateY(60px); }
+                50% { transform: translate(-50%, -50%) translateY(30px); }
+            }
+            @keyframes blob-wobble {
+                0%, 100% {
+                    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                }
+                50% {
+                    border-radius: 40% 60% 70% 30% / 50% 60% 30% 70%;
+                }
+            }
+
+            .bubble {
+                animation: blob-wobble 3s ease-in-out infinite;
+            }
+
+
+            /* Position the orb layer in the center of the page, relative to the main bubble */
+            .orb-layer {
+                position: absolute;
+                top: 50%; /* Center vertically */
+                left: 50%; /* Center horizontally */
+                transform: translate(-50%, -50%); /* Adjust the positioning */
+                width: 300px; /* Set fixed width for orb orbit radius */
+                height: 300px; /* Set fixed height for orb orbit radius */
+                pointer-events: none; /* Prevent interaction with the orb layer itself */
+                z-index: 1; /* Make sure the orb layer is above other elements */
+            }
+
+            /* Orbs will orbit tightly around the main bubble */
+            .orb {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%; /* Make them circular */
+
+                box-shadow: 0 0 10px rgba(14, 56, 74, 0.62);
+                animation: orb-orbit 8s infinite linear; /* Orbit animation */
+                pointer-events: auto; /* Allow interaction with orbs */
+                z-index: 1; /* Ensure it appears above the main bubble */
+            }
+
+            /* Animation for the orbiting orbs around the main bubble */
+            @keyframes orb-orbit {
+                0% {
+                    transform: rotate(0deg) translateX(260px) rotate(0deg); /* Tight orbit */
+                }
+                100% {
+                    transform: rotate(360deg) translateX(260px) rotate(-360deg); /* Full orbit */
+                }
+            }
+
+        </style>
+</head>
+<body>
+
+<div class="background-image"></div>
+<div class="custom-bg-container">
+    <div class="custom-bg" id="bg1"></div>
+    <div class="custom-bg" id="bg2"></div>
+    <div class="custom-bg" id="bg3"></div>
+    <div class="custom-bg" id="bg4"></div>
+    <div class="custom-bg" id="bg5"></div>
+</div>
+<div class="overlay"></div>
+<div class="mask-layer" id="mask-layer"></div>
+
+
+<div id="main-wrapper">
+    <div class="intro-text">
+        <h1><span style="color: #f6fa53; background-image: linear-gradient(0deg, #ff9c31 0%, #ffec2c 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Connor Wall</span></h1>
+        <p><span style="color: #c10fb4; background-image: linear-gradient(135deg,#f6db55 0%, #ff9950 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Creative Technologist. Exploring Indigenous futures. Sharing what I learn.</span></p>
+        <div class="social-icons">
+            <a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fab fa-skyatlas"></i></a>
+            <!--<a href="https://bsky.app/profile/quantumconnor.bsky.social" target="_blank" aria-label="Bluesky"><i class="fas fa-sky"></i></a>
+            <svg url="svg/Bluesky Logo Vector.svg" width="24" height="24">
+            </svg>-->
+            <a href="https://www.youtube.com/@QuantumAetherGames" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/in/connortwall/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/quantum.connor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    <div class="main-bubble" id="main-bubble" title="CV">
+        <div class="hover-text">CV</div>
+        <a href="https://connorwall.com/CV.html">
+            <img src="images/Profile_Photos/AirportHex3.png" alt="Main Bubble" />
+        </a>
+    </div>
+
+
+    <div class="main-content">
+        <div class="intro-text">
+            <h1><span style="color: #f6fa53; background-image: linear-gradient(0deg, #ff9c31 0%, #ffec2c 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <a href="https://dadiu.itch.io/roboleon">
+                    <img src="images/Roboleon.jpg" alt="Card 2" href="https://dadiu.itch.io/roboleon"/>
+                </a>
+                <div class="card-title">Download Free</div>
+            </div>
+            <div class="card">
+                <a href="https://store.steampowered.com/app/3221630/Omnivores_Rule/">
+                    <img src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/Steam-Library-Header.png" alt="Card 1" href="https://connorwall.com/Omnivores-Rule.html"/>
+                    <div class="card-title">Wishlist on Steam!</div>
+
+                </a>
+            </div>
+            <!--<iframe style="z-index: 2000" src="https://store.steampowered.com/widget/3221630/" frameborder="0" width="646" height="190"></iframe>-->
+
+            <!--<div class="card">
+              <img src="https://via.placeholder.com/250x200" alt="Card 3" />
+              <div class="card-title">Project Three</div>
+            </div>-->
+        </div>
+    </div>
+
+    <ul class="footer" style="z-index: 1000; font-size: x-small; color: rgba(138,190,183,0.42)" >
+        &copy; <i>Website coded and designed </i> by Connor Wall <a href="https://connorwall.com/CV.html" target="_blank" aria-label="CV"><i class="fas fa-file-alt"></i></a>
+    </ul>
+</div>
+
+<script>
+    const maskLayer = document.getElementById('mask-layer');
+    const bubbles = [];
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2.5;
+    const bgImages = [
+        'images/VJ.gif',
+        'uploads/ConnorWall_Portfolio/Game_Design/Roboleon/gifs/GG_puttingOutFire.gif',
+        'images/Puppetshow.jpeg',
+        'images/PlantMotion.gif',
+        /*'images/quantumconnor+nickolai.JPG',*/
+        ''
+    ];
+    let mouseX = centerX;
+    let mouseY = centerY;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    const bgDivs = [
+        document.getElementById('bg1'),
+        document.getElementById('bg2'),
+        document.getElementById('bg3'),
+        document.getElementById('bg4'),
+        document.getElementById('bg5')
+    ];
+
+    bgDivs.forEach((div, index) => {
+        div.style.backgroundImage = `url('${bgImages[index]}')`;
+        div.style.href = 'https://www.linkedin.com/in/connortwall/';
+    });
+
+
+
+    //orbs
+    const orbLayer = document.createElement('div');
+    orbLayer.classList.add('orb-layer');
+    document.body.appendChild(orbLayer);
+
+    // Center the orb layer on the page
+    orbLayer.style.position = 'absolute';
+    orbLayer.style.top = '50%';
+    orbLayer.style.left = '50%';
+    orbLayer.style.transform = 'translate(-50%, -50%)';  // This centers the layer properly
+    orbLayer.style.width = '.5rem';  // Set the width for the orbit radius
+    orbLayer.style.height = '.5rem';  // Set the height for the orbit radius
+    orbLayer.style.pointerEvents = 'none';
+    orbLayer.style.zIndex = '2';
+
+    for (let i = 0; i < 5; i++) {
+        const orb = document.createElement('div');
+        orb.classList.add('orb');
+
+        // Randomize the color and other properties
+        orb.style.backgroundColor = `rgba(${Math.random() * 200}, ${Math.random() * 100}, 100, .5)`;
+        const size = 10 + Math.random() * 7;
+        orb.style.width = `${size}px`;
+        orb.style.height = `${size}px`;
+
+        // Set the initial angle for each orb
+        const angle = Math.random() * 360;
+        orb.style.animationDuration = `${10 + Math.random() * 4}s`;  // Randomize orbit speed
+
+        // Position the orb using a radial animation
+        orb.style.transform = `rotate(${angle}deg) translateX(2px) rotate(-${angle}deg)`;  // Start position
+
+        // Append the orb to the orb layer
+        orbLayer.appendChild(orb);
+    }
+
+    for (let i = 0; i < 4; i++) {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+
+        switch (i) {
+            case 0:
+                bubble.dataset.hoverText = 'Visuals';
+                bubble.style.href = 'projects.html?filter=visuals';
+                break;
+            case 1:
+                bubble.dataset.hoverText = 'Coding';
+                bubble.style.href = 'projects.html?filter=coding';
+                break;
+            case 2:
+                bubble.dataset.hoverText = 'Writing';
+                bubble.style.href = 'projects.html?filter=writing';
+                break;
+            case 3:
+                bubble.dataset.hoverText = 'Community';
+                bubble.style.href = 'https://www.linkedin.com/in/connortwall/';
+
+                break;
+            case 4: bubble.dataset.hoverText = '';
+                break;
+        }
+
+        bubble.addEventListener('mouseenter', () => {
+            bgDivs[i].style.opacity = '1';
+            bgDivs[i].style.opacity = '1';
+            bubble.style.backgroundColor = 'white'; // turn white on hover
+            bubbles[i].isHovered = true;
+        });
+
+        bubble.addEventListener('mouseleave', () => {
+            bgDivs[i].style.opacity = '0';
+            // reset to original color with some opacity
+            bubble.style.backgroundColor = bubbles[i].originalColor;
+            bubbles[i].isHovered = false;
+        });
+
+
+
+        bubble.addEventListener('click', () => {
+            window.open(bubble.style.href, '_self');
+        });
+        // Touch start
+        bubble.addEventListener('touchstart', () => {
+            bubble.classList.add('touched');
+            bgDivs[i].style.opacity = '1';
+        });
+
+        // Touch end
+        bubble.addEventListener('touchend', () => {
+            // Delay the removal slightly for visual effect
+            setTimeout(() => {
+                bubble.classList.remove('touched');
+            }, 150);
+            bgDivs[i].style.opacity = '0';
+        });
+
+        // Optional: tap anywhere else to remove visual feedback
+        document.addEventListener('touchstart', (e) => {
+            if (!bubble.contains(e.target)) {
+                bubble.classList.remove('touched');
+            }
+        });
+
+        const size = 90 + Math.random() * 90 + innerWidth/400;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+
+        // Generate irregular border-radius
+        const irregularRadius = `${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% / ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}% ${30 + Math.random() * 40}%`;
+        bubble.style.borderRadius = irregularRadius;
+
+
+        const mask = `radial-gradient(circle ${size / 4}px at center, white 100%, white 100%)`;
+        bgDivs[i].style.maskImage = mask;
+        bgDivs[i].style.webkitMaskImage = mask;
+
+        // Randomize the color and store it
+        const alpha = Math.max(Math.random() * 0.9 + 0.3,0.8) ;
+        const color = `rgba(255, 200, 50, ${alpha})`;
+        bubble.style.backgroundColor = color;
+
+        maskLayer.appendChild(bubble);
+        const rotateSpeed = 0.001 + Math.random() * 0.003;
+        bubbles.push({
+            el: bubble,
+            size,
+            baseRadius: 40 + Math.random() * 90 + innerWidth / 400, //orbit radius
+            angle: Math.random() * 360,
+            wobbleOffset: Math.random() * 100,
+            rotateSpeed,
+            currentSpeed: rotateSpeed, // track current speed separately
+            isHovered: false,
+            bgDiv: bgDivs[i],
+            originalColor: color  // ← Store original
+
+        });
+    }
+
+    let time = 0;
+    function animate() {
+        time += 0.01;
+
+        bubbles.forEach((b, i) => {
+            const wobble = Math.sin(time * 2 + b.wobbleOffset) * 10;
+            const radius = (b.baseRadius + wobble);
+
+            //b.angle += 0.002 + i * 0.0015;
+            // Smoothly slow down speed when hovered
+            const targetSpeed = b.isHovered ? b.rotateSpeed * 0.25 : b.rotateSpeed;
+            b.currentSpeed += (targetSpeed - b.currentSpeed) * 0.05;
+            b.angle += b.currentSpeed;
+
+            let x = centerX + Math.cos(b.angle) * radius;
+            let y = centerY + Math.sin(b.angle) * radius;
+            const b1 = bubbles[i];
+            let fx = 0, fy = 0;
+            // Apply repulsion from other bubbles
+            for (let j = 0; j < bubbles.length; j++) {
+                if (i === j) continue;
+                const b2 = bubbles[j];
+                const otherX = parseFloat(b2.el.style.left || 0);
+                const otherY = parseFloat(b2.el.style.top || 0);
+                const dx = x - otherX;
+                const dy = y - otherY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist > 0.1) {
+                    const repulsionStrength = 10; // Adjust this value
+                    const force = repulsionStrength / (dist * dist); // Inverse-square law
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                }
+                const buffer = 800; // desired separation buffer
+                if (dist < buffer && dist > 0.1) {
+                    const force = (buffer - dist) * 3; // Linear pushback
+                    fx += (dx / dist) * force;
+                    fy += (dy / dist) * force;
+                }
+            }
+
+            // Apply repulsion forces
+            x += fx * 0.02;  // Adjust multiplier for desired push
+            y += fy * 0.02;
+
+            b.el.style.left = `${x}px`;
+            b.el.style.top = `${y}px`;
+
+            // Sticky effect: nudge toward mouse if close
+            const dx = mouseX - x;
+            const dy = mouseY - y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const stickyStrength = Math.min(50, Math.max(0, 100 - dist)) / 200;
+
+            const xSticky = x + dx * stickyStrength;
+            const ySticky = y + dy * stickyStrength;
+
+            b.el.style.left = `${xSticky - b.size / 2}px`;
+            b.el.style.top = `${ySticky - b.size / 3}px`;
+            b.el.style.transform = `rotate(${time * b.rotateSpeed}rad)`;
+
+            const mask = `radial-gradient(circle ${b.size / 2}px at ${x}px ${y}px, white 100%, white 100%)`;
+
+            b.bgDiv.style.webkitMaskImage = mask;
+            b.bgDiv.style.maskImage = mask;
+
+
+
+
+
+        });
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+</script>
+</body>
+</html>
