@@ -2204,7 +2204,7 @@ I chose echolocation because I think it creates interesting, nature-based, yet a
                              <div class="mini-gallery">
                                       <div class="media-item">
                             <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
-                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeather.webm"
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeather2.webm"
                                         type="video/webm"/><div class="caption"></div>
                             </video></div></div>
                        <p style="text-align: center">Echolocation can be triggered at any location any by any event. Here is is triggered by mesh collision events and footsteps.</p>
