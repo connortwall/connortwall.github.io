@@ -1973,6 +1973,29 @@ I chose to explore the mechanic of echolocation because I think it offers unique
                             
 
 `,
+    "modal-foliage-growth": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Foliage Growth Effect</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++)</h3>
+<h5>Shaders, Materials, Post-Process</h5>
+  <h4>A visual I designed for a VJ set.</h4>
+<div class="mini-modal-content">
+<div class="mini-gallery">
+                       
+                             <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/FoliageGrowth/Plant.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video>
+                            <div class="caption">.</div>
+                            </div>
+                            </div>
+                     
+                            <h2>Future Improvements:</h2> 
+                            <p>
+                            <li>Integrate more interactive features to this setup</li>
+
+`,
     "modal-landscape": `
 <span class="close-modal" onclick="closeModal()">&times;</span>
 <h2>Echolocation Effect</h2>
