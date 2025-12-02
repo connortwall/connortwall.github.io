@@ -524,12 +524,16 @@
 
 
     <div class="main-content">
-        <div class="intro-text">
+        <!--<div class="intro-text">
             <h1><span style="color: #f6fa53; background-image: linear-gradient(0deg, #ff9c31 0%, #ffec2c 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
-        </div>
+        </div>-->
+        <!--<div class="intro-text">
+            <h1><span style="color: #f6fa53; background-image: linear-gradient(0deg, #ff9c31 0%, #ffec2c 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Demo Reel</span></h1>
+        </div>-->
         <div class="card-container">
-            <div class="card">
+            <!--<div class="card">
                 <a href="https://dadiu.itch.io/roboleon">
                     <img src="images/Roboleon.jpg" alt="Card 2" href="https://dadiu.itch.io/roboleon"/>
                 </a>
@@ -541,7 +545,13 @@
                     <div class="card-title">Wishlist on Steam!</div>
 
                 </a>
-            </div>
+            </div>-->
+            <!--<div class="card">
+                <a href="">
+                    <img src="images/Roboleon.jpg" alt="Card 2" href="https://dadiu.itch.io/roboleon"/>
+                </a>
+                <div class="card-title">Download Free</div>
+            </div>-->
             <!--<iframe style="z-index: 2000" src="https://store.steampowered.com/widget/3221630/" frameborder="0" width="646" height="190"></iframe>-->
 
             <!--<div class="card">
@@ -628,13 +638,13 @@
         orbLayer.appendChild(orb);
     }
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 3; i++) {
         const bubble = document.createElement('div');
         bubble.classList.add('bubble');
 
         switch (i) {
             case 0:
-                bubble.dataset.hoverText = 'Visuals';
+                bubble.dataset.hoverText = 'Tech Art';
                 bubble.style.href = 'projects.html?filter=visuals';
                 break;
             case 1:
@@ -642,14 +652,14 @@
                 bubble.style.href = 'projects.html?filter=coding';
                 break;
             case 2:
-                bubble.dataset.hoverText = 'Writing';
+                bubble.dataset.hoverText = 'Blog';
                 bubble.style.href = 'projects.html?filter=writing';
                 break;
-            case 3:
-                bubble.dataset.hoverText = 'Community';
-                bubble.style.href = 'https://www.linkedin.com/in/connortwall/';
+            //case 3:
+                //bubble.dataset.hoverText = 'Community';
+                //bubble.style.href = 'https://www.linkedin.com/in/connortwall/';
 
-                break;
+                //break;
             case 4: bubble.dataset.hoverText = '';
                 break;
         }
