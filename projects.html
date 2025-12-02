@@ -63,16 +63,69 @@
   <h2>Projects</h2>
 
   <div class="filter-buttons">
-    <button class="filter-btn active" data-filter="all">All</button>
+    <!--<button class="filter-btn active" data-filter="all">All</button>-->
     <!--<button class="filter-btn" data-filter="game">Games</button>-->
+    <button class="filter-btn" data-filter="visuals">Tech Art</button>
     <button class="filter-btn" data-filter="coding">Coding</button>
-    <button class="filter-btn" data-filter="visuals">Visuals</button>
-    <button class="filter-btn" data-filter="writing">Writing</button>
+    <button class="filter-btn" data-filter="blog">Blog</button>
+    <!--<button class="filter-btn" data-filter="writing">Writing</button>-->
+    <button class="filter-btn" data-filter="archive">Archive</button>
   </div>
 
   <!-- Project Grid with all cards properly optimized -->
   <div class="project-grid">
-    <!-- Card 1: omnivOres Rule -->
+    <!-- Card 22: Echolocation Effect -->
+    <div class="project-card show" data-tags="visuals" data-project="echolocation">
+      <video autoplay muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
+        <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationSprint.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+      <div class="project-overlay">
+        <h3>Echolocation Effect</h3>
+        <p>Technical Artist (Unreal, Shader Graph)</p>
+        <p class="hover-text">For this effect my primary goal was to create an intuitive echolocation
+          mechanic that could be integrated into multiple gameplay systems.</p>
+        <h5>2024, 1 day</h5>
+      </div>
+    </div>
+
+
+    <!-- Card 21: Character Material -->
+
+   <!--
+    <div class="project-card show" data-tags="visuals" data-project="character">
+      <video autoplay muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
+        <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationSprint.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+      <div class="project-overlay">
+        <h3>Dissolving Character Material</h3>
+        <p>Technical Artist (Unreal, Shader Graph)</p>
+        <p class="hover-text">For this effect my primary goal was to create an intuitive echolocation
+          mechanic that could be integrated into multiple gameplay systems.</p>
+        <h5>2024, 1 week</h5>
+      </div>
+    </div>
+    -->
+
+    <!-- Card 19: Landscape Material -->
+    <!--
+    <div class="project-card show" data-tags="visuals" data-project="landscape">
+      <video autoplay muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
+        <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationSprint.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+      <div class="project-overlay">
+        <h3>Landscape Material</h3>
+        <p>Technical Artist (Unreal, Shader Graph)</p>
+        <p class="hover-text">For this effect my primary goal was to create an intuitive echolocation
+          mechanic that could be integrated into multiple gameplay systems.</p>
+        <h5>2024, 1 week</h5>
+      </div>
+    </div>
+    -->
+
+    <!-- Card 18: omnivOres Rule -->
     <div class="project-card show" data-tags="game visuals coding writing" data-project="omnivores-rule">
       <video autoplay muted loop playsinline class="project-thumbnail" loading="lazy" preload="metadata">
         <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
@@ -147,7 +200,7 @@
     </div>
 
     <!-- Card 7: Quipu -->
-    <div class="project-card show" data-tags="game visuals writing coding" data-project="quipu">
+    <div class="project-card show" data-tags="game archive" data-project="quipu">
       <img src="uploads/ConnorWall_Portfolio/Game_Design/Personal_RPG/Unreal/DiverIntroScene.webp" alt="Quipu Project" loading="lazy">
       <div class="project-overlay">
         <h3>Quipu</h3>
@@ -186,7 +239,7 @@
     </div>
 
     <!-- Card 10: Prey and Indigenous Futures -->
-    <div class="project-card show" data-tags="writing" data-project="prey">
+    <div class="project-card show" data-tags="writing blog archive" data-project="prey">
       <img src="uploads/ConnorWall_Portfolio/Blog/Prey/Prey%20Movie%20-%201.png" alt="Prey Blog" loading="lazy">
       <div class="project-overlay">
         <h3>Prey and Indigenous Futures</h3>
@@ -196,7 +249,7 @@
     </div>
 
     <!-- Card 11: Metawalker -->
-    <div class="project-card show" data-tags="game writing" data-project="metawalker">
+    <div class="project-card show" data-tags="game writing archive" data-project="metawalker">
       <img src="images/Metawalker.webp" alt="Metawalker Project" loading="lazy">
       <div class="project-overlay">
         <h3>Metawalker</h3>
@@ -207,7 +260,7 @@
     </div>
 
     <!-- Card 12: Incubator Curricula -->
-    <div class="project-card show" data-tags="visuals" data-project="fastforwardu">
+    <div class="project-card show" data-tags="archive" data-project="fastforwardu">
       <img src="uploads/ConnorWall_Portfolio/Graphic_Design/FastForwardU/FFU_Notion_Graphics/17.png" alt="FFU/Pava Center Project" loading="lazy">
       <div class="project-overlay">
         <h3>Incubator Curricula</h3>
@@ -220,7 +273,7 @@
     </div>
 
     <!-- Card 13: Wild Ones Card Game -->
-    <div class="project-card show" data-tags="game visuals" data-project="wildones">
+    <div class="project-card show" data-tags="archive" data-project="wildones">
       <img src="uploads/ConnorWall_Portfolio/Game_Design/Wild_Ones/back.png" alt="Wild Ones Card Game" loading="lazy">
       <div class="project-overlay">
         <h3>Wild Ones Card Game</h3>
@@ -231,7 +284,7 @@
     </div>
 
     <!-- Card 14: Hermaeus Mora -->
-    <div class="project-card show" data-tags="visuals" data-project="hermaeus-mora">
+    <div class="project-card show" data-tags="archive" data-project="hermaeus-mora">
       <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Personal_Projects/Hermaous_Mora.jpg" alt="Hermaeus Mora" loading="lazy">
       <div class="project-overlay">
         <h3>Hermaeus Mora</h3>
@@ -242,7 +295,7 @@
     </div>
 
     <!-- Card 15: Sunset Sticker -->
-    <div class="project-card show" data-tags="visuals" data-project="sunset-sticker">
+    <div class="project-card show" data-tags="archive" data-project="sunset-sticker">
       <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Sunset_Sticker.jpeg" alt="Sunset Sticker" loading="lazy">
       <div class="project-overlay">
         <h3>Sunset Sticker</h3>
@@ -253,7 +306,7 @@
     </div>
 
     <!-- Card 16: Scavengers Reign -->
-    <div class="project-card show" data-tags="writing" data-project="scavengers">
+    <div class="project-card show" data-tags="writing blog archive" data-project="scavengers">
       <img src="uploads/ConnorWall_Portfolio/Blog/Scavengers/1.png" alt="Scavengers Reign" loading="lazy">
       <div class="project-overlay">
         <h3>Scavengers Reign & Authentic Speculative Biology</h3>
@@ -263,7 +316,7 @@
     </div>
 
     <!-- Card 17: Escuela Amigos Mascot -->
-    <div class="project-card show" data-tags="visuals" data-project="amigosjaguares">
+    <div class="project-card show" data-tags="archive" data-project="amigosjaguares">
       <img src="uploads/ConnorWall_Portfolio/Digital_Illustration/Escuela Amigos School Official Mascot/Jaguare_2013.jpeg" alt="Jaguare Project" loading="lazy">
       <div class="project-overlay">
         <h3>Escuela Amigos Mascot</h3>
@@ -274,7 +327,7 @@
     </div>
 
     <!-- Card 18: INTD Conference -->
-    <div class="project-card show" data-tags="visuals" data-project="intdc">
+    <div class="project-card show" data-tags="archive" data-project="intdc">
       <img src="uploads/ConnorWall_Portfolio/Graphic_Design/Neural Tube Defect Conference/Copy of CME_Intl_NeuralTubeDefects_WelcomeEasel_Final.jpg" alt="INTD Conference" loading="lazy">
       <div class="project-overlay">
         <h3>INTD Conference</h3>
@@ -283,6 +336,7 @@
         <h5>2019, 1 week</h5>
       </div>
     </div>
+
   </div>
 
 

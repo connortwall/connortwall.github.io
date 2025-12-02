@@ -1842,7 +1842,540 @@ void ABreakableActor::OnBreak(const FChaosBreakEvent& BreakEvent)
 </div>
 </div>
 
-`
+`,
+    "modal-echolocation": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Echolocation Effect</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++)</h3>
+<h5>Shaders, Materials, Post-Process</h5>
+  <h4>A feature I designed for the game <a style="color: #00b4cc" href="https://connorwall.com/projects.html?filter=visuals#omnivores-rule" >Omnivores Rule</a>. 
+  Gameplay involves using sound mechanics to balance ones relationship with the environment.
+I chose echolocation because I think it creates interesting, nature-based, yet accessible gameplay challenges.</h4>
+<div class="mini-modal-content">
+<div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationIntro.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+<p style="text-align: center">The final echolocation effect uses a mix of colored post process outlines and radial impulse decals</p>
+                       <div class="mini-gallery">
+                    
+                  
+                                                                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/Outline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I sample the scene depth to create an outline effect on the edges of all meshes.</div>
+                            </div>
+                            
+                            
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColorOutline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I use CustomDepth to control outline colors. White is default.</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/CustomRenderDepth.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Colors are controllable in-editor 
+                            by modifying the actors “Render CustomDepth Pass” settings.</div>
+                            </div>
+                          
+                                                        <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/SphereMask.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Finally, to control the visibility of outlines as the effect starts and fades, 
+                            I use a sphere mask to gradually hide/show the outline effect.</div>
+                            </div>
+                       </div>
+                       <div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColoredOutlines.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">I chose to spawn a white decal to focus purely on form rather than color. Thus enhancing a feeling of blindness through a form of hue simplification.</p>
+                        <div class="mini-gallery">
+                   
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalMaterial.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">The echolocation decal material is a circle masked with a gradient.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Construction.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Sound decals are triggered on spawn and 
+                            are primarily controlled through spawning of blueprint.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Logic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Blueprint logic.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_StartSoundVisual.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect is spawned.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Fade.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect fades.</div>
+                            </div>
+                            </div>
+                            <p style="text-align: center">This effect also inspired me to explore the superpower of visual impairment. 
+                            For example, when weather / environment distortions make vision unreliable, 
+                            echolocation becomes a more reliable method of navigation.</p>
+                        <div class="mini-gallery">
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Simple echolocation trigger logic</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">this effect is most visible with darker lighting</div>
+                            </div></div>
+                            
+                           <div class="mini-gallery">
+    <div class="media-item">
+        <iframe 
+            style="max-width: 100%; max-height: 100%;" 
+            class="zoomable-video" 
+            src="https://www.youtube.com/embed/S2qyJGTmjdw?autoplay=1&mute=1&loop=1&playlist=S2qyJGTmjdw"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            onclick="toggleMediaExpansion(this)">
+        </iframe>
+        <div class="caption"></div>
+    </div>
+</div>
+<video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeatherPt2.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center"> Here echolocation is triggered by mesh collision events and footsteps.</p>
+
+<div class="mini-gallery">
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/FootprintLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect instances are spawned on footprint event (strength varied by surface type and movement type).</div>
+                            </div>
+                             <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationCollision.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video>
+                            <div class="caption">Similarly, echolocation effects are triggerable by specific collision events in blueprint 
+                            (I used a retriggerable delay for minimal effect spawning on rocks falling).</div>
+                            </div>
+                            </div>
+                     
+                            <h2>Future Improvements:</h2> 
+                            <p>
+                            <li>Integrate this effect into a custom pooling system (so that memory is handled more carefully and efficiently)</li>
+                            <li>Migrate weather to Unreal subsystem and/or gameplay tag systems to streamline logic and efficiency.</li>
+                            <li>Use curves for more modular and efficient control of radius expansion logic (rather than Timelines).</li>
+                            <li>Consider adding more visually distinction to meshes that appear invisible because they are smooth.</li></p></div>
+                            
+
+`,
+    "modal-landscape": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Echolocation Effect</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++)</h3>
+<h5>Shaders, Materials, Post-Process</h5>
+  <h4>A feature I designed for the game <a style="color: #00b4cc" href="https://connorwall.com/projects.html?filter=visuals#omnivores-rule" >Omnivores Rule</a>. 
+  Gameplay involves using sound mechanics to balance ones relationship with the environment.
+I chose echolocation because I think it creates interesting, nature-based, yet accessible gameplay challenges.</h4>
+<div class="mini-modal-content">
+<div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationIntro.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+<p style="text-align: center">The final echolocation effect uses a mix of colored post process outlines and radial impulse decals</p>
+                       <div class="mini-gallery">
+                    
+                  
+                                                                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/Outline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I sample the scene depth to create an outline effect on the edges of all meshes.</div>
+                            </div>
+                            
+                            
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColorOutline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I use CustomDepth to control outline colors. White is default.</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/CustomRenderDepth.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Colors are controllable in-editor 
+                            by modifying the actors “Render CustomDepth Pass” settings.</div>
+                            </div>
+                          
+                                                        <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/SphereMask.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Finally, to control the visibility of outlines as the effect starts and fades, 
+                            I use a sphere mask to gradually hide/show the outline effect.</div>
+                            </div>
+                       </div>
+                       <div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColoredOutlines.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">I chose to spawn a white decal to focus purely on form rather than color. Thus enhancing a feeling of blindness through a form of hue simplification.</p>
+                        <div class="mini-gallery">
+                   
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalMaterial.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">The echolocation decal material is a circle masked with a gradient.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Construction.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Sound decals are triggered on spawn and 
+                            are primarily controlled through spawning of blueprint.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Logic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Blueprint logic.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_StartSoundVisual.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect is spawned.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Fade.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect fades.</div>
+                            </div>
+                            </div>
+                            <p style="text-align: center">This effect also inspired me to explore the superpower of visual impairment. 
+                            For example, when weather / environment distortions make vision unreliable, 
+                            echolocation becomes a more reliable method of navigation.</p>
+                        <div class="mini-gallery">
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Simple echolocation trigger logic</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">this process is most visible with darker lighting</div>
+                            </div></div>
+                            
+                             <div class="mini-gallery">
+                                      <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeather.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">Echolocation can be triggered at any location any by any event. Here is is triggered by mesh collision events and footsteps.</p>
+<div class="mini-gallery">
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/FootprintLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect instances are spawned on footprint event (strength varied by surface type and movement type).</div>
+                            </div>
+                             <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationCollision.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video>
+                            <div class="caption">Similarly, echolocation effects are triggerable by specific collision events in blueprint 
+                            (I used a retriggerable delay for minimal effect spawning on rocks falling).</div>
+                            </div>
+                            </div>
+                     
+                            <h2>Future Improvements:</h2> 
+                            <p>
+                            <li>Integrate this effect into a custom pooling system (so that memory is handled more carefully and efficiently)</li>
+                            <li>Migrate weather to Unreal subsystem and/or gameplay tag systems to streamline logic and efficiency.</li>
+                            <li>Use curves for more modular and efficient control of radius expansion logic (rather than Timelines).</li>
+                            <li>Consider adding more visually distinction to meshes that appear invisible because they are smooth.</li></p></div>
+                            
+
+`,
+    "modal-character": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Echolocation Effect</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++)</h3>
+<h5>Shaders, Materials, Post-Process</h5>
+  <h4>A feature I designed for the game <a style="color: #00b4cc" href="https://connorwall.com/projects.html?filter=visuals#omnivores-rule" >Omnivores Rule</a>. 
+  Gameplay involves using sound mechanics to balance ones relationship with the environment.
+I chose echolocation because I think it creates interesting, nature-based, yet accessible gameplay challenges.</h4>
+<div class="mini-modal-content">
+<div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationIntro.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+<p style="text-align: center">The final echolocation effect uses a mix of colored post process outlines and radial impulse decals</p>
+                       <div class="mini-gallery">
+                    
+                  
+                                                                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/Outline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I sample the scene depth to create an outline effect on the edges of all meshes.</div>
+                            </div>
+                            
+                            
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColorOutline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I use CustomDepth to control outline colors. White is default.</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/CustomRenderDepth.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Colors are controllable in-editor 
+                            by modifying the actors “Render CustomDepth Pass” settings.</div>
+                            </div>
+                          
+                                                        <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/SphereMask.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Finally, to control the visibility of outlines as the effect starts and fades, 
+                            I use a sphere mask to gradually hide/show the outline effect.</div>
+                            </div>
+                       </div>
+                       <div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColoredOutlines.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">I chose to spawn a white decal to focus purely on form rather than color. Thus enhancing a feeling of blindness through a form of hue simplification.</p>
+                        <div class="mini-gallery">
+                   
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalMaterial.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">The echolocation decal material is a circle masked with a gradient.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Construction.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Sound decals are triggered on spawn and 
+                            are primarily controlled through spawning of blueprint.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Logic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Blueprint logic.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_StartSoundVisual.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect is spawned.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Fade.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect fades.</div>
+                            </div>
+                            </div>
+                            <p style="text-align: center">This effect also inspired me to explore the superpower of visual impairment. 
+                            For example, when weather / environment distortions make vision unreliable, 
+                            echolocation becomes a more reliable method of navigation.</p>
+                        <div class="mini-gallery">
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Simple echolocation trigger logic</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">this process is most visible with darker lighting</div>
+                            </div></div>
+                            
+                             <div class="mini-gallery">
+                                      <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeather.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">Echolocation can be triggered at any location any by any event. Here is is triggered by mesh collision events and footsteps.</p>
+<div class="mini-gallery">
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/FootprintLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect instances are spawned on footprint event (strength varied by surface type and movement type).</div>
+                            </div>
+                             <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationCollision.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video>
+                            <div class="caption">Similarly, echolocation effects are triggerable by specific collision events in blueprint 
+                            (I used a retriggerable delay for minimal effect spawning on rocks falling).</div>
+                            </div>
+                            </div>
+                     
+                            <h2>Future Improvements:</h2> 
+                            <p>
+                            <li>Integrate this effect into a custom pooling system (so that memory is handled more carefully and efficiently)</li>
+                            <li>Migrate weather to Unreal subsystem and/or gameplay tag systems to streamline logic and efficiency.</li>
+                            <li>Use curves for more modular and efficient control of radius expansion logic (rather than Timelines).</li>
+                            <li>Consider adding more visually distinction to meshes that appear invisible because they are smooth.</li></p></div>
+                            
+
+`,
+    "modal-maze": `
+<span class="close-modal" onclick="closeModal()">&times;</span>
+<h2>Echolocation Effect</h2>
+<h3><strong>Solo Developer</strong> (Unreal Engine, C++)</h3>
+<h5>Shaders, Materials, Post-Process</h5>
+  <h4>A feature I designed for the game <a style="color: #00b4cc" href="https://connorwall.com/projects.html?filter=visuals#omnivores-rule" >Omnivores Rule</a>. 
+  Gameplay involves using sound mechanics to balance ones relationship with the environment.
+I chose echolocation because I think it creates interesting, nature-based, yet accessible gameplay challenges.</h4>
+<div class="mini-modal-content">
+<div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationIntro.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+<p style="text-align: center">The final echolocation effect uses a mix of colored post process outlines and radial impulse decals</p>
+                       <div class="mini-gallery">
+                    
+                  
+                                                                         <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/Outline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I sample the scene depth to create an outline effect on the edges of all meshes.</div>
+                            </div>
+                            
+                            
+                            <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColorOutline.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">I use CustomDepth to control outline colors. White is default.</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/CustomRenderDepth.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Colors are controllable in-editor 
+                            by modifying the actors “Render CustomDepth Pass” settings.</div>
+                            </div>
+                          
+                                                        <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/SphereMask.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Finally, to control the visibility of outlines as the effect starts and fades, 
+                            I use a sphere mask to gradually hide/show the outline effect.</div>
+                            </div>
+                       </div>
+                       <div class="mini-gallery">
+  <div class="media-item">
+                       <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/ColoredOutlines.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">I chose to spawn a white decal to focus purely on form rather than color. Thus enhancing a feeling of blindness through a form of hue simplification.</p>
+                        <div class="mini-gallery">
+                   
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalMaterial.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">The echolocation decal material is a circle masked with a gradient.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Construction.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Sound decals are triggered on spawn and 
+                            are primarily controlled through spawning of blueprint.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Logic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Blueprint logic.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_StartSoundVisual.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect is spawned.</div>
+                            </div>
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/DecalSpawner_Fade.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect fades.</div>
+                            </div>
+                            </div>
+                            <p style="text-align: center">This effect also inspired me to explore the superpower of visual impairment. 
+                            For example, when weather / environment distortions make vision unreliable, 
+                            echolocation becomes a more reliable method of navigation.</p>
+                        <div class="mini-gallery">
+                                      <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Simple echolocation trigger logic</div>
+                            </div>
+                            
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/WeatherLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">this process is most visible with darker lighting</div>
+                            </div></div>
+                            
+                             <div class="mini-gallery">
+                                      <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeather.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
+                       <p style="text-align: center">Echolocation can be triggered at any location any by any event. Here is is triggered by mesh collision events and footsteps.</p>
+<div class="mini-gallery">
+                               <div class="media-item">
+                            <img src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/FootprintLogic.webp"
+                             width="100%;" class="zoomable-image" onclick="toggleMediaExpansion(this)">
+                            <div class="caption">Effect instances are spawned on footprint event (strength varied by surface type and movement type).</div>
+                            </div>
+                             <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationCollision.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video>
+                            <div class="caption">Similarly, echolocation effects are triggerable by specific collision events in blueprint 
+                            (I used a retriggerable delay for minimal effect spawning on rocks falling).</div>
+                            </div>
+                            </div>
+                     
+                            <h2>Future Improvements:</h2> 
+                            <p>
+                            <li>Integrate this effect into a custom pooling system (so that memory is handled more carefully and efficiently)</li>
+                            <li>Migrate weather to Unreal subsystem and/or gameplay tag systems to streamline logic and efficiency.</li>
+                            <li>Use curves for more modular and efficient control of radius expansion logic (rather than Timelines).</li>
+                            <li>Consider adding more visually distinction to meshes that appear invisible because they are smooth.</li></p></div>
+                            
+
+`,
     // Add more modal templates here as needed
 };
 
