@@ -1941,20 +1941,12 @@ I chose echolocation because I think it creates interesting, nature-based, yet a
                             <div class="caption">this effect is most visible with darker lighting</div>
                             </div></div>
                             
-                           <div class="mini-gallery">
-    <div class="media-item">
-        <iframe 
-            style="max-width: 100%; max-height: 100%;" 
-            class="zoomable-video" 
-            src="https://www.youtube.com/embed/S2qyJGTmjdw?autoplay=1&mute=1&loop=1&playlist=S2qyJGTmjdw"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            onclick="toggleMediaExpansion(this)">
-        </iframe>
-        <div class="caption"></div>
-    </div>
-</div>
+                             <div class="mini-gallery">
+                                      <div class="media-item">
+                            <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
+                                <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeatherPt1.webm"
+                                        type="video/webm"/><div class="caption"></div>
+                            </video></div></div>
 <video autoplay muted loop style="\tmax-width: 100%; max-height: 100%;" class="zoomable-video" onclick="toggleMediaExpansion(this)">
                                 <source src="uploads/ConnorWall_Portfolio/Technical_Art/Echolocation/EcholocationWeatherPt2.webm"
                                         type="video/webm"/><div class="caption"></div>
