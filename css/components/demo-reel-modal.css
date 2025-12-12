@@ -1,0 +1,153 @@
+
+     /* Demo Reel Card Styles */
+ .play-overlay {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background: rgba(0, 0, 0, 0.4);
+     transition: all 0.3s ease;
+     pointer-events: none;
+ }
+
+.card:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 0, 0, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+}
+
+.card:hover .play-button {
+    transform: scale(1.2);
+    background: rgba(255, 0, 0, 1);
+    box-shadow: 0 6px 30px rgba(255, 0, 0, 0.8);
+}
+
+.play-button::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 28px solid white;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    margin-left: 6px;
+}
+
+/* Video Modal Styles */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-modal.hidden {
+    display: none;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 1400px;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 50px rgba(255, 200, 50, 0.4);
+    animation: slideUp 0.4s ease;
+}
+
+.video-close-btn {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    font-family: 'Baron', sans-serif;
+    z-index: 10001;
+    line-height: 1;
+}
+
+.video-close-btn:hover {
+    background: rgba(255, 100, 100, 0.8);
+    transform: rotate(90deg) scale(1.15);
+}
+
+.video-modal iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-modal-content {
+        width: 95%;
+    }
+    .video-close-btn {
+        top: -45px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.8rem;
+    }
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+    .play-button::after {
+        border-left: 20px solid white;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        margin-left: 4px;
+    }
+}

@@ -9,5 +9,4 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectLoader = new ProjectLoader();
     const miniModal = new MiniModal();
     const assetModal = new AssetModal();
-
 });

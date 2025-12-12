@@ -43,7 +43,7 @@
 
         <!-- Font Awesome CDN -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <link rel="stylesheet" href="css/components/demo-reel-modal.css">
         <style>
             body {
                 margin: 0;
@@ -486,7 +486,7 @@
         </style>
 </head>
 <body>
-
+<script src="js/demoReelModal.js"></script>
 <div class="background-image"></div>
 <div class="custom-bg-container">
     <div class="custom-bg" id="bg1"></div>
@@ -528,11 +528,21 @@
             <h1><span style="color: #f6fa53; background-image: linear-gradient(0deg, #ff9c31 0%, #ffec2c 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Play Now!</span></h1>
         </div>-->
-        <!--<div class="intro-text">
+        <div class="intro-text">
             <h1><span style="color: #f6fa53; background-image: linear-gradient(0deg, #ff9c31 0%, #ffec2c 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Demo Reel</span></h1>
-        </div>-->
+        </div>
         <div class="card-container">
+            <div class="card" id="demo-reel-card" style="cursor: pointer;">
+                <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <source src="uploads/ConnorWall_Portfolio/Game_Design/Omnivores_Rule/OmnivoresRuleTrailerReel.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="play-overlay">
+                    <div class="play-button"></div>
+                </div>
+                <div class="card-title">See More</div>
+            </div>
             <!--<div class="card">
                 <a href="https://dadiu.itch.io/roboleon">
                     <img src="images/Roboleon.jpg" alt="Card 2" href="https://dadiu.itch.io/roboleon"/>
@@ -816,6 +826,7 @@
     }
 
     animate();
+
 </script>
 </body>
 </html>
